@@ -1,45 +1,20 @@
-title: OZ notes on software engineering
-# author: zghurskyi
-email: oleksii.zghurskyi@gmail.com
-description: > # this means to ignore newlines until "twitter_username:"
-  OZ notes on software engineering.
+title:             Oxymorus Blog
+email:             oleksii.zghurskyi@gmail.com
+description:       Yet Another Notes On Programming
+author:            Oleksii Zghurskyi
+baseurl:           "/"
+url:               "https://www.oxymorus.com/"
 
-# social links
-twitter_username: zghurskyi
-github_username:  zghurskyi
-# rss: rss
-# dribbble_username: jekyll
-# facebook_username: jekyll
-# flickr_username: jekyll
-# instagram_username: jekyll
-# linkedin_username: jekyll
-# pinterest_username: jekyll
-# youtube_username: jekyll
-# googleplus_username: +jekyll
-
-# Mastodon instances
-# mastodon:
-# - username: jekyll
-#   instance: example.com
-# - username: jekyll2
-#   instance: example.com
-
-
-show_excerpts: false # set to true to show excerpts on the homepage
-
-# Minima date format
-# refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
-minima:
-  date_format: "%b %-d, %Y"
-
-# If you want to link only specific pages in your header, uncomment
-# this and add the path to the pages in order as they should show up
-#header_pages:
-# - about.html
+# Social Profiles
+twitter_username:  zghurskyi
+github_username:   zghurskyi
+facebook_username: oleksii.zghurskyi
 
 # Build settings
-theme: minima
-
+highlighter:       rouge
+markdown:          kramdown
+paginate:          5
+paginate_path:     "/posts/page:num/"
 plugins:
- - jekyll-feed
- - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-paginate
