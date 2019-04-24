@@ -1,0 +1,41 @@
+---
+layout: post
+title:  "Tip Of The Day #1"
+subtitle: "Copy DB dump from one Docker container to another"
+date:   2019-04-23 22:52:55
+background: '/img/posts/06.jpg'
+---
+
+<h1>Situation</h1>
+<p>You need to create DB dump in one Docker container and apply it in another Docker container.</p>
+
+<h1>Application</h1>
+<p>Crate DB dump on staging env and apply it on local env to experiment with existing database.</p>
+
+<h1>Solution</h1>
+<ol>
+    <li>Create DB dump in first container:</li>
+{% highlight python %}
+mysqldump -u user -p --databases db > /tmp/db.sql
+{% endhighlight %}
+    <li>Copy dump from first container to local host:</li>
+{% highlight python %}
+# general syntax:
+# docker cp CONTAINER:SRC_PATH DEST_PATH
+docker cp mysql:/tmp/db.sql /tmp/db.sql
+{% endhighlight %}
+    <li>Copy dump from local host to second container:</li>
+{% highlight python %}
+# general syntax:
+# docker cp DEST_PATH CONTAINER:SRC_PATH
+docker cp /tmp/db.sql mysql:/tmp/db.sql
+{% endhighlight %}
+    <li>Apply dump in second container:</li>
+{% highlight sql %}
+docker exec -ti mysql /bin/bash
+mysql -u user -p
+-- Run the backup script to recreate the database
+mysql> drop database if exists db;
+mysql> source /tmp/db.sql
+{% endhighlight %}
+</ol>
