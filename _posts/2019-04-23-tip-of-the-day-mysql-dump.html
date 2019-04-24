@@ -14,23 +14,27 @@ background: '/img/posts/06.jpg'
 
 <h1>Solution</h1>
 <ol>
-    <li>Create DB dump in first container:</li>
+    <li>Connect to first container:</li>
+{% highlight python %}
+docker exec -ti mysql-staging /bin/bash
+{% endhighlight %}
+    <li>Create DB dump:</li>
 {% highlight python %}
 mysqldump -u user -p --databases db > /tmp/db.sql
 {% endhighlight %}
-    <li>Copy dump from first container to local host:</li>
+    <li>Copy dump to local host:</li>
 {% highlight python %}
 # general syntax:
 # docker cp CONTAINER:SRC_PATH DEST_PATH
 docker cp mysql:/tmp/db.sql /tmp/db.sql
 {% endhighlight %}
-    <li>Copy dump from local host to second container:</li>
+    <li>Copy dump to second container:</li>
 {% highlight python %}
 # general syntax:
 # docker cp DEST_PATH CONTAINER:SRC_PATH
 docker cp /tmp/db.sql mysql:/tmp/db.sql
 {% endhighlight %}
-    <li>Apply dump in second container:</li>
+    <li>Apply DB dump:</li>
 {% highlight sql %}
 docker exec -ti mysql /bin/bash
 mysql -u user -p
