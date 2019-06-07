@@ -10,7 +10,7 @@ background: '/img/posts/06.jpg'
 
 <p>If for some reason you want to get public Instagram data for specific account - it's easy to do!</p>
 
-{% highlight yaml %}
+{% highlight ruby %}
 curl https://www.instagram.com/instagram/ \
    | grep '_sharedData' \
    | awk '{print substr($0,64,length($0)-11)}' \
