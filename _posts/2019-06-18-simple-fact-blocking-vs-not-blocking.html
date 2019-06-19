@@ -1,0 +1,40 @@
+---
+layout: post
+title:  "Simple fact #1: Blocking vs Not-Blocking"
+subtitle: "Reactive idea in a nutshell"
+date:   2019-06-18 14:45:13
+background: '/img/posts/06.jpg'
+---
+
+<h1>Blocking Processing</h1>
+<p>Blocking (synchronous) processing has several characteristics:</p>
+<ul>
+  <li>Bound to the processing thread</li>
+  <li>Processing thread is waiting in case any I/O operation is performed</li>
+</ul>
+<img src="/img/blocking_processing.png" alt="Blocking processing">
+<p>Under high load this approach has following consequences:</p>
+<ul>
+  <li>CPU & RAM resources are <b>wasted</b>, while thread is waiting to the I/O results</li>
+  <li>If all threads are waiting, new user requests are either put to the queue (leads to poor response time) or dropped down</li>
+  <li>If all threads are waiting, service becomes unresponsive for API clients. This leads to timeouts and API clients failure. Basically, <b>failure leads to more failure</b>.</li>
+</ul>
+
+<h1>Non-Blocking Processing</h1>
+<p>Non-Blocking (or asynchronouse, or reactive) processing has several characteristics:</p>
+<ul>
+  <li>Not bound to specific processing thread</li>
+  <li>Threads are reused between calls</li>
+</ul>
+<img src="/img/non_blocking_processing.png" alt="Non-blocking processing">
+<p>Under high load this approach has following consequences:</p>
+<ul>
+  <li>High CPU & RAM utilization</li>
+  <li>Requests are processed as soon as they come (if service has right number of configured threads)</li>
+</ul>
+<p>Essentially, response time is limited only by I/O operations time (filesystem, database, network) and response time of downstream services.</p>
+<p>However, non-blocking procesing comes with a cost:</p>
+<ul>
+  <li>Backend design complicates, since the need to track origin and arrival of responses & errors (also errors may be unnoticed). This require new design patterns to be employed (hopefully, wrapped into frameworks <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html">Spring WebFlux</a>).</li>
+  <li>Frontend design complicates, since response(s) will come asynchronously via <a href="https://en.wikipedia.org/wiki/WebSocket">websockets</a>, <a href="https://en.wikipedia.org/wiki/Server-sent_events">server-sent events</a>, etc.</li>
+</ul>
