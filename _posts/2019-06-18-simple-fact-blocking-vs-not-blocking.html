@@ -30,7 +30,7 @@ background: '/img/posts/06.jpg'
 <p>Under highload this approach has following consequences:</p>
 <ul>
   <li>High CPU & RAM utilization</li>
-  <li>Requests are processed as soon as they come (if service has right number of configured threads)</li>
+  <li>Less threads are needed to serve same number of requests as in blocking case</li>
 </ul>
 <p>However, non-blocking procesing comes with a cost:</p>
 <ul>
