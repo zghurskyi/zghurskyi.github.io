@@ -1,0 +1,13 @@
+//title Blocking processing
+
+participant Service A
+participant Service B
+participant Service C
+
+Service A-#red>Service B: 150 req/sec
+
+activate Service B
+Service B-#blue>Service C: 100 req/sec
+deactivate Service B
+
+note over Service A,Service C:If service A sends 150 req/sec to server B,\nbut server B can only process 100 req/sec,\nthen there is 50 req/sec deficit.\nSo after 1 hour of working,\nthere are 180000 reqeuests to be dealt somehow!
