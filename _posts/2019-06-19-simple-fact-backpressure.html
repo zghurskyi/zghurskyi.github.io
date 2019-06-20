@@ -9,8 +9,9 @@ background: '/img/posts/06.jpg'
 <h1>Back-Pressure</h1>
 <p>On the internet there many defintions of "back-pressure".</p>
 <p>For example, this is how it's defined in <a href="https://www.reactivemanifesto.org/glossary#Back-Pressure">Reactive Manifesto</a>:<p>
-<div style="background-color: #ddffdd; border-left: 6px solid #4CAF50;">
-  <p><strong>Back-Pressure</strong>When one component is struggling to keep-up, 
+<div style="background-color: #ddffdd; border-left: 6px solid #4CAF50; padding-left: 20px;">
+  <p><strong>Back-Pressure</strong></p>
+  <p>When one component is struggling to keep-up, 
   the system as a whole needs to respond in a sensible way.
   It is unacceptable for the component under stress to fail catastrophically or to drop messages in an uncontrolled fashion. 
   Since it can’t cope and it can’t fail it should communicate the fact 
@@ -31,8 +32,28 @@ background: '/img/posts/06.jpg'
 <h1>Implementing back-pressure in practice</h1>
 <p>Once you are in the situation described above, essentially you have following choices:<p>
 <ul>
-  <li><b>(Auto-)Scalling</b> service, that is under pressure (e.g. in the example above: service B)</li>
-  <li><b>Dropping down</b> incomming requests once service under pressure is saturated</li>
-  <li><b>Buffering</b> requests (e.g. in the example above: introduce some messaging system between service A and B)</li>
-  <li><b>Control</b> the request producer (e.g. in the example above: service B should be able to slow down/speed up service A)</li>
+  <li><b>(Auto-)Scalling</b> service, that is under pressure</li>
+  <li><b>Dropping down or sampling</b> incomming requests once service under pressure is saturated</li>
+  <li><b>Buffering</b> requests</li>
+  <li><b>Control</b> the request producer</li>
 </ul>
+<p><b>(Auto-)Scalling</b> probably is the easiest way to deal with problem.
+  E.g. in the example above the solution might be to just scale the service B up - this definetly will resolve throughput deficit.
+  This might be just enough in some cases, but in other it might lead to just propagating the problem to the next service (e.g. service C).
+  Also, if you are in severe cost/hardware deficit it simply might not be possible.</p>
+<p><b>Dropping down or sampling</b> incomming requests. This is most commonly implemented by processing only some fraction of incomming requests and ignoring others. E.g. in the example above to solve the problem it would be enough for service B to just skip processing every 3rd request.
+  However, most often it's not applicable in practice (imagine skipping some user requests and convincing business people that it's the way to go&#128512;).
+</p>
+<p><b>Buffering</b> requests probably is the most intuitive thing to do. E.g. in the example above - this approach can be implemented by introducing some messaging queue between service A and B. 
+  This in essense allows to service B to pull requests when it's ready to process them.
+  However, beside the complication in infrastructure it might not always be possible since not all requests might be processed asynchronously.
+</p>
+<p><b>Controlling</b> the request producer is actually what is defined as "back-pressure" by Reactive Manifesto. 
+  In the example above it means that service B should be able to slow down/speed up service A. 
+  This means that service A should not <i>push</i> requests to service B, instead service B should <i>pull</i> desired number of requests from service A.
+  However, controlling request producer speed is not always an option (again, imaging telling your user to slow down). 
+  Also implementing controlling mechanism is introducing complexity in the system, so should be decided carefully.
+</p>
+<h1>Conclusion</h1>
+<p>Whenever there is a mismatch in throughput between services there might be the opportunity to apply some form of back-pressure.</p>
+<p>What strategy should be applied really depends on the constraints and requirements at hand. Sometime, just leaving it as is might be enough &#128520;</p>
