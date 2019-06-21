@@ -16,7 +16,7 @@ background: '/img/posts/06.jpg'
   So atomicity implies that there can't be situation, in which part of operations succeeded and part failed.
   </li>
   <li><b>Consistency</b> means that transaction leaves database in consistent state after execution.
-  So in practical terms, any data written to database must be valid according to integrity constraints (primary key/foreign key/unique key/etc.), cascades, triggers, and any combination thereof. 
+  So, in practical terms, any data written to database must be valid according to integrity constraints (primary key/foreign key/unique key/etc.), cascades, triggers, and any combination thereof. 
   </li>
   <li><b>Isolation</b> determines how operations performed in a transaction are visible to other executing transactions.
   So, for example, whether data written by transaction is available for read by other concurrent transactions.
@@ -27,20 +27,56 @@ background: '/img/posts/06.jpg'
   And transaction is committed only after it is entered in the log.
   </li>
 </ul>
+
 <h1>Transaction states</h1>
 <p>During execution database transaction goes through number of states:</p>
 <img src="/img/transaction_state_machine.png" alt="Transaction state machine">
-<h1>Classical money transfer example</h1>
-<p>Assume we have two accounts - A and B. Initially there are 1000 dollars on each account, but we need to transfer 100 dollars from account A to account B.</p>
+
+<h2>State transitions example</h2>
+<p>Assume we have two accounts: A and B. Initially there are 1000$ on each account, but we need to transfer 100$ from account A to account B.</p>
 <p>Database transaction for above situation can be represented as follows (in pseudocode):</p>
 {% highlight sql %}
 BEGIN TRANSACTION
   READ(A);
-  A := A - 500;
+  A := A - 100;
   WRITE(A);
   READ(B);
-  B := B + 500;
+  B := B + 100;
   WRITE(B);
   COMMIT;
 END TRANSACTION;
 {% endhighlight %}
+
+<ol>
+  <li><b>ACTIVE:</b> 
+    <p>From BEGIN TRANSACTION to COMMIT instraction the transaction is in ACTIVE state.</p>
+  </li>
+  <li><b>PARTIALLY COMMITTED:</b>
+    <p>If transaction reaches COMMIT without failures, then it goes into PARTIALLY COMMITTED state.</p>
+    <p>In PARTIALLY COMMITTED state, balances will have following values: A = 900 and B = 1100
+  </li>
+  <li><b>FAILED</b>
+    <p>Transaction may enter FAILED state:</p>
+    <ul>
+      <li>In ACTIVE state:
+        <ul>
+          <li>before WRITE(A): then A = 1000 and B = 1000</li>
+          <li>after WRITE(A): then A = 900 and B = 1100</li>
+          <li>before COMMIT and after WRITE(B): then A = 900 and B = 1100</li>
+        </ul>
+      </li>
+      <li>In PARTIALLY COMMITTED state. Then accounts will have following balances: A = 500 and B = 1500</li>
+    </ul>
+  </li>
+  <li><b>ABORTED</b>
+    <p>The transaction in ABORTED state has to undo the changes made so far.
+      So, whatever balances are at the beginning in ABORTED state, after roll back to the previous consistent state: A = 1000 and B = 1000
+    </p>
+  </li>
+  <li><b>COMMITTED</b>
+    <p>If the transaction executes COMMIT successfully, that is, if it successfully writes the new value of A and B 
+      into log file or stable storage, then the transaction is said to be in COMMITTED state.
+    </p>
+  </li>
+  <li>Transaction terminates either in COMMITTED or in ABORTED state</li>
+</ol>
