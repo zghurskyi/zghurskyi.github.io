@@ -1,0 +1,46 @@
+---
+layout: post
+title:  "Simple concept #3: Database Transaction"
+subtitle: "What & How"
+date:   2019-06-20 13:58:44
+background: '/img/posts/06.jpg'
+---
+
+<h1>Database Transaction</h1>
+<div style="background-color: #ddffdd; border-left: 6px solid #4CAF50; padding-left: 20px;">
+  <p>Database Transaction represents a unit of work, that is atomic, consistent, isolated and durable (a.k.a. ACID).</p>
+</div>
+<p>ACID guarantees are provided by database management systems (DBMS).</p>
+<ul>
+  <li><b>Atomicity</b> means that operations, that constitute transaction are all either succeed or fail together. 
+  So atomicity implies that there can't be situation, in which part of operations succeeded and part failed.
+  </li>
+  <li><b>Consistency</b> means that transaction leaves database in consistent state after execution.
+  So in practical terms, any data written to database must be valid according to integrity constraints (primary key/foreign key/unique key/etc.), cascades, triggers, and any combination thereof. 
+  </li>
+  <li><b>Isolation</b> determines how operations performed in a transaction are visible to other executing transactions.
+  So, for example, whether data written by transaction is available for read by other concurrent transactions.
+  </li>
+  <li><b>Durability</b> means that after transaction is committed, database changes are saved permanently.
+  So, if database crushes all committed transactions will be restored. 
+  This is most often implemented by using transaction log stored in non-volatile storage. 
+  And transaction is committed only after it is entered in the log.
+  </li>
+</ul>
+<h1>Transaction states</h1>
+<p>During execution database transaction goes through number of states:</p>
+<img src="/img/transaction_state_machine.png" alt="Transaction state machine">
+<h1>Classical money transfer example</h1>
+<p>Assume we have two accounts - A and B. Initially there are 1000 dollars on each account, but we need to transfer 100 dollars from account A to account B.</p>
+<p>Database transaction for above situation can be represented as follows (in pseudocode):</p>
+{% highlight sql %}
+BEGIN TRANSACTION
+  READ(A);
+  A := A - 500;
+  WRITE(A);
+  READ(B);
+  B := B + 500;
+  WRITE(B);
+  COMMIT;
+END TRANSACTION;
+{% endhighlight %}
