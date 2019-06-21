@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Simple concept #3: Database Transaction"
-subtitle: "What & How"
+title:  "Deep Dive: Data Access Layer"
+subtitle: "Part 1: Database Transaction"
 date:   2019-06-20 13:58:44
 background: '/img/posts/06.jpg'
 ---
@@ -33,7 +33,7 @@ background: '/img/posts/06.jpg'
 <img src="/img/transaction_state_machine.png" alt="Transaction state machine">
 <p></p>
 <h2>State transitions example</h2>
-<p>Assume we have two accounts: A and B. Initially each account has 1000$ balance.However, we need to transfer 100$ from account A to account B.</p>
+<p>Assume we have two accounts: A and B. Initially each account has 1000$ balance. The task is to transfer 100$ from account A to account B.</p>
 <p>Database transaction for above situation can be represented as follows (in pseudocode):</p>
 {% highlight sql %}
 BEGIN TRANSACTION
@@ -54,7 +54,7 @@ END TRANSACTION;
   </li>
   <li><b>PARTIALLY COMMITTED:</b>
     <p>If transaction reaches COMMIT without failures, then it goes into PARTIALLY COMMITTED state.</p>
-    <p>In PARTIALLY COMMITTED state, balances will have following values: A = 900 and B = 1100
+    <p>In PARTIALLY COMMITTED state, balances will have following values: A = 900 and B = 1100.</p>
   </li>
   <li><b>FAILED</b>
     <p>Transaction may enter FAILED state:</p>
@@ -66,7 +66,7 @@ END TRANSACTION;
           <li>before COMMIT and after WRITE(B): then A = 900 and B = 1100</li>
         </ul>
       </li>
-      <li>In PARTIALLY COMMITTED state. Then balances: A = 500 and B = 1500</li>
+      <li>In PARTIALLY COMMITTED state. Then balances: A = 900 and B = 1100</li>
     </ul>
   </li>
   <li><b>ABORTED</b>
@@ -83,7 +83,7 @@ END TRANSACTION;
 </ol>
 
 <h1>Transaction failure reasons</h1>
-<p>Database transaction might fail due to one or more of the following reasons</p>
+<p>Database transaction might fail due to one or more of the following reasons:</p>
 <ul>
   <li>Server failure, e.g. hardware, software or network error, that causes database server to hang or crash</li>
   <li>Logical transaction failure, e.g. user aborts transaction, devision by zero etc.</li>
