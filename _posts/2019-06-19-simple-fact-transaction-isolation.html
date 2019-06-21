@@ -31,9 +31,9 @@ background: '/img/posts/06.jpg'
 <h1>Transaction states</h1>
 <p>During execution database transaction goes through number of states:</p>
 <img src="/img/transaction_state_machine.png" alt="Transaction state machine">
-
+<p></p>
 <h2>State transitions example</h2>
-<p>Assume we have two accounts: A and B. Initially there are 1000$ on each account, but we need to transfer 100$ from account A to account B.</p>
+<p>Assume we have two accounts: A and B. Initially each account has 1000$ balance.However, we need to transfer 100$ from account A to account B.</p>
 <p>Database transaction for above situation can be represented as follows (in pseudocode):</p>
 {% highlight sql %}
 BEGIN TRANSACTION
@@ -47,6 +47,7 @@ BEGIN TRANSACTION
 END TRANSACTION;
 {% endhighlight %}
 
+<p>Let's follow state transitioning for this transaction:</p>
 <ol>
   <li><b>ACTIVE:</b> 
     <p>From BEGIN TRANSACTION to COMMIT instraction the transaction is in ACTIVE state.</p>
@@ -65,7 +66,7 @@ END TRANSACTION;
           <li>before COMMIT and after WRITE(B): then A = 900 and B = 1100</li>
         </ul>
       </li>
-      <li>In PARTIALLY COMMITTED state. Then accounts will have following balances: A = 500 and B = 1500</li>
+      <li>In PARTIALLY COMMITTED state. Then balances: A = 500 and B = 1500</li>
     </ul>
   </li>
   <li><b>ABORTED</b>
@@ -78,5 +79,16 @@ END TRANSACTION;
       into log file or stable storage, then the transaction is said to be in COMMITTED state.
     </p>
   </li>
-  <li>Transaction terminates either in COMMITTED or in ABORTED state</li>
+  <li>After entering COMMITTED or ABORTED state, transaction is terminated</li>
 </ol>
+
+<h1>Transaction failure reasons</h1>
+<p>Database transaction might fail due to one or more of the following reasons</p>
+<ul>
+  <li>Server failure, e.g. hardware, software or network error, that causes database server to hang or crash</li>
+  <li>Logical transaction failure, e.g. user aborts transaction, devision by zero etc.</li>
+  <li>Concurrency failure, e.g. if transaction causes deadlock, or violates serializability</li>
+  <li>Disk failure</li>
+</ul>
+<p>DBMS usually can recover from server failure, logical failure or concurrency failure. To deal with disk failures - disk backups needs to be maintained.</p>
+</ul>
