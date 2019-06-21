@@ -1,27 +1,28 @@
 @startuml
 
-state Active {
+state ACTIVE {
 }
-Active: **Initial state**\n\nOnce transaction start executing, it is in active state.\nIn this state read & write on some data is performed.
-state Partially_Committed {
+ACTIVE: **Initial state**\n\nOnce transaction start executing, it is in active state.\nIn this state read & write on some data is performed.
+state PARTIALLY_COMMITED {
 }
-Partially_Committed: **After the final operation executed**\n\nIf all operations are executed successfully,\ntransaction goes to partially commited state.
-state Committed {
+PARTIALLY_COMMITED: **After the final operation executed**\n\nIf all operations are executed successfully,\ntransaction goes to partially commited state.
+state COMMITTED {
 }
-Committed: **After successful completion**\n\nIf DBMS can guarantee durability for current transaction,\nit goes into commited state.
-state Failed {
+COMMITTED: **After successful completion**\n\nIf DBMS can guarantee durability for current transaction,\nit goes into commited state.
+state FAILED {
 }
-Failed: **After any failure**\n\nIf any issue occures the transaction is not proceeded.\nExamples: user aborts, concurrency control problem etc.
-state Aborted {
+FAILED: **After any failure**\n\nIf any issue occures the transaction is not proceeded.\nExamples: user aborts, concurrency control problem etc.
+state ABORTED {
 }
-Aborted: **After rollback to the previous consistent state**\n\nIf transaction failed, database should be rolled back\nto the previous valid state.
-[*] --> Active
-Active --> Failed
-Failed -> Aborted
-Aborted -> [*]
+ABORTED: **After rollback to the previous consistent state**\n\nIf transaction failed, database should be rolled back\nto the previous valid state.
+[*] --> ACTIVE
+ACTIVE --> FAILED
+FAILED -> ABORTED
+ABORTED -> [*]
 
-Active -> Partially_Committed
-Partially_Committed -> Committed
-Committed -> [*]
+ACTIVE -> PARTIALLY_COMMITED
+PARTIALLY_COMMITED -> COMMITTED
+PARTIALLY_COMMITED --> FAILED
+COMMITTED -> [*]
 
 @enduml
