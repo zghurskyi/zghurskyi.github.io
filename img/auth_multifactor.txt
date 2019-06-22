@@ -1,0 +1,10 @@
+@startuml
+User->Server: Access protected resource
+Server-->User: Login page
+User->Server: Credentials (username + password)
+Server->Database: Find user details by credentials
+Database-->Server: User details found
+Server->UserDevice: Ask confirmation (press accept button,\nenter code from SMS, follow link in email, etc.)
+User-->Server: User submits confirmation
+Server->User: Access granted/denied
+@enduml
