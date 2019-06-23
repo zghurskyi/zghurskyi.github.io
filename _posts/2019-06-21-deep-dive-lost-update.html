@@ -48,7 +48,7 @@ that someone else changed it between the moment of data loading and the moment t
   However, if another transaction commits a newer record version, the second transaction will no longer match any row
   and therefore the lost update is prevented.
 </p>
-<p>ORMs (e.g. Hibernate) updated results count to check the number of updated rows. 
+<p>ORMs (e.g. Hibernate) use updated results count to check the number of updated rows. 
   If no row was matched, <a href="https://docs.oracle.com/javaee/7/api/javax/persistence/OptimisticLockException.html">OptimisticLockException</a> is thrown.
   After exception is thrown, the current transaction and persistence context are aborted.
 </p>
