@@ -19,9 +19,10 @@ that someone else changed it between the moment of data loading and the moment t
   <li>Use optimistic locking (version or timestamp based)</li>
 </ul>
 
-<h1>Changing isolation level</li>
+<h1>Changing isolation level</h1>
 <p>Most databases use READ COMMITED isolation level by default (MySQL - REPEATABLE READ).
-  Choosing isolation level is always a tradeof between consistency and scalability.</p>
+  Choosing isolation level is always a tradeof between consistency and scalability.
+</p>
 <p>If lost update is pretty common scenario in the system, sometime it will make sense to use higher isolation level.
   For example, either REPEATABLE READ or SERIALIZABLE will prevent lost update from happening.
 </p>
