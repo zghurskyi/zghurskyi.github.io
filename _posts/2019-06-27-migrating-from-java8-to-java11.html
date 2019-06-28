@@ -1,0 +1,295 @@
+---
+layout: post
+title:  "Migrating from Java 8 to Java 11"
+subtitle: "Changes in a nutshell"
+date:   2019-06-21 19:35:41
+background: '/img/posts/06.jpg'
+---
+
+<h1>1 Java 8 to Java 11 language changes</h1>
+<h2>1.1 Java Language Changes for Java SE 9</h2>
+<h3>1.1.1 Java Platform module system</h3>
+<p>The major change to Java 9 is the introduction of the Java Platform module system.</p>
+<p>The Java Platform module system introduces a new kind of Java programming component - the module, which is a
+    named, self-describing collection of code and data. Its code is organized as a set of packages containing
+    types (i.e., Java classes and interfaces). Its data includes resources and other kinds of static
+    information. Modules can either export or encapsulate packages, and they express dependencies on other
+    modules explicitly.</p>
+<p>To learn more about the Java Platform module system, see <a href="http://openjdk.java.net/projects/jigsaw/"
+                                                               rel="nofollow">Project Jigsaw</a> on OpenJDK.
+</p>
+<h3>1.1.2 Private interface methods</h3>
+<p>Private interface methods are supported. This support allows nonabstract methods of an interface to share code
+    between them.</p>
+<h3>1.1.3 Collections of factory methods</h3>
+<p>Java 9 introduces collection literals for the easier definition of the common collections:</p>
+
+{% highlight java %}
+List<Integer> list = List.of(1, 2, 3);
+Set<String> set = Set.of("foo", "bar", "baz");
+Map<String, String> map = Map.of("hello", "world");
+Map<String, Integer> mapOfEntries = Map.ofEntries(Map.entry("o", 0), Map.entry("z", 1));
+{% endhighlight %}
+
+<h3>1.1.4 Stream API changes</h3>
+<h4>takeWhile</h4>
+<p>takeWhile takes elements from the initial stream while the predicate holds true.
+    Meaning that when an element is encountered that does not match the predicate, the rest of the stream is
+    discarded.</p>
+
+{% highlight java %}
+Stream.of(2, 4, 6, 8, 9, 10, 12)
+    .takeWhile(n -> n % 2 == 0)
+    .forEach(System.out::print);
+// 2468
+{% endhighlight %}
+
+<h4>dropWhile</h4>
+<p>dropWhile is essentially the opposite of takeWhile. Instead of taking elements from
+    the stream until the first element which does not match the predicate, dropWhile drops these
+    elements and includes the remaining elements in the returned stream.</p>
+{% highlight java %}
+Stream.of(2, 4, 6, 8, 9, 10, 12)
+    .dropWhile(n -> n % 2 == 0)
+    .forEach(System.out::print);
+// 91012
+{% endhighlight %}
+<p>Unordered stream</p>
+<p>What happens if the stream is un-ordered?<br>If some of the
+    elements in the stream match the predicate (but not all) then the operation is non-deterministic and an
+    arbitrary subset of matching elements is returned or removed. Meaning that you’ll get different results for
+    each execution.</p>
+{% highlight java %}
+Set<Integer> numbers = Set.of(2, 4, 6, 3, 8);
+numbers.stream()
+    .takeWhile(n -> n % 2 == 0)
+    .forEach(System.out::println);
+// prints out a different subset of matching elements every time
+// an empty set is also a subset
+{% endhighlight %}
+<h3>1.1.5 Optional</h3>
+<h4>or() method</h4>
+<p>The or() method gives you a fluent way of chaining behavior on Optional without checking if the
+    value is present or not.</p>
+{% highlight java %}
+Optional.empty().or(() -> Optional.of("Hello world"))
+{% endhighlight %}
+
+<h4>Converting an Optional into a Stream</h4>
+<p>Now
+    it's possible to convert an Optional into a Stream containing at most one element. It’s really useful if you want
+    to use the laziness of the Streams API. Namely, calling map() on the Optional executes
+    the mapping function immediately, on the Stream - not.
+</p>
+{% highlight java %}
+Optional<Integer> optional = Optional.of(1).map(x -> x * 3)
+// variable contains Optional[3]
+
+Stream<Integer> stream = Optional.of(1).stream().map(x -> x * 3)
+// variable contains lazy stream, that is not evaluated until terminal operation
+{% endhighlight %}
+<h4>ifPresentOrElse() method</h4>
+<p>In Java 8, you could specify the behavior you want to execute if the value in an Optional is present. In Java 9
+    you can pass 2 Runnables to specify what to do if the value is present and otherwise.</p>
+{% highlight java %}
+Optional.empty().ifPresentOrElse(x -> System.out.println(x), () -> System.out.println("empty"));
+// empty
+{% endhighlight %}
+<h3>1.1.6 Process Management API</h3>
+<p>Java 9 adds the <a
+        href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/ProcessHandle.html">ProcessHandle </a>class,
+    which offers a rich API to inspect the processes.</p>
+{% highlight java %}
+ProcessHandle current = ProcessHandle.current();
+current.pid()
+// prints current process id
+{% endhighlight %}
+<h3>1.1.7 StackWalker</h3>
+<p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/StackWalker.html">StackWalker </a>enables
+    you to walk, filter and otherwise access stack traces in a very efficient manner</p>
+{% highlight java %}
+StackWalker.getInstance().walk(s -> s.limit(5).collect(Collectors.toList()));
+{% endhighlight %}
+<h3>1.1.8 More Concise try-with-resources Statements</h3>
+<p>If you already have a resource as a final or effectively final variable, you
+    can use that variable in a try-with-resources statement without declaring a new
+    variable. An "effectively final" variable is one whose value is never changed after it is
+    initialized.</p>
+<p>In Java SE 7 or 8, you would declare new variables, like this:</p>
+{% highlight java %}
+try (Resource r1 = resource1; Resource r2 = resource2) { ... }
+{% endhighlight %}
+<p>In Java SE 9 and beyond, you don’t need to declare r1 and r2 in a try-with-resources statement:</p>
+{% highlight java %}
+try (resource1; resource2) { ... }
+{% endhighlight %}
+<h2>1.2 Java Language Changes for Java SE 10</h2>
+<p>Java SE 10 introduces support for inferring the type of local variables from the context, which makes code more
+    readable and reduces the amount of required boilerplate code.</p>
+<h3>1.2.1 Local-Variable
+    Type Inference with var</h3>
+<p>In Java SE 10 and later, you can declare local variables with non-null initializers with the<em>var</em>identifier,
+    which can help you write code that’s easier to read. </p>
+
+{% highlight java %}
+URL url = new URL("http://www.oracle.com/");
+URLConnection conn = url.openConnection();
+Reader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+{% endhighlight %}
+</br>
+{% highlight java %}
+var url = new URL("http://www.oracle.com/");
+var conn = url.openConnection();
+var reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+{% endhighlight %}
+<p>var <em>is a reserved type name, not a keyword</em>, which means that existing code that uses<em>var</em>as
+    a variable, method, or package name is not affected. However, code that uses<em>var</em>as a
+    class or interface name is affected and the class or interface needs to be renamed.</p>
+<p>var can be used for the following types of variables:</p>
+<ul>
+    <li><p>Local variable declarations with initializers:</p>
+{% highlight java %}
+var list = new ArrayList<String>(); // infers ArrayList<String>
+var stream = list.stream(); // infers Stream<String>
+var path = Paths.get(fileName); // infers Path
+var bytes = Files.readAllBytes(path); // infers bytes[]
+{% endhighlight %}
+    </li>
+    <li><p>Enhanced for-loop indexes:</p>
+{% highlight java %}
+List<String> myList = Arrays.asList("a", "b", "c");
+for (var element : myList) {...} // infers String
+{% endhighlight %}
+    </li>
+    <li><p>Index variables declared in traditional for loops:</p>
+{% highlight java %}
+for (var counter = 0; counter < 10; counter++) {...} // infers int
+{% endhighlight %}
+    </li>
+    <li><p>try-with-resources variable:</p>
+{% highlight java %}
+try (var input = new FileInputStream("validation.txt")) {...} // infers FileInputStream
+{% endhighlight %}
+    </li>
+    <li><p>A lambda expression whose formal parameters have inferred types isimplicitly typed:</p>
+{% highlight java %}
+BiFunction<Integer, Integer, Integer> = (a, b) -> a + b
+{% endhighlight %}
+    </li>
+</ul>
+<p>var style guide:<em>var</em>should be used with caution. To get more details about recommended uses, consult with official <a
+        href="https://openjdk.java.net/projects/amber/LVTIstyle.html">style guide</a>.</p>
+<h2>1.3 Java Language Changes for Java SE 11</h2>
+<h3>1.3.1 Implicitly typed lambda expression</h3>
+<p>In Java SE 11 and later, you can declare each formal parameter of an implicitly typed lambda expression with the<em>var</em>identifier:</p>
+                    {% highlight java %}
+                    (var a, var b) -> a + b;
+                    {% endhighlight %}
+<p>Why would we want to use<em>var</em> for lambda parameters when we could simply skip the types?</p>
+<p>One benefit of uniformity is that annotations can be applied to lambda parameters:</p>
+                    {% highlight java %}
+                    (@Nonnull var s1, @Nullable var s2) -> s1 + s2
+                    {% endhighlight %}
+<h3>1.3.2 HTTP Client API</h3>
+                    {% highlight java %}
+                    import java.net.http.*
+                    import java.net.http.HttpClient.*
+                    import java.net.http.HttpResponse.BodyHandlers
+
+                    var client = HttpClient.newBuilder().
+                    version(Version.HTTP_2).
+                    followRedirects(Redirect.NORMAL).
+                    build()
+
+                    var getRequest = HttpRequest.newBuilder(URI.create("http://localhost:8080")).build()
+
+                    var getResponse = client.send(getRequest, BodyHandlers.ofString())
+
+                    getResponse.body().lines().limit(5).forEach(System.out::println)
+
+                    var postRequest = HttpRequest.newBuilder().
+                    uri(URI.create("http://localhost:8080")).
+                    timeout(java.time.Duration.ofMinutes(1)).
+                    header("Content-Type", "application/json").
+                    POST(HttpRequest.BodyPublishers.ofString("{\"greeting\": \"Hi there!\"}")).
+                    build()
+
+                    client.sendAsync(req, BodyHandlers.ofString()).
+                    thenApply(HttpResponse::body).
+                    thenAccept(System.out::println)
+                    {% endhighlight %}
+
+<h1>2 Java and Docker</h1>
+<p>One of the key features of Docker is the ability to limit a container’s memory and CPU usage.
+    Unfortunately, this is precisely where Java runs short. Let’s use an example to understand the problem.<br><br>Imagine
+    you have a node with <strong>32GB</strong> of memory and you want to run a Java application with a limit
+    of <strong>1GB</strong>. If you do not provide a <strong>-Xmx</strong> parameter the JVM will use its default
+    configuration:</p>
+<ol>
+    <li>The JVM will check the total available memory. Because the JVM is not aware of the Linux container, it
+        thinks it is running on the Host machine and has access to the full <strong>32GB </strong>of
+        available memory.
+    </li>
+    <li>By default, the JVM will use <strong>MaxMemory/4</strong> which in this case is <strong>8GB</strong> (32GB/4).
+    </li>
+    <li>As the heap size grows and goes beyond <strong>1GB</strong>, the container will be killed by Docker
+        (<strong>"OOM killed"</strong>).
+    </li>
+    <li>Of course, an obvious solution is to fix the JVM’s heap size using <strong>Xmx</strong> parameter, but that
+        means you need to control memory <strong>twice</strong>, once in Docker and once in the JVM.
+    </li>
+</ol>
+<p>The first workaround for this issue was released with <strong>Java 8u131 and Java 9:</strong></p>
+<ol>
+    <li>Use <strong>-XX:+UnlockExperimentalVMOptions</strong></li>
+    <li>Use <strong>-XX:+UseCGroupMemoryLimitForHeap</strong> which would tell the JVM to check for the
+        cgroup memory limit to set the maximum heap size
+    </li>
+    <li>Use <strong>-XX:MaxRAMFraction, </strong>to limit portion of memory that can be allocated to the JVM.
+    </li>
+    <li>Finally, application should control explicitly the thread pools sizes, and limit common ForkJoinPool
+        parallelism with <strong>-Djava.util.concurrent.ForkJoinPool.common.parallelism=2</strong></li>
+</ol>
+<p>So, <strong>with Java 8u131+ and Java 9</strong> you’d have something like:<br><br></p>
+                    {% highlight java %}
+                    -XX:+UnlockExperimentalVMOptions
+                    -XX:+UseCGroupMemoryLimitForHeap
+                    -XX:MaxRAMFraction=2
+                    -Djava.util.concurrent.ForkJoinPool.common.parallelism=2
+                    {% endhighlight %}
+
+<p><br>Luckily <strong>Java 10 </strong>came to the rescue. Now applying CPU and memory limits to our
+    containerized JVMs will be straightforward. The JVM will detect hardware capability of the container correctly,
+    tune itself appropriately and make a good representation of the available capacity to the application. As a
+    result, not only CPU Sets but also CPU Shares are now examined by JVM. Furthermore, this becomes the default
+    behaviour, and can only be disabled via <strong>-XX:-UseContainerSupport</strong> option.</p>
+<p><br></p>
+
+<h1>3 Java 11 recommended (and checked)
+    tools versions</h1>
+<p>Here are the recommended minimum versions for a few tools:</p>
+<ul>
+    <li><strong>IntelliJ IDEA</strong>: <a href="https://blog.jetbrains.com/idea/2018/06/java-11-in-intellij-idea-2018-2/"
+                                           rel="nofollow">2018.2</a></li>
+    <li><strong>Maven</strong>: 3.5.0
+        <ul>
+            <li><strong>compiler plugin</strong>: 3.8.0</li>
+            <li><strong>surefire</strong> and <strong>failsafe</strong>: 2.22.0</li>
+        </ul>
+    </li>
+    <li><strong>Gradle</strong>:<a href="https://docs.gradle.org/5.0/release-notes.html#java-11-runtime-support" rel="nofollow">5.0</a>
+    </li>
+</ul>
+<p>Some dependencies that are known to work on Java 11:</p>
+<ul>
+    <li><strong>Spring Boot 2.1.0</strong>
+        <strong>Spring</strong>(5.1),
+        <strong>Mockito</strong>(2.20.0)
+    </li>
+    <li><strong>Lombok v1.18.6</strong></li>
+    <li><strong>ASM</strong>(7.0),
+        <strong>Byte Buddy</strong>(1.9.0),
+        <strong>cglib</strong>(3.2.8), or<strong>Javassist</strong>(3.23.1-GA).
+    </li>
+</ul>
+<p>Since Java 9, the bytecode level is increased every six months, so <strong>these libraries should be updated regularly</strong>.</p>
