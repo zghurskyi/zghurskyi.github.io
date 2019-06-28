@@ -182,42 +182,42 @@ BiFunction<Integer, Integer, Integer> = (a, b) -> a + b
 <h2>1.3 Java Language Changes for Java SE 11</h2>
 <h3>1.3.1 Implicitly typed lambda expression</h3>
 <p>In Java SE 11 and later, you can declare each formal parameter of an implicitly typed lambda expression with the<em>var</em>identifier:</p>
-                    {% highlight java %}
-                    (var a, var b) -> a + b;
-                    {% endhighlight %}
+{% highlight java %}
+(var a, var b) -> a + b;
+{% endhighlight %}
 <p>Why would we want to use<em>var</em> for lambda parameters when we could simply skip the types?</p>
 <p>One benefit of uniformity is that annotations can be applied to lambda parameters:</p>
-                    {% highlight java %}
-                    (@Nonnull var s1, @Nullable var s2) -> s1 + s2
-                    {% endhighlight %}
+{% highlight java %}
+(@Nonnull var s1, @Nullable var s2) -> s1 + s2
+{% endhighlight %}
 <h3>1.3.2 HTTP Client API</h3>
-                    {% highlight java %}
-                    import java.net.http.*
-                    import java.net.http.HttpClient.*
-                    import java.net.http.HttpResponse.BodyHandlers
+{% highlight java %}
+import java.net.http.*
+import java.net.http.HttpClient.*
+import java.net.http.HttpResponse.BodyHandlers
 
-                    var client = HttpClient.newBuilder().
-                    version(Version.HTTP_2).
-                    followRedirects(Redirect.NORMAL).
-                    build()
+var client = HttpClient.newBuilder().
+version(Version.HTTP_2).
+followRedirects(Redirect.NORMAL).
+build()
 
-                    var getRequest = HttpRequest.newBuilder(URI.create("http://localhost:8080")).build()
+var getRequest = HttpRequest.newBuilder(URI.create("http://localhost:8080")).build()
 
-                    var getResponse = client.send(getRequest, BodyHandlers.ofString())
+var getResponse = client.send(getRequest, BodyHandlers.ofString())
 
-                    getResponse.body().lines().limit(5).forEach(System.out::println)
+getResponse.body().lines().limit(5).forEach(System.out::println)
 
-                    var postRequest = HttpRequest.newBuilder().
-                    uri(URI.create("http://localhost:8080")).
-                    timeout(java.time.Duration.ofMinutes(1)).
-                    header("Content-Type", "application/json").
-                    POST(HttpRequest.BodyPublishers.ofString("{\"greeting\": \"Hi there!\"}")).
-                    build()
+var postRequest = HttpRequest.newBuilder().
+uri(URI.create("http://localhost:8080")).
+timeout(java.time.Duration.ofMinutes(1)).
+header("Content-Type", "application/json").
+POST(HttpRequest.BodyPublishers.ofString("{\"greeting\": \"Hi there!\"}")).
+build()
 
-                    client.sendAsync(req, BodyHandlers.ofString()).
-                    thenApply(HttpResponse::body).
-                    thenAccept(System.out::println)
-                    {% endhighlight %}
+client.sendAsync(req, BodyHandlers.ofString()).
+thenApply(HttpResponse::body).
+thenAccept(System.out::println)
+{% endhighlight %}
 
 <h1>2 Java and Docker</h1>
 <p>One of the key features of Docker is the ability to limit a container’s memory and CPU usage.
@@ -251,12 +251,12 @@ BiFunction<Integer, Integer, Integer> = (a, b) -> a + b
         parallelism with <strong>-Djava.util.concurrent.ForkJoinPool.common.parallelism=2</strong></li>
 </ol>
 <p>So, <strong>with Java 8u131+ and Java 9</strong> you’d have something like:<br><br></p>
-                    {% highlight java %}
-                    -XX:+UnlockExperimentalVMOptions
-                    -XX:+UseCGroupMemoryLimitForHeap
-                    -XX:MaxRAMFraction=2
-                    -Djava.util.concurrent.ForkJoinPool.common.parallelism=2
-                    {% endhighlight %}
+{% highlight java %}
+-XX:+UnlockExperimentalVMOptions
+-XX:+UseCGroupMemoryLimitForHeap
+-XX:MaxRAMFraction=2
+-Djava.util.concurrent.ForkJoinPool.common.parallelism=2
+{% endhighlight %}
 
 <p><br>Luckily <strong>Java 10 </strong>came to the rescue. Now applying CPU and memory limits to our
     containerized JVMs will be straightforward. The JVM will detect hardware capability of the container correctly,
