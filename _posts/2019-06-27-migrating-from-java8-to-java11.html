@@ -151,8 +151,8 @@ try (resource1; resource2) { ... }
     readable and reduces the amount of required boilerplate code.</p>
 
 <h3>Local-Variable Type Inference with <em>var</em></h3>
-<p>In Java SE 10 and later, you can declare local variables with non-null initializers with the<em>var</em>identifier,
-    which can help you write code that’s easier to read. </p>
+<p>In Java SE 10 and later, you can declare local variables with non-null initializers with the <em>var</em> identifier,
+    which can help you write code that’s easier to read.</p>
 
 {% highlight java %}
 URL url = new URL("http://www.oracle.com/");
@@ -167,8 +167,8 @@ var conn = url.openConnection();
 var reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 {% endhighlight %}
 
-<p><em>var</em> is a reserved type name, not a keyword, which means that existing code that uses <em>var</em>as
-    a variable, method, or package name is not affected. However, code that uses <em>var</em>as a
+<p><em>var</em> is a reserved type name, not a keyword, which means that existing code that uses <em>var</em> 
+    as a variable, method, or package name is not affected. However, code that uses <em>var</em> as a
     class or interface name is affected and the class or interface needs to be renamed.</p>
 <p><em>var</em> can be used for the following types of variables:</p>
 <ul>
@@ -197,7 +197,7 @@ for (var counter = 0; counter < 10; counter++) {...} // infers int
 {% endhighlight %}
 
     </li>
-    <li><p>try-with-resources variable:</p>
+    <li><p><em>try-with-resources</em> variable:</p>
 
 {% highlight java %}
 try (var input = new FileInputStream("validation.txt")) {...} // infers FileInputStream
@@ -213,19 +213,20 @@ BiFunction<Integer, Integer, Integer> = (a, b) -> a + b
     </li>
 </ul>
         
-<p><em>var</em> style guide:<em>var</em>should be used with caution. 
+<p><strong><em>var</em> style guide:</strong> <em>var</em> should be used with caution. 
     To get more details about recommended uses, consult with official 
     <a href="https://openjdk.java.net/projects/amber/LVTIstyle.html">style guide</a>.</p>
 <h2>Java Language Changes for Java SE 11</h2>
 
 <h3>Implicitly typed lambda expression</h3>
-<p>In Java SE 11 and later, you can declare each formal parameter of an implicitly typed lambda expression with the<em>var</em>identifier:</p>
+<p>In Java SE 11 and later, you can declare each formal parameter 
+    of an implicitly typed lambda expression with the <em>var</em> identifier:</p>
 
 {% highlight java %}
 (var a, var b) -> a + b;
 {% endhighlight %}
 
-<p>Why would we want to use<em>var</em> for lambda parameters when we could simply skip the types?</p>
+<p>Why would we want to use <em>var</em> for lambda parameters when we could simply skip the types?</p>
 <p>One benefit of uniformity is that annotations can be applied to lambda parameters:</p>
 
 {% highlight java %}
@@ -242,14 +243,14 @@ BiFunction<Integer, Integer, Integer> = (a, b) -> a + b
         thinks it is running on the Host machine and has access to the full 32GB of available memory.</li>
     <li>By default, the JVM will use <em>MaxMemory/4</em> which in this case is 8GB (32GB/4).</li>
     <li>As the heap size grows and goes beyond 1GB, the container will be killed by Docker ("OOM killed").</li>
-    <li>Of course, an obvious solution is to fix the JVM’s heap size using -Xmx parameter, but that
+    <li>Of course, an obvious solution is to fix the JVM’s heap size using <em>-Xmx</em> parameter, but that
         means you need to control memory twice, once in Docker and once in the JVM.</li>
 </ol>
 <p>The first workaround for this issue was released with Java 8u131 and Java 9:</p>
 <ol>
-    <li>Use -XX:+UnlockExperimentalVMOptions</li>
-    <li>Use -XX:+UseCGroupMemoryLimitForHeap which would tell the JVM to check for the cgroup memory limit to set the maximum heap size</li>
-    <li>Use -XX:MaxRAMFraction, to limit portion of memory that can be allocated to the JVM.</li>
+    <li>Use <em>-XX:+UnlockExperimentalVMOptions</em></li>
+    <li>Use <em>-XX:+UseCGroupMemoryLimitForHeap</em> which would tell the JVM to check for the cgroup memory limit to set the maximum heap size</li>
+    <li>Use <em>-XX:MaxRAMFraction</em>, to limit portion of memory that can be allocated to the JVM.</li>
     <li>Finally, application should control explicitly the thread pools sizes, 
         and limit common ForkJoinPool parallelism with <em>-Djava.util.concurrent.ForkJoinPool.common.parallelism=2</em></li>
 </ol>
@@ -263,16 +264,16 @@ BiFunction<Integer, Integer, Integer> = (a, b) -> a + b
 {% endhighlight %}
 
 <p>Starting from Java 10 applying CPU and memory limits to containerized JVMs becomes straightforward. 
-    The JVM will detect hardware capability of the container correctly,
-    tune itself appropriately and make a good representation of the available capacity to the application. As a
-    result, not only CPU Sets but also CPU Shares are now examined by JVM. Furthermore, this becomes the default
-    behaviour, and can only be disabled via -XX:-UseContainerSupport option.</p>
+    The JVM will detect hardware capability of the container correctly, tune itself appropriately
+    and make a good representation of the available capacity to the application. 
+    As a result, not only CPU Sets but also CPU Shares are now examined by JVM.
+    Furthermore, this becomes the default behaviour, and can only be disabled via <em>-XX:-UseContainerSupport<em> option.</p>
 
 <h1>Java 11 recommended (and checked) tools versions</h1>
 <p>Here are the recommended minimum versions for a few tools:</p>
 <ul>
-    <li><strong>IntelliJ IDEA</strong>: <a href="https://blog.jetbrains.com/idea/2018/06/java-11-in-intellij-idea-2018-2/"
-                                           rel="nofollow">2018.2</a></li>
+    <li><strong>IntelliJ IDEA</strong>: 
+        <a href="https://blog.jetbrains.com/idea/2018/06/java-11-in-intellij-idea-2018-2/" rel="nofollow">2018.2</a></li>
     <li><strong>Maven</strong>: 3.5.0
         <ul>
             <li>compiler plugin: 3.8.0</li>
