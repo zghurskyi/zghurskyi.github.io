@@ -9,7 +9,7 @@ background: '/img/posts/06.jpg'
 <h1>1. Java 8 to Java 11 language changes</h1>
 <h2>1.1. Language Changes for Java SE 9</h2>
 
-<i>Platform module system</i>
+<strong>Platform module system</strong>
 <p>The major change to Java 9 is the introduction of the Java Platform module system.</p>
 <p>The Java Platform module system introduces a new kind of Java programming component - the module, which is a
     named, self-describing collection of code and data. Its code is organized as a set of packages containing
@@ -19,11 +19,11 @@ background: '/img/posts/06.jpg'
 <p>To learn more about the Java Platform module system, see
     <a href="http://openjdk.java.net/projects/jigsaw/" rel="nofollow">Project Jigsaw</a> on OpenJDK.</p>
 
-<i>Private interface methods</i>
+<strong>Private interface methods</strong>
 <p>Private interface methods are supported. This support allows nonabstract methods of an interface to share code
     between them.</p>
 
-<i>Collections <em>.of()</em> factory methods</i>
+<strong>Collections <em>.of()</em> factory methods</strong>
 <p>Java 9 introduces collection literals for the easier definition of the common collections:</p>
 
 {% highlight java %}
@@ -33,8 +33,8 @@ Map<String, String> map = Map.of("hello", "world");
 Map<String, Integer> mapOfEntries = Map.ofEntries(Map.entry("o", 0), Map.entry("z", 1));
 {% endhighlight %}
 
-<i>Stream API changes</i>
-<strong>takeWhile</strong>
+<strong>Stream API changes</strong></br>
+<i>takeWhile</i>
 <p>takeWhile takes elements from the initial stream while the predicate holds true.
     Meaning that when an element is encountered that does not match the predicate, the rest of the stream is
     discarded.</p>
@@ -46,7 +46,7 @@ Stream.of(2, 4, 6, 8, 9, 10, 12)
 // 2468
 {% endhighlight %}
 
-<strong>dropWhile</strong>
+<i>dropWhile</i>
 <p>dropWhile is essentially the opposite of takeWhile. Instead of taking elements from
     the stream until the first element which does not match the predicate, dropWhile drops these
     elements and includes the remaining elements in the returned stream.</p>
@@ -73,8 +73,8 @@ numbers.stream()
 // an empty set is also a subset
 {% endhighlight %}
 
-<i>Optional</i>
-<strong><em>or()</em> method</strong>
+<strong>Optional</strong></br>
+<i><em>or()</em> method</i>
 <p>The <em>or()</em> method gives you a fluent way of chaining behavior on <em>Optional</em>
     without checking if the value is present or not.</p>
 
@@ -98,7 +98,7 @@ Stream<Integer> stream = Optional.of(1)
     .map(x -> x * 3); // variable contains lazy stream, that is not evaluated until terminal operation
 {% endhighlight %}
 
-<strong><em>ifPresentOrElse()</em> method</strong>
+<i><em>ifPresentOrElse()</em> method</i></br>
 <p>In Java 8 you could specify the behavior you want to execute if the value in an <em>Optional</em> is present.</p>
 <p>In Java 9 you can pass 2 Runnables to specify what to do if the value is present and otherwise.</p>
 
@@ -109,7 +109,7 @@ Optional.empty()
        () -> System.out.println("empty")); // empty
 {% endhighlight %}
 
-<i>Process Management API</i>
+<strong>Process Management API</strong>
 <p>Java 9 adds the 
     <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/ProcessHandle.html">ProcessHandle</a> 
     class, which offers a rich API to inspect the processes.</p>
@@ -120,7 +120,7 @@ current.pid()
 // prints current process id
 {% endhighlight %}
 
-<i>StackWalker</i>
+<strong>StackWalker</strong>
 <p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/StackWalker.html">StackWalker</a>
     enables you to walk, filter and otherwise access stack traces in a very efficient manner</p>
 
@@ -128,7 +128,7 @@ current.pid()
 StackWalker.getInstance().walk(s -> s.limit(5).collect(Collectors.toList()));
 {% endhighlight %}
 
-<i>More concise try-with-resources statements</i>
+<strong>More concise <em>try-with-resources</em> statements</strong>
 <p>If you already have a resource as a final or effectively final variable, you
     can use that variable in a try-with-resources statement without declaring a new
     variable. An "effectively final" variable is one whose value is never changed after it is
@@ -150,7 +150,7 @@ try (resource1; resource2) { ... }
 <p>Java SE 10 introduces support for inferring the type of local variables from the context, which makes code more
     readable and reduces the amount of required boilerplate code.</p>
 
-<i>Local-Variable Type Inference with <em>var</em></i>
+<strong>Local-Variable Type Inference with <em>var</em></strong>
 <p>In Java SE 10 and later, you can declare local variables with non-null initializers with the <em>var</em> identifier,
     which can help you write code that’s easier to read.</p>
 
@@ -218,7 +218,7 @@ BiFunction<Integer, Integer, Integer> = (a, b) -> a + b
     <a href="https://openjdk.java.net/projects/amber/LVTIstyle.html">style guide</a>.</p>
 <h2>1.3. Language Changes for Java SE 11</h2>
 
-<i>Implicitly typed lambda expression</i>
+<strong>Implicitly typed lambda expression</strong>
 <p>In Java SE 11 and later, you can declare each formal parameter 
     of an implicitly typed lambda expression with the <em>var</em> identifier:</p>
 
