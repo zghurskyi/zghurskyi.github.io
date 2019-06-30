@@ -1,15 +1,15 @@
 ---
 layout: post
-title:  "Migrating from Java 8 to Java 11"
-subtitle: "Changes in a nutshell"
+title:  "Language changes from Java 8 to Java 11"
+subtitle: "Brief highlight"
 date:   2019-06-27 18:07:41
 background: '/img/posts/06.jpg'
 ---
 
 <h1>Java 8 to Java 11 language changes</h1>
-<h2>Java Language Changes for Java SE 9</h2>
+<h2>Language Changes for Java SE 9</h2>
 
-<h3>Java Platform module system</h3>
+<h3>Platform module system</h3>
 <p>The major change to Java 9 is the introduction of the Java Platform module system.</p>
 <p>The Java Platform module system introduces a new kind of Java programming component - the module, which is a
     named, self-describing collection of code and data. Its code is organized as a set of packages containing
@@ -101,6 +101,7 @@ Stream<Integer> stream = Optional.of(1)
 <h4><em>ifPresentOrElse()</em> method</h4>
 <p>In Java 8 you could specify the behavior you want to execute if the value in an <em>Optional</em> is present.</p>
 <p>In Java 9 you can pass 2 Runnables to specify what to do if the value is present and otherwise.</p>
+
 {% highlight java %}
 Optional.empty()
     .ifPresentOrElse(
@@ -109,9 +110,9 @@ Optional.empty()
 {% endhighlight %}
 
 <h3>Process Management API</h3>
-<p>Java 9 adds the <a
-        href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/ProcessHandle.html">ProcessHandle </a>class,
-    which offers a rich API to inspect the processes.</p>
+<p>Java 9 adds the 
+    <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/ProcessHandle.html">ProcessHandle</a> 
+    class, which offers a rich API to inspect the processes.</p>
 
 {% highlight java %}
 ProcessHandle current = ProcessHandle.current();
@@ -120,8 +121,8 @@ current.pid()
 {% endhighlight %}
 
 <h3>StackWalker</h3>
-<p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/StackWalker.html">StackWalker </a>enables
-    you to walk, filter and otherwise access stack traces in a very efficient manner</p>
+<p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/StackWalker.html">StackWalker</a>
+    enables you to walk, filter and otherwise access stack traces in a very efficient manner</p>
 
 {% highlight java %}
 StackWalker.getInstance().walk(s -> s.limit(5).collect(Collectors.toList()));
@@ -145,7 +146,7 @@ try (Resource r1 = resource1; Resource r2 = resource2) { ... }
 try (resource1; resource2) { ... }
 {% endhighlight %}
 
-<h2>Java Language Changes for Java SE 10</h2>
+<h2>Language Changes for Java SE 10</h2>
 <p>Java SE 10 introduces support for inferring the type of local variables from the context, which makes code more
     readable and reduces the amount of required boilerplate code.</p>
 
@@ -267,7 +268,7 @@ BiFunction<Integer, Integer, Integer> = (a, b) -> a + b
     result, not only CPU Sets but also CPU Shares are now examined by JVM. Furthermore, this becomes the default
     behaviour, and can only be disabled via -XX:-UseContainerSupport option.</p>
 
-<h1>3 Java 11 recommended (and checked) tools versions</h1>
+<h1>Java 11 recommended (and checked) tools versions</h1>
 <p>Here are the recommended minimum versions for a few tools:</p>
 <ul>
     <li><strong>IntelliJ IDEA</strong>: <a href="https://blog.jetbrains.com/idea/2018/06/java-11-in-intellij-idea-2018-2/"
