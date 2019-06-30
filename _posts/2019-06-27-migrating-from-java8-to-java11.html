@@ -6,7 +6,7 @@ date:   2019-06-27 18:07:41
 background: '/img/posts/06.jpg'
 ---
 
-<h1>Java 8 to Java 11 language changes</h1>
+<h1>1. Java 8 to Java 11 language changes</h1>
 <h2>Language Changes for Java SE 9</h2>
 
 <h3>Platform module system</h3>
@@ -233,7 +233,7 @@ BiFunction<Integer, Integer, Integer> = (a, b) -> a + b
 (@Nonnull var s1, @Nullable var s2) -> s1 + s2
 {% endhighlight %}
 
-<h1>2 Java and Docker</h1>
+<h1>2. Java and Docker</h1>
 <p>One of the key features of Docker is the ability to limit a container’s memory and CPU usage.
     Unfortunately, this is precisely where Java runs short. Let’s use an example to understand the problem. Imagine
     you have a node with 32GB of memory and you want to run a Java application with a limit
@@ -269,7 +269,7 @@ BiFunction<Integer, Integer, Integer> = (a, b) -> a + b
     As a result, not only CPU Sets but also CPU Shares are now examined by JVM.
     Furthermore, this becomes the default behaviour, and can only be disabled via <em>-XX:-UseContainerSupport<em> option.</p>
 
-<h1>Java 11 compatible tools versions</h1>
+<h1>3. Java 11 compatible tools versions</h1>
 <p>Here are the recommended minimum versions for a few tools:</p>
 <ul>
     <li><strong>IntelliJ IDEA</strong>: 
