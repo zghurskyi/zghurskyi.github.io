@@ -19,10 +19,6 @@ background: '/img/posts/06.jpg'
 <p>To learn more about the Java Platform module system, see
     <a href="http://openjdk.java.net/projects/jigsaw/" rel="nofollow">Project Jigsaw</a> on OpenJDK.</p>
 
-<strong>Private interface methods</strong>
-<p>Private interface methods are supported. This support allows nonabstract methods of an interface to share code
-    between them.</p>
-
 <strong>Collections <em>.of()</em> factory methods</strong>
 <p>Java 9 introduces collection literals for the easier definition of the common collections:</p>
 
@@ -58,21 +54,6 @@ Stream.of(2, 4, 6, 8, 9, 10, 12)
 // 91012
 {% endhighlight %}
 
-<p>Unordered stream</p>
-<p>What happens if the stream is un-ordered?<br>If some of the
-    elements in the stream match the predicate (but not all) then the operation is non-deterministic and an
-    arbitrary subset of matching elements is returned or removed. Meaning that you’ll get different results for
-    each execution.</p>
-
-{% highlight java %}
-Set<Integer> numbers = Set.of(2, 4, 6, 3, 8);
-numbers.stream()
-    .takeWhile(n -> n % 2 == 0)
-    .forEach(System.out::println);
-// prints out a different subset of matching elements every time
-// an empty set is also a subset
-{% endhighlight %}
-
 <strong>Optional</strong></br>
 <i><em>or()</em> method</i>
 <p>The <em>or()</em> method gives you a fluent way of chaining behavior on <em>Optional</em>
@@ -83,7 +64,7 @@ Optional.empty()
     .or(() -> Optional.of("Hello world"));
 {% endhighlight %}
 
-<strong>Converting an <em>Optional</em> into a <em>Stream</em></strong>
+<i>Converting an <em>Optional</em> into a <em>Stream</em></i>
 <p>Now it's possible to convert an <em>Optional</em> into a <em>Stream</em> containing at most one element. 
     It’s really useful if you want to use the laziness of the <em>Streams API</em>. 
     Namely, calling <em>map()</em> on the <em>Optional</em> executes the mapping function immediately, on the <em>Stream</em> - not.
@@ -125,12 +106,14 @@ current.pid()
     enables you to walk, filter and otherwise access stack traces in a very efficient manner</p>
 
 {% highlight java %}
-StackWalker.getInstance().walk(s -> s.limit(5).collect(Collectors.toList()));
+StackWalker.getInstance()
+    .walk(s -> s.limit(5)
+                .collect(Collectors.toList()));
 {% endhighlight %}
 
 <strong>More concise <em>try-with-resources</em> statements</strong>
 <p>If you already have a resource as a final or effectively final variable, you
-    can use that variable in a try-with-resources statement without declaring a new
+    can use that variable in a <em>try-with-resources</em> statement without declaring a new
     variable. An "effectively final" variable is one whose value is never changed after it is
     initialized.</p>
 
@@ -145,6 +128,13 @@ try (Resource r1 = resource1; Resource r2 = resource2) { ... }
 {% highlight java %}
 try (resource1; resource2) { ... }
 {% endhighlight %}
+
+<strong>Private interface methods</strong>
+<p>Private interface methods are supported. This support allows nonabstract methods of an interface to share code
+    between them.</p>
+
+<strong>The underscore character is not a legal name</strong>
+<p>If you use the underscore character ("_") an identifier, your source code can no longer be compiled.</p>
 
 <h2>1.2. Language Changes for Java SE 10</h2>
 <p>Java SE 10 introduces support for inferring the type of local variables from the context, which makes code more
@@ -162,7 +152,7 @@ Reader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))
 
 </br>
 {% highlight java %}
-var url = new URL("http://www.oracle.com/");
+var url = new URL("www.oracle.com");
 var conn = url.openConnection();
 var reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 {% endhighlight %}
@@ -190,7 +180,7 @@ for (var element : myList) {...} // infers String
 {% endhighlight %}
 
     </li>
-    <li><p>Index variables declared in traditional for loops:</p>
+    <li><p>Index variables declared in traditional <em>for-loops</em>:</p>
 
 {% highlight java %}
 for (var counter = 0; counter < 10; counter++) {...} // infers int
