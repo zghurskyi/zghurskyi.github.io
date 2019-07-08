@@ -1,9 +1,13 @@
 ---
 layout: post
-title:  "Deep Dive: Data Access Layer"
-subtitle: "Part 2: Lost Update Phenomena"
-date:   2019-06-21 19:35:41
-background: '/img/posts/06.jpg'
+title:  "Deep Dive: Lost Update Phenomena"
+excerpt: "An update is lost when a user overrides the current database state without realizing, 
+that someone else changed it between the moment of data loading and the moment the update occurs."
+modified:   2019-06-21 19:35:41
+categories: [Data Access Layer, Lost Update, Isolation, Pessimistic Locking, Optimistic Locking]
+comments: true
+share: true
+aging: true
 ---
 
 <h1>Lost Update Phenomena</h1>

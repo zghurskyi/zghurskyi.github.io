@@ -1,14 +1,17 @@
 ---
 layout: post
-title:  "Simple fact #2: Back-Pressure"
-subtitle: "What & How"
-date:   2019-06-19 22:22:13
-background: '/img/posts/06.jpg'
+title:  "Implementing back-pressure in practice"
+excerpt: "Back-pressure is an important feedback mechanism that allows systems to gracefully respond to load rather than collapse under it. 
+The back-pressure may cascade all the way up to the user, at which point responsiveness may degrade, but this mechanism will ensure that the system is resilient under load"
+modified:   2019-06-19 10:58:44
+categories: [Reactive, Back-Pressure]
+comments: true
+share: true
+aging: true
 ---
 
 <h1>Back-Pressure</h1>
-<p>On the internet there are many defintions of "back-pressure".</p>
-<p>For example, this is how it's defined in <a href="https://www.reactivemanifesto.org/glossary#Back-Pressure">Reactive Manifesto</a>:<p>
+<p>This is how it's defined in <a href="https://www.reactivemanifesto.org/glossary#Back-Pressure">Reactive Manifesto</a>:<p>
 <div style="background-color: #ddffdd; border-left: 6px solid #4CAF50; padding-left: 20px;">
   <p><strong>Back-Pressure</strong></p>
   <p>When one component is struggling to keep-up, the system as a whole needs to respond in a sensible way.
@@ -56,4 +59,4 @@ background: '/img/posts/06.jpg'
 
 <h1>Conclusion</h1>
 <p>Whenever there is a mismatch in throughput between services there might be the opportunity to apply some form of back-pressure.</p>
-<p>What strategy should be applied really depends on the constraints and requirements at hand. Sometime, just leaving it as is might be enough &#128520;</p>
+<p>What strategy should be applied really depends on the constraints and requirements at hand. Sometime, just leaving it as is might be enough.</p>
