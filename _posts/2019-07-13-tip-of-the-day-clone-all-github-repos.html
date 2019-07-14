@@ -18,7 +18,7 @@ aging: true
   <li>Create an API token by going to Account Settings -> Applications</li>
   <li>Clone repos:
   {% highlight shell %}
-  $ GITHUB_BASE_URL={api.github.com|yourcompanygithub}; CONTEXT={users|orgs}; NAME={username|orgname}
+  $ GITHUB_BASE_URL={api.github.com|yourcompanygithub}; CONTEXT={users|orgs}; NAME={username|orgname}; ACCESS_TOKEN={yourtoken}
   $ curl "https://$GITHUB_BASE_URL/api/v3/$CONTEXT/$NAME/repos?page=1&per_page=100&access_token=$ACCESS_TOKEN" \
      | jq '.[] | .clone_url' \
      | xargs -L1 git clone
