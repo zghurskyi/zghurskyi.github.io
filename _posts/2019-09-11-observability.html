@@ -37,10 +37,10 @@ $ unzip monitoring.zip && rm monitoring.zip
 <h1>2. Add Prometheus</h1>
 <p>In order to auto-configure Spring Boot support of Promethues, we need to add following dependency to out pom.xml: </p>
 {% highlight xml %}		
-    <dependency>
-			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-registry-prometheus</artifactId>
-		</dependency>
+<dependency>
+  <groupId>io.micrometer</groupId>
+  <artifactId>micrometer-registry-prometheus</artifactId>
+</dependency>
 {% endhighlight %}
 <p>Next we need to setup Promethues with Docker. We will use following script:</p>
 {% highlight bash %}
@@ -118,6 +118,7 @@ $ mvn spring-boot:run
 $ ./prometheus.sh
 $ ./grafana.sh
 {% endhighlight %}
+
 <p>After app is running and metrics are collected, we can perform some load testing and observe how app behaves:</p>
 {% highlight yaml %}
 $ ab -n 120000 -c 2 http://localhost:8080/actuator/prometheus
