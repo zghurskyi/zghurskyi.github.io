@@ -10,13 +10,13 @@ aging: true
 ---
 <h1>Observability</h1>
 <p>"Observability" is one of buzzwords today. To stay practiacal and concrete, by observability I mean monitoring, tracing and logging.
-And to be really "hands-on", in this post I will give recepie of adding Prometheus & Grafana to your pet Spring Boot project.</p>
-<p><strong>TL;DR</strong> If you prefer working code vs couple handreds of words - just follow this <a href="https://github.com/zghurskyi/investigations/tree/master/investigation-micrometer">link</a>. It's nothing special, but may be handy.</p>
+And to be really "hands-on", in this post I will give recepie of adding Prometheus & Grafana to your lovely Spring Boot project.</p>
+<p><strong>TL;DR</strong> If you prefer working code vs reading posts - just follow this <a href="https://github.com/zghurskyi/investigations/tree/master/investigation-micrometer">link</a>.</p>
 
-<h1>What we will build?</h1>
+<h1>What will we build?</h1>
 <p>I will follow simple plan:</p>
 <ol>
-  <li>Setup vanilla Spring Boot application (just stright out-of-the-box starter project)</li>
+  <li>Setup vanilla Spring Boot application (just stright from <a href="https://start.spring.io">https://start.spring.io</a>)</li>
   <li>Add Prometheus</li>
   <li>Add Grafana</li>
 </ol>
@@ -35,7 +35,7 @@ $ unzip monitoring.zip && rm monitoring.zip
 {% endhighlight %}
 
 <h1>2. Add Prometheus</h1>
-<p>In order to auto-configure Spring Boot support of Promethues, we need to add following dependency to out pom.xml: </p>
+<p>In order to auto-configure Spring Boot support of Promethues, we need to add following dependency to our pom.xml:</p>
 {% highlight xml %}		
 <dependency>
   <groupId>io.micrometer</groupId>
