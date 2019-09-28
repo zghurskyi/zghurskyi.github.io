@@ -35,7 +35,8 @@ So, applied to <em>sum finding problem</em>, general plan can look as follows:</
 <p>Since I'm doing this as an exercise and just to have fun, I will do an implementation for each alternative. So, let's start.</p>
 
 <h2><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/BaseStream.html#parallel--">Stream.parallel</a></h2>
-<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a> here is created manually in order to explicilty control the number of threads used.</p>
+<p>For our toy problem of finding sum of integers in the range - resulting code is pretty concise and declarative (except part of creating <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a>).</p>
+<p><em>Note: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a> is created manually in order to explicilty control the number of threads used.</em></p>
 
 {% highlight java %}
 import java.util.Scanner;
@@ -319,15 +320,15 @@ public class DivideAndConquerSum {
 {% endhighlight %}
 
 <h1>Conclusion</h1>
-<p>If you would ecounter similar problem in commercial development, you should choose <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/BaseStream.html#parallel--">Stream.parallel</a> for several basic reasons:
+<p>If you would ecounter a task to find sum of integers in the given range, you should choose <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/BaseStream.html#parallel--">Stream.parallel</a> for several basic reasons:
 <ul>
   <li>the produced code is most concise</li>
   <li>the produced code relies on standard Java library, that is heavily tested and widely used</li>
 </ul>
 <p>However, for situations a bit more complex then just finding sum of range, other approaches would be relevant:</p>
 <ul>
-  <li>with Java prior to Java 5 - you would use <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html">Runnable</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html">Thread</a> facilities</li>
-  <li>with Java 5/6/7 - consider using <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html">ExecutorService</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html">Future</a> facilities</li>
+  <li>with Java prior to Java 5 - you would use <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html">Runnable</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html">Thread</a></li>
+  <li>with Java 5/6/7 - consider using <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html">ExecutorService</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html">Future</a></li>
   <li>with Java 8 - consider using <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a></li>
 </ul>
 </p>
