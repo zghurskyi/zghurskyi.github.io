@@ -15,8 +15,8 @@ aging: true
 To make the task interesting let's do it in <em>N</em> threads.</p>
 
 <h1>Divide and conquer</h1>
-<p>To approach the problem in general terms we will use <em>divide and conquer</em> approach.</p>
-<p>In case of <em>sum finding problem</em>, general plan can look as follows:</p>
+<p>From general point of view, the described problem suits very well <em>divide and conquer</em> paradigm.
+So, applied to <em>sum finding problem</em>, general plan can look as follows:</p>
 <ol>
   <li>divided the range into sub-ranges</li>
   <li>delegated the job of finding sum of sub-ranges to individual threads in the pool</li>
@@ -33,7 +33,7 @@ To make the task interesting let's do it in <em>N</em> threads.</p>
 </ul>
 
 <p>Of course, if you would ecounter similar problem in commercial development, the easiest method would be to just use ForkJoinPool and Stream.parallel.
-Because, it requires minimum amount of code on your part, and relies on standard Java library, that is havily tested and widely used.
+Because, it requires minimum amount of code on your part, and relies on standard Java library, that is heavily tested and widely used.
 Howerver, since I'm doing this as an exercise and just to have fun, I will do an implementation for each alternative. So, let's start.
 </p>
 
