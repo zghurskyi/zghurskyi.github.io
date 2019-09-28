@@ -18,9 +18,9 @@ To make the task interesting, let's do it concurrenlty using <em>N</em> threads.
 <p>From general point of view, the described problem suits very well <em><a href="https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm">divide and conquer</a></em> paradigm.
 So, applied to <em>sum finding problem</em>, general plan can look as follows:</p>
 <ol>
-  <li>divided the range into sub-ranges</li>
-  <li>delegated the job of finding sum of sub-ranges to individual threads in the pool</li>
-  <li>aggregate sub-ranges sums by collecting results from individual threads</li>
+  <li>Divide the range into sub-ranges</li>
+  <li>Delegate the job of finding sum of sub-ranges to individual threads in the pool</li>
+  <li>Aggregate sub-ranges sums by collecting results from individual threads</li>
 </ol>
 
 <h1>Implementation alternatives</h1>
@@ -35,8 +35,8 @@ So, applied to <em>sum finding problem</em>, general plan can look as follows:</
 <p>Since I'm doing this as an exercise and just to have fun, I will do an implementation for each alternative. So, let's start.</p>
 
 <h2><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/BaseStream.html#parallel--">Stream.parallel</a></h2>
-<p>For our toy problem of finding sum of integers in the range - resulting code is pretty concise and declarative (except part of creating <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a>).</p>
-<p><em>Note: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a> is created manually in order to explicilty control the number of threads used.</em></p>
+<p>For our toy problem - the resulting code is pretty concise and declarative (except part of creating <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a>).</p>
+<p><em>Note: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a> is created manually in order to explicilty control the number of threads used.</em> Probably, most often you would use <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html#commonPool--">common pool</a>, that is created and managed by JVM implicitly.</p>
 
 {% highlight java %}
 import java.util.Scanner;
