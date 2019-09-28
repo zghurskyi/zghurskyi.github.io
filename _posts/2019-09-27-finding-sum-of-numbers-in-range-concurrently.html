@@ -10,7 +10,7 @@ aging: true
 ---
 <h1>Java concurrency tools</h1>
 
-<h1>The problem</h1>
+<h1>Toy problem</h1>
 <p>Suppose we want to calculate the sum of numbers in some closed range <em>[start, end]</em>. 
 To make the task interesting, let's do it concurrenlty using <em>N</em> threads.</p>
 
@@ -32,12 +32,11 @@ So, applied to <em>sum finding problem</em>, general plan can look as follows:</
   <li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/BaseStream.html#parallel--">Stream.parallel</a> method</li>
 </ul>
 
-<p>Of course, if you would ecounter similar problem in commercial development, the easiest method would be to just use <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/BaseStream.html#parallel--">Stream.parallel</a>.
-Because, it requires minimum amount of code on your part, and relies on standard Java library, that is heavily tested and widely used.
-Howerver, since I'm doing this as an exercise and just to have fun, I will do an implementation for each alternative. So, let's start.
-</p>
+<p>Since I'm doing this as an exercise and just to have fun, I will do an implementation for each alternative. So, let's start.</p>
 
 <h2><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/BaseStream.html#parallel--">Stream.parallel</a></h2>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a> here is created manually in order to explicilty control the number of threads used.</p>
+
 {% highlight java %}
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
@@ -46,7 +45,7 @@ import java.util.stream.IntStream;
 
 public class DivideAndConquerSum {
 
-private static int sum(int rangeStart, int rangeEnd, int numberOfThreads) {
+    private static int sum(int rangeStart, int rangeEnd, int numberOfThreads) {
         ForkJoinPool forkJoinPool = new ForkJoinPool(numberOfThreads);
         try {
             return forkJoinPool.submit(() ->
@@ -81,6 +80,9 @@ private static int sum(int rangeStart, int rangeEnd, int numberOfThreads) {
 {% endhighlight %}
 
 <h2><a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html">ExecutorService</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a></h2>
+<p>Starting from Java 8, we have pretty powerfull and general tool in our toolbox - <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a>. 
+  It allowed to perform async operations in much easier way then before. 
+  And overall, code becomes more declarative, though cumbersome sometimes.</p>
 {% highlight java %}
 import java.util.List;
 import java.util.Scanner;
@@ -147,7 +149,10 @@ public class DivideAndConquerSum {
 {% endhighlight %}
                 
 <h2><a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html">ExecutorService</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html">Future</a></h2>
-
+<p>Combination of <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html">ExecutorService</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html">Future</a> is pretty powerful tool also.
+  Although, it has the drawbacks that led to introducing  <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a>:
+  explicit blocking and problems to compose multiple futures in declarative way.
+</p>
 {% highlight java %}
 import java.util.ArrayList;
 import java.util.List;
@@ -219,7 +224,7 @@ public class DivideAndConquerSum {
 {% endhighlight %}
 
 <h2><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html">Runnable</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html">Thread</a></h2>
-<p>These are most basic tools, that could be used.</p>
+<p>These are most basic tools, that could be used. The main advantage - they are avaialbe from first version of Java.</p>
 
 {% highlight java %}
 import java.util.Scanner;
@@ -322,7 +327,7 @@ public class DivideAndConquerSum {
 <p>However, for situations a bit more complex then just finding sum of range, other approaches would be relevant:</p>
 <ul>
   <li>with Java prior to Java 5 - you would use <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html">Runnable</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html">Thread</a> facilities</li>
-  <li>with Java prior to Java 8 - consider using <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html">ExecutorService</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html">Future</a> facilities</li>
+  <li>with Java 5/6/7 - consider using <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html">ExecutorService</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html">Future</a> facilities</li>
   <li>with Java 8 - consider using <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a></li>
 </ul>
 </p>
