@@ -36,7 +36,7 @@ So, applied to <em>sum finding problem</em>, general plan can look as follows:</
 
 <h2><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/BaseStream.html#parallel--">Stream.parallel</a></h2>
 <p>For our toy problem - the resulting code is pretty concise and declarative (except part of creating <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a>).</p>
-<p><em>Note: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a> is created manually in order to explicilty control the number of threads used.</em> Probably, most often you would use <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html#commonPool--">common pool</a>, that is created and managed by JVM implicitly.</p>
+<p><em>Note:</em> <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a> is created manually in order to explicilty control the number of threads used. Probably, most often you would use <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html#commonPool--">common pool</a>, that is created and managed by JVM implicitly.</p>
 
 {% highlight java %}
 import java.util.Scanner;
@@ -82,8 +82,8 @@ public class DivideAndConquerSum {
 
 <h2><a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html">ExecutorService</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a></h2>
 <p>Starting from Java 8, we have pretty powerfull and general tool in our toolbox - <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a>. 
-  It allowed to perform async operations in much easier way then before. 
-  And overall, code becomes more declarative, though cumbersome sometimes.</p>
+  It allows to perform async operations in much easier way then before. 
+  And overall, code becomes more declarative and composable (though cumbersome sometimes).</p>
 {% highlight java %}
 import java.util.List;
 import java.util.Scanner;
@@ -148,6 +148,8 @@ public class DivideAndConquerSum {
     }
 }
 {% endhighlight %}
+<p>As we can see, we have to manage sub-ranges explicitly. 
+In case of our toy problem - it's overkill, but in more complex situations, this is not so big price for async and composable execution.</p>
                 
 <h2><a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html">ExecutorService</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html">Future</a></h2>
 <p>Combination of <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html">ExecutorService</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html">Future</a> is pretty powerful tool also.
@@ -225,7 +227,7 @@ public class DivideAndConquerSum {
 {% endhighlight %}
 
 <h2><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html">Runnable</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html">Thread</a></h2>
-<p>These are most basic tools, that could be used. The main advantage - they are avaialbe from first version of Java.</p>
+<p>These are most basic tools, that could be used. The main advantage - they are avaialbe from very first version of Java.</p>
 
 {% highlight java %}
 import java.util.Scanner;
@@ -325,7 +327,7 @@ public class DivideAndConquerSum {
   <li>the produced code is most concise</li>
   <li>the produced code relies on standard Java library, that is heavily tested and widely used</li>
 </ul>
-<p>However, for situations a bit more complex then just finding sum of range, other approaches would be relevant:</p>
+<p>However, for situations a bit more complex then described toy problem, other approaches become relevant:</p>
 <ul>
   <li>with Java prior to Java 5 - you would use <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html">Runnable</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html">Thread</a></li>
   <li>with Java 5/6/7 - consider using <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html">ExecutorService</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html">Future</a></li>
