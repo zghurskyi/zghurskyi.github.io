@@ -67,6 +67,7 @@ search_full_content: true # can have performance implications for large sites
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+exclude: [vendor]
 
 plugins:
   - jekyll-seo-tag
