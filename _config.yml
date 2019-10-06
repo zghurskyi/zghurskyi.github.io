@@ -94,3 +94,7 @@ all_minifier: true
 version:
   css: 33
   js: 5
+
+category:
+  header:
+    'How to': /img/index-header2.jpg
