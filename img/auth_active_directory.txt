@@ -1,8 +1,0 @@
-@startuml
-User->Server: Access protected resource
-Server-->User: Login page
-User->Server: Credentials(username + password)
-Server->ActiveDirectory: Find user by credentials
-ActiveDirectory-->Server: Found/Not found
-Server-->User: Access granted/Access denied
-@enduml
