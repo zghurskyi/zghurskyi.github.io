@@ -1,20 +1,24 @@
 ---
 layout: post
 title:  "Implementing back-pressure in practice"
-excerpt: "Back-pressure is an important feedback mechanism that allows systems to gracefully respond to load rather than collapse under it.
-The back-pressure may cascade all the way up to the user, at which point responsiveness may degrade, but this mechanism will ensure that the system is resilient under load"
 date: 2019-06-19 10:58:44
 updated: 2019-06-19 10:58:44
 tags:
-- back-pressure
+    - back-pressure
 categories:
-- Reactive
-- Back-Pressure
+    - Reactive
+    - Back-Pressure
 og_image: /images/bg-index.jpg
 eyeCatchImage: /images/bg-index.jpg
 ---
-
 :backpressure-glossary-url: https://www.reactivemanifesto.org/glossary#Back-Pressure
+
+Back-pressure is an important feedback mechanism that allows systems to gracefully respond to load rather than collapse under it.
+The back-pressure may cascade all the way up to the user, at which point responsiveness may degrade, but this mechanism will ensure that the system is resilient under load.
+
+++++
+<!-- more -->
+++++
 
 == Back-Pressure
 
