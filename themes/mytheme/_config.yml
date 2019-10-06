@@ -1,0 +1,52 @@
+navbar-links:
+    Archive: /archives
+    Github: https://github.com/zghurskyi/zghurskyi.github.io
+
+avatar: /hexo.png
+favicon: /hexo.png
+
+index_cover: /img/post-bg-1.jpg
+
+header:
+  title: Oleksii Zhgurskyi
+  motto: Make programming fun again!
+
+googlefonts:
+  - "Lora:400,700,400italic,700italic"
+  - "Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+  - "Noto+Serif:400,700,400italic"
+  - "Source+Code+Pro"
+  - "Droid+Sans+Mono:400,700"
+
+highlight:
+  enable: true
+  style_path: "/css/highlight.css"
+
+footer:
+  twitter:
+    link: https://twitter.com/zghurskyi
+    title: Twitter
+    icon: fa-twitter
+    enable: true
+  github:
+    link: https://github.com/zghurskyi
+    title: GitHub
+    icon: fa-github
+    enable: true
+  stackoverflow:
+    link: https://stackoverflow.com/users/2810730/oleksii-zghurskyi?tab=profile
+    title: StackOverflow
+    icon: fa-stack-overflow
+    enable: false
+  linkedin:
+    link: https://www.linkedin.com/in/oleksii-zghurskyi-96500175/
+    title: LinkedIn
+    icon: fa-linkedin
+    enable: false
+
+google_analytics: UA-143749857-1
+
+comment:
+  enable: disqus
+  id: oxymorus
+

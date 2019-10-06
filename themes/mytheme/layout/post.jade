@@ -1,0 +1,50 @@
+extends partial/base
+
+include partial/post-meta
+include partial/post-related
+
+block description
+    meta(name="description", content=truncate(strip_html(page.content), {length: 255}))
+
+block site_title
+    = page.title
+
+block structured_data
+    != structured_data(page, config)
+
+block header
+    header.header-section
+        .intro-header(style='background-image: url(' + (page.cover || theme.index_cover) + ');')
+            .container
+                .row
+                    .col-lg-10.col-lg-offset-1.col-md-10.col-md-offset-1
+                        .post-heading
+                            if page.categories
+                                - page.categories.each(function(category) {
+                                    a.category(href=url_for(category.path))=category.name
+                                - })
+                            h1= page.title
+                            if page.subtitle
+                                h2.post-subheading= page.subtitle
+                            +post_meta(page)
+
+block content
+    .container
+        .row
+            .col-lg-10.col-lg-offset-1.col-md-10.col-md-offset-1
+                article(role="main", class="blog-post")
+                    != page.content
+
+                    include partial/post-footer
+
+                    +post_related(popular_posts_json({ maxCount: 3, isImage: true, isExcerpt: true }, page))
+
+                nav(role="pagination", class="pagination")
+                    if page.prev
+                        a.pull-left.btn(href=url_for(page.prev.path))="← Next post"
+                    if page.next
+                        a.pull-right.btn(href=url_for(page.next.path))="Previous post →"
+
+                include partial/comment
+
+    script(id="dsq-count-scr", src="//#{theme.comment.id}.disqus.com/count.js")

@@ -1,0 +1,45 @@
+extends partial/base
+
+block description
+    meta(name="description", content="The archive of all posts")
+
+block site_title
+    = "Archive of " + config.title
+
+block header
+    header.header-section
+        .intro-header(style='background-image: url(/img/archive-bg.jpg);')
+            .container
+                .row
+                    .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+                        .page-heading
+                            h1!= "Archive"
+                            hr.small
+                            span.page-subheading!="The archive of all posts"
+            span.img-desc
+
+block content
+    .container
+        .row
+            .col-lg-10.col-lg-offset-1.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0
+                - var archive = site.posts.sort('date').reverse().reduce(function(acc,post) {
+                -   var year = full_date(post.date, 'YYYY');
+                -   if (acc[year] === undefined) { acc[year] = [] }
+                -   acc[year].push({date: post.date, path: post.path, title: post.title});
+                -   return acc
+                - }, {});
+
+                - var years = Object.keys(archive).sort().reverse();
+
+                ul.archive-list
+                    - years.forEach(function(year) {
+                    h2=year
+                        span.small=archive[year].length
+
+                    - var posts = archive[year];
+                    - posts.forEach(function(post) {
+                    li.col-lg-offset-1.col-md-offset-1
+                        span.post-meta=full_date(post.date, 'MMM D')
+                        a.post-title(href=url_for(post.path))=post.title
+                    - });
+                    - });

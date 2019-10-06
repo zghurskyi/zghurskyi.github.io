@@ -1,0 +1,800 @@
+@import "variables.styl"
+@import "mixins.styl"
+
+body
+  @extend .serif
+  font-size 20px
+  color gray-dark
+  @media only screen and (max-width: 767px)
+    font-size 17px
+
+p
+  line-height 1.5
+  margin 25px 0
+
+td.content > div > p:first-child
+  margin-top 0
+
+.color-red
+  color color-red
+
+.color-green
+  color color-green
+
+.color-orange
+  color color-orange
+
+.color-gray
+  color color-gray
+
+.color-blue
+  color steelblue
+
+mark,.mark
+  background color-orange-2
+
+a.category
+  @extend .sans-serif
+  display inline-block
+  padding 5px 10px
+  background color-yellow
+  color color-black
+  text-transform uppercase
+  text-decoration none
+  font-weight 700
+  font-size 1.4rem
+  transition ease-in 0.3s
+  margin-right 10px
+
+  &:hover,&:focus
+    background #19407c
+    color #fff
+    //font-size 1.5rem
+
+h1, h2, h3, h4, h5, h6
+  @extend .sans-serif
+  font-weight 800
+  margin 50px 0 25px 0
+
+p
+  a
+    color brand-primary
+    text-decoration none
+    border-bottom 1px dashed brand-primary
+    &:hover, &:focus
+      color brand-primary-hover
+      text-decoration none
+      border-color brand-primary-hover
+      transition ease 1s
+
+hr.small
+  max-width 100px
+  margin 15px auto
+  border-width 4px
+  border-color white
+
+.navbar-custom
+  position absolute
+  top 0
+  left 0
+  width 100%
+  z-index 3
+  @extend .sans-serif
+
+  .navbar-brand
+    font-weight 1000
+    font-size 0.85em
+
+    > span
+      display inline-block
+      overflow hidden
+      border-right .1em solid color-orange
+      white-space nowrap
+      margin 0 auto
+      padding-right 4px
+      animation typing 3000ms steps(1, end), blink-caret 1.2s step-end infinite
+
+  .nav
+    li
+      a
+        text-transform uppercase
+        font-size 12px
+        font-weight 800
+        letter-spacing 1px
+        text-decoration none
+  @media only screen and (min-width: 768px)
+    background transparent
+    border-bottom 1px solid transparent
+    .navbar-brand
+      color white
+      padding 20px
+      &:hover, &:focus
+        color white-faded
+    .nav
+      li
+        a
+          color white
+          padding 20px
+          &:hover, &:focus
+            color white-faded
+  @media only screen and (min-width: 1170px)
+    -webkit-transition background-color 0.3s
+    -moz-transition background-color 0.3s
+    transition background-color 0.3s
+    /* Force Hardware Acceleration in WebKit */
+    -webkit-transform translate3d(0, 0, 0)
+    -moz-transform translate3d(0, 0, 0)
+    -ms-transform translate3d(0, 0, 0)
+    -o-transform translate3d(0, 0, 0)
+    transform translate3d(0, 0, 0)
+    -webkit-backface-visibility hidden
+    backface-visibility hidden
+    &.is-fixed
+      /* when the user scrolls down, we hide the header right above the viewport */
+      position fixed
+      top -61px
+      background-color rgba(255, 255, 255, 0.9)
+      border-bottom 1px solid darken(rgb(255, 255, 255, 1), 5%)
+      -webkit-transition -webkit-transform 0.3s
+      -moz-transition -moz-transform 0.3s
+      transition transform 0.3s
+      .navbar-brand
+        color gray-dark
+        &:hover, &:focus
+          color brand-primary
+      .nav
+        li
+          a
+            color gray-dark
+            &:hover, &:focus
+              color brand-primary
+    &.is-visible
+      /* if the user changes the scrolling direction, we show the header */
+      -webkit-transform translate3d(0, 100%, 0)
+      -moz-transform translate3d(0, 100%, 0)
+      -ms-transform translate3d(0, 100%, 0)
+      -o-transform translate3d(0, 100%, 0)
+      transform translate3d(0, 100%, 0)
+
+
+.layout-clean
+  .navbar-custom
+    @media only screen and (min-width: 768px)
+      .navbar-brand
+        color color-gray
+
+      .nav
+        li
+          a
+            color color-gray
+
+.page-404
+  margin-top 80px
+  @media only screen and (max-width: 767px)
+    margin-top 40px
+
+  h1
+    font-size 7rem
+    font-weight 500
+    background color-orange
+    display inline-block
+
+    @media only screen and (max-width: 767px)
+      font-size 5rem
+
+  .suggested-posts
+    margin-top 150px
+    background #fafafa
+    padding 2px 30px
+
+    .suggestion
+      h3
+        font-size 1.5rem
+        line-height 2rem
+        margin 20px 0 0 0
+      p
+        font-size 1.4rem
+
+      a
+        color color-gray
+
+.intro-header
+  background-color gray
+  background-position center center
+  background-attachment scroll
+  @extend .background-cover
+  margin-bottom 30px
+  .site-heading, .post-heading, .page-heading
+    padding 140px 0 20px
+    color white
+    @media only screen and (min-width: 768px)
+      padding 250px 0 100px 0
+    &.archives
+      color brand-primary
+      margin-top 60px
+  .site-heading, .page-heading
+    img.img-circle
+      margin 0 auto
+      height 96px
+      border 3px solid #fafafa
+
+    .page-subheading
+      .number
+        display inline-block
+        padding 0 5px
+        background color-orange
+        color color-black
+        sans-serif()
+        font-weight 900
+
+    text-align center
+    h1
+      margin-top 0
+      font-size 50px
+    .subheading
+      font-size 24px
+      line-height 1.1
+      display block
+      @extend .sans-serif
+      font-weight 300
+      margin 10px 0 0
+    @media only screen and (min-width: 768px)
+      h1
+        font-size 80px
+  .post-heading
+    h1
+      font-size 35px
+      margin 10px 0 0 0
+    .subheading, .meta
+      line-height 1.1
+      display block
+    .subheading
+      @extend .sans-serif
+      font-size 24px
+      margin 10px 0 30px
+      font-weight 600
+    .meta
+      @extend .serif
+      font-style italic
+      font-weight 300
+      font-size 20px
+      a
+        color white
+    @media only screen and (min-width: 768px)
+      h1
+        font-size 55px
+      .subheading
+        font-size 30px
+
+.post-preview
+  > .post-header
+    > a
+      color gray-dark
+      &:hover, &:focus
+        text-decoration none
+        color brand-primary
+      > .post-title
+        font-size 30px
+        margin-top 10px
+        margin-bottom 10px
+        @media only screen and (max-width: 767px)
+          word-break break-word
+        &.archive
+          font-size 22px
+      > .post-subtitle
+        margin 0
+        font-weight 300
+        margin-bottom 10px
+    @media only screen and (min-width: 768px)
+      > a
+        > .post-title
+          font-size 36px
+        
+  > .post-read-more
+    margin 0
+    text-align right
+    padding 5px 0
+
+  border-bottom #EBF2F6 1px solid
+  margin 10px 0
+  padding 10px 0
+  &:last-child
+    border none
+
+.section-heading
+  font-size 36px
+  margin-top 60px
+  font-weight 700
+
+.caption
+  text-align center
+  font-size 14px
+  padding 10px
+  font-style italic
+  margin 0
+  display block
+  border-bottom-right-radius 5px
+  border-bottom-left-radius 5px
+
+.archive-before-pagination
+  height 30px
+
+div.post-meta
+  sans-serif()
+  font-size 1.4rem
+  color color-social-link
+  padding 5px 0
+  float left
+  @media only screen and (max-width: 767px)
+    float none
+
+
+  .post-heading &
+    color #fafafa
+    font-size 1.4rem
+    float none
+    font-weight 400
+
+    @media only screen and (min-width: 768px)
+      font-size 1.6rem
+
+    a
+      color inherit
+
+  ul
+    list-style none
+    margin 0
+    padding 0
+
+    li
+      list-style none
+      display inline-block
+      &::after
+        content ' / '
+        color #ccc
+        padding 0 5px
+      &:last-child
+        &::after
+          content ''
+
+
+  
+footer.site-footer
+  position relative
+  margin 4rem 0 0 0
+  padding 4rem 0 0 0
+  border-top #777 5px solid
+  font-family 'Open Sans', sans-serif
+  font-size 1.5rem
+  line-height 1.7em
+  color #9EABB3
+  background #333
+
+  h4
+    margin-top 0
+    font-size 2rem
+    font-weight 500
+
+    @media only screen and (max-width: 767px)
+      font-size 1.8rem
+      font-weight 700
+
+  h4.marked
+    background color-orange
+    display inline-block
+    font-weight 700
+    padding 5px
+    color color-black
+
+  .tagcloud
+    a
+      display inline-block
+      margin 0 2px
+
+  .recent-posts
+    margin-bottom 40px
+    ul
+      list-style none
+      margin 0 0 0 20px
+      padding 0
+
+      li
+        list-style none
+        margin 0 0 5px 0
+        padding 0
+
+      li::before
+        content "\1F8A1"
+        color #6a6a6a
+        font-weight 400
+        display inline-block
+        width 1.2em
+        margin-left -1em
+
+  .social-links
+    margin-bottom 40px
+    ul
+      list-style none
+      margin 0
+      padding 0
+
+      li
+        list-style none
+        margin 0 15px 0 0
+        padding 0
+        display inline-block
+        font-size 3rem
+        &:last-child
+          margin-right 0
+
+        @media only screen and (max-width: 767px)
+          font-size 2.3rem
+
+  a
+    color #BBC7CC
+    text-decoration none
+
+  a:hover
+    color #50585D
+
+  .poweredby
+    padding 45px 0 20px 0
+    font-size 1.2rem
+
+    img
+      height 32px
+
+    ul
+      list-style none
+      margin 0
+      padding 0
+
+      li
+        display inline-block
+        padding 0 5px
+        &::after
+          margin-left 8px
+          content '•'
+        &:last-child::after
+          content: ''
+          margin 0
+
+.poweredby.icon-ghost
+  font-weight 700
+  text-decoration none
+  
+  &:hover
+    text-decoration none
+  &:before
+    font-size 1rem
+    margin-right 0.2em
+
+.floating-label-form-group
+  font-size 14px
+  position relative
+  margin-bottom 0
+  padding-bottom 0.5em
+  border-bottom 1px solid gray-light
+  input, textarea
+    z-index 1
+    position relative
+    padding-right 0
+    padding-left 0
+    border none
+    border-radius 0
+    font-size 1.5em
+    background none
+    box-shadow none !important
+    resize none
+  label
+    display block
+    z-index 0
+    position relative
+    top 2em
+    margin 0
+    font-size 0.85em
+    line-height 1.764705882em
+    vertical-align middle
+    vertical-align baseline
+    opacity 0
+    -webkit-transition top 0.3s ease,opacity 0.3s ease
+    -moz-transition top 0.3s ease,opacity 0.3s ease
+    -ms-transition top 0.3s ease,opacity 0.3s ease
+    transition top 0.3s ease,opacity 0.3s ease
+  &::not(:first-child)
+    padding-left 14px
+    border-left 1px solid gray-light
+
+.floating-label-form-group-with-value
+  label
+    top 0
+    opacity 1
+
+.floating-label-form-group-with-focus
+  label
+    color brand-primary
+
+form .row:first-child .floating-label-form-group
+  border-top 1px solid gray-light
+
+.btn, .pager>li>a.btn
+  font-family 'Open Sans', sans-serif
+  font-size 1.3rem
+  color #9EABB3
+  text-align center
+  display inline-block
+  padding 10px 15px
+  border #ebf2f6 2px solid
+  text-decoration none
+  border-radius 30px
+  transition border ease 0.3s
+  &:hover, &:focus
+    border-color #9EABB3
+    background none
+    color #9EABB3
+
+.btn-lg
+  font-size 16px
+  padding 25px 35px
+
+
+.pager
+  margin 20px 0 0
+
+.archive-list
+  li
+    list-style none
+    padding 6px 0
+    overflow hidden
+    margin 0 0 0 12px
+    border-bottom 2px dashed #f5f5f5
+
+    span.post-meta
+      color #808080
+      margin-right 25px
+      font-style italic
+      display inline-block
+      width 70px
+
+    a.post-title
+      text-decoration none
+      font-family 'Open Sans', sans-serif
+      font-size 1.7rem
+      font-weight 700
+      color #6a6a6a
+
+  h2
+    font-size 64pt
+    color #eaeaea
+    position relative
+    display inline-block
+    border-bottom 5px solid #adadad
+
+    span.small
+      position absolute
+      right -40px
+      bottom 10px
+      border-radius 50%
+      width 35px
+      height 35px
+      line-height 25px
+      color #fff
+      font-weight 700
+      text-align center
+      display inline-block
+      background color-orange
+      font-size 1.5rem
+      padding 5px
+
+  @media only screen and (max-width: 767px)
+    padding 0 5px
+    margin 0
+
+    h2
+      display block
+      margin 0 auto
+      text-align center
+
+      span.small
+        right 20px
+
+    li
+      padding 0
+      margin 25px 0
+
+      span.post-meta
+        display block
+        font-size 1.3rem
+
+      a.post-title
+        font-size 1.7rem
+        font-weight 700
+
+::-moz-selection
+  color white
+  text-shadow none
+  background brand-primary
+
+::selection
+  color white
+  text-shadow none
+  background brand-primary
+
+img::selection
+  color white
+  background transparent
+
+img::-moz-selection
+  color white
+  background transparent
+
+body
+  webkit-tap-highlight-color brand-primary
+
+code
+  font-size 0.8em
+  background #ebf2f6
+  color #4271ae
+  font-family font-mono
+
+a.pre
+  text-decoration none
+
+img.avatar-img
+  border-radius 50%
+
+pre
+  border-radius 0
+  border none
+  background-color transparent
+  padding 0
+  color #ccc
+
+  code
+    white-space pre
+
+.hljs
+  padding 10px 15px
+  font-family "Droid Sans Mono", "Source Code Pro", monospace
+  font-weight 400
+  font-size 1.18em
+  line-height 1.5
+  color #bababa
+
+  @media only screen and (max-width: 767px)
+    font-size 0.9em
+
+.hljs-keyword, .hljs-selector-tag, .hljs-deletion
+  font-weight 700
+
+.hljs-string
+  color #8ec36f
+
+blockquote
+  background #fff7e8
+  border-left-color #ffd68a
+  font-size 0.8em
+  margin 20px 0
+  p
+    margin-top 10px
+
+  ul
+    margin-top 10px
+    margin-bottom 10px
+
+  li
+    p
+      margin-top 0px
+
+  .listingblock
+    margin 20px 0
+
+  h1,h2,h3,h4,h5
+    margin 10px 0 20px 0
+
+ul
+  margin 0
+
+  li
+    margin 10px 0
+  p
+    margin 0
+
+#footnotes
+  font-size 0.65em
+  word-break break-word
+
+  > .footnote
+    margin-bottom 10px
+
+
+sup.footnote
+  font-size 0.65em
+
+.img-responsive
+  img
+    width 100%
+
+ul.checklist
+  list-style none
+  font-size 0.9em
+
+  li
+    list-style none
+
+.paragraph
+  text-align justify
+
+  &.text-center
+    text-align center
+
+.posts-list
+  > article
+    padding 40px 0
+    &:first-child
+      padding-top 10px
+
+.smaller
+  font-size 0.8em
+
+.text-box-2
+  background #f7f7f7
+  padding 10px 30px
+  margin 50px 0
+  color #666
+  border 4px solid #ddd
+
+  h2,h3
+    margin 20px 0
+    line-height 1.5em
+    text-align left
+
+/* The typing effect */
+@keyframes typing {
+  0% { width: 5% }
+  20% { width: 5% }
+  25% { width: 7% }
+  30% { width: 25% }
+  35% { width: 45% }
+  40% { width: 71% }
+  60% { width: 73% }
+  85% { width: 81% }
+  100% { width: 100% }
+
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
+
+.colist
+  padding 10px
+  font-size 1.6rem
+
+  tr > td
+    padding-top 5px
+
+.video-container
+  position relative
+  padding-bottom 56.25%
+  padding-top 30px
+  height 0
+  overflow hidden
+
+.video-container iframe,
+.video-container object,
+.video-container embed
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%
+
+.twitter-tweet
+  margin 0 auto
+
+.listingblock
+  >.title
+    word-break break-word

@@ -1,1 +1,0 @@
-Oleksii Zghurskyi blog

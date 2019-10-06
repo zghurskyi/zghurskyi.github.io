@@ -1,0 +1,12 @@
+header.header-section
+    .intro-header(style='background-image: url(' + theme.index_cover + ');')
+        .container
+            .row
+                .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+                    .page-heading
+                        h1!= page.tag
+                        hr.small
+                        span.page-subheading
+                            span.number=site.tags.findOne({name: page.tag}).posts.length
+                            span!=" posts tagged with <i>\"" + page.tag + "\"</i>"
+        span.img-desc

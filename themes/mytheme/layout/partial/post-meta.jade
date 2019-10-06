@@ -1,0 +1,10 @@
+mixin post_meta(post)
+    div.post-meta
+        ul
+            li
+                time(datetime=date_xml(post.date), itemprop="datePublished")!= full_date(post.date, "MMM D, YYYY")
+            li= readingTime(post.content, 'minutes read', 200)
+            li
+                a(href=config.url + url_for(post.path) + "#disqus_thread")="0 Comments"
+
+
