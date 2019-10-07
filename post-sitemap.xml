@@ -16,6 +16,14 @@
     </url>
 
     <url>
+        <loc>https://www.oxymorus.com/clone-all-github-repos/</loc>
+        <lastmod>2019-06-17T22:52:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/docker-mysql-dump/</loc>
         <lastmod>2019-04-23T22:52:55.000Z</lastmod>
         <changefreq>weekly</changefreq>

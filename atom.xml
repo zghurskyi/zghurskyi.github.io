@@ -41,6 +41,36 @@
   </entry>
   
   <entry>
+    <title>Trick Of The Day: Cloning all Github repositories</title>
+    <link href="https://www.oxymorus.com/clone-all-github-repos/"/>
+    <id>https://www.oxymorus.com/clone-all-github-repos/</id>
+    <published>2019-06-17T22:52:55.000Z</published>
+    <updated>2019-06-17T22:52:55.000Z</updated>
+    
+    <content type="html"><![CDATA[<div class="paragraph"><p>This post gives simple shell pipeline to clone all github repositories for specific organization.</p></div><a id="more"></a><div class="sect1"><h2>Situation</h2><div class="sectionbody"><div class="paragraph"><p>You need to clone all repos for your organization on github/on-premise github. Since there might be plenty of repos you don&#8217;t want to repeat yourself and prefer automate this process.</p></div></div></div><div class="sect1"><h2>Solution</h2><div class="sectionbody"><div class="ulist"><ul><li><p>Create an API token by going to Account Settings &#8594; Applications</p></li><li><p>Clone repos:</p></li></ul></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ GITHUB_BASE_URL={api.github.com|yourcompanygithub}; CONTEXT={users|orgs}; NAME={username|orgname}; ACCESS_TOKEN={yourtoken}$ curl "https://$GITHUB_BASE_URL/api/v3/$CONTEXT/$NAME/repos?page=1&amp;per_page=100&amp;access_token=$ACCESS_TOKEN" \     | jq '.[] | .clone_url' \     | xargs -L1 git clone</code></pre></div></div><div class="paragraph"><p><strong>Notes:</strong></p></div><div class="olist arabic"><ol class="arabic"><li><p><em>CONTEXT=users</em> and <em>NAME=yourusername</em> will clone all your repositories.</p></li><li><p><em>CONTEXT=orgs</em> and <em>NAME=yourorgname</em> will clone all repositories of your organization.</p></li><li><p>The solutions assumes you have <a href="https://stedolan.github.io/jq/manual/" target="_blank" rel="noopener">jq</a> installed. <em>If you haven&#8217;t, it&#8217;s time to do it.</em></p></li></ol></div></div></div>]]></content>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;paragraph&quot;&gt;&lt;p&gt;This post gives simple shell pipeline to clone all github repositories for specific organization.&lt;/p&gt;&lt;/div&gt;
+    
+    </summary>
+    
+      <category term="Github" scheme="https://www.oxymorus.com/categories/github/"/>
+    
+      <category term="clone" scheme="https://www.oxymorus.com/categories/github/clone/"/>
+    
+      <category term="jq" scheme="https://www.oxymorus.com/categories/github/clone/jq/"/>
+    
+    
+      <category term="Github" scheme="https://www.oxymorus.com/tags/github/"/>
+    
+      <category term="clone" scheme="https://www.oxymorus.com/tags/clone/"/>
+    
+      <category term="jq" scheme="https://www.oxymorus.com/tags/jq/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Trick Of The Day: Copy DB dump from one Docker container to another</title>
     <link href="https://www.oxymorus.com/docker-mysql-dump/"/>
     <id>https://www.oxymorus.com/docker-mysql-dump/</id>

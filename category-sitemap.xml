@@ -22,6 +22,27 @@
     </url>
 
     <url>
+        <loc>https://www.oxymorus.com/categories/github/clone/jq/</loc>
+        <lastmod>2019-06-17T22:52:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/github/clone/</loc>
+        <lastmod>2019-06-17T22:52:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/github/</loc>
+        <lastmod>2019-06-17T22:52:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/categories/docker/mysql/dump/</loc>
         <lastmod>2019-04-23T22:52:55.000Z</lastmod>
         <changefreq>weekly</changefreq>

@@ -10,6 +10,27 @@
     </url>
 
     <url>
+        <loc>https://www.oxymorus.com/tags/jq/</loc>
+        <lastmod>2019-06-17T22:52:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/clone/</loc>
+        <lastmod>2019-06-17T22:52:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/github/</loc>
+        <lastmod>2019-06-17T22:52:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/tags/mysql/</loc>
         <lastmod>2019-04-23T22:52:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
