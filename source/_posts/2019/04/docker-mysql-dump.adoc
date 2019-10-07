@@ -1,0 +1,75 @@
+---
+layout: post
+title:  "Trick Of The Day: Copy DB dump from one Docker container to another"
+date: 2019-04-23 22:52:55
+updated: 2019-04-23 22:52:55
+tags:
+    - Docker
+    - MySQL
+category.header:
+categories:
+    - Docker
+    - MySQL
+    - dump
+og_image: /images/bg-index.jpg
+eyeCatchImage: /images/bg-index.jpg
+---
+
+How to copy MySQL dump from one Docker container to another ?
+
+++++
+<!-- more -->
+++++
+
+== Situation
+
+You need to create DB dump in one Docker container and apply it in another Docker container.
+
+== Application
+
+Crate DB dump on staging env and apply it on local env to experiment with existing database.
+
+== Solution
+
+. Connect to first container:
+
+[source,sh]
+----
+$ docker exec -ti mysql-staging /bin/bash
+----
+
+. Create DB dump:
+
+[source,sh]
+----
+$ mysqldump -u user -p --databases db > /tmp/db.sql
+----
+
+. Copy dump to localhost:
+
+[source,sh]
+----
+# general syntax:
+# docker cp CONTAINER:SRC_PATH DEST_PATH
+$ docker cp mysql:/tmp/db.sql /tmp/db.sql
+----
+
+. Copy dump to second container:
+
+[source,sh]
+----
+# general syntax:
+# docker cp DEST_PATH CONTAINER:SRC_PATH
+$ docker cp /tmp/db.sql mysql:/tmp/db.sql
+----
+
+. Apply DB dump:
+
+[source,sh]
+----
+$ docker exec -ti mysql /bin/bash
+$ mysql -u user -p
+-- Run the backup script to recreate the database
+mysql> drop database if exists db;
+mysql> source /tmp/db.sql
+----
