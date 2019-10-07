@@ -1,0 +1,61 @@
+---
+title: Privacy policy
+date: 2019-10-07 21:18:58
+layout: clean
+---
+
+Last update: *October 7th, 2019*
+
+*oxymorus.com* (also hereinafter referred to as the "Blog") does not share any personal information with
+third-parties nor does it store information collected about your visit to this blog for use other than to analyze
+content performance through the use of cookies, which you can turn off at any time by modifying your
+web browser's settings.
+
+* https://support.google.com/chrome/answer/95647?hl=en&p=cpn_cookies[for Google Chrome users]
+* https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences[for Mozilla Firefox users]
+* https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/[for Apple Safari users]
+* https://windows.microsoft.com/en-us/windows-vista/block-or-allow-cookies[for Microsoft Internet Explorer users]
+
+
+== Cookies
+
+A web cookie is a small piece of data sent from a website and stored on the user's computer by the user's web
+browser while the user is browsing.footnote:[https://en.wikipedia.org/wiki/HTTP_cookie] *oxymorus.com*
+uses a minimum amount of cookies from third-party services. The full list of those services can be found below.
+
+=== 1. Google Analytics
+
+Like almost every other website, this "Blog" uses *Google Analyticsfootnote:[https://analytics.google.com/analytics/web/]*, a service provided by Google, Inc. for
+a web traffic tracking. Learn more about https://www.google.com/policies/privacy/[Google Analytics Privacy Politics].
+
+NOTE: Google allows you to *opt-out from sending usage data* to Google Analytics by https://tools.google.com/dlpage/gaoptout?hl=en[installing the following plugin]
+to your favorite web browser.
+
+=== 2. Disqus
+
+This "Blog" uses *Disqusfootnote:[https://disqus.com/]*, an online public comment sharing platform. Adding comments on
+the "Blog" is tantamount to acceptance of Disqus' https://help.disqus.com/terms-and-policies/terms-of-service[Terms of use]
+and https://help.disqus.com/terms-and-policies/disqus-privacy-policy[Privacy policy].
+
+== Do you collect any server logs?
+
+No. This "Blog" is hosted on *Github Pagesfootnote:[https://pages.github.com/]* thus it does not have access to any server logs.
+
+== Encryption (HTTPS)
+
+This "Blog" uses an encrypted transfer protocol (HTTPS over TLS) with the *ECC CA-2* certificate provides by GitHub, Inc.
+The encryption protects the communication to *oxymorus.com** from access by unauthorized third parties.
+
+== Do you collect any ads-related data?
+
+No, *oxymorus.com** does not collect any ads-related data. There are no ads on this "Blog". And&nbsp;I&nbsp;don't plan to add any.
+
+== Who can I contact if I have any questions?
+
+If you have any questions, please contact the owner of this "Blog":
+
+Oleksii Zghurskyi
++++<br><i class="fa fa-envelope"></i>+++ oleksii.zghurskyi@gmail.com
+
+
+This privacy policy is subject to change without notice.
