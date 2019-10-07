@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>https://www.oxymorus.com/tags/topic-provisioning/</loc>
+        <lastmod>2019-10-07T22:39:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/spring-boot-starter/</loc>
+        <lastmod>2019-10-07T22:39:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/apache-kafka/</loc>
+        <lastmod>2019-10-07T22:39:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/tags/forkjoinpool/</loc>
         <lastmod>2019-09-27T12:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
