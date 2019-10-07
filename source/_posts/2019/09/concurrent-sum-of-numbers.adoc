@@ -38,21 +38,21 @@ for implementing the same toy problem: finding sum of integers in given range.
 <!-- more -->
 ++++
 
-== Java concurrency tools
+== Toy problem
 
-=== Toy problem
+Suppose we want to calculate the sum of numbers in some closed range _[start, end]_.
+To make the task interesting, let's do it concurrently using _N_ threads.
 
-Suppose we want to calculate the sum of numbers in some closed range _[start, end]_. To make the task interesting, let's do it concurrenlty using _N_ threads.
+== Divide and conquer
 
-=== Divide and conquer
-
-From general point of view, the described problem suits very well _{divide-and-concquer-url}[divide and conquer]_ paradigm. So, applied to _sum finding problem_, general plan can look as follows:
+From general point of view, the described problem suits very well _{divide-and-concquer-url}[divide and conquer]_ paradigm.
+So, applied to _sum finding problem_, general plan can look as follows:
 
 1.  Divide the range into sub-ranges
 2.  Delegate the job of finding sum of sub-ranges to individual threads in the pool
 3.  Aggregate sub-ranges sums by collecting results from individual threads
 
-=== Implementation alternatives
+== Implementation alternatives
 
 The approach described above can be implemented using different tools:
 
@@ -64,7 +64,7 @@ The approach described above can be implemented using different tools:
 Since I'm doing this as an exercise and just to have fun, 
 I will do an implementation for each alternative. So, let's start.
 
-==== ForkJoinPool and Stream.parallel
+=== ForkJoinPool and Stream.parallel
 
 For our toy problem - the resulting code is pretty concise 
 and declarative (except part of creating {fork-join-pool-javadoc-url}[ForkJoinPool]).
@@ -124,7 +124,7 @@ public class DivideAndConquerSum {
 }
 ----
 
-==== ExecutorService and CompletableFuture
+=== ExecutorService and CompletableFuture
 
 Starting from Java 8, we have pretty powerful 
 and general tool in our toolbox - {completable-future-javadoc-url}[CompletableFuture].
@@ -208,7 +208,7 @@ As we can see, we have to manage sub-ranges explicitly.
 In case of our toy problem - it's overkill, 
 but in more complex situations, this is not so big price for async and composable execution.
 
-==== ExecutorService and Future
+=== ExecutorService and Future
 
 Combination of {executor-service-javadoc-url}[ExecutorService] and {future-javadoc-url}[Future] is pretty powerful tool also. 
 Although, it has the drawbacks, that led to introducing {completable-future-javadoc-url}[CompletableFuture]:
@@ -292,7 +292,7 @@ public class DivideAndConquerSum {
 }
 ----
 
-==== Runnable and Thread
+=== Runnable and Thread
 
 These are most basic tools, that could be used. 
 The main advantage - they are available from very first version of Java.
