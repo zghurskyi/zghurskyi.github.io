@@ -31,21 +31,21 @@ Crate DB dump on staging env and apply it on local env to experiment with existi
 
 == Solution
 
-. Connect to first container:
+* Connect to first container:
 
 [source,sh]
 ----
 $ docker exec -ti mysql-staging /bin/bash
 ----
 
-. Create DB dump:
+* Create DB dump:
 
 [source,sh]
 ----
 $ mysqldump -u user -p --databases db > /tmp/db.sql
 ----
 
-. Copy dump to localhost:
+* Copy dump to localhost:
 
 [source,sh]
 ----
@@ -54,7 +54,7 @@ $ mysqldump -u user -p --databases db > /tmp/db.sql
 $ docker cp mysql:/tmp/db.sql /tmp/db.sql
 ----
 
-. Copy dump to second container:
+* Copy dump to second container:
 
 [source,sh]
 ----
@@ -63,7 +63,7 @@ $ docker cp mysql:/tmp/db.sql /tmp/db.sql
 $ docker cp /tmp/db.sql mysql:/tmp/db.sql
 ----
 
-. Apply DB dump:
+* Apply DB dump:
 
 [source,sh]
 ----
