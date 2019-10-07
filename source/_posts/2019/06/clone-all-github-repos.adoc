@@ -1,0 +1,46 @@
+---
+layout: post
+title:  "Trick Of The Day: Cloning all Github repositories"
+date: 2019-06-17 22:52:55
+updated: 2019-06-17 22:52:55
+tags:
+    - Github
+    - clone
+    - jq
+category.header:
+categories:
+    - Github
+    - clone
+    - jq
+og_image: /images/bg-index.jpg
+eyeCatchImage: /images/bg-index.jpg
+---
+
+This post gives simple shell pipeline to clone all github repositories for specific organization.
+
+++++
+<!-- more -->
+++++
+
+== Situation
+
+You need to clone all repos for your organization on github/on-premise github. Since there might be plenty of repos you don't want to repeat yourself and prefer automate this process.
+
+== Solution
+
+* Create an API token by going to Account Settings -> Applications
+* Clone repos:
+
+[source,sh]
+----
+$ GITHUB_BASE_URL={api.github.com|yourcompanygithub}; CONTEXT={users|orgs}; NAME={username|orgname}; ACCESS_TOKEN={yourtoken}
+$ curl "https://$GITHUB_BASE_URL/api/v3/$CONTEXT/$NAME/repos?page=1&per_page=100&access_token=$ACCESS_TOKEN" \
+     | jq '.[] | .clone_url' \
+     | xargs -L1 git clone
+----
+
+*Notes:*
+
+1.  _CONTEXT=users_ and _NAME=yourusername_ will clone all your repositories.
+2.  _CONTEXT=orgs_ and _NAME=yourorgname_ will clone all repositories of your organization.
+3.  The solutions assumes you have https://stedolan.github.io/jq/manual/[jq] installed. _If you haven't, it's time to do it._
