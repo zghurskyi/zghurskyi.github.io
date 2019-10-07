@@ -1,0 +1,12 @@
+@startuml
+T1->BALANCE: BEGIN;
+T2->BALANCE: BEGIN;
+T1->BALANCE: SELECT * WHERE id = 42;
+note right BALANCE: amount = 1000, version = 2
+T2->BALANCE: SELECT * WHERE id = 42;
+T1->BALANCE: UPDATE balance\nSET (amount, version) = (900, 3)\nWHERE id = 42 AND version = 2;\n-- this results in 1 updated record
+T2->BALANCE: UPDATE balance\nSET (amount, version) = (1100, 3)\nWHERE id = 42 AND version = 3;\n-- this results in 0 updated records
+T1->BALANCE: COMMIT;
+T2->BALANCE: ROLLBACK;
+note left BALANCE: amount = 900, version = 3
+@enduml

@@ -1,0 +1,54 @@
+title Non-blocking processing
+
+
+participant Thread 1
+participant Thread 2
+participant Thread 3
+participant I/O
+
+[->Thread 1:request 1
+activate Thread 1
+Thread 1-#red>(5)I/O: 1
+deactivate Thread 1
+activate I/O
+
+Thread 2(5)<#red--I/O: 1
+activate Thread 2
+deactivate I/O
+Thread 2-#red>(5)I/O: 1
+deactivate Thread 2
+activate I/O
+
+Thread 2(5)<#red--I/O: 1
+activate Thread 2
+deactivate I/O
+Thread 2-#red>(5)I/O: 1
+deactivate Thread 2
+activate I/O
+
+Thread 1(5)<#red--I/O: 1
+deactivate I/O
+activate Thread 1
+[<#red--Thread 1: response 1
+deactivate Thread 1
+
+space -26
+
+[->Thread 1:request 2
+activate Thread 1
+Thread 1-#blue>(5)I/O: 2
+deactivate Thread 1
+activate I/O
+Thread 3(5)<#blue--I/O: 2
+activate Thread 3
+deactivate I/O
+Thread 3-#blue>(5)I/O: 2
+deactivate Thread 3
+activate I/O
+
+Thread 2(5)<#blue--I/O: 2
+deactivate I/O
+activate Thread 2
+[<#blue--Thread 2: response 2
+deactivate Thread 2
+

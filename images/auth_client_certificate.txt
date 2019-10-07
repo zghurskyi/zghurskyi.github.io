@@ -1,0 +1,6 @@
+@startuml
+User->Server: Access protected resource
+Server-->User: Login page
+User->Server: Client Certificate
+Server-->User: Access granted/Access denied
+@enduml
