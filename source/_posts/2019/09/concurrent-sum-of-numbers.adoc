@@ -64,7 +64,7 @@ The approach described above can be implemented using different tools:
 Since I'm doing this as an exercise and just to have fun, 
 I will do an implementation for each alternative. So, let's start.
 
-===== {fork-join-pool-javadoc-url}[ForkJoinPool] and {base-stream-parallel-javadoc-url}[Stream.parallel]
+===== ForkJoinPool and Stream.parallel
 
 For our toy problem - the resulting code is pretty concise 
 and declarative (except part of creating {fork-join-pool-javadoc-url}[ForkJoinPool]).
@@ -124,7 +124,7 @@ public class DivideAndConquerSum {
 }
 ----
 
-===== {executor-service-javadoc-url}[ExecutorService] and {completable-future-javadoc-url}[CompletableFuture]
+===== ExecutorService and CompletableFuture
 
 Starting from Java 8, we have pretty powerful 
 and general tool in our toolbox - {completable-future-javadoc-url}[CompletableFuture].
@@ -208,7 +208,7 @@ As we can see, we have to manage sub-ranges explicitly.
 In case of our toy problem - it's overkill, 
 but in more complex situations, this is not so big price for async and composable execution.
 
-===== {executor-service-javadoc-url}[ExecutorService] and {future-javadoc-url}[Future]
+===== ExecutorService and Future
 
 Combination of {executor-service-javadoc-url}[ExecutorService] and {future-javadoc-url}[Future] is pretty powerful tool also. 
 Although, it has the drawbacks, that led to introducing {completable-future-javadoc-url}[CompletableFuture]:
@@ -292,7 +292,7 @@ public class DivideAndConquerSum {
 }
 ----
 
-===== {runnable-javadoc-url}[Runnable] and {thread-javadoc-url}[Thread]
+===== Runnable and Thread
 
 These are most basic tools, that could be used. 
 The main advantage - they are available from very first version of Java.
