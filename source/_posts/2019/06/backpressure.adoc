@@ -20,9 +20,6 @@ The back-pressure may cascade all the way up to the user, at which point respons
 <!-- more -->
 ++++
 
-:toc:
-:toclevels: 3
-
 == Back-Pressure
 
 This is how it's defined in {backpressure-glossary-url}[Reactive Manifesto]:
@@ -59,47 +56,45 @@ services.
 
 == Strategies to deal with throughput mismatch
 
-Once you are in the situation described above, essentially you have
-following choices:
+There are several strategies to deal with throughput mismatch:
 
-* *(Auto-)Scale* service, that is under pressure
-* *Drop down or sample* incoming requests, once service under pressure
+* _Auto-scale_ service, that is under pressure
+* _Drop down (or sample)_ incoming requests, once service under pressure
 is saturated
-* *Buffer* requests
-* *Control* the request producer
+* _Buffer_ requests
+* _Control_ the request producer
 
-=== *(Auto-)Scaling*
+=== Auto-scaling
 
-Probably, is the easiest way to deal with the problem.
+Probably, auto-scaling is the easiest way to deal with the problem.
 E.g. in the example above the solution would be to scale the
 *service B* up - this definitely will resolve throughput deficit. In some cases this
 will be just enough, but in other - auto-scaling might lead to 
 propagating the problem to the next service (e.g. *service C*). Also, if
 you are in severe cost/hardware deficit, scaling up is simply not feasible.
 
-=== *Dropping down or sampling*
+=== Dropping down or sampling
 
-Only some fraction of incoming requests is processed, other are simply ignoring.
+Only some fraction of incoming requests is processed, other are simply ignored.
 E.g. in the example above to solve the problem it would be enough for *service B* to
 just skip processing every 3rd request. However, most often it's not
 applicable in practice
 
-=== *Buffering* requests
+=== Buffering requests
 
-Probably, is the most intuitive thing to do. E.g. in
-the example above this approach can be implemented by introducing
+Probably, applying buffer is the most intuitive thing to do.
+E.g. in the example above this approach can be implemented by introducing
 messaging queue between *service A and B* or, alternatively, storing
 incoming request to the database. This, in essence, allows *service B* to
-pull requests when it's ready to process them. However, beside the
+pull requests from buffer, when it's ready to process them. However, beside the
 complication in infrastructure it's not always possible, since not
 all requests might be processed asynchronously.
 
-=== *Controlling producer*
+=== Controlling the request producer
 
-Controlling the request producer is actually what is defined as
-"back-pressure" by Reactive Manifesto. In the example above it means
-that *service B* should be able to slow down/speed up *service A*. So,
-*service A* should not _push_ requests to *service B*, instead
+Controlling the request producer is, actually, defined as"back-pressure" by Reactive Manifesto.
+In the example above it means, that *service B* should be able to slow down/speed up *service A*.
+So, *service A* should not _push_ requests to *service B*, instead
 *service B* should _pull_ desired number of requests from *service A*.
 However, controlling producer speed is not always an option
 (imaging telling your user to slow down). Also, back-pressure mechanism introduces
