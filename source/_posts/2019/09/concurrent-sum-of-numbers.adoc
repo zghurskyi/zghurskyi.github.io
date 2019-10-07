@@ -115,7 +115,7 @@ public class DivideAndConquerSum {
             } while (rangeStart >= rangeEnd || numberOfThreads < 1);
 
 
-            int sum = MultiThreadedSum.sum(rangeStart, rangeEnd, numberOfThreads);
+            int sum = DivideAndConquerSum.sum(rangeStart, rangeEnd, numberOfThreads);
 
             System.out.println(String.format("Sum of numbers in the range [%s, %s] found in %s threads is %s",
                     rangeStart, rangeEnd, numberOfThreads, sum));
@@ -195,7 +195,7 @@ public class DivideAndConquerSum {
             } while (rangeStart >= rangeEnd || numberOfThreads < 1);
 
 
-            int sum = MultiThreadedSum.sum(rangeStart, rangeEnd, numberOfThreads);
+            int sum = DivideAndConquerSum.sum(rangeStart, rangeEnd, numberOfThreads);
 
             System.out.println(String.format("Sum of numbers in the range [%s, %s] found in %s threads is %s",
                     rangeStart, rangeEnd, numberOfThreads, sum));
@@ -283,7 +283,7 @@ public class DivideAndConquerSum {
             } while (rangeStart >= rangeEnd || numberOfThreads < 1);
 
 
-            int sum = MultiThreadedSum.sum(rangeStart, rangeEnd, numberOfThreads);
+            int sum = DivideAndConquerSum.sum(rangeStart, rangeEnd, numberOfThreads);
 
             System.out.println(String.format("Sum of numbers in the range [%s, %s] found in %s threads is %s",
                     rangeStart, rangeEnd, numberOfThreads, sum));
@@ -380,7 +380,7 @@ public class DivideAndConquerSum {
             } while (rangeStart >= rangeEnd || numberOfThreads < 1);
 
 
-            int sum = MultiThreadedSum.sum(rangeStart, rangeEnd, numberOfThreads);
+            int sum = DivideAndConquerSum.sum(rangeStart, rangeEnd, numberOfThreads);
 
             System.out.println(String.format("Sum of numbers in the range [%s, %s] found in %s threads is %s",
                     rangeStart, rangeEnd, numberOfThreads, sum));
