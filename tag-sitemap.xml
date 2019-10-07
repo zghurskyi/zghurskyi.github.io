@@ -3,6 +3,48 @@
 
 
     <url>
+        <loc>https://www.oxymorus.com/tags/forkjoinpool/</loc>
+        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/runnable/</loc>
+        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/thread/</loc>
+        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/future/</loc>
+        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/completablefuture/</loc>
+        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/java-util-concurrent/</loc>
+        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/tags/back-pressure/</loc>
         <lastmod>2019-06-19T10:58:44.000Z</lastmod>
         <changefreq>weekly</changefreq>

@@ -8,6 +8,48 @@
     </url>
 
     <url>
+        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/thread/runnable/forkjoinpool/</loc>
+        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/thread/runnable/</loc>
+        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/thread/</loc>
+        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/</loc>
+        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/</loc>
+        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/java-util-concurrent/</loc>
+        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/categories/reactive/back-pressure/</loc>
         <lastmod>2019-06-19T10:58:44.000Z</lastmod>
         <changefreq>weekly</changefreq>
