@@ -40,4 +40,32 @@
     
   </entry>
   
+  <entry>
+    <title>Trick Of The Day: Copy DB dump from one Docker container to another</title>
+    <link href="https://www.oxymorus.com/docker-mysql-dump/"/>
+    <id>https://www.oxymorus.com/docker-mysql-dump/</id>
+    <published>2019-04-23T22:52:55.000Z</published>
+    <updated>2019-04-23T22:52:55.000Z</updated>
+    
+    <content type="html"><![CDATA[<div class="paragraph"><p>How to copy MySQL dump from one Docker container to another ?</p></div><a id="more"></a><div class="sect1"><h2>Situation</h2><div class="sectionbody"><div class="paragraph"><p>You need to create DB dump in one Docker container and apply it in another Docker container.</p></div></div></div><div class="sect1"><h2>Application</h2><div class="sectionbody"><div class="paragraph"><p>Crate DB dump on staging env and apply it on local env to experiment with existing database.</p></div></div></div><div class="sect1"><h2>Solution</h2><div class="sectionbody"><div class="olist arabic"><ol class="arabic"><li><p>Connect to first container:</p></li></ol></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ docker exec -ti mysql-staging /bin/bash</code></pre></div></div><div class="olist arabic"><ol class="arabic"><li><p>Create DB dump:</p></li></ol></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ mysqldump -u user -p --databases db &gt; /tmp/db.sql</code></pre></div></div><div class="olist arabic"><ol class="arabic"><li><p>Copy dump to localhost:</p></li></ol></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># general syntax:# docker cp CONTAINER:SRC_PATH DEST_PATH$ docker cp mysql:/tmp/db.sql /tmp/db.sql</code></pre></div></div><div class="olist arabic"><ol class="arabic"><li><p>Copy dump to second container:</p></li></ol></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># general syntax:# docker cp DEST_PATH CONTAINER:SRC_PATH$ docker cp /tmp/db.sql mysql:/tmp/db.sql</code></pre></div></div><div class="olist arabic"><ol class="arabic"><li><p>Apply DB dump:</p></li></ol></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ docker exec -ti mysql /bin/bash$ mysql -u user -p-- Run the backup script to recreate the databasemysql&gt; drop database if exists db;mysql&gt; source /tmp/db.sql</code></pre></div></div></div></div>]]></content>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;paragraph&quot;&gt;&lt;p&gt;How to copy MySQL dump from one Docker container to another ?&lt;/p&gt;&lt;/div&gt;
+    
+    </summary>
+    
+      <category term="Docker" scheme="https://www.oxymorus.com/categories/docker/"/>
+    
+      <category term="MySQL" scheme="https://www.oxymorus.com/categories/docker/mysql/"/>
+    
+      <category term="dump" scheme="https://www.oxymorus.com/categories/docker/mysql/dump/"/>
+    
+    
+      <category term="Docker" scheme="https://www.oxymorus.com/tags/docker/"/>
+    
+      <category term="MySQL" scheme="https://www.oxymorus.com/tags/mysql/"/>
+    
+  </entry>
+  
 </feed>
