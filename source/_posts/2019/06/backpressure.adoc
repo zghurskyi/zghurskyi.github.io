@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Implementing back-pressure in practice"
+title:  "Back-pressure patterns in practice"
 date: 2019-06-19 10:58:44
 updated: 2019-06-19 10:58:44
 tags:
@@ -19,6 +19,9 @@ The back-pressure may cascade all the way up to the user, at which point respons
 ++++
 <!-- more -->
 ++++
+
+:toc:
+:toclevels: 3
 
 == Back-Pressure
 
@@ -42,8 +45,7 @@ that may allow the system itself to apply other resources to help
 distribute the load.
 ____
 
-Let's illustrate the situation that may motivate to apply some
-back-pressure.
+Let's illustrate the context, that requires to apply back-pressure.
 
 [.text-center]
 --
@@ -55,7 +57,7 @@ image::/images/backpressure.png[]
 So, essentially the problem here is the mismatch in throughput between
 services.
 
-== Implementing back-pressure in practice
+== Strategies to deal with throughput mismatch
 
 Once you are in the situation described above, essentially you have
 following choices:
@@ -66,41 +68,47 @@ is saturated
 * *Buffer* requests
 * *Control* the request producer
 
-*(Auto-)Scaling* probably is the easiest way to deal with the problem.
-E.g. in the example above the solution might be to just scale the
-service B up - this definitely will resolve throughput deficit. This
-might be just enough in some cases, but in other it might lead to just
-propagating the problem to the next service (e.g. service C). Also, if
-you are in severe cost/hardware deficit it simply might not be possible.
+=== *(Auto-)Scaling*
 
-*Dropping down or sampling* incoming requests means processing only
-some fraction of incoming requests and ignoring others. E.g. in the
-example above to solve the problem it would be enough for service B to
+Probably, is the easiest way to deal with the problem.
+E.g. in the example above the solution would be to scale the
+*service B* up - this definitely will resolve throughput deficit. In some cases this
+will be just enough, but in other - auto-scaling might lead to 
+propagating the problem to the next service (e.g. *service C*). Also, if
+you are in severe cost/hardware deficit, scaling up is simply not feasible.
+
+=== *Dropping down or sampling*
+
+Only some fraction of incoming requests is processed, other are simply ignoring.
+E.g. in the example above to solve the problem it would be enough for *service B* to
 just skip processing every 3rd request. However, most often it's not
 applicable in practice
 
-*Buffering* requests probably is the most intuitive thing to do. E.g. in
-the example above - this approach can be implemented by introducing some
-messaging queue between service A and B or, alternatively, storing
-incoming request to the database. This in essence allows service B to
+=== *Buffering* requests
+
+Probably, is the most intuitive thing to do. E.g. in
+the example above this approach can be implemented by introducing
+messaging queue between *service A and B* or, alternatively, storing
+incoming request to the database. This, in essence, allows *service B* to
 pull requests when it's ready to process them. However, beside the
-complication in infrastructure it might not always be possible since not
+complication in infrastructure it's not always possible, since not
 all requests might be processed asynchronously.
 
-*Controlling* the request producer is actually what is defined as
+=== *Controlling producer*
+
+Controlling the request producer is actually what is defined as
 "back-pressure" by Reactive Manifesto. In the example above it means
-that service B should be able to slow down/speed up service A. This
-means that service A should not _push_ requests to service B, instead
-service B should _pull_ desired number of requests from service A.
-However, controlling request producer speed is not always an option
-(again, imaging telling your user to slow down). Also implementing
-controlling mechanism is introducing complexity in the system, so should
-be decided carefully.
+that *service B* should be able to slow down/speed up *service A*. So,
+*service A* should not _push_ requests to *service B*, instead
+*service B* should _pull_ desired number of requests from *service A*.
+However, controlling producer speed is not always an option
+(imaging telling your user to slow down). Also, back-pressure mechanism introduces
+complexity in the system, so should be decided carefully.
 
 == Conclusion
 
 Whenever there is a mismatch in throughput between services there might
-be the opportunity to apply some form of back-pressure.
+be the opportunity to apply back-pressure pattern.
 
 What strategy should be applied really depends on the constraints and
-requirements at hand. Sometime, just leaving it as is might be enough.
+requirements at hand.
