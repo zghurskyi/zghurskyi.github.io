@@ -44,11 +44,11 @@ No. This "Blog" is hosted on *Github Pagesfootnote:[https://pages.github.com/]* 
 == Encryption (HTTPS)
 
 This "Blog" uses an encrypted transfer protocol (HTTPS over TLS) with the *ECC CA-2* certificate provides by GitHub, Inc.
-The encryption protects the communication to *oxymorus.com** from access by unauthorized third parties.
+The encryption protects the communication to *oxymorus.com* from access by unauthorized third parties.
 
 == Do you collect any ads-related data?
 
-No, *oxymorus.com** does not collect any ads-related data. There are no ads on this "Blog". And&nbsp;I&nbsp;don't plan to add any.
+No, *oxymorus.com* does not collect any ads-related data. There are no ads on this "Blog". And&nbsp;I&nbsp;don't plan to add any.
 
 == Who can I contact if I have any questions?
 
