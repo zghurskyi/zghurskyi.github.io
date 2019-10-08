@@ -51,8 +51,10 @@ public interface PessimisticLock {
 === Implementation
 
 To implement pessimistic locking we will use special bin with no value and short expiration (to prevent hanged locks).
-The logic is simple:
+The idea is simple:
+
 * if there is a record in storage for given key, then lock is acquired by some other concurrent service
+
 * if there is no record, then lock is free and current service can acquire it
 
 [source,java]
