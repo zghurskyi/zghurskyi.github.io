@@ -1,26 +1,23 @@
 ---
 layout: post
-title:  "Aerospike optimistic locking with Project Reactor"
-date: 2019-10-08 19:47:51
-updated: 2019-10-08 19:47:51
+title:  "Pessimistic locking with Aerospike and Project Reactor"
+date: 2019-10-08 20:47:51
+updated: 2019-10-08 20:47:51
 tags:
     - Aerospike
     - Project Reactor
-    - Optimistic Locking
+    - Pessimistic Locking
 categories:
     - Aerospike
     - Project Reactor
-    - Optimistic Locking
+    - Pessimistic Locking
 og_image: /images/bg-index.jpg
 eyeCatchImage: /images/bg-index.jpg
 ---
 
-:optimistic-locking-reference-url: https://martinfowler.com/eaaCatalog/optimisticOfflineLock.html
-:project-reactor-url: https://projectreactor.io/
-:reactive-streams-jvm-url: https://github.com/reactive-streams/reactive-streams-jvm
-:retry-when-javadoc-url: https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#retryWhen-java.util.function.Function-
+:pessimistic-locking-reference-url: https://martinfowler.com/eaaCatalog/pessimisticOfflineLock.html
 
-How to implement optimistic locking with Aerospike and Project Reactor ?
+How to implement pessimistic locking with Aerospike and Project Reactor ?
 
 ++++
 <!-- more -->
@@ -28,68 +25,256 @@ How to implement optimistic locking with Aerospike and Project Reactor ?
 
 == Introduction
 
-{optimistic-locking-reference-url}[Optimistic locking] is general pattern commonly used
+{pessimistic-locking-reference-url}[Pessimistic locking] is general pattern commonly used
 to maintain data consistency.
 
 [.img-responsive.img-thumbnail]
-[link=https://martinfowler.com/eaaCatalog/OptimisticSketch.gif]
-image::https://martinfowler.com/eaaCatalog/OptimisticSketch.gif[]
+[link=https://martinfowler.com/eaaCatalog/PessimisticSketch.gif]
+image::https://martinfowler.com/eaaCatalog/PessimisticSketch.gif[]
 
-In this post I will describe how to implement optimistic locking with No-SQL storage, that has reactive client.
+In this post I will describe how to implement pessimistic locking with No-SQL storage, that has reactive client.
 
-=== Aerospike `generation` meta-data
+=== Pessimistic lock interface
 
-In traditional RDBMS to implement optimistic locking one would have to introduce
-additional `version` or `timestamp` column.
-
-In case of Aerospike, required data is available by default: each record has `generation` meta-data.
-So, in order to fail, when record is updated/deleted concurrently, one would need only enable
-`GenerationPolicy.EXPECT_GEN_EQUAL`:
+We will support following operations: `tryAcquire` and `release`
 
 [source,java]
 ----
-ClientPolicy clientPolicy = new ClientPolicy();
-clientPolicy.writePolicyDefault.generationPolicy = GenerationPolicy.EXPECT_GEN_EQUAL;
+public interface PessimisticLock {
+
+    Mono<Boolean> tryAcquire(String key);
+
+    Mono<Boolean> release(String key);
+}
 ----
-
-Having above config in place ensures that update/delete will be executed successfully,
-if expected generation is equal to server generation, otherwise, update/delete will fail.
-
-
-=== Reactor `retryWhen` operation
-
-{project-reactor-url}[Project Reactor] is a fourth-generation Reactive library for building non-blocking applications on
-the JVM based on the {reactive-streams-jvm-url}[Reactive Streams Specification].
-
-In the context of our goal, we will use {retry-when-javadoc-url}[retryWhen] operation:
-
-[.img-responsive.img-thumbnail]
-[link=https://projectreactor.io/docs/core/release/api/reactor/core/publisher/doc-files/marbles/retryWhenForMono.svg]
-image::https://projectreactor.io/docs/core/release/api/reactor/core/publisher/doc-files/marbles/retryWhenForMono.svg[]
 
 === Implementation
 
-Now let's put everything together and write method that performs `createOrUpdate` operation on `Data` instance:
+To implement pessimistic locking we will use special bin with no value and short expiration (to prevent hanged locks).
+The logic is simple:
+* if there is a record in storage for given key, then lock is acquired by some other concurrent service
+* if there is no record, then lock is free and current service can acquire it
 
 [source,java]
 ----
-public Mono<Data> createOrUpdate(Data data) {
+@Slf4j
+@RequiredArgsConsturctor
+public class DefaultPessimisticLock implements PessimisticLock {
 
-    return Mono.defer(() -> doCreateOrUpdate(data))
-            .retryWhen(Retries.optimisticLockException(retryProperties)
-                    .doOnRetry(context -> log.warn("Retrying optimistic failure for data", data, context.exception()))
-            );
+    private final IAerospikeReactorClient client;
+    private final RetryProperties retryProperties;
+    private final LockProperties lockProperties;
+    private final AerospikeProperties aerospikeProperties;
+
+    @Override
+    public Mono<Boolean> tryAcquire(String key) {
+
+        Key lockKey = toLockKey(key);
+        Bin lockBin = toLockBin(key);
+
+        return Mono.defer(() -> client.put(acquirePolicy(), lockKey, lockBin).map(Objects::nonNull))
+                .retryWhen(Retries.aerospikeError(retryProperties))
+                .onErrorMap(error -> {
+                    log.warn("Failed to acquire lock " + key, error);
+                    return new PessimisticLockAcquireException("Failed to acquire lock " + key, error);
+                });
+    }
+
+    @Override
+    public Mono<Boolean> release(String key) {
+
+        Key lockKey = toLockKey(key);
+
+        return client.delete(releasePolicy(), lockKey)
+                .map(Objects::nonNull)
+                .onErrorResume(error -> {
+                    log.warn("Failed to release lock " + key, error);
+                    return Mono.just(Boolean.FALSE);
+                })
+                .defaultIfEmpty(Boolean.TRUE);
+    }
+
+    private Key toLockKey(String key) {
+        return new Key(aerospikeProperties.getNamespace(), aerospikeProperties.getSetName(), key);
+    }
+
+    private Bin toLockBin(String key) {
+        return new Bin(lockProperties.getBinName(), key);
+    }
+
+    private WritePolicy acquirePolicy() {
+        WritePolicy putPolicy = new WritePolicy();
+        putPolicy.recordExistsAction = RecordExistsAction.CREATE_ONLY;
+        putPolicy.expiration = lockProperties.getExpirationInSeconds();
+        return putPolicy;
+    }
+
+    private WritePolicy releasePolicy() {
+        WritePolicy deletePolicy = new WritePolicy();
+        deletePolicy.generationPolicy = GenerationPolicy.NONE;
+        return deletePolicy;
+    }
 }
 
-private Mono<Data> doCreateOrUpdate(Data data) {
+----
 
-    return repository.findDataByKey(data.getKey())
-            .map(existingData -> data.withGeneration(existingData.getGeneration()))
-            .flatMap(existingData -> repository.createOrUpdate(existingData).map(Functions.constant(existingData)));
+=== Testing
+
+[source,java]
+----
+@RunWith(MockitoJUnitRunner.class)
+public class DefaultPessimisticLockTest {
+
+    private static final String TEST_KEY = "123";
+    private static final AerospikeException AEROSPIKE_TIMEOUT_EXCEPTION = new AerospikeException(ResultCode.TIMEOUT, "Aerospike timeout");
+    private static final AerospikeException AERSOPIKE_KEY_EXISTS_EXCEPTION = new AerospikeException(ResultCode.KEY_EXISTS_ERROR, "Key exists");
+
+    @Mock
+    private IAerospikeReactorClient client;
+    @Spy
+    private AerospikeProperties aerospikeProperties = new AerospikeProperties();
+    @Spy
+    private RetryProperties retryProperties = new RetryProperties();
+    @Spy
+    private LockProperties lockProperties = new LockProperties();
+    @InjectMocks
+    private DefaultPessimisticLock pessimisticLock;
+
+    @Test
+    public void lockAcquireExceptionIsThrownIfTimeoutReachedAfterRetry() {
+        Mockito.when(client.put(Mockito.any(WritePolicy.class), Mockito.any(Key.class), Mockito.any(Bin.class)))
+                .thenReturn(Mono.error(AEROSPIKE_TIMEOUT_EXCEPTION));
+
+        StepVerifier.withVirtualTime(() -> pessimisticLock.tryAcquire(TEST_KEY))
+                .expectSubscription()
+                .thenAwait(Duration.ofMillis(1001))
+                .expectError(PessimisticLockAcquireException.class)
+                .verify();
+    }
+
+    @Test
+    public void lockIsAcquiredAfterRetryWithExponentialBackOff() {
+        Key testKey = new Key(aerospikeProperties.getNamespace(), transactionProperties.getSetName(), TEST_KEY);
+
+        Mockito.when(client.put(Mockito.any(WritePolicy.class), Mockito.any(Key.class), Mockito.any(Bin.class)))
+                .thenReturn(Mono.error(AEROSPIKE_TIMEOUT_EXCEPTION))
+                .thenReturn(Mono.error(AEROSPIKE_TIMEOUT_EXCEPTION))
+                .thenReturn(Mono.error(AERSOPIKE_KEY_EXISTS_EXCEPTION))
+                .thenReturn(Mono.just(testKey));
+
+        StepVerifier.withVirtualTime(() -> pessimisticLock.tryAcquire(TEST_KEY))
+                .expectSubscription()
+                .thenAwait(Duration.ofMillis(50))
+                .thenAwait(Duration.ofMillis(100))
+                .thenAwait(Duration.ofMillis(200))
+                .expectNext(Boolean.TRUE)
+                .expectComplete()
+                .verify();
+    }
+
+    @Test
+    public void lockAcquireExceptionIsThrownIfKeyExistsError() {
+        Mockito.when(client.put(Mockito.any(WritePolicy.class), Mockito.any(Key.class), Mockito.any(Bin.class)))
+                .thenReturn(Mono.error(AERSOPIKE_KEY_EXISTS_EXCEPTION));
+
+        StepVerifier.withVirtualTime(() -> pessimisticLock.tryAcquire(TEST_KEY))
+                .expectSubscription()
+                .thenAwait(Duration.ofMillis(1001))
+                .expectError(PessimisticLockAcquireException.class)
+                .verify();
+    }
+
+    @Test
+    public void lockIsAcquiredIfKeyBecomesAvailable() {
+        Key testKey = new Key(aerospikeProperties.getNamespace(), transactionProperties.getSetName(), TEST_KEY);
+
+        Mockito.when(client.put(Mockito.any(WritePolicy.class), Mockito.any(Key.class), Mockito.any(Bin.class)))
+                .thenReturn(Mono.error(AERSOPIKE_KEY_EXISTS_EXCEPTION))
+                .thenReturn(Mono.error(AERSOPIKE_KEY_EXISTS_EXCEPTION))
+                .thenReturn(Mono.just(testKey));
+
+        StepVerifier.withVirtualTime(() -> pessimisticLock.tryAcquire(TEST_KEY))
+                .expectSubscription()
+                .thenAwait(Duration.ofMillis(50))
+                .thenAwait(Duration.ofMillis(100))
+                .expectNext(Boolean.TRUE)
+                .expectComplete()
+                .verify();
+    }
+
+    @Test
+    public void lockIsAcquiredSuccessfully() {
+        Key testKey = new Key(aerospikeProperties.getNamespace(), transactionProperties.getSetName(), TEST_KEY);
+
+        Mockito.when(client.put(Mockito.any(WritePolicy.class), Mockito.any(Key.class), Mockito.any(Bin.class)))
+                .thenReturn(Mono.just(testKey));
+
+        StepVerifier.withVirtualTime(() -> pessimisticLock.tryAcquire(TEST_KEY))
+                .expectSubscription()
+                .expectNext(Boolean.TRUE)
+                .expectComplete()
+                .verify();
+    }
+
+    @Test
+    public void lockIsTreatedAsReleasedIfDoesNotExist() {
+        Mockito.when(client.delete(Mockito.any(WritePolicy.class), Mockito.any(Key.class)))
+                .thenReturn(Mono.empty());
+
+        StepVerifier.create(pessimisticLock.release(TEST_KEY))
+                .expectNext(Boolean.TRUE)
+                .expectComplete()
+                .verify();
+    }
+
+    @Test
+    public void lockIsNotReleasedIfExceptionDuringRelease() {
+        Mockito.when(client.delete(Mockito.any(WritePolicy.class), Mockito.any(Key.class)))
+                .thenReturn(Mono.error(AEROSPIKE_TIMEOUT_EXCEPTION));
+
+        StepVerifier.create(pessimisticLock.release(TEST_KEY))
+                .expectNext(Boolean.FALSE)
+                .expectComplete()
+                .verify();
+    }
+
+    @Test
+    public void lockIsReleasedSuccessfully() {
+        Key testKey = new Key(aerospikeProperties.getNamespace(), transactionProperties.getSetName(), TEST_KEY);
+
+        Mockito.when(client.delete(Mockito.any(WritePolicy.class), Mockito.any(Key.class)))
+                .thenReturn(Mono.just(testKey));
+
+        StepVerifier.create(pessimisticLock.release(TEST_KEY))
+                .expectNext(Boolean.TRUE)
+                .expectComplete()
+                .verify();
+    }
+}
+----
+
+=== Using with Reactor
+
+We need to emulate `try-finally` semantic with Reactor operators. The code below achieves that goal:
+
+[source,java]
+----
+@Override
+public <T, R> Mono<R> executeWithLock(String key, T data, OperationExecutor<T, R> operationExecutor) {
+
+    return pessimisticLockOperations.tryAcquire(key)
+            .flatMap(lockAcquired -> operationExecutor.execute(data)
+                    .flatMap(operationResult -> pessimisticLock.release(key)
+                            .map(Functions.constant(operationResult)))
+                    .onErrorResume(throwable -> pessimisticLock.release(key)
+                            .map(Functions.constant(operationResult)))
+            );
 }
 ----
 
 == Conclusion
 
-Implementing optimistic locking with Aerospike and Reactor is pretty straight-forward.
-Since all tools are already in place, all that needs to be done - put everything together.
+Aerospike doesn't have built-in mechanism for pessimistic locking.
+So to achieve required semantic one would need to implement locking directly.
+
+Another trick in the puzzle is `try-finally` semantic with Reactor.
