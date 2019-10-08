@@ -8,21 +8,28 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/aerospike/project-reactor/optimistic-locking/</loc>
-        <lastmod>2019-10-08T19:47:51.000Z</lastmod>
+        <loc>https://www.oxymorus.com/categories/aerospike/project-reactor/pessimistic-locking/</loc>
+        <lastmod>2019-10-08T20:47:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://www.oxymorus.com/categories/aerospike/project-reactor/</loc>
-        <lastmod>2019-10-08T19:47:51.000Z</lastmod>
+        <lastmod>2019-10-08T20:47:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://www.oxymorus.com/categories/aerospike/</loc>
+        <lastmod>2019-10-08T20:47:51.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/aerospike/project-reactor/optimistic-locking/</loc>
         <lastmod>2019-10-08T19:47:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
