@@ -18,8 +18,8 @@
   
   <entry>
     <title>Pessimistic locking with Aerospike and Project Reactor</title>
-    <link href="https://www.oxymorus.com/reactor-aerospike-pessimistic-lock/"/>
-    <id>https://www.oxymorus.com/reactor-aerospike-pessimistic-lock/</id>
+    <link href="https://www.oxymorus.com/pessimistic-locking-with-reactor-and-aerospike/"/>
+    <id>https://www.oxymorus.com/pessimistic-locking-with-reactor-and-aerospike/</id>
     <published>2019-10-08T20:47:51.000Z</published>
     <updated>2019-10-08T20:47:51.000Z</updated>
     
@@ -48,8 +48,8 @@
   
   <entry>
     <title>Optimistic locking with Aerospike and Project Reactor</title>
-    <link href="https://www.oxymorus.com/reactor-aerospike-optimistic-lock/"/>
-    <id>https://www.oxymorus.com/reactor-aerospike-optimistic-lock/</id>
+    <link href="https://www.oxymorus.com/optimistic-locking-with-reactor-and-aerospike/"/>
+    <id>https://www.oxymorus.com/optimistic-locking-with-reactor-and-aerospike/</id>
     <published>2019-10-08T19:47:51.000Z</published>
     <updated>2019-10-08T19:47:51.000Z</updated>
     

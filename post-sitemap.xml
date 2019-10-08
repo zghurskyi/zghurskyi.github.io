@@ -8,7 +8,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/reactor-aerospike-pessimistic-lock/</loc>
+        <loc>https://www.oxymorus.com/pessimistic-locking-with-reactor-and-aerospike/</loc>
         <lastmod>2019-10-08T20:47:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -16,7 +16,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/reactor-aerospike-optimistic-lock/</loc>
+        <loc>https://www.oxymorus.com/optimistic-locking-with-reactor-and-aerospike/</loc>
         <lastmod>2019-10-08T19:47:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
