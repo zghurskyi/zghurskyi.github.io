@@ -3,7 +3,7 @@
     Mono&lt;Boolean&gt; tryAcquire(String key);
 
     Mono&lt;Boolean&gt; release(String key);
-}</code></pre></div></div></div><div class="sect2"><h3>Implementation</h3><div class="paragraph"><p>To implement pessimistic locking we will use special bin with no value and short expiration (to prevent hanged locks). The logic is simple: * if there is a record in storage for given key, then lock is acquired by some other concurrent service * if there is no record, then lock is free and current service can acquire it</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Slf4j
+}</code></pre></div></div></div><div class="sect2"><h3>Implementation</h3><div class="paragraph"><p>To implement pessimistic locking we will use special bin with no value and short expiration (to prevent hanged locks). The idea is simple:</p></div><div class="ulist"><ul><li><p>if there is a record in storage for given key, then lock is acquired by some other concurrent service</p></li><li><p>if there is no record, then lock is free and current service can acquire it</p></li></ul></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Slf4j
 @RequiredArgsConsturctor
 public class DefaultPessimisticLock implements PessimisticLock {
 
