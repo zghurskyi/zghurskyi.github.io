@@ -1,0 +1,95 @@
+---
+layout: post
+title:  "Aerospike optimistic locking with Project Reactor"
+date: 2019-10-08 19:47:51
+updated: 2019-10-08 19:47:51
+tags:
+    - Aerospike
+    - Project Reactor
+    - Optimistic Locking
+categories:
+    - Aerospike
+    - Project Reactor
+    - Optimistic Locking
+og_image: /images/bg-index.jpg
+eyeCatchImage: /images/bg-index.jpg
+---
+
+:optimistic-locking-reference-url: https://martinfowler.com/eaaCatalog/optimisticOfflineLock.html
+:project-reactor-url: https://projectreactor.io/
+:reactive-streams-jvm-url: https://github.com/reactive-streams/reactive-streams-jvm
+:retry-when-javadoc-url: https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#retryWhen-java.util.function.Function-
+
+How to implement optimistic locking with Aerospike and Project Reactor ?
+
+++++
+<!-- more -->
+++++
+
+== Introduction
+
+{optimistic-locking-reference-url}[Optimistic locking] is general pattern commonly used
+to maintain data consistency.
+
+[.img-responsive.img-thumbnail]
+[link=https://martinfowler.com/eaaCatalog/OptimisticSketch.gif]
+image::https://martinfowler.com/eaaCatalog/OptimisticSketch.gif[]
+
+In this post I will describe how to implement optimistic locking with No-SQL storage, that has reactive client.
+
+=== Aerospike `generation` meta-data
+
+In traditional RDBMS to implement optimistic locking one would have to introduce
+additional `version` or `timestamp` column.
+
+In case of Aerospike, required data is available by default: each record has `generation` meta-data.
+So, in order to fail, when record is updated/deleted concurrently, one would need only enable
+`GenerationPolicy.EXPECT_GEN_EQUAL`:
+
+[source,java]
+----
+ClientPolicy clientPolicy = new ClientPolicy();
+clientPolicy.writePolicyDefault.generationPolicy = GenerationPolicy.EXPECT_GEN_EQUAL;
+----
+
+Having above config in place ensures that update/delete will be executed successfully,
+if expected generation is equal to server generation, otherwise, update/delete will fail.
+
+
+=== Reactor `retryWhen` operation
+
+{project-reactor-url}[Project Reactor] is a fourth-generation Reactive library for building non-blocking applications on
+the JVM based on the {reactive-streams-jvm-url}[Reactive Streams Specification].
+
+In the context of our goal, we will use {retry-when-javadoc-url}[retryWhen] operation:
+
+[.img-responsive.img-thumbnail]
+[link=https://projectreactor.io/docs/core/release/api/reactor/core/publisher/doc-files/marbles/retryWhenForMono.svg]
+image::https://projectreactor.io/docs/core/release/api/reactor/core/publisher/doc-files/marbles/retryWhenForMono.svg[]
+
+=== Implementation
+
+Now let's put everything together and write method that performs `createOrUpdate` operation on `Data` instance:
+
+[source,java]
+----
+public Mono<Data> createOrUpdate(Data data) {
+
+    return Mono.defer(() -> doCreateOrUpdate(data))
+            .retryWhen(Retries.optimisticLockException(retryProperties)
+                    .doOnRetry(context -> log.warn("Retrying optimistic failure for data", data, context.exception()))
+            );
+}
+
+private Mono<Data> doCreateOrUpdate(Data data) {
+
+    return repository.findDataByKey(data.getKey())
+            .map(existingData -> data.withGeneration(existingData.getGeneration()))
+            .flatMap(existingData -> repository.createOrUpdate(existingData).map(Functions.constant(existingData)));
+}
+----
+
+== Conclusion
+
+Implementing optimistic locking with Aerospike and Reactor is pretty straight-forward.
+Since all tools are already in place, all that needs to be done - put everything together.
