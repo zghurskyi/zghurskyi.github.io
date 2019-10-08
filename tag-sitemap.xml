@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>https://www.oxymorus.com/tags/optimistic-locking/</loc>
+        <lastmod>2019-10-08T19:47:51.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/project-reactor/</loc>
+        <lastmod>2019-10-08T19:47:51.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/aerospike/</loc>
+        <lastmod>2019-10-08T19:47:51.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/tags/topic-provisioning/</loc>
         <lastmod>2019-10-07T22:39:55.000Z</lastmod>
         <changefreq>weekly</changefreq>

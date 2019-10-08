@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.oxymorus.com/"/>
-  <updated>2019-10-07T22:39:55.000Z</updated>
+  <updated>2019-10-08T19:47:51.000Z</updated>
   <id>https://www.oxymorus.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Aerospike optimistic locking with Project Reactor</title>
+    <link href="https://www.oxymorus.com/reactor-aerospike-pessimistic-lock/"/>
+    <id>https://www.oxymorus.com/reactor-aerospike-pessimistic-lock/</id>
+    <published>2019-10-08T19:47:51.000Z</published>
+    <updated>2019-10-08T19:47:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<div class="paragraph"><p>How to implement optimistic locking with Aerospike and Project Reactor ?</p></div><a id="more"></a><div class="sect1"><h2>Introduction</h2><div class="sectionbody"><div class="paragraph"><p><a href="https://martinfowler.com/eaaCatalog/optimisticOfflineLock.html" target="_blank" rel="noopener">Optimistic locking</a> is general pattern commonly used to maintain data consistency.</p></div><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="https://martinfowler.com/eaaCatalog/OptimisticSketch.gif" target="_blank" rel="noopener"><img src="https://martinfowler.com/eaaCatalog/OptimisticSketch.gif" alt="OptimisticSketch"></a></div></div><div class="paragraph"><p>In this post I will describe how to implement optimistic locking with No-SQL storage, that has reactive client.</p></div><div class="sect2"><h3>Aerospike <code>generation</code> meta-data</h3><div class="paragraph"><p>In traditional RDBMS to implement optimistic locking one would have to introduce additional <code>version</code> or <code>timestamp</code> column.</p></div><div class="paragraph"><p>In case of Aerospike, required data is available by default: each record has <code>generation</code> meta-data. So, in order to fail, when record is updated/deleted concurrently, one would need only enable <code>GenerationPolicy.EXPECT_GEN_EQUAL</code>:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">ClientPolicy clientPolicy = new ClientPolicy();clientPolicy.writePolicyDefault.generationPolicy = GenerationPolicy.EXPECT_GEN_EQUAL;</code></pre></div></div><div class="paragraph"><p>Having above config in place ensures that update/delete will be executed successfully, if expected generation is equal to server generation, otherwise, update/delete will fail.</p></div></div><div class="sect2"><h3>Reactor <code>retryWhen</code> operation</h3><div class="paragraph"><p><a href="https://projectreactor.io/" target="_blank" rel="noopener">Project Reactor</a> is a fourth-generation Reactive library for building non-blocking applications on the JVM based on the <a href="https://github.com/reactive-streams/reactive-streams-jvm" target="_blank" rel="noopener">Reactive Streams Specification</a>.</p></div><div class="paragraph"><p>In the context of our goal, we will use <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#retryWhen-java.util.function.Function-" target="_blank" rel="noopener">retryWhen</a> operation:</p></div><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/doc-files/marbles/retryWhenForMono.svg" target="_blank" rel="noopener"><img src="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/doc-files/marbles/retryWhenForMono.svg" alt="retryWhenForMono"></a></div></div></div><div class="sect2"><h3>Implementation</h3><div class="paragraph"><p>Now let&#8217;s put everything together and write method that performs <code>createOrUpdate</code> operation on <code>Data</code> instance:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public Mono&lt;Data&gt; createOrUpdate(Data data) {    return Mono.defer(() -&gt; doCreateOrUpdate(data))            .retryWhen(Retries.optimisticLockException(retryProperties)                    .doOnRetry(context -&gt; log.warn("Retrying optimistic failure for data", data, context.exception()))            );}private Mono&lt;Data&gt; doCreateOrUpdate(Data data) {    return repository.findDataByKey(data.getKey())            .map(existingData -&gt; data.withGeneration(existingData.getGeneration()))            .flatMap(existingData -&gt; repository.createOrUpdate(existingData).map(Functions.constant(existingData)));}</code></pre></div></div></div></div></div><div class="sect1"><h2>Conclusion</h2><div class="sectionbody"><div class="paragraph"><p>Implementing optimistic locking with Aerospike and Reactor is pretty straight-forward. Since all tools are already in place, all that needs to be done - put everything together.</p></div></div></div>]]></content>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;paragraph&quot;&gt;&lt;p&gt;How to implement optimistic locking with Aerospike and Project Reactor ?&lt;/p&gt;&lt;/div&gt;
+    
+    </summary>
+    
+      <category term="Aerospike" scheme="https://www.oxymorus.com/categories/aerospike/"/>
+    
+      <category term="Project Reactor" scheme="https://www.oxymorus.com/categories/aerospike/project-reactor/"/>
+    
+      <category term="Optimistic Locking" scheme="https://www.oxymorus.com/categories/aerospike/project-reactor/optimistic-locking/"/>
+    
+    
+      <category term="Aerospike" scheme="https://www.oxymorus.com/tags/aerospike/"/>
+    
+      <category term="Project Reactor" scheme="https://www.oxymorus.com/tags/project-reactor/"/>
+    
+      <category term="Optimistic Locking" scheme="https://www.oxymorus.com/tags/optimistic-locking/"/>
+    
+  </entry>
   
   <entry>
     <title>Kafka Provision Spring Boot Starter</title>
