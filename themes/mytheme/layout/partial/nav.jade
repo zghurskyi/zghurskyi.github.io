@@ -7,7 +7,13 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-custom
                 span.icon-bar
                 span.icon-bar
             a(class="navbar-brand", href=url_for())
-                span= config.title
+                - var titles = Array('Act naturally' 'Alone together','Amazingly awful','Bittersweet',
+                                            'Dark light','Definitely maybe','Farewell reception','Growing smaller',
+                                            'Jumbo shrimp','Only choice','Open secret','Original copy',
+                                            'Painfully beautiful','Random order','Small crowd',
+                                            'Sweet sorrow','True myth','Weirdly normal')
+                - var random_title = titles[Math.floor(Math.random() * titles.length)];
+                span= random_title
         #main-navbar.collapse.navbar-collapse
             ul.nav.navbar-nav.navbar-right
                 each value, key in theme["navbar-links"]
