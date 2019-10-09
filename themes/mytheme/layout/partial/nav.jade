@@ -7,15 +7,7 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-custom
                 span.icon-bar
                 span.icon-bar
             a(class="navbar-brand", href=url_for())
-                - var titles = ["Act naturally" "Alone together","Amazingly awful","Bittersweet",
-                                            "Dark light","Definitely maybe","Farewell reception","Growing smaller",
-                                            "Jumbo shrimp","Only choice","Open secret","Original copy",
-                                            "Painfully beautiful","Random order","Small crowd",
-                                            "Sweet sorrow","True myth","Weirdly normal", "Clearly misunderstood",
-                                            "Cruel kindness","Exact estimate","Even odds", "Same difference",
-                                            "We're busy doing nothing",
-                                            "A joke is an extremely serious issue",
-                                            "I can believe anything, provided that it is quite incredible"]
+                - var titles = ["Act naturally","Alone together","Amazingly awful","Bittersweet","Dark light","Definitely maybe","Farewell reception","Growing smaller","Jumbo shrimp","Only choice","Open secret","Original copy","Painfully beautiful","Random order","Small crowd","Sweet sorrow","True myth","Weirdly normal","Clearly misunderstood","Cruel kindness","Exact estimate","Even odds","Same difference","We're busy doing nothing","A joke is an extremely serious issue","I can believe anything, provided that it is quite incredible"]
                 - var random_title = titles[Math.floor(Math.random() * titles.length)];
                 span= random_title
         #main-navbar.collapse.navbar-collapse
