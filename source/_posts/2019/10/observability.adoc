@@ -1,0 +1,171 @@
+---
+layout: post
+title:  "Observability: Metrics with Micrometer and Spring Boot"
+date: 2019-10-10 22:07:41
+updated: 2019-10-10 22:07:41
+tags:
+    - Observability
+    - Spring
+    - Prometheus
+    - Grafana
+    - Docker
+categories:
+    - Observability
+    - Spring
+    - Prometheus
+    - Grafana
+    - Docker
+og_image: /images/bg-index.jpg
+eyeCatchImage: /images/bg-index.jpg
+---
+
+:micrometer-demo-url: https://github.com/zghurskyi/investigations/tree/master/investigation-micrometer
+
+Practical introduction to metrics with Spring Boot and Micrometer.
+
+++++
+<!-- more -->
+++++
+
+== Observability
+
+"Observability" is one of buzzwords today. To stay practical and concrete,
+by observability I mean monitoring, tracing and logging.
+And to be really "hands-on", in this post I will give recipe
+of adding Prometheus & Grafana to your lovely Spring Boot project.
+
+*TL;DR* If you prefer working code vs reading posts - just follow this {micrometer-demo-url}[link].
+
+== What will we build?
+
+I will follow simple plan:
+
+. Setup vanilla Spring Boot application (just stright from https://start.spring.io)
+. Add Prometheus
+. Add Grafana
+
+So, let's start.
+
+== 1. Getting Spring Boot application
+
+[source,shell]
+ ----
+ $ curl https://start.spring.io/starter.zip \
+ -d dependencies=actuator,webflux,lombok \
+ -d type=maven-project \
+ -d baseDir=monitoring \
+ -d groupId=com.oxymorus.monitoring \
+ -d artifactId=monitoring \
+ -o monitoring.zip
+ $ unzip monitoring.zip && rm monitoring.zip
+----
+
+== 2. Add Prometheus
+
+In order to auto-configure Spring Boot support of Promethues,
+we need to add following dependency to our `pom.xml`:
+
+[source,yml]
+----
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-registry-prometheus</artifactId>
+</dependency>
+----
+
+Next we need to setup Promethues with Docker. We will use following script:
+
+[source,shell script]
+ ----
+#!/bin/sh
+docker run --net=host \
+-p 9090:9090 \
+-v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml \
+prom/prometheus:v2.2.0
+----
+
+This script starts Prometheus on port 9090 and configures it to scrape Spring Boot
+default `/actuator/prometheus` endpoint.
+
+Full configuration is specified in `prometheus.yml`:
+
+[source,yaml]
+----
+# my global config
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+# - "first_rules.yml"
+# - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+    static_configs:
+      - targets: ['127.0.0.1:9090']
+
+  - job_name: 'spring-actuator'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['127.0.0.1:8080']
+----
+
+== 3. Add Grafana
+
+Next, let's start Grafana with following script:
+
+[source,shell script]
+----
+#!/bin/sh
+docker run -i --net=host \
+-p 3000:3000 \
+-v $(pwd)/grafana-datasource.yml:/etc/grafana/provisioning/datasources/grafana-datasource.yml \
+-v $(pwd)/dashboards/grafana-dashboard.yml:/etc/grafana/provisioning/dashboards/grafana-dashboard.yml \
+-v $(pwd)/dashboards/jvmgc-dashboard.json:/etc/grafana/dashboards/jvmgc.json \
+-v $(pwd)/dashboards/latency-dashboard.json:/etc/grafana/dashboards/latency.json \
+-v $(pwd)/dashboards/processor-dashboard.json:/etc/grafana/dashboards/processor.json \
+grafana/grafana:5.1.0
+----
+
+As you can see, we specify couple of dashboards, that will allow to monitory some app metrics.
+
+The important config, that connects Grafana with Prometheus as
+its datasource is in `grafana-datasource.yml` file:
+
+[source,yaml]
+----
+apiVersion: 1
+
+datasources:
+  - name: prometheus
+    type: prometheus
+    access: direct
+    url: http://127.0.0.1:9090
+----
+
+== Checking everything
+
+To check everything works properly let's start it together:
+
+[source,shell script]
+----
+$ mvn spring-boot:run
+$ ./prometheus.sh
+$ ./grafana.sh
+----
+
+After app is running and metrics are collected, we can perform some load testing and observe how app behaves:
+
+[source,shell script]
+----
+$ ab -n 120000 -c 2 http://localhost:8080/actuator/prometheus
+----
