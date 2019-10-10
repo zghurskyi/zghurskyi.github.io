@@ -20,6 +20,9 @@ eyeCatchImage: /images/bg-index.jpg
 ---
 
 :micrometer-demo-url: https://github.com/zghurskyi/investigations/tree/master/investigation-micrometer
+:spring-boot-prometheus-reference-url: https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-metrics.html#production-ready-metrics-export-prometheus
+:prometheus-config-reference-url: https://prometheus.io/docs/prometheus/latest/configuration/configuration/
+:grafana-datasources-reference-url: https://grafana.com/docs/administration/provisioning/#datasources
 
 Practical introduction to metrics with Spring Boot and Micrometer.
 
@@ -76,7 +79,7 @@ we need to add following dependency to our `pom.xml`:
 Next we need to setup Promethues with Docker. We will use following script:
 
 [source,shell script]
- ----
+----
 #!/bin/sh
 docker run --net=host \
 -p 9090:9090 \
@@ -85,9 +88,9 @@ prom/prometheus:v2.2.0
 ----
 
 This script starts Prometheus on port 9090 and configures it to scrape Spring Boot
-default `/actuator/prometheus` endpoint.
+default {spring-boot-prometheus-reference-url}[`/actuator/prometheus`] endpoint.
 
-Full configuration is specified in `prometheus.yml`:
+Full configuration is specified in {prometheus-config-reference-url}[`prometheus.yml`]:
 
 [source,yaml]
 ----
@@ -139,7 +142,7 @@ grafana/grafana:5.1.0
 As you can see, we specify couple of dashboards, that will allow to monitory some app metrics.
 
 The important config, that connects Grafana with Prometheus as
-its datasource is in `grafana-datasource.yml` file:
+its datasource is in {grafana-datasources-reference-url}[`grafana-datasource.yml`] file:
 
 [source,yaml]
 ----
