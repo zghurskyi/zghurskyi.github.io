@@ -8,6 +8,41 @@
     </url>
 
     <url>
+        <loc>https://www.oxymorus.com/categories/observability/spring/prometheus/grafana/docker/</loc>
+        <lastmod>2019-10-10T22:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/observability/spring/prometheus/grafana/</loc>
+        <lastmod>2019-10-10T22:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/observability/spring/prometheus/</loc>
+        <lastmod>2019-10-10T22:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/observability/spring/</loc>
+        <lastmod>2019-10-10T22:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/observability/</loc>
+        <lastmod>2019-10-10T22:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/categories/apache-kafka/spring-boot-starter/topic-provisioning/</loc>
         <lastmod>2019-10-07T22:39:55.000Z</lastmod>
         <changefreq>weekly</changefreq>

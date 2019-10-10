@@ -3,6 +3,41 @@
 
 
     <url>
+        <loc>https://www.oxymorus.com/tags/grafana/</loc>
+        <lastmod>2019-10-10T22:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/prometheus/</loc>
+        <lastmod>2019-10-10T22:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/spring/</loc>
+        <lastmod>2019-10-10T22:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/observability/</loc>
+        <lastmod>2019-10-10T22:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/docker/</loc>
+        <lastmod>2019-10-10T22:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/tags/topic-provisioning/</loc>
         <lastmod>2019-10-07T22:39:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -123,13 +158,6 @@
 
     <url>
         <loc>https://www.oxymorus.com/tags/mysql/</loc>
-        <lastmod>2019-04-23T22:52:55.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/tags/docker/</loc>
         <lastmod>2019-04-23T22:52:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
