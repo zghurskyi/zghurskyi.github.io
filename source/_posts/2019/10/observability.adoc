@@ -43,7 +43,7 @@ of adding Prometheus & Grafana to your lovely Spring Boot project.
 
 I will follow simple plan:
 
-. Setup vanilla Spring Boot application (just stright from https://start.spring.io)
+. Setup vanilla Spring Boot application (straight from https://start.spring.io)
 . Add Prometheus
 . Add Grafana
 
@@ -52,7 +52,7 @@ So, let's start.
 == 1. Getting Spring Boot application
 
 [source,shell]
- ----
+----
  $ curl https://start.spring.io/starter.zip \
  -d dependencies=actuator,webflux,lombok \
  -d type=maven-project \
