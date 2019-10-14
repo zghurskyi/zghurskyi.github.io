@@ -34,8 +34,7 @@ eyeCatchImage: /images/bg-index.jpg
 
 Different people mean different things, when they talk about `observability`.
 To stay practical and concrete, by observability I mean *monitoring, tracing and logging*.
-
-In this post I will give recipe of adding monitoring to your Spring Boot service with Prometheus & Grafana.
+In this post I will give recipe of adding monitoring to your Spring Boot service with Prometheus and Grafana.
 
 *TL;DR* If you prefer reading code vs reading posts -- just follow this {micrometer-demo-url}[link].
 
@@ -61,12 +60,13 @@ So, let's start.
 $ curl https://start.spring.io/starter.zip \
 -d dependencies=actuator,webflux,lombok \
 -d type=maven-project \
--d baseDir=monitoring \
+-d baseDir=service \
 -d groupId=com.oxymorus.monitoring \
--d artifactId=monitoring \
--o monitoring.zip
+-d artifactId=service \
+-d bootVersion=2.1.9.RELEASE \
+-o service.zip
 
-$ unzip monitoring.zip && rm monitoring.zip
+$ unzip service.zip && rm service.zip && cd service
 ----
 
 After bootstrapping bare-bones service, let's prepare next steps by creating `monitoring` directory.
@@ -81,19 +81,8 @@ $ mkdir monitoring && cd monitoring
 
 NOTE: {prometheus-overview-reference-url}[Prometheus] is an open-source systems monitoring and alerting toolkit.
 
-In order to auto-configure Spring Boot support of Promethues,
-we need to add following dependency to our `pom.xml`:
-
-[source,yml]
-----
-<dependency>
-    <groupId>io.micrometer</groupId>
-    <artifactId>micrometer-registry-prometheus</artifactId>
-</dependency>
-----
-
-Also, to enable Prometheus scraping of {spring-boot-prometheus-reference-url}[/actuator/prometheus] endpoint,
-we need to update `application.yml`
+Spring Boot provides monitoring data in Promethues format through {spring-boot-prometheus-reference-url}[/actuator/prometheus] endpoint.
+So, first, we need to expose this endpoint in `application.yml`:
 
 [source,yaml]
 ----
@@ -143,8 +132,7 @@ Finally, we can launch Promethues with Docker using following script:
 [source,shell script]
 ----
 #!/bin/sh
-docker run --net=host \
--p 9090:9090 \
+docker run --net=host -p 9090:9090 \
 -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml \
 prom/prometheus:v2.2.0
 ----
@@ -193,8 +181,8 @@ providers:
       path: /etc/grafana/dashboards
 ----
 
-Next, to connect Grafana with Prometheus as
-its datasource we should provide {grafana-datasources-reference-url}[grafana-datasource.yml]:
+Next, to connect Grafana with Prometheus as its datasource
+we should provide {grafana-datasources-reference-url}[grafana-datasource.yml]:
 
 [source,yaml]
 ----
