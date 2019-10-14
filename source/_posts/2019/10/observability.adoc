@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Observability: Monitoring Spring Boot service with Prometheus and Grafana"
+title:  "Monitoring Spring Boot service with Prometheus and Grafana"
 date: 2019-10-10 22:07:41
 updated: 2019-10-10 22:07:41
 tags:
@@ -32,12 +32,12 @@ eyeCatchImage: /images/bg-index.jpg
 :grafana-dashboard-reference-url: https://grafana.com/docs/administration/provisioning/#dashboards
 :apache-benchmark-reference-url: https://httpd.apache.org/docs/2.4/programs/ab.html
 
-`Observability` is one of buzzwords today. To stay practical and concrete,
-by observability I mean monitoring, tracing and logging.
-Also, to stay "hands-on", in this post I will give recipe
-of adding monitoring to your Spring Boot service with Prometheus & Grafana.
+Different people mean different things, when they talk about `observability`.
+To stay practical and concrete, by observability I mean *monitoring, tracing and logging*.
 
-*TL;DR* If you prefer reading code vs reading posts - just follow this {micrometer-demo-url}[link].
+In this post I will give recipe of adding monitoring to your Spring Boot service with Prometheus & Grafana.
+
+*TL;DR* If you prefer reading code vs reading posts -- just follow this {micrometer-demo-url}[link].
 
 ++++
 <!-- more -->
@@ -47,28 +47,37 @@ of adding monitoring to your Spring Boot service with Prometheus & Grafana.
 
 I will follow simple plan:
 
-. Setup vanilla Spring Boot application (straight from https://start.spring.io)
-. Add Prometheus
-. Add Grafana
+. Setup vanilla Spring Boot service (straight from https://start.spring.io)
+. Setup Prometheus
+. Setup Grafana
 . Perform some basic load testing and observer results
 
 So, let's start.
 
-== 1. Getting Spring Boot application
+== 1. Bootstrapping Spring Boot service
 
 [source,shell]
 ----
- $ curl https://start.spring.io/starter.zip \
- -d dependencies=actuator,webflux,lombok \
- -d type=maven-project \
- -d baseDir=monitoring \
- -d groupId=com.oxymorus.monitoring \
- -d artifactId=monitoring \
- -o monitoring.zip
- $ unzip monitoring.zip && rm monitoring.zip
+$ curl https://start.spring.io/starter.zip \
+-d dependencies=actuator,webflux,lombok \
+-d type=maven-project \
+-d baseDir=monitoring \
+-d groupId=com.oxymorus.monitoring \
+-d artifactId=monitoring \
+-o monitoring.zip
+
+$ unzip monitoring.zip && rm monitoring.zip
 ----
 
-== 2. Add Prometheus
+After bootstrapping bare-bones service, let's prepare next steps by creating `monitoring` directory.
+This will be our base directory, where we place scripts and configs for Prometheus and Grafana:
+
+[source,shell]
+----
+$ mkdir monitoring && cd monitoring
+----
+
+== 2. Setting-up Prometheus
 
 NOTE: {prometheus-overview-reference-url}[Prometheus] is an open-source systems monitoring and alerting toolkit.
 
@@ -154,7 +163,7 @@ We can check that everything is working by visiting default dashboard at `localh
 image::/images/prometheus-dashboard.png[]
 --
 
-== 3. Add Grafana
+== 3. Setting-up Grafana
 
 NOTE: {grafana-reference-url}[Grafana] is an open source metric analytics & visualization suite.
 It is most commonly used for visualizing time series data for infrastructure
@@ -166,7 +175,7 @@ So, we will preconfigure several dashboards:
 
 - {jvm-gc-dashboard-url}[JVM garbage collection stats]
 
-- {latency-dashboard-url}[Latency stats - max & 99th percentile]
+- {latency-dashboard-url}[Latency stats -- max & 99th percentile]
 
 - {cpu-dashboard-url}[Processor/CPU load]
 
@@ -230,8 +239,8 @@ image::/images/grafana-dashboard.png[]
 
 == 4. Perform some basic load testing and observer results
 
-After app is running and metrics are properly collected,
-we can perform some load testing and observe how app behaves.
+After service is running and monitoring is properly configured,
+we can perform some load testing and observe how service behaves.
 
 For load testing we will use simple command line utility {apache-benchmark-reference-url}[Apache Benchmark].
 
@@ -240,8 +249,7 @@ For load testing we will use simple command line utility {apache-benchmark-refer
 $ ab -n 1000000 -c 10 http://localhost:8080/actuator/prometheus
 ----
 
-This command line performs 1000000 request in 10 concurrent threads to the `http://localhost:8080/actuator/prometheus`.
-(You can load-test some application endpoint, but for simplicity I'm skipping this)
+This command performs 1 million requests in 10 concurrent threads to the `http://localhost:8080/actuator/prometheus`.
 
 So, it's time to observe some results:
 
