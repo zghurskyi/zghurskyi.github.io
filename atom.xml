@@ -33,20 +33,20 @@
     
       <category term="Observability" scheme="https://www.oxymorus.com/categories/observability/"/>
     
-      <category term="Spring" scheme="https://www.oxymorus.com/categories/observability/spring/"/>
+      <category term="Spring Boot" scheme="https://www.oxymorus.com/categories/observability/spring-boot/"/>
     
-      <category term="Prometheus" scheme="https://www.oxymorus.com/categories/observability/spring/prometheus/"/>
+      <category term="Prometheus" scheme="https://www.oxymorus.com/categories/observability/spring-boot/prometheus/"/>
     
-      <category term="Grafana" scheme="https://www.oxymorus.com/categories/observability/spring/prometheus/grafana/"/>
+      <category term="Grafana" scheme="https://www.oxymorus.com/categories/observability/spring-boot/prometheus/grafana/"/>
     
-      <category term="Docker" scheme="https://www.oxymorus.com/categories/observability/spring/prometheus/grafana/docker/"/>
+      <category term="Docker" scheme="https://www.oxymorus.com/categories/observability/spring-boot/prometheus/grafana/docker/"/>
     
     
       <category term="Docker" scheme="https://www.oxymorus.com/tags/docker/"/>
     
       <category term="Observability" scheme="https://www.oxymorus.com/tags/observability/"/>
     
-      <category term="Spring" scheme="https://www.oxymorus.com/tags/spring/"/>
+      <category term="Spring Boot" scheme="https://www.oxymorus.com/tags/spring-boot/"/>
     
       <category term="Prometheus" scheme="https://www.oxymorus.com/tags/prometheus/"/>
     
