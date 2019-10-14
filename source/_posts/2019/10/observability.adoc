@@ -32,7 +32,7 @@ eyeCatchImage: /images/bg-index.jpg
 :grafana-dashboard-reference-url: https://grafana.com/docs/administration/provisioning/#dashboards
 :apache-benchmark-reference-url: https://httpd.apache.org/docs/2.4/programs/ab.html
 
-"Observability" is one of buzzwords today. To stay practical and concrete,
+`Observability` is one of buzzwords today. To stay practical and concrete,
 by observability I mean monitoring, tracing and logging.
 Also, to stay "hands-on", in this post I will give recipe
 of adding monitoring to your Spring Boot project with Prometheus & Grafana.
@@ -96,7 +96,7 @@ management:
           - prometheus
 ----
 
-Next we need to configure scrapping of exposed endpoint by Prometheus.
+Next, we need to configure scrapping of exposed endpoint by Prometheus.
 To do this, we provide {prometheus-config-reference-url}[prometheus.yml]:
 
 [source,yaml]
@@ -162,7 +162,7 @@ and application analytics but many use it in other domains
 including industrial sensors, home automation, weather, and process control.
 
 Grafana uses {grafana-concepts-url}[dashboards] to organize your metrics visualisation.
-So, we will use couple of preconfigured dashboards:
+So, we will preconfigure several dashboards:
 
 - {jvm-gc-dashboard-url}[JVM garbage collection stats]
 
@@ -170,8 +170,7 @@ So, we will use couple of preconfigured dashboards:
 
 - {cpu-dashboard-url}[Processor/CPU load]
 
-To provision these dashboards to Grafana
-we need to provide {grafana-dashboard-reference-url}[grafana-dashboard.yml]:
+To provision these dashboards we need to provide {grafana-dashboard-reference-url}[grafana-dashboard.yml]:
 
 [source,yaml]
 ----
@@ -185,7 +184,7 @@ providers:
       path: /etc/grafana/dashboards
 ----
 
-Next to connect Grafana with Prometheus as
+Next, to connect Grafana with Prometheus as
 its datasource we should provide {grafana-datasources-reference-url}[grafana-datasource.yml]:
 
 [source,yaml]
@@ -220,7 +219,7 @@ The script starts Grafana on `localhost:3000`.
 
 NOTE: To login use default admin/admin credentials.
 
-To verify everything is working we can check preconfigured JVM GC dashboard:
+To verify everything is working, check preconfigured JVM GC dashboard:
 
 [.text-center]
 --
@@ -241,7 +240,7 @@ For load testing we will use simple command line utility {apache-benchmark-refer
 $ ab -n 1000000 -c 10 http://localhost:8080/actuator/prometheus
 ----
 
-This command line performs 120000 request in 10 concurrent threads to the `http://localhost:8080/actuator/prometheus`.
+This command line performs 1000000 request in 10 concurrent threads to the `http://localhost:8080/actuator/prometheus`.
 (You can load-test some application endpoint, but for simplicity I'm skipping this)
 
 So, it's time to observe some results:
@@ -293,6 +292,6 @@ since all tools are already in place and fit together pretty well.
 
 Available tools allow to get comprehensive view of the system.
 
-Next step after having this harness in place is
+Next step, after having this harness in place, is
 to configure custom metrics with Micrometer and make sense from all of them.
 I'm saving it for the next time, so stay tuned!
