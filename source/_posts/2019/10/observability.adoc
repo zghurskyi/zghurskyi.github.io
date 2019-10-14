@@ -49,7 +49,7 @@ I will follow simple plan:
 . Setup vanilla Spring Boot service (straight from https://start.spring.io)
 . Setup Prometheus
 . Setup Grafana
-. Perform some basic load testing and observer results
+. Perform some basic load testing and observe results
 
 So, let's start.
 
