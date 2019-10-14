@@ -35,7 +35,7 @@ eyeCatchImage: /images/bg-index.jpg
 `Observability` is one of buzzwords today. To stay practical and concrete,
 by observability I mean monitoring, tracing and logging.
 Also, to stay "hands-on", in this post I will give recipe
-of adding monitoring to your Spring Boot project with Prometheus & Grafana.
+of adding monitoring to your Spring Boot service with Prometheus & Grafana.
 
 *TL;DR* If you prefer reading code vs reading posts - just follow this {micrometer-demo-url}[link].
 
