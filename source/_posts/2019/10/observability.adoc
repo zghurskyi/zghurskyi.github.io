@@ -33,7 +33,7 @@ eyeCatchImage: /images/bg-index.jpg
 :apache-benchmark-reference-url: https://httpd.apache.org/docs/2.4/programs/ab.html
 
 Different people mean different things, when they talk about `observability`.
-To stay practical and concrete, by observability I mean *monitoring, tracing and logging*.
+To stay practical and concrete, by observability I mean `monitoring, tracing and logging`.
 In this post I will give recipe of adding monitoring to your Spring Boot service with Prometheus and Grafana.
 
 *TL;DR* If you prefer reading code vs reading posts -- just follow this {micrometer-demo-url}[link].
