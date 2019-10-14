@@ -5,13 +5,13 @@ date: 2019-10-10 22:07:41
 updated: 2019-10-10 22:07:41
 tags:
     - Observability
-    - Spring
+    - Spring Boot
     - Prometheus
     - Grafana
     - Docker
 categories:
     - Observability
-    - Spring
+    - Spring Boot
     - Prometheus
     - Grafana
     - Docker
