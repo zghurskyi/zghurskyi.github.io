@@ -31,9 +31,12 @@ How to implement optimistic locking with Aerospike and Project Reactor ?
 {optimistic-locking-reference-url}[Optimistic locking] is general pattern commonly used
 to maintain data consistency.
 
+[.text-center]
+--
 [.img-responsive.img-thumbnail]
 [link=https://martinfowler.com/eaaCatalog/OptimisticSketch.gif]
 image::https://martinfowler.com/eaaCatalog/OptimisticSketch.gif[]
+--
 
 In this post I will describe how to implement optimistic locking with No-SQL storage, that has reactive client.
 
@@ -63,9 +66,12 @@ the JVM based on the {reactive-streams-jvm-url}[Reactive Streams Specification].
 
 In the context of our goal, we will use {retry-when-javadoc-url}[retryWhen] operation:
 
+[.text-center]
+--
 [.img-responsive.img-thumbnail]
 [link=https://projectreactor.io/docs/core/release/api/reactor/core/publisher/doc-files/marbles/retryWhenForMono.svg]
 image::https://projectreactor.io/docs/core/release/api/reactor/core/publisher/doc-files/marbles/retryWhenForMono.svg[]
+--
 
 === Implementation
 

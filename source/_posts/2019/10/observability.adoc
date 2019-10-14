@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Observability: Metrics with Micrometer and Spring Boot"
+title:  "Observability: Monitoring Spring Boot service with Prometheus and Grafana"
 date: 2019-10-10 22:07:41
 updated: 2019-10-10 22:07:41
 tags:
@@ -21,23 +21,27 @@ eyeCatchImage: /images/bg-index.jpg
 
 :micrometer-demo-url: https://github.com/zghurskyi/investigations/tree/master/investigation-micrometer
 :spring-boot-prometheus-reference-url: https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-metrics.html#production-ready-metrics-export-prometheus
+:prometheus-overview-reference-url: https://prometheus.io/docs/introduction/overview/
 :prometheus-config-reference-url: https://prometheus.io/docs/prometheus/latest/configuration/configuration/
 :grafana-datasources-reference-url: https://grafana.com/docs/administration/provisioning/#datasources
+:grafana-reference-url: https://grafana.com/docs/v4.3/
+:grafana-concepts-url: https://grafana.com/docs/guides/basic_concepts/
+:jvm-gc-dashboard-url: https://github.com/zghurskyi/investigations/blob/master/investigation-micrometer/monitoring/dashboards/jvmgc-dashboard.json
+:latency-dashboard-url: https://github.com/zghurskyi/investigations/blob/master/investigation-micrometer/monitoring/dashboards/latency-dashboard.json
+:cpu-dashboard-url: https://github.com/zghurskyi/investigations/blob/master/investigation-micrometer/monitoring/dashboards/processor-dashboard.json
+:grafana-dashboard-reference-url: https://grafana.com/docs/administration/provisioning/#dashboards
+:apache-benchmark-reference-url: https://httpd.apache.org/docs/2.4/programs/ab.html
 
-Practical introduction to metrics with Spring Boot and Micrometer.
+"Observability" is one of buzzwords today. To stay practical and concrete,
+by observability I mean monitoring, tracing and logging.
+Also, to stay "hands-on", in this post I will give recipe
+of adding monitoring to your Spring Boot project with Prometheus & Grafana.
+
+*TL;DR* If you prefer reading code vs reading posts - just follow this {micrometer-demo-url}[link].
 
 ++++
 <!-- more -->
 ++++
-
-== Observability
-
-"Observability" is one of buzzwords today. To stay practical and concrete,
-by observability I mean monitoring, tracing and logging.
-And to be really "hands-on", in this post I will give recipe
-of adding Prometheus & Grafana to your lovely Spring Boot project.
-
-*TL;DR* If you prefer working code vs reading posts - just follow this {micrometer-demo-url}[link].
 
 == What will we build?
 
@@ -46,6 +50,7 @@ I will follow simple plan:
 . Setup vanilla Spring Boot application (straight from https://start.spring.io)
 . Add Prometheus
 . Add Grafana
+. Perform some basic load testing and observer results
 
 So, let's start.
 
@@ -65,6 +70,8 @@ So, let's start.
 
 == 2. Add Prometheus
 
+NOTE: {prometheus-overview-reference-url}[Prometheus] is an open-source systems monitoring and alerting toolkit.
+
 In order to auto-configure Spring Boot support of Promethues,
 we need to add following dependency to our `pom.xml`:
 
@@ -76,21 +83,21 @@ we need to add following dependency to our `pom.xml`:
 </dependency>
 ----
 
-Next we need to setup Promethues with Docker. We will use following script:
+Also, to enable Prometheus scraping of {spring-boot-prometheus-reference-url}[/actuator/prometheus] endpoint,
+we need to update `application.yml`
 
-[source,shell script]
+[source,yaml]
 ----
-#!/bin/sh
-docker run --net=host \
--p 9090:9090 \
--v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml \
-prom/prometheus:v2.2.0
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - prometheus
 ----
 
-This script starts Prometheus on port 9090 and configures it to scrape Spring Boot
-default {spring-boot-prometheus-reference-url}[`/actuator/prometheus`] endpoint.
-
-Full configuration is specified in {prometheus-config-reference-url}[`prometheus.yml`]:
+Next we need to configure scrapping of exposed endpoint by Prometheus.
+To do this, we provide {prometheus-config-reference-url}[prometheus.yml]:
 
 [source,yaml]
 ----
@@ -122,9 +129,77 @@ scrape_configs:
       - targets: ['127.0.0.1:8080']
 ----
 
+Finally, we can launch Promethues with Docker using following script:
+
+[source,shell script]
+----
+#!/bin/sh
+docker run --net=host \
+-p 9090:9090 \
+-v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml \
+prom/prometheus:v2.2.0
+----
+
+NOTE: Don't forget to make script executable with `chmod +x prometheus.sh`
+
+The script starts Prometheus on port 9090
+and configures it to scrape Spring Boot `/actuator/prometheus` endpoint.
+
+We can check that everything is working by visiting default dashboard at `localhost:9090`:
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/prometheus-dashboard.png]
+image::/images/prometheus-dashboard.png[]
+--
+
 == 3. Add Grafana
 
-Next, let's start Grafana with following script:
+NOTE: {grafana-reference-url}[Grafana] is an open source metric analytics & visualization suite.
+It is most commonly used for visualizing time series data for infrastructure
+and application analytics but many use it in other domains
+including industrial sensors, home automation, weather, and process control.
+
+Grafana uses {grafana-concepts-url}[dashboards] to organize your metrics visualisation.
+So, we will use couple of preconfigured dashboards:
+
+- {jvm-gc-dashboard-url}[JVM garbage collection stats]
+
+- {latency-dashboard-url}[Latency stats - max & 99th percentile]
+
+- {cpu-dashboard-url}[Processor/CPU load]
+
+To provision these dashboards to Grafana
+we need to provide {grafana-dashboard-reference-url}[grafana-dashboard.yml]:
+
+[source,yaml]
+----
+apiVersion: 1
+
+providers:
+  - name: 'default'
+    folder: 'Spring Boot'
+    type: file
+    options:
+      path: /etc/grafana/dashboards
+----
+
+Next to connect Grafana with Prometheus as
+its datasource we should provide {grafana-datasources-reference-url}[grafana-datasource.yml]:
+
+[source,yaml]
+----
+apiVersion: 1
+
+datasources:
+  - name: prometheus
+    type: prometheus
+    access: direct
+    url: http://127.0.0.1:9090
+----
+
+Finally, after all preparation we can start Grafana with following script:
 
 [source,shell script]
 ----
@@ -139,36 +214,85 @@ docker run -i --net=host \
 grafana/grafana:5.1.0
 ----
 
-As you can see, we specify couple of dashboards, that will allow to monitory some app metrics.
+NOTE: Don't forget to make script executable with `chmod +x prometheus.sh`
 
-The important config, that connects Grafana with Prometheus as
-its datasource is in {grafana-datasources-reference-url}[`grafana-datasource.yml`] file:
+The script starts Grafana on `localhost:3000`.
 
-[source,yaml]
-----
-apiVersion: 1
+NOTE: To login use default admin/admin credentials.
 
-datasources:
-  - name: prometheus
-    type: prometheus
-    access: direct
-    url: http://127.0.0.1:9090
-----
+To verify everything is working we can check preconfigured JVM GC dashboard:
 
-== Checking everything
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/grafana-dashboard.png]
+image::/images/grafana-dashboard.png[]
+--
 
-To check everything works properly let's start it together:
+== 4. Perform some basic load testing and observer results
 
-[source,shell script]
-----
-$ mvn spring-boot:run
-$ ./prometheus.sh
-$ ./grafana.sh
-----
+After app is running and metrics are properly collected,
+we can perform some load testing and observe how app behaves.
 
-After app is running and metrics are collected, we can perform some load testing and observe how app behaves:
+For load testing we will use simple command line utility {apache-benchmark-reference-url}[Apache Benchmark].
 
 [source,shell script]
 ----
-$ ab -n 120000 -c 2 http://localhost:8080/actuator/prometheus
+$ ab -n 1000000 -c 10 http://localhost:8080/actuator/prometheus
 ----
+
+This command line performs 120000 request in 10 concurrent threads to the `http://localhost:8080/actuator/prometheus`.
+(You can load-test some application endpoint, but for simplicity I'm skipping this)
+
+So, it's time to observe some results:
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[caption="Heap utilization"]
+[link=/images/grafana-heap-utilization.png]
+image::/images/grafana-heap-utilization.png[]
+--
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[caption="Average GC pause time"]
+[link=/images/grafana-average-gc-pause-time.png]
+image::/images/grafana-average-gc-pause-time.png[]
+--
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[caption="Max Latency by endpoint"]
+[link=/images/grafana-max-latency-by-endpoint.png]
+image::/images/grafana-max-latency-by-endpoint.png[]
+--
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[caption="Request Throughput"]
+[link=/images/grafana-request-throughput.png]
+image::/images/grafana-request-throughput.png[]
+--
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[caption="CPU load"]
+[link=/images/grafana-cpu-load.png]
+image::/images/grafana-cpu-load.png[]
+--
+
+== Conclusion
+
+It's actually straight-forward to setup some basic Prometheus/Grafana monitoring,
+since all tools are already in place and fit together pretty well.
+
+Available tools allow to get comprehensive view of the system.
+
+Next step after having this harness in place is
+to configure custom metrics with Micrometer and make sense from all of them.
+I'm saving it for the next time, so stay tuned!

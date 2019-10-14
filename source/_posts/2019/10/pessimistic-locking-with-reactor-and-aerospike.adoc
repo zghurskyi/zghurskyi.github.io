@@ -28,9 +28,12 @@ How to implement pessimistic locking with Aerospike and Project Reactor ?
 {pessimistic-locking-reference-url}[Pessimistic locking] is general pattern commonly used
 to maintain data consistency.
 
+[.text-center]
+--
 [.img-responsive.img-thumbnail]
 [link=https://martinfowler.com/eaaCatalog/PessimisticSketch.gif]
 image::https://martinfowler.com/eaaCatalog/PessimisticSketch.gif[]
+--
 
 In this post I will describe how to implement pessimistic locking with No-SQL storage, that has reactive client.
 
