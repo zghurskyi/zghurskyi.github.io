@@ -158,7 +158,7 @@ It is most commonly used for visualizing time series data for infrastructure
 and application analytics but many use it in other domains
 including industrial sensors, home automation, weather, and process control.
 
-Grafana uses {grafana-concepts-url}[dashboards] to organize your metrics visualisation.
+Grafana uses {grafana-concepts-url}[dashboards] to organize your monitoring/metrics visualisation.
 So, we will preconfigure several dashboards:
 
 - {jvm-gc-dashboard-url}[JVM garbage collection stats]
