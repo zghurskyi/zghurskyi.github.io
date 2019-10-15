@@ -17,7 +17,7 @@ eyeCatchImage: /images/bg-index.jpg
 
 :postgresql-transaction-url: https://www.postgresql.org/docs/8.3/tutorial-transactions.html
 
-Database Transaction represents a unit of work, that is atomic, consistent, isolated and durable.
+Database Transaction represents a unit of work, that is atomic, consistent, isolated and durable (a.k.a. `ACID`).
 
 ++++
 <!-- more -->
@@ -25,9 +25,7 @@ Database Transaction represents a unit of work, that is atomic, consistent, isol
 
 == Database Transaction
 
-Database Transaction represents a unit of work, that is atomic, consistent, isolated and durable (a.k.a. `ACID`).
-
-`ACID` guarantees are provided by database management systems (DBMS).
+`ACID` guarantees are provided by traditional relational database management systems (RDBMS).
 
 * `Atomicity` means that operations, that constitute transaction are all either succeed or fail together.
 So, atomicity implies that there can't be situation, in which part of operations succeeded and part failed.
