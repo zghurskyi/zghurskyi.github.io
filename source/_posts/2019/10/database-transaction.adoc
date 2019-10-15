@@ -77,13 +77,9 @@ COMMIT;
 
 Let's follow state transitioning for this transaction:
 
-1.  `ACTIVE` state:
-+
-From `BEGIN` to `COMMIT` instructions the transaction is in `ACTIVE` state.
+1. From `BEGIN` to `COMMIT` instructions the transaction is in `ACTIVE` state.
 
-2.  `PARTIALLY COMMITTED` state:
-+
-If transaction reaches `COMMIT` without failures, then it goes into `PARTIALLY COMMITTED` state.
+2. If transaction reaches `COMMIT` without failures, then it goes into `PARTIALLY COMMITTED` state.
 +
 In `PARTIALLY COMMITTED` state, balances will have following values: A = 900 and B = 1100.
 
@@ -95,14 +91,11 @@ In `PARTIALLY COMMITTED` state, balances will have following values: A = 900 and
  .. before `COMMIT` and after second `UPDATE`: then A = 900 and B = 1100
  * In `PARTIALLY COMMITTED` state: then A = 900 and B = 1100
 
-4.  `ABORTED`
-+
-The transaction in `ABORTED` state has to undo the changes made so far.
+4.  The transaction in `ABORTED` state has to undo the changes made so far.
 So, whatever balances are at the beginning in `ABORTED` state,
 after roll back, the state will be reverted to the previous consistent state (A = 1000 and B = 1000)
-5.  `COMMITTED`
-+
-If the transaction executes `COMMIT` successfully,
+
+5. If the transaction executes `COMMIT` successfully,
 that is, if it successfully writes the new value of A and B into log file or stable storage,
 then the transaction is said to be in `COMMITTED` state.
 
@@ -163,7 +156,7 @@ Even though this post may seem pretty dry, however, it lays good foundation to g
 transactions in your Data Access Layer.
 
 In the next posts I will comeback to this topic from more practical perspective in the context of our lovely Spring Boot services.
-So, stay tuned
+So, stay tuned ;)
 
 == References
 {postgresql-transaction-url}[PostgreSQL documentation]
