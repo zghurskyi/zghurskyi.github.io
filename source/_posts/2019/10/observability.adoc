@@ -225,7 +225,7 @@ To verify everything is working, check preconfigured JVM GC dashboard:
 image::/images/grafana-dashboard.png[]
 --
 
-== 4. Perform some basic load testing and observer results
+== 4. Perform some basic load testing and observe results
 
 After service is running and monitoring is properly configured,
 we can perform some load testing and observe how service behaves.
