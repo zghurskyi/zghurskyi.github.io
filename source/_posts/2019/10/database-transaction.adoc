@@ -55,7 +55,7 @@ During execution database transaction goes through number of states:
 image::/images/transaction_state_machine.png[]
 --
 
-== State transitions example
+=== State transitions example
 
 Assume we have two accounts: one for Alice (account A) and one for Bob (account B).
 Initially each account has 1000$ balance. The task is to transfer 100$ from account A to account B.
@@ -101,7 +101,9 @@ then the transaction is said to be in `COMMITTED` state.
 
 6.  After entering `COMMITTED` or `ABORTED` state, transaction is terminated
 
-== Transaction failure reasons
+[NOTE]
+====
+_Why transaction may fail ?_
 
 Database transaction might fail due to one or more of the following reasons:
 
@@ -112,6 +114,7 @@ Database transaction might fail due to one or more of the following reasons:
 
 DBMS usually can recover from server failure, logical failure or concurrency failure.
 To deal with disk failures - disk backups needs to be maintained.
+====
 
 == Savepoints
 
