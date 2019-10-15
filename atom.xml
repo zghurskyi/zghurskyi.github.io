@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.oxymorus.com/"/>
-  <updated>2019-10-10T22:07:41.000Z</updated>
+  <updated>2019-10-15T23:19:41.000Z</updated>
   <id>https://www.oxymorus.com/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Lost Update Phenomena</title>
+    <link href="https://www.oxymorus.com/lost-update/"/>
+    <id>https://www.oxymorus.com/lost-update/</id>
+    <published>2019-10-15T23:19:41.000Z</published>
+    <updated>2019-10-15T23:19:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<div class="paragraph"><p><a href="https://en.wikipedia.org/wiki/Write%E2%80%93write_conflict" target="_blank" rel="noopener">An update is lost</a> when a user overrides the current database state without realizing, that someone else changed it between the moment of data loading and the moment the update occurs. In this post, I will give detailed description of this phenomena and typical ways to prevent it.</p></div><a id="more"></a><div class="sect1"><h2>Lost Update Phenomena</h2><div class="sectionbody"><div class="openblock text-center"><div class="content"><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="/images/lost_update.png"><img src="/images/lost_update.png" alt="lost update"></a></div></div></div></div><div class="paragraph"><p>There are several approaches to prevent the problem:</p></div><div class="ulist"><ul><li><p>Change isolation level</p></li><li><p>Use pessimistic locking (<code>SELECT &#8230;&#8203; FOR UPDATE</code>)</p></li><li><p>Use optimistic locking (version or timestamp based)</p></li></ul></div></div></div><div class="sect1"><h2>Changing isolation level</h2><div class="sectionbody"><div class="paragraph"><p>Most databases use <code>READ COMMITTED</code> isolation level by default (MySQL - <code>REPEATABLE READ</code>). Choosing isolation level is always a trade-off between consistency and scalability.</p></div><div class="paragraph"><p>If lost update is pretty common scenario in the system, sometime it will make sense to use higher isolation level. For example, either <code>REPEATABLE READ</code> or <code>SERIALIZABLE</code> will prevent lost update from happening.</p></div><div class="openblock text-center"><div class="content"><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="/images/lost_update_isolation_level.png"><img src="/images/lost_update_isolation_level.png" alt="lost update isolation level"></a></div></div></div></div><div class="paragraph"><p>In the situation above, if two transactions try to change the same record, the second will be forced to wait while the first either commits or rollbacks. And if the first transaction commits, the second will be aborted.</p></div><div class="paragraph"><p>The drawback of such approach, is that isolation level is set per database connection, that is not desirable or acceptable in most cases.</p></div></div></div><div class="sect1"><h2>Using pessimistic locking</h2><div class="sectionbody"><div class="paragraph"><p><a href="https://martinfowler.com/eaaCatalog/pessimisticOfflineLock.html" target="_blank" rel="noopener">Pessimistic locking</a> is a common tool used to maintain data consistency.</p></div><div class="paragraph"><p>In relational databases it is usually achieved by using <code>SELECT &#8230;&#8203; FOR UPDATE</code> with default <code>READ COMMITTED</code> isolation level (these combination will lead to acquiring write lock).</p></div><div class="openblock text-center"><div class="content"><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="/images/lost_update_pessimistic_locking.png"><img src="/images/lost_update_pessimistic_locking.png" alt="lost update pessimistic locking"></a></div></div></div></div><div class="paragraph"><p>So, if two transactions try to change the same record, the second will be forced to wait while the first either commits or rollbacks. After first transaction terminates, the second one will see changes and, therefore, no updates will be lost.</p></div><div class="paragraph"><p>It should be mentioned, that <strong>both</strong> transactions should acquire write locks, otherwise lost update won&#8217;t be prevented.</p></div></div></div><div class="sect1"><h2>Using optimistic locking</h2><div class="sectionbody"><div class="paragraph"><p><a href="https://martinfowler.com/eaaCatalog/optimisticOfflineLock.html" target="_blank" rel="noopener">The optimistic locking</a> doesn&#8217;t rely on acquiring write locks. It uses versioning to detect, that data was changed concurrently. If two transactions try to change the same record, the second one won&#8217;t change anything since it will use version, that no longer exist.</p></div><div class="openblock text-center"><div class="content"><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="/images/lost_update_optimistic_locking.png"><img src="/images/lost_update_optimistic_locking.png" alt="lost update optimistic locking"></a></div></div></div></div><div class="paragraph"><p>So, every <code>UPDATE</code> will take version into the <code>WHERE</code> clause. Basically, it optimistically assumes, that no one changing the row concurrently. However, if another transaction commits a newer record version, the second transaction will no longer match any row and therefore the lost update is prevented.</p></div><div class="paragraph"><p>ORMs (e.g. Hibernate) use updated results count to check the number of updated rows. If no row was matched, <a href="https://docs.oracle.com/javaee/7/api/javax/persistence/OptimisticLockException.html" target="_blank" rel="noopener">OptimisticLockException</a> is thrown. After exception is thrown, the current transaction and persistence context are aborted.</p></div></div></div><div class="sect1"><h2>References</h2><div class="sectionbody"><div class="paragraph"><p><a href="https://martinfowler.com/eaaCatalog/pessimisticOfflineLock.html" target="_blank" rel="noopener">Pessimistic offline locking</a> <a href="https://martinfowler.com/eaaCatalog/optimisticOfflineLock.html" target="_blank" rel="noopener">Optimistic offline locking</a> <a href="https://vladmihalcea.com/a-beginners-guide-to-database-locking-and-the-lost-update-phenomena/" target="_blank" rel="noopener">A beginners guide to database locking and the lost update phenomena</a></p></div></div></div>]]></content>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;paragraph&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Write%E2%80%93write_conflict&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;An update is lost&lt;/a&gt; when a user overrides the current database state without realizing, that someone else changed it between the moment of data loading and the moment the update occurs. In this post, I will give detailed description of this phenomena and typical ways to prevent it.&lt;/p&gt;&lt;/div&gt;
+    
+    </summary>
+    
+      <category term="Data Access Layer" scheme="https://www.oxymorus.com/categories/data-access-layer/"/>
+    
+      <category term="Lost Update" scheme="https://www.oxymorus.com/categories/data-access-layer/lost-update/"/>
+    
+      <category term="Isolation" scheme="https://www.oxymorus.com/categories/data-access-layer/lost-update/isolation/"/>
+    
+      <category term="Pessimistic Locking" scheme="https://www.oxymorus.com/categories/data-access-layer/lost-update/isolation/pessimistic-locking/"/>
+    
+      <category term="Optimistic Locking" scheme="https://www.oxymorus.com/categories/data-access-layer/lost-update/isolation/pessimistic-locking/optimistic-locking/"/>
+    
+    
+      <category term="Data Access Layer" scheme="https://www.oxymorus.com/tags/data-access-layer/"/>
+    
+      <category term="Lost Update" scheme="https://www.oxymorus.com/tags/lost-update/"/>
+    
+      <category term="Isolation" scheme="https://www.oxymorus.com/tags/isolation/"/>
+    
+      <category term="Pessimistic Locking" scheme="https://www.oxymorus.com/tags/pessimistic-locking/"/>
+    
+      <category term="Optimistic Locking" scheme="https://www.oxymorus.com/tags/optimistic-locking/"/>
+    
+  </entry>
   
   <entry>
     <title>Monitoring Spring Boot service with Prometheus and Grafana</title>
@@ -106,11 +144,11 @@
       <category term="Optimistic Locking" scheme="https://www.oxymorus.com/categories/aerospike/project-reactor/optimistic-locking/"/>
     
     
+      <category term="Optimistic Locking" scheme="https://www.oxymorus.com/tags/optimistic-locking/"/>
+    
       <category term="Aerospike" scheme="https://www.oxymorus.com/tags/aerospike/"/>
     
       <category term="Project Reactor" scheme="https://www.oxymorus.com/tags/project-reactor/"/>
-    
-      <category term="Optimistic Locking" scheme="https://www.oxymorus.com/tags/optimistic-locking/"/>
     
   </entry>
   
@@ -136,11 +174,11 @@
       <category term="Pessimistic Locking" scheme="https://www.oxymorus.com/categories/aerospike/project-reactor/pessimistic-locking/"/>
     
     
+      <category term="Pessimistic Locking" scheme="https://www.oxymorus.com/tags/pessimistic-locking/"/>
+    
       <category term="Aerospike" scheme="https://www.oxymorus.com/tags/aerospike/"/>
     
       <category term="Project Reactor" scheme="https://www.oxymorus.com/tags/project-reactor/"/>
-    
-      <category term="Pessimistic Locking" scheme="https://www.oxymorus.com/tags/pessimistic-locking/"/>
     
   </entry>
   
