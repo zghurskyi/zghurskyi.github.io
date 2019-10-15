@@ -116,6 +116,6 @@ If no row was matched, {optimistic-lock-exception-javadoc-url}[OptimisticLockExc
 After exception is thrown, the current transaction and persistence context are aborted.
 
 == References
-{pessimistic-locking-reference-url}[Pessimistic offline locking]
-{optimistic-locking-reference-url}[Optimistic offline locking]
-{beginners-guide-reference-url}[A beginners guide to database locking and the lost update phenomena]
+. {pessimistic-locking-reference-url}[Pessimistic offline locking]
+. {optimistic-locking-reference-url}[Optimistic offline locking]
+. {beginners-guide-reference-url}[A beginners guide to database locking and the lost update phenomena]
