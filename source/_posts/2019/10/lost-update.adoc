@@ -1,0 +1,121 @@
+---
+layout: post
+title:  "Lost Update Phenomena"
+date: 2019-10-15 23:19:41
+updated: 2019-10-15 23:19:41
+tags:
+    - Data Access Layer
+    - Lost Update
+    - Isolation
+    - Pessimistic Locking
+    - Optimistic Locking
+categories:
+    - Data Access Layer
+    - Lost Update
+    - Isolation
+    - Pessimistic Locking
+    - Optimistic Locking
+og_image: /images/bg-index.jpg
+eyeCatchImage: /images/bg-index.jpg
+---
+
+:write-write-conflict-wiki-url: https://en.wikipedia.org/wiki/Write%E2%80%93write_conflict
+:pessimistic-locking-reference-url: https://martinfowler.com/eaaCatalog/pessimisticOfflineLock.html
+:optimistic-locking-reference-url: https://martinfowler.com/eaaCatalog/optimisticOfflineLock.html
+:optimistic-lock-exception-javadoc-url: https://docs.oracle.com/javaee/7/api/javax/persistence/OptimisticLockException.html
+:beginners-guide-reference-url: https://vladmihalcea.com/a-beginners-guide-to-database-locking-and-the-lost-update-phenomena/
+
+{write-write-conflict-wiki-url}[An update is lost] when a user overrides the current database state without realizing,
+that someone else changed it between the moment of data loading and the moment the update occurs.
+In this post, I will give detailed description of this phenomena and typical ways to prevent it.
+
+++++
+<!-- more -->
+++++
+
+== Lost Update Phenomena
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/lost_update.png]
+image::/images/lost_update.png[]
+--
+
+There are several approaches to prevent the problem:
+
+* Change isolation level
+* Use pessimistic locking (`SELECT ... FOR UPDATE`)
+* Use optimistic locking (version or timestamp based)
+
+== Changing isolation level
+
+Most databases use `READ COMMITTED` isolation level by default (MySQL - `REPEATABLE READ`).
+Choosing isolation level is always a trade-off between consistency and scalability.
+
+If lost update is pretty common scenario in the system,
+sometime it will make sense to use higher isolation level.
+For example, either `REPEATABLE READ` or `SERIALIZABLE` will prevent lost update from happening.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/lost_update_isolation_level.png]
+image::/images/lost_update_isolation_level.png[]
+--
+
+In the situation above, if two transactions try to change the same record,
+the second will be forced to wait while the first either commits or rollbacks.
+And if the first transaction commits, the second will be aborted.
+
+The drawback of such approach, is that isolation level is set per database connection,
+that is not desirable or acceptable in most cases.
+
+== Using pessimistic locking
+
+{pessimistic-locking-reference-url}[Pessimistic locking] is a common tool used to maintain data consistency.
+
+In relational databases it is usually achieved by using `SELECT ... FOR UPDATE`
+with default `READ COMMITTED` isolation level (these combination will lead to acquiring write lock).
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/lost_update_pessimistic_locking.png]
+image::/images/lost_update_pessimistic_locking.png[]
+--
+
+So, if two transactions try to change the same record,
+the second will be forced to wait while the first either commits or rollbacks.
+After first transaction terminates, the second one will see changes and, therefore, no updates will be lost.
+
+It should be mentioned, that *both* transactions should acquire write locks,
+otherwise lost update won't be prevented.
+
+== Using optimistic locking
+
+{optimistic-locking-reference-url}[The optimistic locking] doesn't rely on acquiring write locks.
+It uses versioning to detect, that data was changed concurrently.
+If two transactions try to change the same record,
+the second one won't change anything since it will use version, that no longer exist.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/lost_update_optimistic_locking.png]
+image::/images/lost_update_optimistic_locking.png[]
+--
+
+So, every `UPDATE` will take version into the `WHERE` clause.
+Basically, it optimistically assumes, that no one changing the row concurrently.
+However, if another transaction commits a newer record version,
+the second transaction will no longer match any row and therefore the lost update is prevented.
+
+ORMs (e.g. Hibernate) use updated results count to check the number of updated rows.
+If no row was matched, {optimistic-lock-exception-javadoc-url}[OptimisticLockException] is thrown.
+After exception is thrown, the current transaction and persistence context are aborted.
+
+== References
+{pessimistic-locking-reference-url}[Pessimistic offline locking]
+{optimistic-locking-reference-url}[Optimistic offline locking]
+{beginners-guide-reference-url}[A beginners guide to database locking and the lost update phenomena]
