@@ -89,11 +89,11 @@ In `PARTIALLY COMMITTED` state, balances will have following values: A = 900 and
 
 3.  Transaction may enter `FAILED` state:
 +
- . In `ACTIVE` state:
+ * In `ACTIVE` state:
  .. before first `UPDATE` ended : then A = 1000 and B = 1000
  .. after first `UPDATE` ended: then A = 900 and B = 1100
  .. before `COMMIT` and after second `UPDATE`: then A = 900 and B = 1100
- . In `PARTIALLY COMMITTED` state: then A = 900 and B = 1100
+ * In `PARTIALLY COMMITTED` state: then A = 900 and B = 1100
 
 4.  `ABORTED`
 +
