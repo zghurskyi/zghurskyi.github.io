@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>https://www.oxymorus.com/tags/acid/</loc>
+        <lastmod>2019-10-16T00:53:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/transaction/</loc>
+        <lastmod>2019-10-16T00:53:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/data-access-layer/</loc>
+        <lastmod>2019-10-16T00:53:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/tags/optimistic-locking/</loc>
         <lastmod>2019-10-15T23:19:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -25,13 +46,6 @@
 
     <url>
         <loc>https://www.oxymorus.com/tags/lost-update/</loc>
-        <lastmod>2019-10-15T23:19:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/tags/data-access-layer/</loc>
         <lastmod>2019-10-15T23:19:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
