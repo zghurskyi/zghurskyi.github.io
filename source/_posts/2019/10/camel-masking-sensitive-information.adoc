@@ -17,6 +17,7 @@ eyeCatchImage: /images/bg-index.jpg
 :spring-boot-camel-reference-url: https://camel.apache.org/components/latest/spring-boot.html
 :default-masking-formatter-javadoc-url: https://static.javadoc.io/org.apache.camel/camel-core/2.24.2/org/apache/camel/processor/DefaultMaskingFormatter.html
 :masking-formatter-javadoc-url: https://static.javadoc.io/org.apache.camel/camel-core/2.24.2/org/apache/camel/spi/MaskingFormatter.html
+:properties-component-reference-url: https://camel.apache.org/components/latest/properties-component.html
 
 It's pretty common to log incoming requests or message bodies via {log-component-reference-url}[Log component].
 Usually, logging incoming data is harmless.
@@ -54,23 +55,33 @@ So, if you need to mask other keywords, you'll have to configure some custom mas
 
 If you want to use a custom masking formatter,
 you should put it into Camel service registry with the name `CamelCustomLogMask`.
-Note that the masking formatter must implement {masking-formatter-javadoc-url}[MaskingFormatter].
+Note that your formatter must implement {masking-formatter-javadoc-url}[MaskingFormatter].
 
-If you're using {spring-boot-camel-reference-url}[Spring Boot auto-configuration for Apache Camel],
-it's actually pretty easy to just configure `DefaultMaskingFormatter` with your custom masking keyword.
+However, if you're using {spring-boot-camel-reference-url}[Spring Boot auto-configuration for Apache Camel],
+it's actually pretty easy to just configure `DefaultMaskingFormatter` with your custom masking keywords.
 
 For example, let's enable masking of `value` keyword:
 
 [source,java]
 ----
-    @Bean
-    public Registry maskingRegistry() {
-        MaskingFormatter valueMaskingFormatter = new DefaultMaskingFormatter(Collections.singleton("value"), true, true, true);
-        SimpleRegistry simpleRegistry = new SimpleRegistry();
-        simpleRegistry.put(Constants.CUSTOM_LOG_MASK_REF, valueMaskingFormatter);
-        return simpleRegistry;
-    }
+@Bean
+public Registry maskingRegistry() {
+    MaskingFormatter valueMaskingFormatter =
+        new DefaultMaskingFormatter(
+                Collections.singleton("value"), <1>
+                true,                           <2>
+                true,                           <3>
+                true                            <4>
+        );
+    SimpleRegistry simpleRegistry = new SimpleRegistry();
+    simpleRegistry.put(Constants.CUSTOM_LOG_MASK_REF, valueMaskingFormatter);
+    return simpleRegistry;
+}
 ----
+<1> set of `keywords`, that should be masked
+<2> flag to turn on/off masking of key-value (e.g. in {properties-component-reference-url}[properties component])
+<3> flag to turn on/off masking XML element
+<4> flag to turn on/off masking JSON field
 
 Also, to turn on `logMask` globally, you need to add following config to your `application.yml`:
 
