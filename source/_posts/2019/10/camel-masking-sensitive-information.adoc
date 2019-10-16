@@ -1,0 +1,82 @@
+---
+layout: post
+title:  "Apache Camel: Masking sensitive information"
+date: 2019-10-16 16:53:41
+updated: 2019-10-16 16:53:41
+tags:
+    - Apache Camel
+    - CamelCustomLogMask
+categories:
+    - Apache Camel
+    - CamelCustomLogMask
+og_image: /images/bg-index.jpg
+eyeCatchImage: /images/bg-index.jpg
+---
+:log-component-reference-url: https://camel.apache.org/components/latest/log-component.html
+:logmask-reference-url: https://camel.apache.org/manual/latest/log-eip.html#_masking_sensitive_information_like_password
+:spring-boot-camel-reference-url: https://camel.apache.org/components/latest/spring-boot.html
+:default-masking-formatter-javadoc-url: https://static.javadoc.io/org.apache.camel/camel-core/2.24.2/org/apache/camel/processor/DefaultMaskingFormatter.html
+:masking-formatter-javadoc-url: https://static.javadoc.io/org.apache.camel/camel-core/2.24.2/org/apache/camel/spi/MaskingFormatter.html
+
+It's pretty common to log incoming requests or message bodies via {log-component-reference-url}[Log component].
+Usually, logging incoming data is harmless.
+However, sometime you may accidentally include secure/sensitive information.
+What to do in this case ? In this post I will give short demo on how to solve the problem.
+
+++++
+<!-- more -->
+++++
+
+== Masking sensitive information in Apache Camel
+
+Apache Camel supports security masking for logging, when you set `logMask` flag to `true`.
+This feature is available starting from {logmask-reference-url}[Camel 2.19]
+
+You can enable masking at `CamelContext` level and, also, at route level:
+
+[source,java]
+----
+// enable at CamelContext level
+camelContext.setLogMask(true);
+
+// enable at route level
+from("direct:start").logMask()
+    .log("Processing ${id}")
+    .to("bean:foo");
+----
+
+NOTE: By default, {default-masking-formatter-javadoc-url}[DefaultMaskingFormatter] is used for masking:
+this formatter searches the specified keywords in the source and replaces its value with mask string.
+It's important to note, that `DefaultMaskingFormatter` masks only `passphrase`, `password` and `secretKey` keywords.
+So, if you need to mask other keywords, you'll have to configure some custom masking formatter.
+
+== Configuring custom masking formatter
+
+If you want to use a custom masking formatter,
+you should put it into Camel service registry with the name `CamelCustomLogMask`.
+Note that the masking formatter must implement {masking-formatter-javadoc-url}[MaskingFormatter].
+
+If you're using {spring-boot-camel-reference-url}[Spring Boot auto-configuration for Apache Camel],
+it's actually pretty easy to just configure `DefaultMaskingFormatter` with your custom masking keyword.
+
+For example, let's enable masking of `value` keyword:
+
+[source,java]
+----
+    @Bean
+    public Registry maskingRegistry() {
+        MaskingFormatter valueMaskingFormatter = new DefaultMaskingFormatter(Collections.singleton("value"), true, true, true);
+        SimpleRegistry simpleRegistry = new SimpleRegistry();
+        simpleRegistry.put(Constants.CUSTOM_LOG_MASK_REF, valueMaskingFormatter);
+        return simpleRegistry;
+    }
+----
+
+Also, to turn on `logMask` globally, you need to add following config to your `application.yml`:
+
+[source,yaml]
+----
+camel:
+  springboot:
+    logMask: true
+----
