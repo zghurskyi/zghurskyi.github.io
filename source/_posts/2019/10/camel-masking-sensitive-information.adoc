@@ -22,7 +22,7 @@ eyeCatchImage: /images/bg-index.jpg
 It's pretty common to log incoming requests or message bodies via {log-component-reference-url}[Log component].
 Usually, logging incoming data is harmless.
 However, sometime you may accidentally include secure/sensitive information.
-What to do in this case ? In this post I will give short demo on how to solve the problem.
+What to do in this case ?
 
 ++++
 <!-- more -->
@@ -46,10 +46,10 @@ from("direct:start").logMask()
     .to("bean:foo");
 ----
 
-NOTE: By default, {default-masking-formatter-javadoc-url}[DefaultMaskingFormatter] is used for masking:
-this formatter searches the specified keywords in the source and replaces its value with mask string.
-It's important to note, that `DefaultMaskingFormatter` masks only `passphrase`, `password` and `secretKey` keywords.
-So, if you need to mask other keywords, you'll have to configure some custom masking formatter.
+NOTE: By default, {default-masking-formatter-javadoc-url}[DefaultMaskingFormatter] is used:
+this formatter searches specified keywords in the source and replaces its value with mask string (`xxxxx`).
+It's important to note, that `DefaultMaskingFormatter` masks only `"passphrase"`, `"password"` and `"secretKey"` keywords.
+So, if you need to mask other keywords, you'll have to make custom configuration.
 
 == Configuring custom masking formatter
 
