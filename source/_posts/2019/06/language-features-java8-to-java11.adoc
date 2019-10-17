@@ -26,7 +26,7 @@ eyeCatchImage: /images/bg-index.jpg
 
 :toc: left
 :toc-title: Contents
-:toclevels: 4
+:toclevels: 3
 
 == 1. Java 8 to Java 11 language changes
 
