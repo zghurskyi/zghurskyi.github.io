@@ -8,6 +8,27 @@
     </url>
 
     <url>
+        <loc>https://www.oxymorus.com/categories/reactive/blocking-processing/non-blocking-processing/</loc>
+        <lastmod>2019-10-17T22:50:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/reactive/blocking-processing/</loc>
+        <lastmod>2019-10-17T22:50:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/reactive/</loc>
+        <lastmod>2019-10-17T22:50:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/categories/apache-camel/camelcustomlogmask/</loc>
         <lastmod>2019-10-16T16:53:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -106,6 +127,27 @@
     </url>
 
     <url>
+        <loc>https://www.oxymorus.com/categories/github/clone/jq/</loc>
+        <lastmod>2019-10-07T22:52:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/github/clone/</loc>
+        <lastmod>2019-10-07T22:52:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/github/</loc>
+        <lastmod>2019-10-07T22:52:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/categories/apache-kafka/spring-boot-starter/topic-provisioning/</loc>
         <lastmod>2019-10-07T22:39:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -122,6 +164,55 @@
     <url>
         <loc>https://www.oxymorus.com/categories/apache-kafka/</loc>
         <lastmod>2019-10-07T22:39:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/thread/runnable/forkjoinpool/</loc>
+        <lastmod>2019-10-07T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/thread/runnable/</loc>
+        <lastmod>2019-10-07T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/thread/</loc>
+        <lastmod>2019-10-07T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/</loc>
+        <lastmod>2019-10-07T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/</loc>
+        <lastmod>2019-10-07T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/java-util-concurrent/</loc>
+        <lastmod>2019-10-07T12:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/reactive/back-pressure/</loc>
+        <lastmod>2019-10-07T10:58:44.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -150,97 +241,6 @@
     <url>
         <loc>https://www.oxymorus.com/categories/aerospike/project-reactor/pessimistic-locking/</loc>
         <lastmod>2019-10-05T20:47:51.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/thread/runnable/forkjoinpool/</loc>
-        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/thread/runnable/</loc>
-        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/thread/</loc>
-        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/</loc>
-        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/</loc>
-        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/java-util-concurrent/</loc>
-        <lastmod>2019-09-27T12:07:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/reactive/back-pressure/</loc>
-        <lastmod>2019-06-19T10:58:44.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/reactive/</loc>
-        <lastmod>2019-06-19T10:58:44.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/reactive/blocking-processing/non-blocking-processing/</loc>
-        <lastmod>2019-06-18T14:45:13.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/reactive/blocking-processing/</loc>
-        <lastmod>2019-06-18T14:45:13.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/github/clone/jq/</loc>
-        <lastmod>2019-06-17T22:52:55.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/github/clone/</loc>
-        <lastmod>2019-06-17T22:52:55.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/github/</loc>
-        <lastmod>2019-06-17T22:52:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
