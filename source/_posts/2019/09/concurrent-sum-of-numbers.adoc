@@ -2,7 +2,7 @@
 layout: post
 title:  "Java concurrency tools"
 date: 2019-09-27 12:07:41
-updated: 2019-09-27 12:07:41
+updated: 2019-10-07 12:07:41
 tags:
     - java.util.concurrent
     - CompletableFuture
