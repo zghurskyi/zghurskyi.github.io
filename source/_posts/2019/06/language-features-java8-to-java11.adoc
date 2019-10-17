@@ -21,6 +21,8 @@ eyeCatchImage: /images/bg-index.jpg
 :process-handler-javadoc-url: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/ProcessHandle.html
 :stack-walker-javadoc-url: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/StackWalker.html
 :var-style-guide-url: https://openjdk.java.net/projects/amber/LVTIstyle.html
+:intellij-release-notes-url: https://blog.jetbrains.com/idea/2018/06/java-11-in-intellij-idea-2018-2/
+:gradle-5-release-notes-url: https://docs.gradle.org/5.0/release-notes.html#java-11-runtime-support
 
 == 1. Java 8 to Java 11 language changes
 
@@ -30,7 +32,7 @@ eyeCatchImage: /images/bg-index.jpg
 
 The major change to Java 9 is the introduction of the Java Platform module system.
 
-The Java Platform module system introduces a new kind of Java programming component - the module,
+The Java Platform module system introduces a new kind of Java programming component -- the module,
 which is a named, self-describing collection of code and data.
 Its code is organized as a set of packages containing types (i.e., Java classes and interfaces).
 Its data includes resources and other kinds of static information.
@@ -53,7 +55,7 @@ Map mapOfEntries = Map.ofEntries(Map.entry("o", 0), Map.entry("z", 1));
 
 ==== Stream API changes
 
-===== _takeWhile_
+===== `takeWhile`
 
 takeWhile takes elements from the initial stream while the predicate holds true.
 Meaning that when an element is encountered that does not match the predicate,
@@ -66,7 +68,7 @@ Stream.of(2, 4, 6, 8, 9, 10, 12)
       .forEach(System.out::print); // 2468
 ----
 
-===== _dropWhile_
+===== `dropWhile`
 
 dropWhile is essentially the opposite of takeWhile.
 Instead of taking elements from the stream until the first element
@@ -82,9 +84,9 @@ Stream.of(2, 4, 6, 8, 9, 10, 12)
 
 ==== Optional API changes
 
-===== _or()_ method
+===== `or()` method
 
-The _or()_ method gives you a fluent way of chaining behavior on _Optional_
+The `or()` method gives you a fluent way of chaining behavior on `Optional`
 without checking if the value is present or not.
 
 [source,java]
@@ -92,12 +94,12 @@ without checking if the value is present or not.
 Optional.empty().or(() -> Optional.of("Hello world"));
 ----
 
-===== Converting an _Optional_ into a _Stream_
+===== Converting an `Optional` into a `Stream`
 
-Now it's possible to convert an _Optional_ into a _Stream_ containing at most one element.
+Now it's possible to convert an `Optional` into a `Stream` containing at most one element.
 It’s really useful if you want to use the laziness of the _Streams API_.
-Namely, calling _map()_ on the _Optional_ executes the mapping function immediately,
-on the _Stream_ - not.
+Namely, calling `map()` on the `Optional` executes the mapping function immediately,
+on the `Stream` -- not.
 
 [source,java]
 ----
@@ -105,9 +107,9 @@ Optional optional = Optional.of(1).map(x -> x * 3); // variable contains Optiona
 Stream stream = Optional.of(1).stream().map(x -> x * 3); // variable contains lazy stream, that is not evaluated until terminal operation
 ----
 
-===== __ifPresentOrElse()_ method_
+===== _ifPresentOrElse()_ method
 
-In Java 8 you could specify the behavior you want to execute if the value in an _Optional_ is present.
+In Java 8 you could specify the behavior you want to execute if the value in an `Optional` is present.
 
 In Java 9 you can pass 2 Runnables to specify what to do if the value is present and otherwise.
 
@@ -138,10 +140,10 @@ StackWalker.getInstance()
            .collect(Collectors.toList()));
 ----
 
-==== More concise _try-with-resources_ statements
+==== More concise `try-with-resources` statements
 
 If you already have a resource as a final or effectively final variable,
-you can use that variable in a _try-with-resources_ statement without declaring a new variable.
+you can use that variable in a `try-with-resources` statement without declaring a new variable.
 An "effectively final" variable is one whose value is never changed after it is initialized.
 
 In Java SE 7 or 8, you would declare new variables, like this:
@@ -153,7 +155,7 @@ try (Resource r1 = resource1; Resource r2 = resource2) {
 }
 ----
 
-In Java SE 9 and beyond, you don’t need to declare r1 and r2 in a _try-with-resources_ statement:
+In Java SE 9 and beyond, you don’t need to declare r1 and r2 in a `try-with-resources` statement:
 
 [source,java]
 ----
@@ -165,20 +167,20 @@ try (resource1; resource2) {
 ==== Private interface methods
 
 Private interface methods are supported.
-This support allows nonabstract methods of an interface to share code between them.
+This support allows non-abstract methods of an interface to share code between them.
 
 ==== The underscore character is not a legal name
 
-If you use the underscore character ("_") an identifier, your source code can no longer be compiled.
+If you use the underscore character (`"_"`) an identifier, your source code can no longer be compiled.
 
 === 1.2. Language Changes for Java SE 10
 
 Java SE 10 introduces support for inferring the type of local variables from the context,
 which makes code more readable and reduces the amount of required boilerplate code.
 
-==== Local-Variable Type Inference with _var_
+==== Local-Variable Type Inference with `var`
 
-In Java SE 10 and later, you can declare local variables with non-null initializers with the _var_ identifier,
+In Java SE 10 and later, you can declare local variables with non-null initializers with the `var` identifier,
 which can help you write code that’s easier to read.
 
 [source,java]
@@ -196,11 +198,11 @@ var reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 ----
 
 
-_var_ is a reserved type name, not a keyword,
-which means that existing code that uses _var_ as a variable, method,or package name is not affected.
-However, code that uses _var_ as a class or interface name is affected and the class or interface needs to be renamed.
+`var` is a reserved type name, not a keyword,
+which means that existing code that uses `var` as a variable, method,or package name is not affected.
+However, code that uses `var` as a class or interface name is affected and the class or interface needs to be renamed.
 
-_var_ can be used for the following types of variables:
+`var` can be used for the following types of variables:
 
 * Local variable declarations with initializers:
 +
@@ -211,20 +213,20 @@ var stream = list.stream(); // infers Stream
 var path = Paths.get(fileName); // infers Path
 var bytes = Files.readAllBytes(path); // infers bytes[]
 ----
-* Enhanced _for-loop_ indexes:
+* Enhanced `for-loop` indexes:
 +
 [source,java]
 ----
 List myList = Arrays.asList("a", "b", "c");
 for (var element : myList) { ... } // infers String
 ----
-* Index variables declared in traditional _for-loops_:
+* Index variables declared in traditional `for-loop`:
 +
 [source,java]
 ----
 for (var counter = 0; counter < 10; counter++) {...} // infers int
 ----
-* _try-with-resources_ variable:
+* `try-with-resources` variable:
 +
 [source,java]
 ----
@@ -237,7 +239,7 @@ try (var input = new FileInputStream("validation.txt")) {...} // infers FileInpu
 BiFunction = (a, b) -> a + b
 ----
 
-*_var_ style guide:* _var_ should be used with caution.
+*`var` style guide:* `var` should be used with caution.
 To get more details about recommended uses,consult with official {var-style-guide-url}[style guide].
 
 === 1.3. Language Changes for Java SE 11
@@ -245,14 +247,14 @@ To get more details about recommended uses,consult with official {var-style-guid
 ==== Implicitly typed lambda expression
 
 In Java SE 11 and later, you can declare each formal parameter of an implicitly typed lambda expression
-with the _var_ identifier:
+with the `var` identifier:
 
 [source,java]
 ----
 (var a, var b) -> a + b;
 ----
 
-Why would we want to use _var_ for lambda parameters when we could simply skip the types?
+Why would we want to use `var` for lambda parameters when we could simply skip the types?
 
 One benefit of uniformity is that annotations can be applied to lambda parameters:
 
@@ -263,12 +265,18 @@ One benefit of uniformity is that annotations can be applied to lambda parameter
 
 == 2. Java and Docker
 
-One of the key features of Docker is the ability to limit a container’s memory and CPU usage. Unfortunately, this is precisely where Java runs short. Let’s use an example to understand the problem. Imagine you have a node with 32GB of memory and you want to run a Java application with a limit of 1GB. If you do not provide a _-Xmx_ parameter the JVM will use its default configuration:
+One of the key features of Docker is the ability to limit a container’s memory and CPU usage. 
+Unfortunately, this is precisely where Java runs short. 
+Let’s use an example to understand the problem. 
+Imagine you have a node with 32GB of memory and you want to run a Java application with a limit of 1GB.
+If you do not provide a `-Xmx` parameter the JVM will use its default configuration:
 
-1.  The JVM will check the total available memory. Because the JVM is not aware of the Linux container, it thinks it is running on the Host machine and has access to the full 32GB of available memory.
-2.  By default, the JVM will use _MaxMemory/4_ which in this case is 8GB (32GB/4).
-3.  As the heap size grows and goes beyond 1GB, the container will be killed by Docker ("OOM killed").
-4.  Of course, an obvious solution is to fix the JVM’s heap size using _-Xmx_ parameter, but that means you need to control memory twice, once in Docker and once in the JVM.
+1.  The JVM will check the total available memory. Because the JVM is not aware of the Linux container, 
+it thinks it is running on the Host machine and has access to the full 32GB of available memory.
+2.  By default, the JVM will use `MaxMemory/4` which in this case is 8GB (32GB/4).
+3.  As the heap size grows and goes beyond 1GB, the container will be killed by Docker (`"OOM killed"`).
+4.  Of course, an obvious solution is to fix the JVM’s heap size using `-Xmx` parameter, 
+but that means you need to control memory twice, once in Docker and once in the JVM.
 
 The first workaround for this issue was released with Java 8u131 and Java 9:
 
@@ -297,11 +305,11 @@ Furthermore, this becomes the default behaviour, and can only be disabled via `-
 
 Here are the recommended minimum versions for a few tools:
 
-* *IntelliJ IDEA*: https://blog.jetbrains.com/idea/2018/06/java-11-in-intellij-idea-2018-2/[2018.2]
+* *IntelliJ IDEA*: {intellij-release-notes-url}[2018.2]
 * *Maven*: 3.5.0
 ** compiler plugin: 3.8.0
 ** surefire and failsafe: 2.22.0
-* *Gradle*:https://docs.gradle.org/5.0/release-notes.html#java-11-runtime-support[5.0]
+* *Gradle*: {gradle-5-release-notes-url}[5.0]
 
 Some dependencies that are known to work on Java 11:
 
