@@ -3,6 +3,34 @@
 
 
     <url>
+        <loc>https://www.oxymorus.com/tags/java-11/</loc>
+        <lastmod>2019-10-17T23:19:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/java-10/</loc>
+        <lastmod>2019-10-17T23:19:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/java-9/</loc>
+        <lastmod>2019-10-17T23:19:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/java/</loc>
+        <lastmod>2019-10-17T23:19:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/tags/non-blocking-processing/</loc>
         <lastmod>2019-10-17T22:50:07.000Z</lastmod>
         <changefreq>weekly</changefreq>

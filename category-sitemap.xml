@@ -8,6 +8,34 @@
     </url>
 
     <url>
+        <loc>https://www.oxymorus.com/categories/java/java-9/java-10/java-11/</loc>
+        <lastmod>2019-10-17T23:19:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/java/java-9/java-10/</loc>
+        <lastmod>2019-10-17T23:19:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/java/java-9/</loc>
+        <lastmod>2019-10-17T23:19:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/java/</loc>
+        <lastmod>2019-10-17T23:19:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/categories/reactive/blocking-processing/non-blocking-processing/</loc>
         <lastmod>2019-10-17T22:50:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
