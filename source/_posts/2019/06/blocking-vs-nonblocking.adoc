@@ -1,0 +1,78 @@
+---
+layout: post
+title:  "Blocking vs Not-Blocking"
+date: 2019-06-18 14:45:13
+updated: 2019-06-18 14:45:13
+tags:
+    - Reactive
+    - Blocking processing
+    - Non-blocking processing
+categories:
+    - Reactive
+    - Blocking processing
+    - Non-blocking processing
+og_image: /images/bg-index.jpg
+eyeCatchImage: /images/bg-index.jpg
+---
+
+:websocket-wiki-url: https://en.wikipedia.org/wiki/WebSocket
+:server-sent-events-url: https://en.wikipedia.org/wiki/Server-sent_events
+
+An important aspect of 'reactive'approach to concurrent programming is non-blocking processing.
+This post compares blocking vs non-blocking processing in general terms to highlight'reactive' idea in a nutshell.
+
+++++
+<!-- more -->
+++++
+
+== Blocking Processing
+
+Blocking (synchronous) processing has several characteristics:
+
+* Bound to the processing thread
+* Processing thread is waiting in case any I/O operation is performed
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/blocking-processing.svg]
+image::/images/blocking-processing.svg[]
+--
+
+Under highload this approach has following consequences:
+
+* *CPU & RAM resources are wasted*, while thread is waiting to the I/O results.
+* If all threads are waiting, new user requests are either put to the queue or dropped down. This leads to poor user experience.
+* If all threads are waiting, service becomes unresponsive for API clients. This leads to timeouts and API clients failure. Basically, *failure leads to more failure*.
+
+== Non-Blocking Processing
+
+Non-Blocking (aka "reactive") processing has several characteristics:
+
+* Not bound to specific processing thread
+* *Threads are not waiting* in case I/O operation is performed
+* Threads are reused between calls
+
+image:/img/non_blocking_processing.png[Non-blocking processing]
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/nonblocking-processing.svg]
+image::/images/nonblocking-processing.svg[]
+--
+
+Under highload this approach has following consequences:
+
+* High CPU & RAM utilization
+* Less threads are needed to serve same number of requests as in blocking case
+
+However, non-blocking procesing comes with a cost:
+
+* Backend design is complicated, since the need to track origin and arrival of responses & errors (also errors may be unnoticed). This require new design patterns to be employed (hopefully, wrapped into frameworks like https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html[Spring WebFlux]).
+* Frontend design is complicated, since response(s) will come asynchronously via {websocket-wiki-url}[websockets], {server-sent-events-url}[server-sent events], etc.
+
+== Conclusion
+
+* In both cases response time is limited by I/O operations (filesystem, database, network) and response time of downstream services.
+* Threads used for non-blocking processing don't wait for I/O operations to complete. This gives better resource utilization and increases throughput, compared to blocking processing.
