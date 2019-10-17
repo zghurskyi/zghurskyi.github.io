@@ -1,0 +1,309 @@
+---
+layout: post
+title:  "From Java 8 to 11: quick tour"
+date: 2019-06-27 18:07:41
+updated: 2019-10-17 23:19:41
+tags:
+    - Java
+    - Java 9
+    - Java 10
+    - Java 11
+categories:
+    - Java
+    - Java 9
+    - Java 10
+    - Java 11
+og_image: /images/bg-index.jpg
+eyeCatchImage: /images/bg-index.jpg
+---
+
+:project-jigsaw-url: http://openjdk.java.net/projects/jigsaw/
+:process-handler-javadoc-url: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/ProcessHandle.html
+:stack-walker-javadoc-url: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/StackWalker.html
+:var-style-guide-url: https://openjdk.java.net/projects/amber/LVTIstyle.html
+
+== 1. Java 8 to Java 11 language changes
+
+=== 1.1. Language Changes for Java SE 9
+
+==== Platform module system
+
+The major change to Java 9 is the introduction of the Java Platform module system.
+
+The Java Platform module system introduces a new kind of Java programming component - the module,
+which is a named, self-describing collection of code and data.
+Its code is organized as a set of packages containing types (i.e., Java classes and interfaces).
+Its data includes resources and other kinds of static information.
+Modules can either export or encapsulate packages,
+and they express dependencies on other modules explicitly.
+
+To learn more about the Java Platform module system, see {project-jigsaw-url}[Project Jigsaw] on OpenJDK.
+
+==== Collections _.of()_ factory methods
+
+Java 9 introduces collection literals for the easier definition of the common collections:
+
+[source,java]
+----
+List list = List.of(1, 2, 3);
+Set set = Set.of("foo", "bar", "baz");
+Map map = Map.of("hello", "world");
+Map mapOfEntries = Map.ofEntries(Map.entry("o", 0), Map.entry("z", 1));
+----
+
+==== Stream API changes
+
+===== _takeWhile_
+
+takeWhile takes elements from the initial stream while the predicate holds true.
+Meaning that when an element is encountered that does not match the predicate,
+the rest of the stream is discarded.
+
+[source,java]
+----
+Stream.of(2, 4, 6, 8, 9, 10, 12)
+      .takeWhile(n -> n % 2 == 0)
+      .forEach(System.out::print); // 2468
+----
+
+===== _dropWhile_
+
+dropWhile is essentially the opposite of takeWhile.
+Instead of taking elements from the stream until the first element
+which does not match the predicate, dropWhile drops these elements
+and includes the remaining elements in the returned stream.
+
+[source,java]
+----
+Stream.of(2, 4, 6, 8, 9, 10, 12)
+      .dropWhile(n -> n % 2 == 0)
+      .forEach(System.out::print); // 91012
+----
+
+==== Optional API changes
+
+===== _or()_ method
+
+The _or()_ method gives you a fluent way of chaining behavior on _Optional_
+without checking if the value is present or not.
+
+[source,java]
+----
+Optional.empty().or(() -> Optional.of("Hello world"));
+----
+
+===== Converting an _Optional_ into a _Stream_
+
+Now it's possible to convert an _Optional_ into a _Stream_ containing at most one element.
+It’s really useful if you want to use the laziness of the _Streams API_.
+Namely, calling _map()_ on the _Optional_ executes the mapping function immediately,
+on the _Stream_ - not.
+
+[source,java]
+----
+Optional optional = Optional.of(1).map(x -> x * 3); // variable contains Optional[3]
+Stream stream = Optional.of(1).stream().map(x -> x * 3); // variable contains lazy stream, that is not evaluated until terminal operation
+----
+
+===== __ifPresentOrElse()_ method_
+
+In Java 8 you could specify the behavior you want to execute if the value in an _Optional_ is present.
+
+In Java 9 you can pass 2 Runnables to specify what to do if the value is present and otherwise.
+
+[source,java]
+----
+Optional.empty().ifPresentOrElse(x -> System.out.println(x), () -> System.out.println("empty")); // empty
+----
+
+==== Process Management API
+
+Java 9 adds the {process-handler-javadoc-url}[ProcessHandle] class,
+which offers a rich API to inspect the processes.
+
+[source,java]
+----
+ProcessHandle current = ProcessHandle.current(); current.pid() // prints current process id
+----
+
+==== StackWalker
+
+{stack-walker-javadoc-url}[StackWalker] enables you to walk,
+filter and otherwise access stack traces in a very efficient manner
+
+[source,java]
+----
+StackWalker.getInstance()
+           .walk(s -> s.limit(5)
+           .collect(Collectors.toList()));
+----
+
+==== More concise _try-with-resources_ statements
+
+If you already have a resource as a final or effectively final variable,
+you can use that variable in a _try-with-resources_ statement without declaring a new variable.
+An "effectively final" variable is one whose value is never changed after it is initialized.
+
+In Java SE 7 or 8, you would declare new variables, like this:
+
+[source,java]
+----
+try (Resource r1 = resource1; Resource r2 = resource2) {
+    // do something
+}
+----
+
+In Java SE 9 and beyond, you don’t need to declare r1 and r2 in a _try-with-resources_ statement:
+
+[source,java]
+----
+try (resource1; resource2) {
+    // do something
+}
+----
+
+==== Private interface methods
+
+Private interface methods are supported.
+This support allows nonabstract methods of an interface to share code between them.
+
+==== The underscore character is not a legal name
+
+If you use the underscore character ("_") an identifier, your source code can no longer be compiled.
+
+=== 1.2. Language Changes for Java SE 10
+
+Java SE 10 introduces support for inferring the type of local variables from the context,
+which makes code more readable and reduces the amount of required boilerplate code.
+
+==== Local-Variable Type Inference with _var_
+
+In Java SE 10 and later, you can declare local variables with non-null initializers with the _var_ identifier,
+which can help you write code that’s easier to read.
+
+[source,java]
+----
+URL url = new URL("http://www.oracle.com/");
+URLConnection conn = url.openConnection();
+Reader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+----
+
+[source,java]
+----
+var url = new URL("www.oracle.com");
+var conn = url.openConnection();
+var reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+----
+
+
+_var_ is a reserved type name, not a keyword,
+which means that existing code that uses _var_ as a variable, method,or package name is not affected.
+However, code that uses _var_ as a class or interface name is affected and the class or interface needs to be renamed.
+
+_var_ can be used for the following types of variables:
+
+* Local variable declarations with initializers:
++
+[source,java]
+----
+var list = new ArrayList(); // infers ArrayList
+var stream = list.stream(); // infers Stream
+var path = Paths.get(fileName); // infers Path
+var bytes = Files.readAllBytes(path); // infers bytes[]
+----
+* Enhanced _for-loop_ indexes:
++
+[source,java]
+----
+List myList = Arrays.asList("a", "b", "c");
+for (var element : myList) { ... } // infers String
+----
+* Index variables declared in traditional _for-loops_:
++
+[source,java]
+----
+for (var counter = 0; counter < 10; counter++) {...} // infers int
+----
+* _try-with-resources_ variable:
++
+[source,java]
+----
+try (var input = new FileInputStream("validation.txt")) {...} // infers FileInputStream
+----
+* A lambda expression whose formal parameters have inferred types is implicitly typed:
++
+[source,java]
+----
+BiFunction = (a, b) -> a + b
+----
+
+*_var_ style guide:* _var_ should be used with caution.
+To get more details about recommended uses,consult with official {var-style-guide-url}[style guide].
+
+=== 1.3. Language Changes for Java SE 11
+
+==== Implicitly typed lambda expression
+
+In Java SE 11 and later, you can declare each formal parameter of an implicitly typed lambda expression
+with the _var_ identifier:
+
+[source,java]
+----
+(var a, var b) -> a + b;
+----
+
+Why would we want to use _var_ for lambda parameters when we could simply skip the types?
+
+One benefit of uniformity is that annotations can be applied to lambda parameters:
+
+[source,java]
+----
+(@Nonnull var s1, @Nullable var s2) -> s1 + s2
+----
+
+== 2. Java and Docker
+
+One of the key features of Docker is the ability to limit a container’s memory and CPU usage. Unfortunately, this is precisely where Java runs short. Let’s use an example to understand the problem. Imagine you have a node with 32GB of memory and you want to run a Java application with a limit of 1GB. If you do not provide a _-Xmx_ parameter the JVM will use its default configuration:
+
+1.  The JVM will check the total available memory. Because the JVM is not aware of the Linux container, it thinks it is running on the Host machine and has access to the full 32GB of available memory.
+2.  By default, the JVM will use _MaxMemory/4_ which in this case is 8GB (32GB/4).
+3.  As the heap size grows and goes beyond 1GB, the container will be killed by Docker ("OOM killed").
+4.  Of course, an obvious solution is to fix the JVM’s heap size using _-Xmx_ parameter, but that means you need to control memory twice, once in Docker and once in the JVM.
+
+The first workaround for this issue was released with Java 8u131 and Java 9:
+
+1.  Use `-XX:+UnlockExperimentalVMOptions`
+2.  Use `-XX:+UseCGroupMemoryLimitForHeap` which would tell the JVM to check for the cgroup memory limit to set the maximum heap size
+3.  Use `-XX:MaxRAMFraction`, to limit portion of memory that can be allocated to the JVM.
+4.  Finally, application should control explicitly the thread pools sizes, and limit common ForkJoinPool parallelism with `-Djava.util.concurrent.ForkJoinPool.common.parallelism=2`
+
+So, with Java 8u131+ and Java 9 you’d have something like:
+
+[source,shell script]
+----
+-XX:+UnlockExperimentalVMOptions
+-XX:+UseCGroupMemoryLimitForHeap
+-XX:MaxRAMFraction=2
+-Djava.util.concurrent.ForkJoinPool.common.parallelism=2
+----
+
+Starting from Java 10 applying CPU and memory limits to containerized JVMs becomes straightforward.
+The JVM will detect hardware capability of the container correctly,
+tune itself appropriately and make a good representation of the available capacity to the application.
+As a result, not only CPU Sets but also CPU Shares are now examined by JVM.
+Furthermore, this becomes the default behaviour, and can only be disabled via `-XX:-UseContainerSupport` option.
+
+== 3. Java 11 compatible tools versions
+
+Here are the recommended minimum versions for a few tools:
+
+* *IntelliJ IDEA*: https://blog.jetbrains.com/idea/2018/06/java-11-in-intellij-idea-2018-2/[2018.2]
+* *Maven*: 3.5.0
+** compiler plugin: 3.8.0
+** surefire and failsafe: 2.22.0
+* *Gradle*:https://docs.gradle.org/5.0/release-notes.html#java-11-runtime-support[5.0]
+
+Some dependencies that are known to work on Java 11:
+
+* *Spring Boot 2.1.0* *Spring*(5.1), *Mockito*(2.20.0)
+* *Lombok v1.18.6*
