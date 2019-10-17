@@ -24,6 +24,9 @@ eyeCatchImage: /images/bg-index.jpg
 :intellij-release-notes-url: https://blog.jetbrains.com/idea/2018/06/java-11-in-intellij-idea-2018-2/
 :gradle-5-release-notes-url: https://docs.gradle.org/5.0/release-notes.html#java-11-runtime-support
 
+:toc:
+:toclevels: 4
+
 == 1. Java 8 to Java 11 language changes
 
 === 1.1. Language Changes for Java SE 9
@@ -300,18 +303,3 @@ The JVM will detect hardware capability of the container correctly,
 tune itself appropriately and make a good representation of the available capacity to the application.
 As a result, not only CPU Sets but also CPU Shares are now examined by JVM.
 Furthermore, this becomes the default behaviour, and can only be disabled via `-XX:-UseContainerSupport` option.
-
-== 3. Java 11 compatible tools versions
-
-Here are the recommended minimum versions for a few tools:
-
-* *IntelliJ IDEA*: {intellij-release-notes-url}[2018.2]
-* *Maven*: 3.5.0
-** compiler plugin: 3.8.0
-** surefire and failsafe: 2.22.0
-* *Gradle*: {gradle-5-release-notes-url}[5.0]
-
-Some dependencies that are known to work on Java 11:
-
-* *Spring Boot 2.1.0* *Spring*(5.1), *Mockito*(2.20.0)
-* *Lombok v1.18.6*
