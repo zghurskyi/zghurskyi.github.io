@@ -1,0 +1,41 @@
+@startuml
+
+participant "User"
+participant "Thread 1"
+participant "Thread 2"
+participant "Thread 3"
+participant "I/O"
+
+"User" -> "Thread 1": request 1
+activate "Thread 1"
+
+"Thread 1" -> "I/O":
+deactivate "Thread 1"
+activate "I/O"
+
+"User" -> "Thread 2": request 2
+activate "Thread 2"
+
+"Thread 2" -> "I/O":
+deactivate "Thread 2"
+activate "I/O"
+
+...blocking operation delay...
+
+"I/O" -> "Thread 3"
+deactivate "I/O"
+activate "Thread 3"
+
+"Thread 3" -> "User": response 1
+deactivate "Thread 1"
+deactivate "Thread 3"
+
+"I/O" -> "Thread 2"
+deactivate "I/O"
+activate "Thread 2"
+
+"Thread 2" -> "User": response 2
+deactivate "Thread 2"
+deactivate "Thread 3"
+
+@enduml

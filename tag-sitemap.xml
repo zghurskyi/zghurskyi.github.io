@@ -185,6 +185,27 @@
     </url>
 
     <url>
+        <loc>https://www.oxymorus.com/tags/non-blocking-processing/</loc>
+        <lastmod>2019-06-18T14:45:13.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/blocking-processing/</loc>
+        <lastmod>2019-06-18T14:45:13.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/reactive/</loc>
+        <lastmod>2019-06-18T14:45:13.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/tags/jq/</loc>
         <lastmod>2019-06-17T22:52:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
