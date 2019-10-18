@@ -25,7 +25,7 @@ Handy tool for quick producing/consuming Kafka messages and more.
 <!-- more -->
 ++++
 
-== What is kafkacat ?
+== 1. What is kafkacat ?
 
 Citing official {kafkacat-readme-url}[README]:
 
@@ -34,11 +34,15 @@ ____
 `kafkacat` is a generic non-JVM producer and consumer for Apache Kafka >=0.8, think of it as a netcat for Kafka.
 ____
 
-Simply put -- it's very handy tool that allows quickly produce/consume messages to/from Kafka.
+Simply put -- it's very handy tool to work with Kafka.
 
-== Usage with Docker
+To understand what exactly the tools does, one should try it out.
+So, below I give simple walkthrough, that demonstrates how to set-up cluster with 1 broker and produce/consume messages with `kafkacat`.
+Without further ado -- let's start.
 
-=== Setting-up local Kafka cluster with one broker
+== 2. Usage with Docker
+
+=== 2.1 Setting-up local Kafka cluster with one broker
 
 Let's quickly bootstrap local Kafka cluster:
 
@@ -77,12 +81,12 @@ services:
 
 Note: `KAFKA_AUTO_CREATE_TOPICS_ENABLE` is set to `"true"` deliberately, so we can experiment with producing /consuming without setting up topics beforehand.
 
-=== Using `kafkacat`
+=== 2.2 Using `kafkacat`
 
 `kafkacat` docker image is available on {kafkacat-dockerhub-url}[Docker Hub].
 So, if you have docker installed -- you can spend no time on installation, and just start using it.
 
-==== List brokers and topics in cluster
+==== 2.2.1 List brokers and topics in cluster
 
 This will print cluster metadata:
 
@@ -98,7 +102,7 @@ $ docker run --tty --rm --interactive \
 <1> `-b` -- broker `host:port`
 <2> `-L` -- metadata mode (will list brokers and topics in the cluster)
 
-==== Producing messages from a file
+==== 2.2.2 Producing messages from a file
 
 [source,shell script]
 ----
@@ -117,7 +121,7 @@ $ docker run --tty --rm --interactive \
 <3> `-P` -- produce mode
 <4> `-l` -- send messages from a file (only one file allowed)
 
-==== Producing messages inline
+==== 2.2.3 Producing messages inline
 
 This will send three messages, with given `key:value`:
 
@@ -142,7 +146,7 @@ EOF
 <4> `-P` -- produce mode
 <5> `<<EOF ... EOF` -- a {here-docs-reference-url}[here document], that redirects messages to be produced
 
-==== Consuming messages from a topic
+==== 2.2.4 Consuming messages from a topic
 
 [source,shell script]
 ----
@@ -162,6 +166,6 @@ $ docker run --tty --rm --interactive \
 <4> `-f` -- output formatting string
 <5> `-t` -- topic to consume from
 
-== Conclusion
+== 3. Conclusion
 
 That's it for now. Hopefully, you learnt something interesting or useful ;)
