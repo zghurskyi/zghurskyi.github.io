@@ -163,7 +163,7 @@ EOF
 
 `-b` -- broker `host:port` +
 `-t` -- topic to consume from +
-`-K :` -- print message keys prefixing the message with `:` +
+`-K:` -- print message keys prefixing the message with `:` +
 `-P` -- produce mode +
 `<<EOF ... EOF` -- a {here-docs-reference-url}[here document], that redirects messages to be produced
 
@@ -183,7 +183,7 @@ $ docker run --tty --rm --interactive \
 
 `-C` -- consume mode +
 `-b` -- broker `host:port` +
-`-K :` -- print message keys prefixing the message with `:` +
+`-K:` -- print message keys prefixing the message with `:` +
 `-f` -- output formatting string +
 `-t` -- topic to consume from +
 `-c` -- exit after producing 1 message
