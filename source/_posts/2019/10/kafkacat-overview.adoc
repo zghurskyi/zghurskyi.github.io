@@ -102,6 +102,18 @@ $ docker run --tty --rm --interactive \
 
 `-L` -- metadata mode (will list brokers and topics in the cluster)
 
+The above command outputs:
+
+[source,shell script]
+----
+Metadata for all topics (from broker 1: localhost:9092/1):
+ 1 brokers:
+  broker 1 at localhost:9092
+ 1 topics:
+  topic "__confluent.support.metrics" with 1 partitions:
+    partition 0, leader 1, replicas: 1, isrs: 1
+----
+
 ==== 2.2.2 Producing messages from a file
 
 Let's create file with messages:
@@ -114,6 +126,8 @@ $ cat >> /tmp/orders.txt <<EOF
 > 3:{"order_id":3,"order_ts":1534772742276,"total_amount":21.00,"customer_name":"Emma Turner"}
 > EOF
 ----
+
+Next, lets send messages from file to `orders` topic:
 
 [source,shell script]
 ----
@@ -131,18 +145,6 @@ $ docker run --tty --rm --interactive \
 `-P` -- produce mode (also available, `-C` -- consume, `-L` -- metadata, `-Q` -- query)
 
 `-l` -- send messages from a file (only one file allowed)
-
-The above command outputs:
-
-[source,shell script]
-----
-Metadata for all topics (from broker 1: localhost:9092/1):
- 1 brokers:
-  broker 1 at localhost:9092
- 1 topics:
-  topic "__confluent.support.metrics" with 1 partitions:
-    partition 0, leader 1, replicas: 1, isrs: 1
-----
 
 ==== 2.2.3 Producing messages inline
 
