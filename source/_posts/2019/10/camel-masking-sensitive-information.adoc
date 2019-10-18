@@ -6,9 +6,11 @@ updated: 2019-10-16 16:53:41
 tags:
     - Apache Camel
     - CamelCustomLogMask
+    - Password masking
 categories:
     - Apache Camel
     - CamelCustomLogMask
+    - Password masking
 og_image: /images/bg-index.jpg
 eyeCatchImage: /images/bg-index.jpg
 ---
@@ -18,6 +20,7 @@ eyeCatchImage: /images/bg-index.jpg
 :default-masking-formatter-javadoc-url: https://static.javadoc.io/org.apache.camel/camel-core/2.24.2/org/apache/camel/processor/DefaultMaskingFormatter.html
 :masking-formatter-javadoc-url: https://static.javadoc.io/org.apache.camel/camel-core/2.24.2/org/apache/camel/spi/MaskingFormatter.html
 :properties-component-reference-url: https://camel.apache.org/components/latest/properties-component.html
+:camel-log-masking-example-url: https://github.com/zghurskyi/investigations/tree/master/investigation-camel-log-masking
 
 It's pretty common to log incoming requests or message bodies via {log-component-reference-url}[Log component].
 Usually, logging incoming data is harmless.
@@ -91,3 +94,7 @@ camel:
   springboot:
     logMask: true
 ----
+
+== Example
+
+You can find fully functioning example by following the {camel-log-masking-example-url}[link].
