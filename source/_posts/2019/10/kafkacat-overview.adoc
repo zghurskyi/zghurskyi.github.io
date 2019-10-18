@@ -95,14 +95,25 @@ This will print cluster metadata:
 $ docker run --tty --rm --interactive \
              --network=host \
              confluentinc/cp-kafkacat \
-             kafkacat -b localhost:9092 \                   <1>
-                      -L                                    <2>
+             kafkacat -b localhost:9092 -L
 ----
 
-<1> `-b` -- broker `host:port`
-<2> `-L` -- metadata mode (will list brokers and topics in the cluster)
+`-b` -- broker `host:port`
+
+`-L` -- metadata mode (will list brokers and topics in the cluster)
 
 ==== 2.2.2 Producing messages from a file
+
+Let's create file with messages:
+
+[source,shell script]
+----
+$ cat >> /tmp/orders.txt <<EOF
+> 1:{"order_id":1,"order_ts":1534772501276,"total_amount":10.50,"customer_name":"Bob Smith"}
+> 2:{"order_id":2,"order_ts":1534772605276,"total_amount":3.32,"customer_name":"Sarah Black"}
+> 3:{"order_id":3,"order_ts":1534772742276,"total_amount":21.00,"customer_name":"Emma Turner"}
+> EOF
+----
 
 [source,shell script]
 ----
@@ -110,16 +121,28 @@ $ docker run --tty --rm --interactive \
              --network=host \
              --volume /tmp/orders.txt:/data/orders.txt \
              confluentinc/cp-kafkacat \
-             kafkacat -b locahost:9092 \                    <1>
-                      -t orders \                           <2>
-                      -P \                                  <3>
-                      -l /data/orders.txt                   <4>
+             kafkacat -b locahost:9092 -t orders -P -l /data/orders.txt
 ----
 
-<1> `-b` -- broker `host:port`
-<2> `-t` -- topic to produce to
-<3> `-P` -- produce mode
-<4> `-l` -- send messages from a file (only one file allowed)
+`-b` -- broker `host:port`
+
+`-t` -- topic to produce to
+
+`-P` -- produce mode (also available, `-C` -- consume, `-L` -- metadata, `-Q` -- query)
+
+`-l` -- send messages from a file (only one file allowed)
+
+The above command outputs:
+
+[source,shell script]
+----
+Metadata for all topics (from broker 1: localhost:9092/1):
+ 1 brokers:
+  broker 1 at localhost:9092
+ 1 topics:
+  topic "__confluent.support.metrics" with 1 partitions:
+    partition 0, leader 1, replicas: 1, isrs: 1
+----
 
 ==== 2.2.3 Producing messages inline
 
@@ -130,21 +153,22 @@ This will send three messages, with given `key:value`:
 $ docker run --interactive --rm \
              --network=host \
              confluentinc/cp-kafkacat \
-             kafkacat -b localhost:9092 \                   <1>
-                      -t orders \                           <2>
-                      -K : \                                <3>
-                      -P <<EOF                              <4> <5>
-1:{"order_id":1,"order_ts":1534772501276,"total_amount":10.50,"customer_name":"Bob Smith"}
-2:{"order_id":2,"order_ts":1534772605276,"total_amount":3.32,"customer_name":"Sarah Black"}
-3:{"order_id":3,"order_ts":1534772742276,"total_amount":21.00,"customer_name":"Emma Turner"}
+             kafkacat -b localhost:9092 -t orders -K : -P <<EOF
+4:{"order_id":4,"order_ts":1534772801276,"total_amount":11.50,"customer_name":"Alina Smith"}
+5:{"order_id":5,"order_ts":1534772905276,"total_amount":13.32,"customer_name":"Alex Black"}
+6:{"order_id":6,"order_ts":1534773042276,"total_amount":31.00,"customer_name":"Emma Watson"}
 EOF
 ----
 
-<1> `-b` -- broker `host:port`
-<2> `-t` -- topic to consume from
-<3> `-K :` -- print message keys prefixing the message with `:`
-<4> `-P` -- produce mode
-<5> `<<EOF ... EOF` -- a {here-docs-reference-url}[here document], that redirects messages to be produced
+`-b` -- broker `host:port`
+
+`-t` -- topic to consume from
+
+`-K :` -- print message keys prefixing the message with `:`
+
+`-P` -- produce mode
+
+`<<EOF ... EOF` -- a {here-docs-reference-url}[here document], that redirects messages to be produced
 
 ==== 2.2.4 Consuming messages from a topic
 
@@ -153,18 +177,36 @@ EOF
 $ docker run --tty --rm --interactive \
              --network=host \
              confluentinc/cp-kafkacat \
-             kafkacat -b localhost:9092 \                   <1>
-                      -C \                                  <2>
-                      -K: \                                 <3>
-                      -f '\nKey (%K bytes): %k\t\nValue (%S bytes): %s\n\Partition: %p\tOffset: %o\n--\n' \  <4>
-                      -t orders                             <5>
+             kafkacat -b localhost:9092 -C -K: \
+                      -f '\nKey (%K bytes): %k\t\nValue (%S bytes): %s\n\Partition: %p\tOffset: %o\n--\n' \
+                      -t orders
 ----
 
-<1> `-b` -- broker `host:port`
-<2> `-C` -- consume mode (also available, `-P` -- produce, `-L` -- metadata, `-Q` -- query)
-<3> `-K :` -- print message keys prefixing the message with `:`
-<4> `-f` -- output formatting string
-<5> `-t` -- topic to consume from
+`-b` -- broker `host:port`
+
+`-C` -- consume mode
+
+`-K :` -- print message keys prefixing the message with `:`
+
+`-f` -- output formatting string
+
+`-t` -- topic to consume from
+
+The above command will consume all messages from `orders` topic:
+
+[source,shell script]
+----
+Key (-1 bytes):
+Value (90 bytes): 1:{"order_id":1,"order_ts":1534772501276,"total_amount":10.50,"customer_name":"Bob Smith"}
+Partition: 0	Offset: 0
+--
+
+...
+Key (1 bytes): 6
+Value (90 bytes): {"order_id":6,"order_ts":1534773042276,"total_amount":31.00,"customer_name":"Emma Watson"}
+Partition: 0	Offset: 5
+--
+----
 
 == 3. Conclusion
 
