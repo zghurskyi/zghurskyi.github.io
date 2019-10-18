@@ -37,12 +37,11 @@ ____
 Simply put -- it's very handy tool to work with Kafka.
 
 To understand what exactly the tools does, one should try it out.
-So, below I give simple walkthrough, that demonstrates how to set-up cluster with 1 broker and produce/consume messages with `kafkacat`.
+So, below I give simple walkthrough, that demonstrates how to set-up cluster with 1 broker
+and produce/consume messages with `kafkacat`.
 Without further ado -- let's start.
 
-== 2. Usage with Docker
-
-=== 2.1 Setting-up local Kafka cluster with one broker
+== 2. Setting-up local Kafka cluster with one broker
 
 Let's quickly bootstrap local Kafka cluster:
 
@@ -81,14 +80,14 @@ services:
 
 Note: `KAFKA_AUTO_CREATE_TOPICS_ENABLE` is set to `"true"` deliberately, so we can experiment with producing /consuming without setting up topics beforehand.
 
-=== 2.2 Using `kafkacat`
+== 3. Using `kafkacat`
 
 `kafkacat` docker image is available on {kafkacat-dockerhub-url}[Docker Hub].
 So, if you have docker installed -- you can spend no time on installation, and just start using it.
 
-==== 2.2.1 Metadata  mode
+=== 3.1. Metadata  mode
 
-===== List brokers and topics in cluster
+==== List brokers and topics in cluster
 
 This will print cluster metadata:
 
@@ -115,9 +114,9 @@ Metadata for all topics (from broker 1: localhost:9092/1):
     partition 0, leader 1, replicas: 1, isrs: 1
 ----
 
-==== 2.2.2 Producer mode
+=== 3.2.Producer mode
 
-===== Producing messages from a file
+==== Producing messages from a file
 
 Let's create file with messages:
 
@@ -146,7 +145,7 @@ $ docker run --tty --rm --interactive \
 `-P` -- produce mode +
 `-l` -- send messages from a file (only one file allowed)
 
-===== Producing messages inline
+==== Producing messages inline
 
 This will send three messages, with given `key:value`:
 
@@ -168,9 +167,9 @@ EOF
 `-P` -- produce mode +
 `<<EOF ... EOF` -- a {here-docs-reference-url}[here document], that redirects messages to be produced
 
-==== 2.2.3 Consumer mode
+=== 3.3. Consumer mode
 
-===== Consuming messages from a topic
+==== Consuming messages from a topic
 
 [source,shell script]
 ----
@@ -198,7 +197,7 @@ Value (90 bytes): 1:{"order_id":1,"order_ts":1534772501276,"total_amount":10.50,
 Partition: 0	Offset: 0
 ----
 
-==== 2.2.4 Query mode
+=== 3.4. Query mode
 
 Query mode allows to query offset by timestamp in the following format:
 
@@ -207,7 +206,7 @@ Query mode allows to query offset by timestamp in the following format:
 kafkacat -Q -b broker -t <topic>:<partition>:<timestamp>
 ----
 
-===== Consuming offset from a topic
+==== Consuming offset from a topic
 
 [source,shell script]
 ----
@@ -242,6 +241,6 @@ $ docker run --tty --rm --interactive \
 `-o` -- offset to start consuming from
 
 
-== 3. Conclusion
+== 4. Conclusion
 
 That's it for now. Hopefully, you learnt something interesting or useful ;)
