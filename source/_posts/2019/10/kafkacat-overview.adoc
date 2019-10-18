@@ -86,7 +86,9 @@ Note: `KAFKA_AUTO_CREATE_TOPICS_ENABLE` is set to `"true"` deliberately, so we c
 `kafkacat` docker image is available on {kafkacat-dockerhub-url}[Docker Hub].
 So, if you have docker installed -- you can spend no time on installation, and just start using it.
 
-==== 2.2.1 List brokers and topics in cluster
+==== 2.2.1 Metadata  mode
+
+===== List brokers and topics in cluster
 
 This will print cluster metadata:
 
@@ -98,8 +100,7 @@ $ docker run --tty --rm --interactive \
              kafkacat -b localhost:9092 -L
 ----
 
-`-b` -- broker `host:port`
-
+`-b` -- broker `host:port` +
 `-L` -- metadata mode (will list brokers and topics in the cluster)
 
 The above command outputs:
@@ -114,7 +115,9 @@ Metadata for all topics (from broker 1: localhost:9092/1):
     partition 0, leader 1, replicas: 1, isrs: 1
 ----
 
-==== 2.2.2 Producing messages from a file
+==== 2.2.2 Producer mode
+
+===== Producing messages from a file
 
 Let's create file with messages:
 
@@ -138,15 +141,12 @@ $ docker run --tty --rm --interactive \
              kafkacat -b locahost:9092 -t orders -P -l /data/orders.txt
 ----
 
-`-b` -- broker `host:port`
-
-`-t` -- topic to produce to
-
-`-P` -- produce mode (also available, `-C` -- consume, `-L` -- metadata, `-Q` -- query)
-
+`-b` -- broker `host:port` +
+`-t` -- topic to produce to +
+`-P` -- produce mode +
 `-l` -- send messages from a file (only one file allowed)
 
-==== 2.2.3 Producing messages inline
+===== Producing messages inline
 
 This will send three messages, with given `key:value`:
 
@@ -162,37 +162,32 @@ $ docker run --interactive --rm \
 EOF
 ----
 
-`-b` -- broker `host:port`
-
-`-t` -- topic to consume from
-
-`-K :` -- print message keys prefixing the message with `:`
-
-`-P` -- produce mode
-
+`-b` -- broker `host:port` +
+`-t` -- topic to consume from +
+`-K :` -- print message keys prefixing the message with `:` +
+`-P` -- produce mode +
 `<<EOF ... EOF` -- a {here-docs-reference-url}[here document], that redirects messages to be produced
 
-==== 2.2.4 Consuming messages from a topic
+==== 2.2.3 Consumer mode
+
+===== Consuming messages from a topic
 
 [source,shell script]
 ----
 $ docker run --tty --rm --interactive \
              --network=host \
              confluentinc/cp-kafkacat \
-             kafkacat -b localhost:9092 -C -K: \
+             kafkacat -C -b localhost:9092 -K: \
                       -f '\nKey (%K bytes): %k\t\nValue (%S bytes): %s\n\Partition: %p\tOffset: %o\n--\n' \
-                      -t orders
+                      -t orders -c 1
 ----
 
-`-b` -- broker `host:port`
-
-`-C` -- consume mode
-
-`-K :` -- print message keys prefixing the message with `:`
-
-`-f` -- output formatting string
-
-`-t` -- topic to consume from
+`-C` -- consume mode +
+`-b` -- broker `host:port` +
+`-K :` -- print message keys prefixing the message with `:` +
+`-f` -- output formatting string +
+`-t` -- topic to consume from +
+`-c` -- exit after producing 1 message
 
 The above command will consume all messages from `orders` topic:
 
@@ -201,14 +196,51 @@ The above command will consume all messages from `orders` topic:
 Key (-1 bytes):
 Value (90 bytes): 1:{"order_id":1,"order_ts":1534772501276,"total_amount":10.50,"customer_name":"Bob Smith"}
 Partition: 0	Offset: 0
---
-
-...
-Key (1 bytes): 6
-Value (90 bytes): {"order_id":6,"order_ts":1534773042276,"total_amount":31.00,"customer_name":"Emma Watson"}
-Partition: 0	Offset: 5
---
 ----
+
+==== 2.2.4 Query mode
+
+Query mode allows to query offset by timestamp in the following format:
+
+[source,shell script]
+----
+kafkacat -Q -b broker -t <topic>:<partition>:<timestamp>
+----
+
+===== Consuming offset from a topic
+
+[source,shell script]
+----
+$ docker run --tty --rm --interactive \
+             --network=host \
+             confluentinc/cp-kafkacat \
+             kafkacat -Q -b localhost:9092 -t orders:0:-1
+----
+
+`-Q` -- query mode +
+`-b` -- broker `host:port` +
+`-t` -- topic to consume from
+
+The above command will output:
+[source,shell script]
+----
+orders [0] offset 6
+----
+
+Now that we have the offset, let's query all messages after specified offset:
+
+[source,shell script]
+----
+$ docker run --tty --rm --interactive \
+             --network=host \
+             confluentinc/cp-kafkacat \
+             kafkacat -q -b localhost:9092 -t orders -p 0 -o 5
+----
+
+`-q` -- be quite (verbosity set to 0) +
+`-p` -- partition +
+`-o` -- offset to start consuming from
+
 
 == 3. Conclusion
 
