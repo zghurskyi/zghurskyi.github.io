@@ -1,0 +1,166 @@
+---
+layout: post
+title:  "Tool Of The Day: kafkacat"
+date: 2019-10-18 15:53:41
+updated: 2019-10-18 15:53:41
+tags:
+    - Apache Kafka
+    - kafkacat
+    - Docker
+categories:
+    - Apache Kafka
+    - kafkacat
+    - Docker
+og_image: /images/bg-index.jpg
+eyeCatchImage: /images/bg-index.jpg
+---
+:kafkacat-readme-url: https://github.com/edenhill/kafkacat
+:kafkacat-dockerhub-url: https://hub.docker.com/r/confluentinc/cp-kafkacat/
+:here-docs-reference-url: http://tldp.org/LDP/abs/html/here-docs.html
+
+Handy tool for quick producing / consuming Kafka messages and more.
+
+++++
+<!-- more -->
+++++
+
+== What is `kafkacat` ?
+
+Citing official {kafkacat-readme-url}[README]:
+
+[quote]
+____
+`kafkacat` is a generic non-JVM producer and consumer for Apache Kafka >=0.8, think of it as a netcat for Kafka.
+____
+
+Simply put -- it's very handy tool that allows quickly produce / consume messages to / from Kafka.
+
+== Usage with Docker
+
+=== Setting-up local Kafka cluster with one broker
+
+Let's quickly bootstrap local Kafka cluster:
+
+[source,yaml]
+----
+version: "3"
+
+services:
+
+  kafka-broker:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka-broker
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_MESSAGE_MAX_BYTES: 10000000
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_INIT_LIMIT: 5
+      ZOOKEEPER_SYNC_LIMIT: 2
+----
+
+Note: `KAFKA_AUTO_CREATE_TOPICS_ENABLE` is set to `"true"` deliberately, so we can experiment with producing /consuming without setting up topics beforehand.
+
+=== Using `kafkacat`
+
+`kafkacat` docker image is available on {kafkacat-dockerhub-url}[Docker Hub].
+So, if you have docker installed -- you can spend no time on installation, and just start using it.
+
+==== List brokers and topics in cluster
+
+This will print cluster metadata:
+
+[source,shell script]
+----
+$ docker run --tty --rm --interactive \
+             --network=host \
+             confluentinc/cp-kafkacat \
+             kafkacat -b localhost:9092 \                   <1>
+                      -L                                    <2>
+----
+
+<1> `-b` -- broker `host:port`
+<2> `-L` -- metadata mode (will list brokers and topics in the cluster)
+
+==== Producing messages from a file
+
+[source,shell script]
+----
+$ docker run --tty --rm --interactive \
+             --network=host \
+             --volume /tmp/orders.txt:/data/orders.txt \
+             confluentinc/cp-kafkacat \
+             kafkacat -b locahost:9092 \                    <1>
+                      -t orders \                           <2>
+                      -P \                                  <3>
+                      -l /data/orders.txt                   <4>
+----
+
+<1> `-b` -- broker `host:port`
+<2> `-t` -- topic to produce to
+<3> `-P` -- produce mode
+<4> `-l` -- send messages from a file (only one file allowed)
+
+==== Producing messages inline
+
+This will send three messages, with given `key:value`:
+
+[source,shell script]
+----
+$ docker run --interactive --rm \
+             --network=host \
+             confluentinc/cp-kafkacat \
+             kafkacat -b localhost:9092 \                   <1>
+                      -t orders \                           <2>
+                      -K : \                                <3>
+                      -P <<EOF                              <4> <5>
+1:{"order_id":1,"order_ts":1534772501276,"total_amount":10.50,"customer_name":"Bob Smith"}
+2:{"order_id":2,"order_ts":1534772605276,"total_amount":3.32,"customer_name":"Sarah Black"}
+3:{"order_id":3,"order_ts":1534772742276,"total_amount":21.00,"customer_name":"Emma Turner"}
+EOF
+----
+
+<1> `-b` -- broker `host:port`
+<2> `-t` -- topic to consume from
+<3> `-K :` -- print message keys prefixing the message with `:`
+<4> `-P` -- produce mode
+<5> `<<EOF ... EOF` -- a {here-docs-reference-url}[here document], that redirects messages to be produced
+
+==== Consuming messages from a topic
+
+[source,shell script]
+----
+$ docker run --tty --rm --interactive \
+             --network=host \
+             confluentinc/cp-kafkacat \
+             kafkacat -b localhost:9092 \                   <1>
+                      -C \                                  <2>
+                      -K: \                                 <3>
+                      -f '\nKey (%K bytes): %k\t\nValue (%S bytes): %s\n\Partition: %p\tOffset: %o\n--\n' \  <4>
+                      -t orders                             <5>
+----
+
+<1> `-b` -- broker `host:port`
+<2> `-C` -- consume mode (also available, `-P` -- produce, `-L` -- metadata, `-Q` -- query)
+<3> `-K :` -- print message keys prefixing the message with `:`
+<4> `-f` -- output formatting string
+<5> `-t` -- topic to consume from
+
+== Conclusion
+
+That's it for now. Hopefully, you learnt something interesting or useful ;)
