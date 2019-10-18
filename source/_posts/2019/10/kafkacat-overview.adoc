@@ -14,6 +14,9 @@ categories:
 og_image: /images/bg-index.jpg
 eyeCatchImage: /images/bg-index.jpg
 ---
+
+:listing-caption: Listing
+
 :kafkacat-readme-url: https://github.com/edenhill/kafkacat
 :kafkacat-dockerhub-url: https://hub.docker.com/r/confluentinc/cp-kafkacat/
 :here-docs-reference-url: http://tldp.org/LDP/abs/html/here-docs.html
@@ -41,6 +44,7 @@ Simply put -- it's very handy tool that allows quickly produce / consume message
 
 Let's quickly bootstrap local Kafka cluster:
 
+.docker-compose.yml
 [source,yaml]
 ----
 version: "3"
