@@ -8,6 +8,27 @@
     </url>
 
     <url>
+        <loc>https://www.oxymorus.com/categories/apache-kafka/kafkacat/docker/</loc>
+        <lastmod>2019-10-18T15:53:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/apache-kafka/kafkacat/</loc>
+        <lastmod>2019-10-18T15:53:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/apache-kafka/</loc>
+        <lastmod>2019-10-18T15:53:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/categories/java/java-9/java-10/java-11/</loc>
         <lastmod>2019-10-17T23:19:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -191,13 +212,6 @@
 
     <url>
         <loc>https://www.oxymorus.com/categories/apache-kafka/spring-boot-starter/</loc>
-        <lastmod>2019-10-07T22:39:55.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/apache-kafka/</loc>
         <lastmod>2019-10-07T22:39:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
