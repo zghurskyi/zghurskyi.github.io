@@ -1,0 +1,59 @@
+---
+layout: post
+title:  "Authentication types in pictures"
+date: 2019-06-09 22:45:13
+updated: 2019-06-09 22:45:13
+tags:
+    - Authentication
+    - Multi-Factor
+    - Passwordless
+categories:
+    - Authentication
+    - Multi-Factor
+    - Passwordless
+og_image: /images/bg-index.jpg
+eyeCatchImage: /images/bg-index.jpg
+---
+
+== Different ways to answer "Who am I?"
+
+1. *Traditional (Username + Password)*
++
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/auth_traditional.png]
+image::/images/auth_traditional.png[]
+--
+2. *Enterprise (AD, LDAP, Google Apps, etc.)*
++
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/auth_active_directory.png]
+image::/images/auth_active_directory.png[]
+--
+3. *Client Certificate*
++
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/auth_client_certificate.png]
+image::/images/auth_client_certificate.png[]
+--
+4. *Multi-Factors Authentication*
++
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/auth_multifactor.png]
+image::/images/auth_multifactor.png[]
+--
+5. *Passwordless Authentication*
++
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/auth_passwordless.png]
+image::/images/auth_passwordless.png[]
+--
