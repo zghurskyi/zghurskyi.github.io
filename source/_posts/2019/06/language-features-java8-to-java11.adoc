@@ -24,8 +24,9 @@ eyeCatchImage: /images/bg-index.jpg
 :intellij-release-notes-url: https://blog.jetbrains.com/idea/2018/06/java-11-in-intellij-idea-2018-2/
 :gradle-5-release-notes-url: https://docs.gradle.org/5.0/release-notes.html#java-11-runtime-support
 
-:sectlinks:
 :sectnums:
+:sectlinks:
+:sectanchors:
 :toc:
 :toclevels: 3
 :toc-title: Table of Contents
