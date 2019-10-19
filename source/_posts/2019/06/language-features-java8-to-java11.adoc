@@ -4,12 +4,12 @@ title:  "From Java 8 to 11: quick tour"
 date: 2019-06-27 18:07:41
 updated: 2019-10-17 23:19:41
 tags:
-    - Java
+    - Java 8
     - Java 9
     - Java 10
     - Java 11
 categories:
-    - Java
+    - Java 8
     - Java 9
     - Java 10
     - Java 11
@@ -27,13 +27,11 @@ eyeCatchImage: /images/bg-index.jpg
 :sectnums:
 :toc:
 :toclevels: 3
-:toc-title: *Contents*
+:toc-title: Table of Contents
 
-== 1. Java 8 to Java 11 language changes
+== Language Changes for Java SE 9
 
-=== 1.1. Language Changes for Java SE 9
-
-==== Platform module system
+=== Platform module system
 
 The major change to Java 9 is the introduction of the Java Platform module system.
 
@@ -46,7 +44,7 @@ and they express dependencies on other modules explicitly.
 
 To learn more about the Java Platform module system, see {project-jigsaw-url}[Project Jigsaw] on OpenJDK.
 
-==== Collections _.of()_ factory methods
+=== Collections _.of()_ factory methods
 
 Java 9 introduces collection literals for the easier definition of the common collections:
 
@@ -58,9 +56,9 @@ Map map = Map.of("hello", "world");
 Map mapOfEntries = Map.ofEntries(Map.entry("o", 0), Map.entry("z", 1));
 ----
 
-==== Stream API changes
+=== Stream API changes
 
-===== `takeWhile`
+==== `takeWhile`
 
 takeWhile takes elements from the initial stream while the predicate holds true.
 Meaning that when an element is encountered that does not match the predicate,
@@ -73,7 +71,7 @@ Stream.of(2, 4, 6, 8, 9, 10, 12)
       .forEach(System.out::print); // 2468
 ----
 
-===== `dropWhile`
+==== `dropWhile`
 
 dropWhile is essentially the opposite of takeWhile.
 Instead of taking elements from the stream until the first element
@@ -87,9 +85,9 @@ Stream.of(2, 4, 6, 8, 9, 10, 12)
       .forEach(System.out::print); // 91012
 ----
 
-==== Optional API changes
+=== Optional API changes
 
-===== `or()` method
+==== `or()` method
 
 The `or()` method gives you a fluent way of chaining behavior on `Optional`
 without checking if the value is present or not.
@@ -99,7 +97,7 @@ without checking if the value is present or not.
 Optional.empty().or(() -> Optional.of("Hello world"));
 ----
 
-===== Converting an `Optional` into a `Stream`
+==== Converting an `Optional` into a `Stream`
 
 Now it's possible to convert an `Optional` into a `Stream` containing at most one element.
 It’s really useful if you want to use the laziness of the _Streams API_.
@@ -112,7 +110,7 @@ Optional optional = Optional.of(1).map(x -> x * 3); // variable contains Optiona
 Stream stream = Optional.of(1).stream().map(x -> x * 3); // variable contains lazy stream, that is not evaluated until terminal operation
 ----
 
-===== _ifPresentOrElse()_ method
+==== _ifPresentOrElse()_ method
 
 In Java 8 you could specify the behavior you want to execute if the value in an `Optional` is present.
 
@@ -123,7 +121,7 @@ In Java 9 you can pass 2 Runnables to specify what to do if the value is present
 Optional.empty().ifPresentOrElse(x -> System.out.println(x), () -> System.out.println("empty")); // empty
 ----
 
-==== Process Management API
+=== Process Management API
 
 Java 9 adds the {process-handler-javadoc-url}[ProcessHandle] class,
 which offers a rich API to inspect the processes.
@@ -133,7 +131,7 @@ which offers a rich API to inspect the processes.
 ProcessHandle current = ProcessHandle.current(); current.pid() // prints current process id
 ----
 
-==== StackWalker
+=== StackWalker
 
 {stack-walker-javadoc-url}[StackWalker] enables you to walk,
 filter and otherwise access stack traces in a very efficient manner
@@ -145,7 +143,7 @@ StackWalker.getInstance()
            .collect(Collectors.toList()));
 ----
 
-==== More concise `try-with-resources` statements
+=== More concise `try-with-resources` statements
 
 If you already have a resource as a final or effectively final variable,
 you can use that variable in a `try-with-resources` statement without declaring a new variable.
@@ -169,21 +167,21 @@ try (resource1; resource2) {
 }
 ----
 
-==== Private interface methods
+=== Private interface methods
 
 Private interface methods are supported.
 This support allows non-abstract methods of an interface to share code between them.
 
-==== The underscore character is not a legal name
+=== The underscore character is not a legal name
 
 If you use the underscore character (`"_"`) an identifier, your source code can no longer be compiled.
 
-=== 1.2. Language Changes for Java SE 10
+== Language Changes for Java SE 10
 
 Java SE 10 introduces support for inferring the type of local variables from the context,
 which makes code more readable and reduces the amount of required boilerplate code.
 
-==== Local-Variable Type Inference with `var`
+=== Local-Variable Type Inference with `var`
 
 In Java SE 10 and later, you can declare local variables with non-null initializers with the `var` identifier,
 which can help you write code that’s easier to read.
@@ -247,9 +245,9 @@ BiFunction = (a, b) -> a + b
 *`var` style guide:* `var` should be used with caution.
 To get more details about recommended uses,consult with official {var-style-guide-url}[style guide].
 
-=== 1.3. Language Changes for Java SE 11
+== Language Changes for Java SE 11
 
-==== Implicitly typed lambda expression
+=== Implicitly typed lambda expression
 
 In Java SE 11 and later, you can declare each formal parameter of an implicitly typed lambda expression
 with the `var` identifier:
@@ -268,7 +266,7 @@ One benefit of uniformity is that annotations can be applied to lambda parameter
 (@Nonnull var s1, @Nullable var s2) -> s1 + s2
 ----
 
-== 2. Java and Docker
+== Java and Docker
 
 One of the key features of Docker is the ability to limit a container’s memory and CPU usage. 
 Unfortunately, this is precisely where Java runs short. 
