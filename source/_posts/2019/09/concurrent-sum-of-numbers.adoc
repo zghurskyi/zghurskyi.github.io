@@ -74,7 +74,7 @@ in order to explicitly control the number of threads used.
 Probably, most often you would use {fork-join-common-pool-javadoc-url}[common pool],
 that is created and managed by JVM implicitly.
 
-[source,java]
+[source,java,numbered]
 ----
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
@@ -131,7 +131,7 @@ and general tool in our toolbox - {completable-future-javadoc-url}[CompletableFu
 It allows to perform async operations in much easier way then before. 
 And overall, code becomes more declarative and composable (though cumbersome sometimes).
 
-[source,java]
+[source,java,numbered]
 ----
 import java.util.List;
 import java.util.Scanner;
@@ -214,7 +214,7 @@ Combination of {executor-service-javadoc-url}[ExecutorService] and {future-javad
 Although, it has the drawbacks, that led to introducing {completable-future-javadoc-url}[CompletableFuture]:
 explicit blocking and problems to compose multiple futures in declarative way.
 
-[source,java]
+[source,java,numbered]
 ----
 import java.util.ArrayList;
 import java.util.List;
@@ -297,7 +297,7 @@ public class DivideAndConquerSum {
 These are most basic tools, that could be used. 
 The main advantage - they are available from very first version of Java.
 
-[source,java]
+[source,java,numbered]
 ----
 import java.util.Scanner;
 

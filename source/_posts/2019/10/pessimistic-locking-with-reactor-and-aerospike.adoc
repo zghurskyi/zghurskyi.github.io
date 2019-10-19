@@ -41,7 +41,7 @@ In this post I will describe how to implement pessimistic locking with No-SQL st
 
 We will support following operations: `tryAcquire` and `release`
 
-[source,java]
+[source,java,numbered]
 ----
 public interface PessimisticLock {
 
@@ -60,7 +60,7 @@ The idea is simple:
 
 * if there is no record, then lock is free and current service can acquire it
 
-[source,java]
+[source,java,numbered]
 ----
 @Slf4j
 @RequiredArgsConsturctor
@@ -125,7 +125,7 @@ public class DefaultPessimisticLock implements PessimisticLock {
 
 === Testing
 
-[source,java]
+[source,java,numbered]
 ----
 @RunWith(MockitoJUnitRunner.class)
 public class DefaultPessimisticLockTest {

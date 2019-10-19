@@ -65,7 +65,7 @@ it's actually pretty easy to just configure `DefaultMaskingFormatter` with your 
 
 For example, let's enable masking of `value` keyword:
 
-[source,java]
+[source,java,numbered]
 ----
 @Bean
 public Registry maskingRegistry() {

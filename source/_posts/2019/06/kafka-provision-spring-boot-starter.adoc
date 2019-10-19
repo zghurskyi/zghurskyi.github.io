@@ -109,7 +109,7 @@ dependencies {
 
 Next, let's add @EnableTopicProvisioning to TaskProducerApp class:
 
-[source,java]
+[source,java,numbered]
 ----
 package com.oxymorus.kafka.producer;
 
