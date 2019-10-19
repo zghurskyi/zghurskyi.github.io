@@ -269,6 +269,27 @@
     </url>
 
     <url>
+        <loc>https://www.oxymorus.com/tags/passwordless/</loc>
+        <lastmod>2019-06-09T22:45:13.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/multi-factor/</loc>
+        <lastmod>2019-06-09T22:45:13.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/authentication/</loc>
+        <lastmod>2019-06-09T22:45:13.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/tags/mysql/</loc>
         <lastmod>2019-04-23T22:52:55.000Z</lastmod>
         <changefreq>weekly</changefreq>

@@ -436,6 +436,39 @@
   </entry>
   
   <entry>
+    <title>Authentication types in pictures</title>
+    <link href="https://www.oxymorus.com/authentication-types/"/>
+    <id>https://www.oxymorus.com/authentication-types/</id>
+    <published>2019-06-09T22:45:13.000Z</published>
+    <updated>2019-06-09T22:45:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<div class="sect1"><h2>Different ways to answer "Who am I?"</h2><div class="sectionbody"><div class="olist arabic"><ol class="arabic"><li><p><strong>Traditional (Username + Password)</strong></p><div class="openblock text-center"><div class="content"><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="/images/auth_traditional.png"><img src="/images/auth_traditional.png" alt="auth traditional"></a></div></div></div></div></li><li><p><strong>Enterprise (AD, LDAP, Google Apps, etc.)</strong></p><div class="openblock text-center"><div class="content"><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="/images/auth_active_directory.png"><img src="/images/auth_active_directory.png" alt="auth active directory"></a></div></div></div></div></li><li><p><strong>Client Certificate</strong></p><div class="openblock text-center"><div class="content"><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="/images/auth_client_certificate.png"><img src="/images/auth_client_certificate.png" alt="auth client certificate"></a></div></div></div></div></li><li><p><strong>Multi-Factors Authentication</strong></p><div class="openblock text-center"><div class="content"><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="/images/auth_multifactor.png"><img src="/images/auth_multifactor.png" alt="auth multifactor"></a></div></div></div></div></li><li><p><strong>Passwordless Authentication</strong></p><div class="openblock text-center"><div class="content"><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="/images/auth_passwordless.png"><img src="/images/auth_passwordless.png" alt="auth passwordless"></a></div></div></div></div></li></ol></div></div></div>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;div class=&quot;sect1&quot;&gt;&lt;h2&gt;Different ways to answer &quot;Who am I?&quot;&lt;/h2&gt;&lt;div class=&quot;sectionbody&quot;&gt;&lt;div class=&quot;olist arabic&quot;&gt;&lt;ol class=&quot;arabic&quot;&gt;&lt;li&gt;&lt;p
+      
+    
+    </summary>
+    
+      <category term="Authentication" scheme="https://www.oxymorus.com/categories/authentication/"/>
+    
+      <category term="Multi-Factor" scheme="https://www.oxymorus.com/categories/authentication/multi-factor/"/>
+    
+      <category term="Passwordless" scheme="https://www.oxymorus.com/categories/authentication/multi-factor/passwordless/"/>
+    
+    
+      <category term="Authentication" scheme="https://www.oxymorus.com/tags/authentication/"/>
+    
+      <category term="Multi-Factor" scheme="https://www.oxymorus.com/tags/multi-factor/"/>
+    
+      <category term="Passwordless" scheme="https://www.oxymorus.com/tags/passwordless/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Trick Of The Day: Copy DB dump from one Docker container to another</title>
     <link href="https://www.oxymorus.com/docker-mysql-dump/"/>
     <id>https://www.oxymorus.com/docker-mysql-dump/</id>
