@@ -53,8 +53,6 @@ Non-Blocking (aka "reactive") processing has several characteristics:
 * *Threads are not waiting* in case I/O operation is performed
 * Threads are reused between calls
 
-image:/img/non_blocking_processing.png[Non-blocking processing]
-
 [.text-center]
 --
 [.img-responsive.img-thumbnail]
