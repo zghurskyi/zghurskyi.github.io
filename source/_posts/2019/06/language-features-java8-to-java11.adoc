@@ -27,9 +27,6 @@ eyeCatchImage: /images/bg-index.jpg
 :sectnums:
 :sectlinks:
 :sectanchors:
-:toc:
-:toclevels: 3
-:toc-title: Table of Contents
 
 == Language Changes for Java SE 9
 
