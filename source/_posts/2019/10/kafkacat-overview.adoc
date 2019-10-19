@@ -15,13 +15,14 @@ og_image: /images/bg-index.jpg
 eyeCatchImage: /images/bg-index.jpg
 ---
 
+:sectnums:
+:sectnumlevels: 2
+:sectlinks:
+:sectanchors:
+
 :kafkacat-readme-url: https://github.com/edenhill/kafkacat
 :kafkacat-dockerhub-url: https://hub.docker.com/r/confluentinc/cp-kafkacat/
 :here-docs-reference-url: http://tldp.org/LDP/abs/html/here-docs.html
-
-:sectnums:
-:sectlinks:
-:sectanchors:
 
 Handy tool for quick producing/consuming Kafka messages and more.
 
