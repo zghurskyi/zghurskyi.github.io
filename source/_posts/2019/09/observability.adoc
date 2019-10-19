@@ -32,6 +32,10 @@ eyeCatchImage: /images/bg-index.jpg
 :grafana-dashboard-reference-url: https://grafana.com/docs/administration/provisioning/#dashboards
 :apache-benchmark-reference-url: https://httpd.apache.org/docs/2.4/programs/ab.html
 
+:sectnums:
+:sectlinks:
+:sectanchors:
+
 Different people mean different things, when they talk about `observability`.
 To stay practical and concrete, by observability I mean `monitoring, tracing and logging`.
 In this post I will give recipe of adding monitoring to your Spring Boot service with Prometheus and Grafana.
@@ -53,7 +57,7 @@ I will follow simple plan:
 
 So, let's start.
 
-== 1. Bootstrapping Spring Boot service
+== Bootstrapping Spring Boot service
 
 [source,shell]
 ----
@@ -77,7 +81,7 @@ This will be our base directory, where we place scripts and configs for Promethe
 $ mkdir monitoring && cd monitoring
 ----
 
-== 2. Setting-up Prometheus
+== Setting-up Prometheus
 
 NOTE: {prometheus-overview-reference-url}[Prometheus] is an open-source systems monitoring and alerting toolkit.
 
@@ -151,7 +155,7 @@ We can check that everything is working by visiting default dashboard at `localh
 image::/images/prometheus-dashboard.png[]
 --
 
-== 3. Setting-up Grafana
+== Setting-up Grafana
 
 NOTE: {grafana-reference-url}[Grafana] is an open source metric analytics & visualization suite.
 It is most commonly used for visualizing time series data for infrastructure
@@ -225,7 +229,7 @@ To verify everything is working, check preconfigured JVM GC dashboard:
 image::/images/grafana-dashboard.png[]
 --
 
-== 4. Perform some basic load testing and observe results
+== Perform some basic load testing and observe results
 
 After service is running and monitoring is properly configured,
 we can perform some load testing and observe how service behaves.

@@ -19,13 +19,17 @@ eyeCatchImage: /images/bg-index.jpg
 :kafkacat-dockerhub-url: https://hub.docker.com/r/confluentinc/cp-kafkacat/
 :here-docs-reference-url: http://tldp.org/LDP/abs/html/here-docs.html
 
+:sectnums:
+:sectlinks:
+:sectanchors:
+
 Handy tool for quick producing/consuming Kafka messages and more.
 
 ++++
 <!-- more -->
 ++++
 
-== 1. What is kafkacat ?
+== What is kafkacat ?
 
 Citing official {kafkacat-readme-url}[README]:
 
@@ -41,7 +45,7 @@ So, below I give simple walkthrough, that demonstrates how to set-up cluster wit
 and produce/consume messages with `kafkacat`.
 Without further ado -- let's start.
 
-== 2. Setting-up local Kafka cluster with one broker
+== Setting-up local Kafka cluster with one broker
 
 Let's quickly bootstrap local Kafka cluster:
 
@@ -80,12 +84,12 @@ services:
 
 Note: `KAFKA_AUTO_CREATE_TOPICS_ENABLE` is set to `"true"` deliberately, so we can experiment with producing /consuming without setting up topics beforehand.
 
-== 3. Using `kafkacat`
+== Using `kafkacat`
 
 `kafkacat` docker image is available on {kafkacat-dockerhub-url}[Docker Hub].
 So, if you have docker installed -- you can spend no time on installation, and just start using it.
 
-=== 3.1. Metadata  mode
+=== Metadata  mode
 
 ==== List brokers and topics in cluster
 
@@ -114,7 +118,7 @@ Metadata for all topics (from broker 1: localhost:9092/1):
     partition 0, leader 1, replicas: 1, isrs: 1
 ----
 
-=== 3.2.Producer mode
+=== Producer mode
 
 ==== Producing messages from a file
 
@@ -167,7 +171,7 @@ EOF
 `-P` -- produce mode +
 `<<EOF ... EOF` -- a {here-docs-reference-url}[here document], that redirects messages to be produced
 
-=== 3.3. Consumer mode
+=== Consumer mode
 
 ==== Consuming messages from a topic
 
@@ -197,7 +201,7 @@ Value (90 bytes): 1:{"order_id":1,"order_ts":1534772501276,"total_amount":10.50,
 Partition: 0	Offset: 0
 ----
 
-=== 3.4. Query mode
+=== Query mode
 
 Query mode allows to query offset by timestamp in the following format:
 
@@ -241,6 +245,6 @@ $ docker run --tty --rm --interactive \
 `-o` -- offset to start consuming from
 
 
-== 4. Conclusion
+== Conclusion
 
 That's it for now. Hopefully, you learnt something interesting or useful ;)

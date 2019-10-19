@@ -20,6 +20,10 @@ eyeCatchImage: /images/bg-index.jpg
 :reactive-streams-jvm-url: https://github.com/reactive-streams/reactive-streams-jvm
 :retry-when-javadoc-url: https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#retryWhen-java.util.function.Function-
 
+:sectnums:
+:sectlinks:
+:sectanchors:
+
 How to implement optimistic locking with Aerospike and Project Reactor ?
 
 ++++
@@ -40,7 +44,7 @@ image::https://martinfowler.com/eaaCatalog/OptimisticSketch.gif[]
 
 In this post I will describe how to implement optimistic locking with No-SQL storage, that has reactive client.
 
-=== Aerospike `generation` meta-data
+== Aerospike `generation` meta-data
 
 In traditional RDBMS to implement optimistic locking one would have to introduce
 additional `version` or `timestamp` column.
@@ -59,7 +63,7 @@ Having above config in place ensures that update/delete will be executed success
 if expected generation is equal to server generation, otherwise, update/delete will fail.
 
 
-=== Reactor `retryWhen` operation
+== Reactor `retryWhen` operation
 
 {project-reactor-url}[Project Reactor] is a fourth-generation Reactive library for building non-blocking applications on
 the JVM based on the {reactive-streams-jvm-url}[Reactive Streams Specification].
@@ -73,7 +77,7 @@ In the context of our goal, we will use {retry-when-javadoc-url}[retryWhen] oper
 image::https://projectreactor.io/docs/core/release/api/reactor/core/publisher/doc-files/marbles/retryWhenForMono.svg[]
 --
 
-=== Implementation
+== Implementation
 
 Now let's put everything together and write method that performs `createOrUpdate` operation on `Data` instance:
 

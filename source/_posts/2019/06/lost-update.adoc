@@ -25,6 +25,10 @@ eyeCatchImage: /images/bg-index.jpg
 :optimistic-lock-exception-javadoc-url: https://docs.oracle.com/javaee/7/api/javax/persistence/OptimisticLockException.html
 :beginners-guide-reference-url: https://vladmihalcea.com/a-beginners-guide-to-database-locking-and-the-lost-update-phenomena/
 
+:sectnums:
+:sectlinks:
+:sectanchors:
+
 {write-write-conflict-wiki-url}[An update is lost] when a user overrides the current database state without realizing,
 that someone else changed it between the moment of data loading and the moment the update occurs.
 In this post, I will give detailed description of this phenomena and typical ways to prevent it.

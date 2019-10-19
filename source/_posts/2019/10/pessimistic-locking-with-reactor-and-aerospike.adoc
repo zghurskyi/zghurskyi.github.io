@@ -17,6 +17,10 @@ eyeCatchImage: /images/bg-index.jpg
 
 :pessimistic-locking-reference-url: https://martinfowler.com/eaaCatalog/pessimisticOfflineLock.html
 
+:sectnums:
+:sectlinks:
+:sectanchors:
+
 How to implement pessimistic locking with Aerospike and Project Reactor ?
 
 ++++
@@ -37,7 +41,7 @@ image::https://martinfowler.com/eaaCatalog/PessimisticSketch.gif[]
 
 In this post I will describe how to implement pessimistic locking with No-SQL storage, that has reactive client.
 
-=== Pessimistic lock interface
+== Pessimistic lock interface
 
 We will support following operations: `tryAcquire` and `release`
 
@@ -51,7 +55,7 @@ public interface PessimisticLock {
 }
 ----
 
-=== Implementation
+== Implementation
 
 To implement pessimistic locking we will use special bin with no value and short expiration (to prevent hanged locks).
 The idea is simple:
@@ -123,7 +127,7 @@ public class DefaultPessimisticLock implements PessimisticLock {
 
 ----
 
-=== Testing
+== Testing
 
 [source,java,numbered]
 ----
@@ -258,7 +262,7 @@ public class DefaultPessimisticLockTest {
 }
 ----
 
-=== Using with Reactor
+== Using with Reactor
 
 We need to emulate `try-finally` semantic with Reactor operators. The code below achieves that goal:
 

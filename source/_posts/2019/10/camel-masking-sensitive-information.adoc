@@ -95,6 +95,6 @@ camel:
     logMask: true
 ----
 
-== Example
+== Talk is cheap. Show me the code.
 
 You can find fully functioning example by following the {camel-log-masking-example-url}[link].

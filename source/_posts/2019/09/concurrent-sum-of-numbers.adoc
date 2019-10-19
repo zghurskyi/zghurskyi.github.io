@@ -31,6 +31,10 @@ eyeCatchImage: /images/bg-index.jpg
 :future-javadoc-url: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html
 :completable-future-javadoc-url: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
 
+:sectnums:
+:sectlinks:
+:sectanchors:
+
 In the post I will give practical comparison of using different Java classes
 for implementing the same toy problem: finding sum of integers in given range.
 
