@@ -26,3 +26,9 @@
 - [ ] Executors (thread pool) overview
 - [ ] Future overview
 - [ ] CompletableFuture overview
+
+# `Project Reactor` series
+
+- [ ] Reactive streams specification
+- [ ] Project Reactor runtime
+- [ ] Project Reactor implementation patterns
