@@ -6,8 +6,8 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-custom
                 span.icon-bar
                 span.icon-bar
                 span.icon-bar
-            a(class="navbar-brand", href=url_for())
-                - var titles = ["Bittersweet","Dark light","Only choice","Original copy","Painfully beautiful","Random order","Sweet sorrow","True myth","Weirdly normal","Clearly misunderstood","Even odds","Same difference","We're busy doing nothing"]
+            a(class="navbar-brand", href=url_for(), style="color:black;")
+                - var titles = ["Bittersweet","Dark light","Only choice","Original copy","Painfully beautiful","Random order","Sweet sorrow","True myth","Weirdly normal","Clearly misunderstood","Even odds"]
                 - var random_title = titles[Math.floor(Math.random() * titles.length)];
                 span= random_title
         #main-navbar.collapse.navbar-collapse
