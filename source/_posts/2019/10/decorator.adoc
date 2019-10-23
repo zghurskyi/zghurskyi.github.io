@@ -189,7 +189,7 @@ public interface SalaryCalculator {
 
 As you already noticed, the interface differs a bit from object-oriented counterpart:
 * we have added `andThen` method, that actually gives us ability
-to dynamically compose several `SalaryCalculator`s.
+to dynamically compose instances of `SalaryCalculator`.
 * moreover, `SalaryCalculator` is marked as `@FunctionalInterface`,
 which simply means that we'll be able to use lambdas instead of decorator classes
 
