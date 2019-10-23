@@ -30,5 +30,6 @@
 # `Project Reactor` series
 
 - [ ] Reactive streams specification
+- [ ] Project Reactor stream lifecycle
 - [ ] Project Reactor runtime
 - [ ] Project Reactor implementation patterns
