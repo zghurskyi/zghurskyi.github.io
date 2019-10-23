@@ -1,0 +1,61 @@
+---
+layout: post
+title:  "Decorator Pattern In Functional Style"
+date: 2019-10-23 23:34:41
+updated: 2019-10-23 23:34:41
+tags:
+    - Decorator pattern
+    - Object-Oriented Design
+    - Functional style
+categories:
+    - Decorator pattern
+    - Object-Oriented Design
+    - Functional style
+og_image: /images/bg-index.jpg
+eyeCatchImage: /images/bg-index.jpg
+---
+
+The Decorator pattern is handy tool in every developer toolbox.
+Probably, every developer used the pattern and knows when and how to apply it.
+However, in this post we will look at this pattern from two different points of view (Object-Oriented and Functional)
+and compare the approaches.
+
+++++
+<!-- more -->
+++++
+
+== What this post about ?
+
+* Decorator in Object Oriented Light
+
+* Decorator in Functional light
+
+* Comparison and Results
+
+So, without further ado -- let's get started.
+
+== Why might you use Decorator pattern ?
+
+In object-oriented design Decorator pattern is used:
+
+. To attach additional responsibilities to an object dynamically.
++
+NOTE: It enables fine granularity in distributing functionality between objects,
+which basically is very good example of applying Single Responsibility Principle.
+
+. To add behavior to an individual object,
+without affecting the behavior of other objects.
++
+NOTE: Decorator is one of the patterns, that demonstrates the Open/Closed Principle very clearly.
+
+== Toy problem
+
+To get better grasp of the pattern let's use it for the following task:
+
+Imagine, that we’re required to develop a annual net salary calculator.
+So, given gross annual salary, we should find net salary after applying series of taxes.
+
+Of course, the task is very simple, and one may object, that we are over-engineering.
+However, this is deliberate decision made for demonstration purposes.
+
+== Conclusion
