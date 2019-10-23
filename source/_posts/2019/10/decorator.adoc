@@ -42,7 +42,7 @@ Shortly put, in Object-Oriented Design (OOD) `Decorator pattern` is used:
 NOTE: It enables fine granularity in distributing functionality between objects,
 which basically is very good example of applying {single-responsibility-principle-url}[Single Responsibility Principle].
 
-. To add behavior to an object, without affecting the behavior of collaborating objects.
+. To extend behavior of an object, without changing collaborating objects.
 +
 NOTE: Decorator is one of the patterns, that demonstrates the {open-closed-principle-url}[Open/Closed Principle] very clearly.
 
