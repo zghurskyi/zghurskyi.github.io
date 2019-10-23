@@ -24,8 +24,8 @@ eyeCatchImage: /images/bg-index.jpg
 
 The `Decorator pattern` is handy tool in every developer toolbox.
 Probably, everyone occasionally uses this pattern and knows when and how to apply it.
-However, in this post we will look at this pattern from two different points of view (Object-Oriented and Functional)
-and compare the approaches.
+Nevertheless, in this post I will show how to implement decorator in functional style,
+and contrast it with object-oriented way.
 
 ++++
 <!-- more -->
