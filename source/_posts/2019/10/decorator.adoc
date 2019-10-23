@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Decorator Pattern In Functional Style"
+title:  "Different way to implement Decorator Pattern"
 date: 2019-10-23 23:34:41
 updated: 2019-10-23 23:34:41
 tags:
