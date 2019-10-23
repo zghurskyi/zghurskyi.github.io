@@ -52,7 +52,7 @@ given gross annual salary, after applying series of taxes.
 Of course, the task is very simple, and one may argue, that we are over-engineering.
 However, this is deliberate decision made for demonstration purposes.
 
-== Decorator in Object Oriented Light
+== Decorator in Object-Oriented Light
 
 We will start by designing an interface for our calculator:
 
@@ -65,7 +65,7 @@ public interface SalaryCalculator {
 }
 ----
 
-The next step, is to implement default calculator, that just find average monthly salary:
+The next step, is to implement default calculator, that just finds average monthly salary:
 
 [source,java]
 ----
