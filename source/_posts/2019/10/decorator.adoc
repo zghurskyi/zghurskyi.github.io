@@ -31,7 +31,7 @@ and compare the approaches.
 
 Let's start by highlighting the reasons `Decorator pattern` might be useful in your everyday programming practice.
 
-Shortly put, in Object-Oriented Design `Decorator pattern` is used:
+Shortly put, in Object-Oriented Design (OOD) `Decorator pattern` is used:
 
 . To attach additional responsibilities to an object dynamically.
 +
@@ -165,7 +165,7 @@ public class Demo {
 
 Ok, this is well and good, let's now take a look at a little bit different approach.
 
-== Decorator in Functional light
+== Decorator in Functional Light
 
 As with OOD approach, we will start with defining the calculator interface:
 
@@ -188,10 +188,10 @@ public interface SalaryCalculator {
 ----
 
 As you already noticed, the interface differs a bit from object-oriented counterpart:
-we have added `andThen` method, that actually gives us ability to dynamically compose several `SalaryCalculator`s.
-
-Moreover, `SalaryCalculator` is marked as `@FunctionalInterface`,
-which simply means that we'll be able to use lambdas instead of decorator classes.
+* we have added `andThen` method, that actually gives us ability
+to dynamically compose several `SalaryCalculator`s.
+* moreover, `SalaryCalculator` is marked as `@FunctionalInterface`,
+which simply means that we'll be able to use lambdas instead of decorator classes
 
 We can leave `DefaultSalaryCalculator` without any changes.
 However, let's define `Taxes` class, that encapsulates all possible taxes (so, we'll be able to use them as lambdas):
