@@ -18,6 +18,9 @@ eyeCatchImage: /images/bg-index.jpg
 :sectnums:
 :sectnumlevels: 2
 
+:single-responsibility-principle-url: https://blog.cleancoder.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html
+:open-closed-principle-url: https://blog.cleancoder.com/uncle-bob/2014/05/12/TheOpenClosedPrinciple.html
+
 The `Decorator pattern` is handy tool in every developer toolbox.
 Probably, everyone occasionally uses this pattern and knows when and how to apply it.
 However, in this post we will look at this pattern from two different points of view (Object-Oriented and Functional)
@@ -36,11 +39,11 @@ Shortly put, in Object-Oriented Design (OOD) `Decorator pattern` is used:
 . To attach additional responsibilities to an object dynamically.
 +
 NOTE: It enables fine granularity in distributing functionality between objects,
-which basically is very good example of applying Single Responsibility Principle.
+which basically is very good example of applying {single-responsibility-principle-url}[Single Responsibility Principle].
 
 . To add behavior to an object, without affecting the behavior of collaborating objects.
 +
-NOTE: Decorator is one of the patterns, that demonstrates the Open/Closed Principle very clearly.
+NOTE: Decorator is one of the patterns, that demonstrates the {open-closed-principle-url}[Open/Closed Principle] very clearly.
 
 == Toy problem
 
@@ -194,7 +197,7 @@ to dynamically compose instances of `SalaryCalculator`.
 which simply means that we'll be able to use lambdas instead of decorator classes
 
 We can leave `DefaultSalaryCalculator` without any changes.
-However, let's define `Taxes` class, that encapsulates all possible taxes (so, we'll be able to use them as lambdas):
+However, let's define `Taxes` class, that encapsulates all possible taxes:
 
 [source,java]
 ----
@@ -214,7 +217,7 @@ public final class Taxes {
 }
 ----
 
-And finally, let's put everything together:
+And, finally, let's put everything together:
 
 [source,java]
 ----
