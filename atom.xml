@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.oxymorus.com/"/>
-  <updated>2019-10-18T15:53:41.000Z</updated>
+  <updated>2019-10-23T23:34:41.000Z</updated>
   <id>https://www.oxymorus.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Decorator Pattern In Functional Style</title>
+    <link href="https://www.oxymorus.com/decorator/"/>
+    <id>https://www.oxymorus.com/decorator/</id>
+    <published>2019-10-23T23:34:41.000Z</published>
+    <updated>2019-10-23T23:34:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<div class="paragraph"><p>The Decorator pattern is handy tool in every developer toolbox. Probably, every developer used the pattern and knows when and how to apply it. However, in this post we will look at this pattern from two different points of view (Object-Oriented and Functional) and compare the approaches.</p></div><a id="more"></a><div class="sect1"><h2>What this post about ?</h2><div class="sectionbody"><div class="ulist"><ul><li><p>Decorator in Object Oriented Light</p></li><li><p>Decorator in Functional light</p></li><li><p>Comparison and Results</p></li></ul></div><div class="paragraph"><p>So, without further ado&#8201;&#8212;&#8201;let&#8217;s get started.</p></div></div></div><div class="sect1"><h2>Why might you use Decorator pattern ?</h2><div class="sectionbody"><div class="paragraph"><p>In object-oriented design Decorator pattern is used:</p></div><div class="olist arabic"><ol class="arabic"><li><p>To attach additional responsibilities to an object dynamically.</p><div class="admonitionblock note"><table><tr><td class="icon"><i class="fa icon-note" title="Note"></i></td><td class="content">It enables fine granularity in distributing functionality between objects, which basically is very good example of applying Single Responsibility Principle.</td></tr></table></div></li><li><p>To add behavior to an individual object, without affecting the behavior of other objects.</p><div class="admonitionblock note"><table><tr><td class="icon"><i class="fa icon-note" title="Note"></i></td><td class="content">Decorator is one of the patterns, that demonstrates the Open/Closed Principle very clearly.</td></tr></table></div></li></ol></div></div></div><div class="sect1"><h2>Toy problem</h2><div class="sectionbody"><div class="paragraph"><p>To get better grasp of the pattern let&#8217;s use it for the following task:</p></div><div class="paragraph"><p>Imagine, that we’re required to develop a annual net salary calculator. So, given gross annual salary, we should find net salary after applying series of taxes.</p></div><div class="paragraph"><p>Of course, the task is very simple, and one may object, that we are over-engineering. However, this is deliberate decision made for demonstration purposes.</p></div></div></div><div class="sect1"><h2>Conclusion</h2><div class="sectionbody"></div></div>]]></content>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;paragraph&quot;&gt;&lt;p&gt;The Decorator pattern is handy tool in every developer toolbox. Probably, every developer used the pattern and knows when and how to apply it. However, in this post we will look at this pattern from two different points of view (Object-Oriented and Functional) and compare the approaches.&lt;/p&gt;&lt;/div&gt;
+    
+    </summary>
+    
+      <category term="Decorator pattern" scheme="https://www.oxymorus.com/categories/decorator-pattern/"/>
+    
+      <category term="Object-Oriented Design" scheme="https://www.oxymorus.com/categories/decorator-pattern/object-oriented-design/"/>
+    
+      <category term="Functional style" scheme="https://www.oxymorus.com/categories/decorator-pattern/object-oriented-design/functional-style/"/>
+    
+    
+      <category term="Decorator pattern" scheme="https://www.oxymorus.com/tags/decorator-pattern/"/>
+    
+      <category term="Object-Oriented Design" scheme="https://www.oxymorus.com/tags/object-oriented-design/"/>
+    
+      <category term="Functional style" scheme="https://www.oxymorus.com/tags/functional-style/"/>
+    
+  </entry>
   
   <entry>
     <title>Tool Of The Day: kafkacat</title>
