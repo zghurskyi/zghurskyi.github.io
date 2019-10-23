@@ -20,6 +20,7 @@ eyeCatchImage: /images/bg-index.jpg
 
 :single-responsibility-principle-url: https://blog.cleancoder.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html
 :open-closed-principle-url: https://blog.cleancoder.com/uncle-bob/2014/05/12/TheOpenClosedPrinciple.html
+:functional-interface-javadoc-url: https://docs.oracle.com/javase/8/docs/api/java/lang/FunctionalInterface.html
 
 The `Decorator pattern` is handy tool in every developer toolbox.
 Probably, everyone occasionally uses this pattern and knows when and how to apply it.
@@ -191,9 +192,10 @@ public interface SalaryCalculator {
 ----
 
 As you already noticed, the interface differs a bit from object-oriented counterpart:
+
 * we have added `andThen` method, that actually gives us ability
 to dynamically compose instances of `SalaryCalculator`.
-* moreover, `SalaryCalculator` is marked as `@FunctionalInterface`,
+* moreover, `SalaryCalculator` is marked as {functional-interface-javadoc-url}[@FunctionalInterface],
 which simply means that we'll be able to use lambdas instead of decorator classes
 
 We can leave `DefaultSalaryCalculator` without any changes.
