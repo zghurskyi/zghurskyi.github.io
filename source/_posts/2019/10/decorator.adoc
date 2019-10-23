@@ -15,7 +15,10 @@ og_image: /images/bg-index.jpg
 eyeCatchImage: /images/bg-index.jpg
 ---
 
-The Decorator pattern is handy tool in every developer toolbox.
+:sectnums:
+:sectnumlevels: 2
+
+The `Decorator pattern` is handy tool in every developer toolbox.
 Probably, every developer used the pattern and knows when and how to apply it.
 However, in this post we will look at this pattern from two different points of view (Object-Oriented and Functional)
 and compare the approaches.
@@ -24,27 +27,18 @@ and compare the approaches.
 <!-- more -->
 ++++
 
-== What this post about ?
+== Why might you use `Decorator pattern` ?
 
-* Decorator in Object Oriented Light
+Let's start by highlighting the reasons `Decorator pattern` might be useful in your everyday programming practice.
 
-* Decorator in Functional light
-
-* Comparison and Results
-
-So, without further ado -- let's get started.
-
-== Why might you use Decorator pattern ?
-
-In object-oriented design Decorator pattern is used:
+Shortly put, in Object-Oriented Design `Decorator pattern` is used:
 
 . To attach additional responsibilities to an object dynamically.
 +
 NOTE: It enables fine granularity in distributing functionality between objects,
 which basically is very good example of applying Single Responsibility Principle.
 
-. To add behavior to an individual object,
-without affecting the behavior of other objects.
+. To add behavior to an object, without affecting the behavior of collaborating objects.
 +
 NOTE: Decorator is one of the patterns, that demonstrates the Open/Closed Principle very clearly.
 
@@ -52,10 +46,195 @@ NOTE: Decorator is one of the patterns, that demonstrates the Open/Closed Princi
 
 To get better grasp of the pattern let's use it for the following task:
 
-Imagine, that we’re required to develop a annual net salary calculator.
-So, given gross annual salary, we should find net salary after applying series of taxes.
+Imagine, that we’re required to develop a monthly net salary calculator,
+given gross annual salary, after applying series of taxes.
 
-Of course, the task is very simple, and one may object, that we are over-engineering.
+Of course, the task is very simple, and one may argue, that we are over-engineering.
 However, this is deliberate decision made for demonstration purposes.
 
-== Conclusion
+== Decorator in Object Oriented Light
+
+We will start by designing an interface for our calculator:
+
+[source,java]
+----
+package com.oxymorus.decorator.object_oriented;
+
+public interface SalaryCalculator {
+    double calculate(double grossAnnual);
+}
+----
+
+The next step, is to implement default calculator, that just find average monthly salary:
+
+[source,java]
+----
+package com.oxymorus.decorator.object_oriented;
+
+public class DefaultSalaryCalculator implements SalaryCalculator {
+
+    @Override
+    public double calculate(double grossAnnual) {
+        return grossAnnual / 12;
+    }
+}
+----
+
+Then, following classical definition, we will introduce `AbstractTaxDecorator`,
+that will allow us to apply different taxes as decorations of `DefaultSalaryCalculator`.
+
+[source,java]
+----
+package com.oxymorus.decorator.object_oriented;
+
+public abstract class AbstractTaxDecorator implements SalaryCalculator {
+
+    private final SalaryCalculator salaryCalculator;
+
+    public AbstractTaxDecorator(SalaryCalculator salaryCalculator) {
+        this.salaryCalculator = salaryCalculator;
+    }
+
+    protected abstract double applyTax(double salary);
+
+    @Override
+    public final double calculate(double gross) {
+        double salary = salaryCalculator.calculate(gross);
+        return applyTax(salary);
+    }
+
+}
+----
+
+Next, let's add several tax decorators:
+
+* Social security tax:
++
+[source,java]
+----
+package com.oxymorus.decorator.object_oriented;
+
+public class SocialSecurityTaxDecorator extends AbstractTaxDecorator {
+
+    public SocialSecurityTaxDecorator(SalaryCalculator salaryCalculator) {
+        super(salaryCalculator);
+    }
+
+    @Override
+    protected double applyTax(double salary) {
+        return salary * 0.22;
+    }
+}
+----
+
+* Military tax:
++
+[source,java]
+----
+package com.oxymorus.decorator.object_oriented;
+
+public class MilitaryTaxDecorator extends AbstractTaxDecorator {
+
+    public MilitaryTaxDecorator(SalaryCalculator salaryCalculator) {
+        super(salaryCalculator);
+    }
+
+    @Override
+    protected double applyTax(double salary) {
+        return salary * 0.015;
+    }
+}
+----
+
+Finally, we can use everything together:
+[source,java]
+----
+package com.oxymorus.decorator.object_oriented;
+
+public class Demo {
+
+    public static void main(String[] args) {
+        double netSalary = new MilitaryTaxDecorator(
+                new SocialSecurityTaxDecorator(
+                    new DefaultSalaryCalculator()
+                )
+        ).calculate(60000.00);
+    }
+}
+----
+
+Ok, this is well and good, let's now take a look at a little bit different approach.
+
+== Decorator in Functional light
+
+As with OOD approach, we will start with defining the calculator interface:
+
+[source,java]
+----
+package com.oxymorus.decorator.functional;
+
+import java.util.Objects;
+
+@FunctionalInterface
+public interface SalaryCalculator {
+
+    double calculate(double grossAnnual);
+
+    default SalaryCalculator andThen(SalaryCalculator after) {
+        Objects.requireNonNull(after);
+        return (double amount) -> after.calculate(calculate(amount));
+    }
+}
+----
+
+As you already noticed, the interface differs a bit from object-oriented counterpart:
+we have added `andThen` method, that actually gives us ability to dynamically compose several `SalaryCalculator`s.
+
+Moreover, `SalaryCalculator` is marked as `@FunctionalInterface`,
+which simply means that we'll be able to use lambdas instead of decorator classes.
+
+We can leave `DefaultSalaryCalculator` without any changes.
+However, let's define `Taxes` class, that encapsulates all possible taxes (so, we'll be able to use them as lambdas):
+
+[source,java]
+----
+package com.oxymorus.decorator.functional;
+
+public final class Taxes {
+
+    private Taxes() {}
+
+    public static double socialSecurityTax(double salary) {
+        return salary * 0.22;
+    }
+
+    public static double militaryTax(double salary) {
+        return salary * 0.015;
+    }
+}
+----
+
+And finally, let's put everything together:
+
+[source,java]
+----
+package com.oxymorus.decorator.functional;
+
+public class Demo {
+
+    public static void main(String[] args) {
+        double netSalary = new DefaultSalaryCalculator()
+                .andThen(Taxes::socialSecurityTax)
+                .andThen(Taxes::militaryTax)
+                .calculate(60000.00);
+    }
+}
+----
+
+== Comparison and Results
+
+Comparing two implementations, we can conclude:
+
+* Both approaches solve the problem
+* Functional is far more concise
+* Object-Oriented is verbose and adds accidental complexity, but emphasizes Single Responsibility & Open Closed Principles
