@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Different way to implement Decorator Pattern"
+title:  "Different ways to implement Decorator Pattern"
 date: 2019-10-23 23:34:41
 updated: 2019-10-23 23:34:41
 tags:
@@ -126,26 +126,26 @@ public class SocialSecurityTaxDecorator extends AbstractTaxDecorator {
 
     @Override
     protected double applyTax(double salary) {
-        return salary * 0.22;
+        return salary * 0.20;
     }
 }
 ----
 
-* Military tax:
+* Fixed tax:
 +
 [source,java]
 ----
 package com.oxymorus.decorator.object_oriented;
 
-public class MilitaryTaxDecorator extends AbstractTaxDecorator {
+public class FixedTaxDecorator extends AbstractTaxDecorator {
 
-    public MilitaryTaxDecorator(SalaryCalculator salaryCalculator) {
+    public FixedTaxDecorator(SalaryCalculator salaryCalculator) {
         super(salaryCalculator);
     }
 
     @Override
     protected double applyTax(double salary) {
-        return salary * 0.015;
+        return salary - 100.0;
     }
 }
 ----
@@ -158,7 +158,7 @@ package com.oxymorus.decorator.object_oriented;
 public class Demo {
 
     public static void main(String[] args) {
-        double netSalary = new MilitaryTaxDecorator(
+        double netSalary = new FixedTaxDecorator(
                 new SocialSecurityTaxDecorator(
                     new DefaultSalaryCalculator()
                 )
@@ -210,11 +210,11 @@ public final class Taxes {
     private Taxes() {}
 
     public static double socialSecurityTax(double salary) {
-        return salary * 0.22;
+        return salary * 0.20;
     }
 
-    public static double militaryTax(double salary) {
-        return salary * 0.015;
+    public static double fixedTax(double salary) {
+        return salary - 100;
     }
 }
 ----
@@ -230,7 +230,7 @@ public class Demo {
     public static void main(String[] args) {
         double netSalary = new DefaultSalaryCalculator()
                 .andThen(Taxes::socialSecurityTax)
-                .andThen(Taxes::militaryTax)
+                .andThen(Taxes::fixedTax)
                 .calculate(60000.00);
     }
 }
@@ -242,4 +242,4 @@ Comparing two implementations, we can conclude:
 
 * Both approaches solve the problem
 * Functional is far more concise
-* Object-Oriented is verbose and adds accidental complexity, but emphasizes Single Responsibility & Open Closed Principles
+* Object-Oriented is verbose and adds accidental complexity, but emphasizes Single Responsibility and Open/Closed Principles
