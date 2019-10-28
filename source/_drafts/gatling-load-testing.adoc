@@ -47,7 +47,159 @@ Without further ado -- let's start!
 
 == Gatling configuration
 
+Gatling is written in Scala and provides pretty convenient DSL for describing load test scenarios.
+
+So, to enable it for our service we need to configure Scala support with Maven.
+
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <properties>
+        <java.version>1.8</java.version>
+        <gatling.version>3.2.1</gatling.version>
+        <gatling-plugin.version>3.0.3</gatling-plugin.version>
+        <scala-maven-plugin.version>4.2.0</scala-maven-plugin.version>
+        <gatling.skip>true</gatling.skip>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>io.gatling.highcharts</groupId>
+            <artifactId>gatling-charts-highcharts</artifactId>
+            <version>${gatling.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>logback-classic</artifactId>
+                    <groupId>ch.qos.logback</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <testSourceDirectory>src/test/scala</testSourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>${scala-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <configuration>
+                            <jvmArgs>
+                                <jvmArg>-Xss100M</jvmArg>
+                            </jvmArgs>
+                            <args>
+                                <arg>-target:jvm-1.8</arg>
+                                <arg>-deprecation</arg>
+                                <arg>-feature</arg>
+                                <arg>-unchecked</arg>
+                                <arg>-language:implicitConversions</arg>
+                                <arg>-language:postfixOps</arg>
+                            </args>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>io.gatling</groupId>
+                <artifactId>gatling-maven-plugin</artifactId>
+                <version>${gatling-plugin.version}</version>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
+----
+
 == Load testing
+
+Finally, after performing all configuration we are ready to write load test:
+
+[source,scala]
+----
+package greetings
+
+import io.gatling.core.Predef._
+import io.gatling.http.Predef._
+
+import scala.concurrent.duration._
+
+class LoadTest extends Simulation {
+
+  val baseUrl = "http://localhost:8080"
+
+  val filePath = "C:\\data.csv"
+
+  val data = csv(filePath).circular
+
+  val httpConf = http
+    .baseUrl(baseUrl)
+    .acceptHeader("application/stream+json")
+
+  val basicLoad = scenario("LOAD_TEST")
+    .feed(data)
+    .exec(BasicLoad.start)
+
+  setUp(
+    basicLoad.inject(
+      rampConcurrentUsers(0) to (400) during (10 seconds),
+      constantConcurrentUsers(400) during (50 seconds)
+    ).protocols(httpConf)
+  ).maxDuration(2 minutes)
+
+}
+
+object BasicLoad {
+
+  val start =
+    exec(
+      http("Register greeting")
+        .post("/greetings")
+        .body(StringBody(
+          """
+            |{
+            |  "user": "${user}",
+            |  "greeting": "${greeting}"
+            |}
+            |""".stripMargin)).asJson
+        .check(status is 200)
+      .exec(
+        http("Get greeting by user")
+          .get("/greetings")
+          .queryParam("user", "${user}")
+          .check(status is 200)
+      )
+}
+----
+
+== Results
 
 == Conclusion
 
