@@ -1,0 +1,53 @@
+---
+layout: post
+title:  "Load testing with Gatling"
+date: 2019-10-28 23:05:41
+updated: 2019-10-28 23:05:41
+tags:
+    - Gatling
+    - Maven
+    - Load testing
+    - Spring Boot
+categories:
+    - Gatling
+    - Maven
+    - Load testing
+    - Spring Boot
+og_image: /images/bg-index.jpg
+eyeCatchImage: /images/bg-index.jpg
+---
+:wrk-reference-url: https://github.com/wg/wrk
+:wrk2-reference-url: https://github.com/giltene/wrk2
+:apache-benchmark-reference-url: https://httpd.apache.org/docs/2.4/programs/ab.html
+:gatling-reference-url: https://gatling.io/docs/3.3/
+
+Sooner or later, there comes the time to measure how your RESTful service behaves under load.
+There are many of the shelf tools, that allow to do this in "quick-and-dirty" way --
+like {wrk-reference-url}[wrk]/{wrk2-reference-url}[wrk2], {apache-benchmark-reference-url}[ab], etc.
+However, if you're working with JVM and want to setup reproducible and comprehensive load testing,
+probably, the best tool would be {gatling-reference-url}[Gatling].
+
+This post is `how-to` article for setting up load testing of Spring Boot service with Gatling.
+
+++++
+<!-- more -->
+++++
+
+== What will we build ?
+
+In this post we will do the following:
+
+. Setup simple reactive web-service with POST and GET endpoints
+. Configure Maven to support Gatling
+. Write simple load testing scenario for our endpoints
+
+Without further ado -- let's start!
+
+== Service
+
+== Gatling configuration
+
+== Load testing
+
+== Conclusion
+
