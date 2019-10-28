@@ -178,14 +178,14 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/tags/spring-boot/</loc>
+        <loc>https://www.oxymorus.com/tags/observability/</loc>
         <lastmod>2019-10-10T22:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/tags/observability/</loc>
+        <loc>https://www.oxymorus.com/tags/spring-boot/</loc>
         <lastmod>2019-10-10T22:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

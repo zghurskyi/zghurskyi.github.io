@@ -234,11 +234,11 @@
       <category term="Docker" scheme="https://www.oxymorus.com/categories/observability/spring-boot/prometheus/grafana/docker/"/>
     
     
+      <category term="Spring Boot" scheme="https://www.oxymorus.com/tags/spring-boot/"/>
+    
       <category term="Docker" scheme="https://www.oxymorus.com/tags/docker/"/>
     
       <category term="Observability" scheme="https://www.oxymorus.com/tags/observability/"/>
-    
-      <category term="Spring Boot" scheme="https://www.oxymorus.com/tags/spring-boot/"/>
     
       <category term="Prometheus" scheme="https://www.oxymorus.com/tags/prometheus/"/>
     
