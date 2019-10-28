@@ -20,6 +20,7 @@ eyeCatchImage: /images/bg-index.jpg
 :wrk2-reference-url: https://github.com/giltene/wrk2
 :apache-benchmark-reference-url: https://httpd.apache.org/docs/2.4/programs/ab.html
 :gatling-reference-url: https://gatling.io/docs/3.3/
+:greeting-service-github-url: https://github.com/zghurskyi/investigations/tree/master/investigation-gatling
 
 Sooner or later, there comes the time to measure how your RESTful service behaves under load.
 There are many of the shelf tools, that allow to do this in "quick-and-dirty" way --
@@ -45,6 +46,163 @@ Without further ado -- let's start!
 
 == Service
 
+We will build simple `greetings` service, that allows:
+
+* generate exciting greeting for given user
+* get generated greeting by user
+
+To make things interesting, we will use Spring WebFlux reactive web stack.
+
+NOTE: The full service codebase can be found {greeting-service-github-url}[here]. So, you can skip explanations below and go straight to *Gatling configuration* section.
+
+=== Bootstrapping the service
+
+[source,shell]
+----
+$ curl https://start.spring.io/starter.zip \
+-d dependencies=webflux,lombok,actuator \
+-d type=maven-project \
+-d baseDir=service \
+-d groupId=com.oxymorus.greetings \
+-d artifactId=greetings \
+-d bootVersion=2.1.9.RELEASE \
+-o service.zip
+
+$ unzip service.zip && rm service.zip && cd service
+----
+
+=== Domain model
+
+For our simple service, we will use 2 domain classes -- `Person` and `Greeting`.
+
+[source,java]
+----
+package com.oxymorus.greetings.domain;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor(staticName = "of")
+@Getter
+public class Person {
+    private String name;
+}
+----
+
+[source,java]
+----
+package com.oxymorus.greetings.domain;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor(staticName = "of")
+@Getter
+public class Greeting {
+    private String greeting;
+}
+
+----
+
+=== Controller
+
+To implement our requirements, we will expose 2 endpoints:
+
+* binding between user and greeting:
+
+`POST /greetings`
+
+[source,json]
+----
+{
+  "name": "Alina",
+  "greeting": "Hola, señorita! ¿Cómo está?"
+}
+----
+
+* fetching greeting:
+
+`GET /greetings?user=Alina`
+
+=== Service
+
+For our use-case, there is no need to setup whole repository layer, so we just use in-memory `ConcurrentHashMap`:
+
+[source,java]
+----
+package com.oxymorus.greetings.service;
+
+import com.oxymorus.greetings.domain.Greeting;
+import com.oxymorus.greetings.domain.Person;
+import reactor.core.publisher.Mono;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+public class DefaultGreetingService implements GreetingService {
+
+    private static final Greeting DEFAULT_GREETING = Greeting.of("Привіт! Як справи?");
+
+    private static final List<Greeting> GREETINGS = Arrays.asList(
+            Greeting.of("Hola. ¿Cómo está?"), Greeting.of("Ciao! Come stai?"),
+            Greeting.of("Hi! How are you!"), DEFAULT_GREETING);
+
+    private static final Map<Person, Greeting> BINDINGS = new ConcurrentHashMap<>();
+
+    @Override
+    public Mono<Greeting> generateGreeting(Person person) {
+        Collections.shuffle(GREETINGS);
+        Greeting greeting = GREETINGS.get(0);
+        BINDINGS.put(person, greeting);
+        return Mono.just(greeting);
+    }
+
+    @Override
+    public Mono<Greeting> findGreeting(Person person) {
+        return Mono.just(BINDINGS.getOrDefault(person, DEFAULT_GREETING));
+    }
+}
+----
+
+=== Smoke testing
+
+Ok, now we have everything in place, so let's issue a few requests:
+
+* POST query:
++
+[source,shell script]
+----
+$ curl -X POST http://localhost:8080/greetings -H "Content-Type: application/json" -d '{"name":"Alina"}'
+----
++
+Result:
++
+[source,shell script]
+----
+{"user":{"name":"Alina"},"greeting":{"greeting":"Hola. ¿Cómo está?"}}
+----
+
+* GET query:
++
+[source,shell script]
+----
+$ curl -X GET http://localhost:8080/greetings?person=Alina
+----
++
+Result:
++
+[source,shell script]
+----
+{"user":{"name":"Alina"},"greeting":{"greeting":"Hola. ¿Cómo está?"}}
+----
+
 == Gatling configuration
 
 Gatling is written in Scala and provides pretty convenient DSL for describing load test scenarios.
@@ -53,89 +211,63 @@ So, to enable it for our service we need to configure Scala support with Maven.
 
 [source,xml]
 ----
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<build>
+    <testSourceDirectory>src/test/scala</testSourceDirectory>
+    <plugins>
+        <plugin>
+            <groupId>net.alchim31.maven</groupId>
+            <artifactId>scala-maven-plugin</artifactId>
+            <version>${scala-maven-plugin.version}</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>testCompile</goal>
+                    </goals>
+                    <configuration>
+                        <jvmArgs>
+                            <jvmArg>-Xss100M</jvmArg>
+                        </jvmArgs>
+                        <args>
+                            <arg>-target:jvm-1.8</arg>
+                            <arg>-deprecation</arg>
+                            <arg>-feature</arg>
+                            <arg>-unchecked</arg>
+                            <arg>-language:implicitConversions</arg>
+                            <arg>-language:postfixOps</arg>
+                        </args>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <gatling.version>3.2.1</gatling.version>
-        <gatling-plugin.version>3.0.3</gatling-plugin.version>
-        <scala-maven-plugin.version>4.2.0</scala-maven-plugin.version>
-        <gatling.skip>true</gatling.skip>
-    </properties>
+        <plugin>
+            <groupId>io.gatling</groupId>
+            <artifactId>gatling-maven-plugin</artifactId>
+            <version>${gatling-plugin.version}</version>
 
-    <dependencies>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>test</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
 
-        <dependency>
-            <groupId>io.gatling.highcharts</groupId>
-            <artifactId>gatling-charts-highcharts</artifactId>
-            <version>${gatling.version}</version>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>logback-classic</artifactId>
-                    <groupId>ch.qos.logback</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+    </plugins>
+</build>
+----
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
+Also, we need to add Gatling dependency itself:
 
-    </dependencies>
-
-    <build>
-        <testSourceDirectory>src/test/scala</testSourceDirectory>
-        <plugins>
-            <plugin>
-                <groupId>net.alchim31.maven</groupId>
-                <artifactId>scala-maven-plugin</artifactId>
-                <version>${scala-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                        <configuration>
-                            <jvmArgs>
-                                <jvmArg>-Xss100M</jvmArg>
-                            </jvmArgs>
-                            <args>
-                                <arg>-target:jvm-1.8</arg>
-                                <arg>-deprecation</arg>
-                                <arg>-feature</arg>
-                                <arg>-unchecked</arg>
-                                <arg>-language:implicitConversions</arg>
-                                <arg>-language:postfixOps</arg>
-                            </args>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>io.gatling</groupId>
-                <artifactId>gatling-maven-plugin</artifactId>
-                <version>${gatling-plugin.version}</version>
-
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-        </plugins>
-    </build>
-
-</project>
+[source,xml]
+----
+<dependency>
+    <groupId>io.gatling.highcharts</groupId>
+    <artifactId>gatling-charts-highcharts</artifactId>
+    <version>${gatling.version}</version>
+    <scope>test</scope>
+</dependency>
 ----
 
 == Load testing
@@ -144,27 +276,24 @@ Finally, after performing all configuration we are ready to write load test:
 
 [source,scala]
 ----
-package greetings
+package com.oxymorus.greetings
 
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-
 import scala.concurrent.duration._
 
-class LoadTest extends Simulation {
+class LoadScript extends Simulation {
 
   val baseUrl = "http://localhost:8080"
 
   val filePath = "C:\\data.csv"
-
-  val data = csv(filePath).circular
 
   val httpConf = http
     .baseUrl(baseUrl)
     .acceptHeader("application/stream+json")
 
   val basicLoad = scenario("LOAD_TEST")
-    .feed(data)
+    .feed(csv(filePath).circular)
     .exec(BasicLoad.start)
 
   setUp(
@@ -185,17 +314,17 @@ object BasicLoad {
         .body(StringBody(
           """
             |{
-            |  "user": "${user}",
-            |  "greeting": "${greeting}"
+            |  "name": "${name}"
             |}
             |""".stripMargin)).asJson
         .check(status is 200)
-      .exec(
-        http("Get greeting by user")
-          .get("/greetings")
-          .queryParam("user", "${user}")
-          .check(status is 200)
-      )
+    )
+    .exec(
+      http("Get greeting by user")
+        .get("/greetings")
+        .queryParam("user", "${user}")
+        .check(status is 200)
+    )
 }
 ----
 
