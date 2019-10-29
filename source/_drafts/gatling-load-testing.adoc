@@ -23,12 +23,12 @@ eyeCatchImage: /images/bg-index.jpg
 :greeting-service-github-url: https://github.com/zghurskyi/investigations/tree/master/investigation-gatling
 
 Sooner or later, there comes the time to measure how your RESTful service behaves under load.
-There are many of the shelf tools, that allow to do this in "quick-and-dirty" way --
+There are many out of the shelf tools, that allow to do this in "quick-and-dirty" way --
 like {wrk-reference-url}[wrk]/{wrk2-reference-url}[wrk2], {apache-benchmark-reference-url}[ab], etc.
 However, if you're working with JVM and want to setup reproducible and comprehensive load testing,
 probably, the best tool would be {gatling-reference-url}[Gatling].
 
-This post is `how-to` article for setting up load testing of Spring Boot service with Gatling.
+So, this post is `how-to` article for setting up load testing of Spring Boot service with Gatling.
 
 ++++
 <!-- more -->
@@ -38,31 +38,34 @@ This post is `how-to` article for setting up load testing of Spring Boot service
 
 In this post we will do the following:
 
-. Setup simple reactive web-service with POST and GET endpoints
-. Configure Maven to support Gatling
-. Write simple load testing scenario for our endpoints
+. Setup simple reactive web-service
+. Configure Gatling for our service under test
+. Write simple load testing scenario
 
 Without further ado -- let's start!
 
-== Service
+== Service Under Test
 
-We will build simple `greetings` service, that allows:
+We will perform load testing for simple `greetings` service, that allows:
 
-* generate exciting greeting for given user
-* get generated greeting by user
+* store greeting, and get back its id
+* get greeting by id
 
-To make things interesting, we will use Spring WebFlux reactive web stack.
+To make things interesting, we will use Spring reactive web stack.
 
-NOTE: The full service codebase can be found {greeting-service-github-url}[here]. So, you can skip explanations below and go straight to *Gatling configuration* section.
+NOTE: The full service code can be found {greeting-service-github-url}[here]. So, you can skip explanations below and go straight to *Gatling configuration* section.
 
-=== Bootstrapping the service
+[%collapsible]
+====
+
+*Bootstrapping*
 
 [source,shell]
 ----
 $ curl https://start.spring.io/starter.zip \
 -d dependencies=webflux,lombok,actuator \
 -d type=maven-project \
--d baseDir=service \
+-d baseDir=greetings \
 -d groupId=com.oxymorus.greetings \
 -d artifactId=greetings \
 -d bootVersion=2.1.9.RELEASE \
@@ -71,107 +74,119 @@ $ curl https://start.spring.io/starter.zip \
 $ unzip service.zip && rm service.zip && cd service
 ----
 
-=== Domain model
+*Domain model*
 
-For our simple service, we will use 2 domain classes -- `Person` and `Greeting`.
-
-[source,java]
-----
-package com.oxymorus.greetings.domain;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-@NoArgsConstructor
-@AllArgsConstructor(staticName = "of")
-@Getter
-public class Person {
-    private String name;
-}
-----
+For our service, we will use simple domain class -- `Greeting`.
 
 [source,java]
 ----
-package com.oxymorus.greetings.domain;
+package com.oxymorus.greeting.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Value;
 
-@NoArgsConstructor
-@AllArgsConstructor(staticName = "of")
-@Getter
+@Value
 public class Greeting {
+
+    public static final Greeting DEFAULT = new Greeting("<undefined>", "<undefined>");
+
+    private String name;
     private String greeting;
 }
-
 ----
 
-=== Controller
+*Controller*
 
-To implement our requirements, we will expose 2 endpoints:
+To implement the requirements, we will expose 2 endpoints:
 
-* binding between user and greeting:
-
-`POST /greetings`
-
-[source,json]
-----
-{
-  "name": "Alina",
-  "greeting": "Hola, señorita! ¿Cómo está?"
-}
-----
-
-* fetching greeting:
-
-`GET /greetings?user=Alina`
-
-=== Service
-
-For our use-case, there is no need to setup whole repository layer, so we just use in-memory `ConcurrentHashMap`:
+* `POST /greetings` endpoint -- to create greeting
+* `GET /greetings` endpoint -- to fetch greeting by `id`
 
 [source,java]
 ----
-package com.oxymorus.greetings.service;
+package com.oxymorus.greeting.api;
 
-import com.oxymorus.greetings.domain.Greeting;
-import com.oxymorus.greetings.domain.Person;
+import com.oxymorus.greeting.api.model.CreateGreetingResponse;
+import com.oxymorus.greeting.api.model.CreateGreetingsRequest;
+import com.oxymorus.greeting.api.model.GetGreetingRequest;
+import com.oxymorus.greeting.api.model.GetGreetingResponse;
+import com.oxymorus.greeting.service.GreetingService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+@RequiredArgsConstructor
+@RestController
+@RequestMapping("/greetings")
+public class GreetingController {
+
+    private final GreetingService service;
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+    Mono<CreateGreetingResponse> createGreeting(@RequestBody CreateGreetingsRequest request) {
+        return service.createGreeting(request.getName(), request.getGreeting())
+                .map(CreateGreetingResponse::new);
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+    Mono<GetGreetingResponse> getGreeting(GetGreetingRequest request) {
+        return service.findGreeting(request.getId())
+                .map(greeting -> new GetGreetingResponse(greeting.getName(), greeting.getGreeting()));
+    }
+}
+----
+
+*Service*
+
+For our use-case, there is no need to setup complex persistence layer, so we just use in-memory storage:
+
+[source,java]
+----
+package com.oxymorus.greeting.service;
+
+import com.oxymorus.greeting.domain.Greeting;
+import lombok.experimental.UtilityClass;
+import reactor.core.publisher.Mono;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class DefaultGreetingService implements GreetingService {
 
-    private static final Greeting DEFAULT_GREETING = Greeting.of("Привіт! Як справи?");
-
-    private static final List<Greeting> GREETINGS = Arrays.asList(
-            Greeting.of("Hola. ¿Cómo está?"), Greeting.of("Ciao! Come stai?"),
-            Greeting.of("Hi! How are you!"), DEFAULT_GREETING);
-
-    private static final Map<Person, Greeting> BINDINGS = new ConcurrentHashMap<>();
+    private static final Map<Long, Greeting> GREETINGS_STORAGE = new ConcurrentHashMap<>();
 
     @Override
-    public Mono<Greeting> generateGreeting(Person person) {
-        Collections.shuffle(GREETINGS);
-        Greeting greeting = GREETINGS.get(0);
-        BINDINGS.put(person, greeting);
-        return Mono.just(greeting);
+    public Mono<Long> createGreeting(String name, String greeting) {
+        return Mono.fromCallable(Generator::next)
+                .map(id -> {
+                    GREETINGS_STORAGE.put(id, new Greeting(name, greeting));
+                    return id;
+                });
     }
 
     @Override
-    public Mono<Greeting> findGreeting(Person person) {
-        return Mono.just(BINDINGS.getOrDefault(person, DEFAULT_GREETING));
+    public Mono<Greeting> findGreeting(Long id) {
+        return Mono.fromCallable(() -> GREETINGS_STORAGE.getOrDefault(id, Greeting.DEFAULT));
+    }
+
+    @UtilityClass
+    private static class Generator {
+        private static final AtomicLong id = new AtomicLong(0);
+
+        private static long next() {
+            return id.incrementAndGet();
+        }
     }
 }
+
 ----
 
-=== Smoke testing
+*Smoke Testing*
 
 Ok, now we have everything in place, so let's issue a few requests:
 
@@ -179,35 +194,40 @@ Ok, now we have everything in place, so let's issue a few requests:
 +
 [source,shell script]
 ----
-$ curl -X POST http://localhost:8080/greetings -H "Content-Type: application/json" -d '{"name":"Alina"}'
+$ curl -X POST http://localhost:8080/greetings \
+-H "Content-Type: application/json" \
+-H "Accept: application/stream+json" \
+-d '{"name":"Alina", "greeting":"Hola senorita. Como esta?"}'
 ----
 +
-Result:
+Response:
 +
 [source,shell script]
 ----
-{"user":{"name":"Alina"},"greeting":{"greeting":"Hola. ¿Cómo está?"}}
+{"id":1}
 ----
 
 * GET query:
 +
 [source,shell script]
 ----
-$ curl -X GET http://localhost:8080/greetings?person=Alina
+$ curl -X GET http://localhost:8080/greetings?id=1
 ----
 +
-Result:
+Response:
 +
 [source,shell script]
 ----
-{"user":{"name":"Alina"},"greeting":{"greeting":"Hola. ¿Cómo está?"}}
+{"name":"Alina", "greeting":"Hola senorita. Como esta?"}
 ----
+
+====
 
 == Gatling configuration
 
 Gatling is written in Scala and provides pretty convenient DSL for describing load test scenarios.
 
-So, to enable it for our service we need to configure Scala support with Maven.
+So, to enable it for our service we need to configure Scala:
 
 [source,xml]
 ----
@@ -276,32 +296,35 @@ Finally, after performing all configuration we are ready to write load test:
 
 [source,scala]
 ----
-package com.oxymorus.greetings
+package com.oxymorus.greeting
 
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
+
 import scala.concurrent.duration._
 
 class LoadScript extends Simulation {
 
   val baseUrl = "http://localhost:8080"
 
-  val filePath = "C:\\data.csv"
+  val dataFile = "data.csv"
 
-  val httpConf = http
+  val dataFeeder = ssv(dataFile).circular
+
+  val httpConfig = http
     .baseUrl(baseUrl)
     .acceptHeader("application/stream+json")
 
   val basicLoad = scenario("LOAD_TEST")
-    .feed(csv(filePath).circular)
+    .feed(dataFeeder)
     .exec(BasicLoad.start)
 
   setUp(
     basicLoad.inject(
       rampConcurrentUsers(0) to (400) during (10 seconds),
       constantConcurrentUsers(400) during (50 seconds)
-    ).protocols(httpConf)
-  ).maxDuration(2 minutes)
+    ).protocols(httpConfig)
+  )
 
 }
 
@@ -314,15 +337,18 @@ object BasicLoad {
         .body(StringBody(
           """
             |{
-            |  "name": "${name}"
+            |  "name": "${name}",
+            |  "greeting": "${greeting}"
             |}
             |""".stripMargin)).asJson
-        .check(status is 200)
+        .check(status is 200,
+          jsonPath("$.id").saveAs("id")
+        )
     )
     .exec(
-      http("Get greeting by user")
+      http("Get greeting by id")
         .get("/greetings")
-        .queryParam("user", "${user}")
+        .queryParam("user", "${id}")
         .check(status is 200)
     )
 }
