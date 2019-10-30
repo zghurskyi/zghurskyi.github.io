@@ -145,7 +145,7 @@ public class DefaultGreetingService implements GreetingService {
     &lt;artifactId&gt;gatling-charts-highcharts&lt;/artifactId&gt;
     &lt;version&gt;${gatling.version}&lt;/version&gt;
     &lt;scope&gt;test&lt;/scope&gt;
-&lt;/dependency&gt;</code></pre></div></div></div></div><div class="sect1"><h2>4. Load testing</h2><div class="sectionbody"><div class="paragraph"><p>Finally, after performing all configuration we are ready to write load test:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">import com.typesafe.config.ConfigFactory
+&lt;/dependency&gt;</code></pre></div></div></div></div><div class="sect1"><h2>4. Load testing</h2><div class="sectionbody"><div class="paragraph"><p>Finally, after performing all configuration we are ready to write load test:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import com.typesafe.config.ConfigFactory
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 
@@ -200,7 +200,7 @@ object BasicLoad {
         .queryParam("id", "${id}")
         .check(status is 200)
     )
-}</code></pre></div></div><div class="paragraph"><p>To run script, just execute:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-shell script hljs" data-lang="shell script">$ mvn gatling:test -Dgatling.skip=false -Dgatling.simulationClass=LoadScript</code></pre></div></div></div></div><div class="sect1"><h2>5. Debugging Load Script</h2><div class="sectionbody"><div class="paragraph"><p>When you write Gatling load tests, sooner or later you&#8217;ll need some facilities to debug and figure WTF is going on.</p></div><div class="paragraph"><p>There are several practical ways to figure out, if something goes wrong in your Gatlign script:</p></div><div class="ulist"><ul><li><p>Using good old <code>println</code> inside one of <code>exec</code> blocks:</p><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">    .exec { session =&gt;
+}</code></pre></div></div><div class="paragraph"><p>To run script, just execute:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-shell script hljs" data-lang="shell script">$ mvn gatling:test -Dgatling.skip=false -Dgatling.simulationClass=LoadScript</code></pre></div></div></div></div><div class="sect1"><h2>5. Debugging Load Script</h2><div class="sectionbody"><div class="paragraph"><p>When you write Gatling load tests, sooner or later you&#8217;ll need some facilities to debug and figure WTF is going on.</p></div><div class="paragraph"><p>There are several practical ways to figure out, if something goes wrong in your Gatlign script:</p></div><div class="ulist"><ul><li><p>Using good old <code>println</code> inside one of <code>exec</code> blocks:</p><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    .exec { session =&gt;
       println(session)
       session
     }</code></pre></div></div></li><li><p>Using logger configuration:</p><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
