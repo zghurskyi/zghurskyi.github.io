@@ -3,6 +3,34 @@
 
 
     <url>
+        <loc>https://www.oxymorus.com/tags/load-testing/</loc>
+        <lastmod>2019-10-28T23:05:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/maven/</loc>
+        <lastmod>2019-10-28T23:05:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/gatling/</loc>
+        <lastmod>2019-10-28T23:05:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/spring-boot/</loc>
+        <lastmod>2019-10-28T23:05:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/tags/functional-style/</loc>
         <lastmod>2019-10-23T23:34:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -179,13 +207,6 @@
 
     <url>
         <loc>https://www.oxymorus.com/tags/observability/</loc>
-        <lastmod>2019-10-10T22:07:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/tags/spring-boot/</loc>
         <lastmod>2019-10-10T22:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
