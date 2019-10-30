@@ -105,12 +105,13 @@ To implement the requirements, we will expose 2 endpoints:
 ----
 package com.oxymorus.greeting.api;
 
+import com.oxymorus.greeting.api.model.CreateGreetingRequest;
 import com.oxymorus.greeting.api.model.CreateGreetingResponse;
-import com.oxymorus.greeting.api.model.CreateGreetingsRequest;
 import com.oxymorus.greeting.api.model.GetGreetingRequest;
 import com.oxymorus.greeting.api.model.GetGreetingResponse;
 import com.oxymorus.greeting.service.GreetingService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -119,6 +120,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/greetings")
@@ -126,16 +128,19 @@ public class GreetingController {
 
     private final GreetingService service;
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
-    Mono<CreateGreetingResponse> createGreeting(@RequestBody CreateGreetingsRequest request) {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    Mono<CreateGreetingResponse> createGreeting(@RequestBody CreateGreetingRequest request) {
         return service.createGreeting(request.getName(), request.getGreeting())
-                .map(CreateGreetingResponse::new);
+                .map(CreateGreetingResponse::new)
+                .doOnSubscribe(subscription -> log.info("Create greeting '{}'", request));
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     Mono<GetGreetingResponse> getGreeting(GetGreetingRequest request) {
+
         return service.findGreeting(request.getId())
-                .map(greeting -> new GetGreetingResponse(greeting.getName(), greeting.getGreeting()));
+                .map(greeting -> new GetGreetingResponse(greeting.getName(), greeting.getGreeting()))
+                .doOnSubscribe(subscription -> log.info("Get greeting by id '{}'", request.getId()));
     }
 }
 ----
@@ -296,8 +301,7 @@ Finally, after performing all configuration we are ready to write load test:
 
 [source,scala]
 ----
-package com.oxymorus.greeting
-
+import com.typesafe.config.ConfigFactory
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 
@@ -305,15 +309,17 @@ import scala.concurrent.duration._
 
 class LoadScript extends Simulation {
 
-  val baseUrl = "http://localhost:8080"
-
-  val dataFile = "data.csv"
+  val config = ConfigFactory.load()
+  val baseUrl = config.getString("baseUrl")
+  val dataFile = config.getString("dataFile")
 
   val dataFeeder = ssv(dataFile).circular
 
   val httpConfig = http
     .baseUrl(baseUrl)
-    .acceptHeader("application/stream+json")
+    .contentTypeHeader("application/json")
+    .acceptHeader("application/json")
+    .shareConnections
 
   val basicLoad = scenario("LOAD_TEST")
     .feed(dataFeeder)
@@ -321,8 +327,8 @@ class LoadScript extends Simulation {
 
   setUp(
     basicLoad.inject(
-      rampConcurrentUsers(0) to (400) during (10 seconds),
-      constantConcurrentUsers(400) during (50 seconds)
+      rampConcurrentUsers(0) to (200) during (10 seconds),
+      constantConcurrentUsers(200) during (50 seconds)
     ).protocols(httpConfig)
   )
 
@@ -341,20 +347,118 @@ object BasicLoad {
             |  "greeting": "${greeting}"
             |}
             |""".stripMargin)).asJson
-        .check(status is 200,
-          jsonPath("$.id").saveAs("id")
-        )
+        .check(status is 200)
+        .check(jsonPath("$.id").saveAs("id"))
     )
     .exec(
       http("Get greeting by id")
         .get("/greetings")
-        .queryParam("user", "${id}")
+        .queryParam("id", "${id}")
         .check(status is 200)
     )
 }
 ----
 
+To run script, just execute:
+
+[source,shell script]
+----
+$ mvn gatling:test -Dgatling.skip=false -Dgatling.simulationClass=LoadScript
+----
+
+== Debugging Load Script
+
+When you write Gatling load tests, sooner or later you'll need some facilities to debug and figure WTF is going on.
+
+There are several practical ways to figure out, if something goes wrong in your Gatlign script:
+
+* Using good old `println` inside one of `exec` blocks:
++
+[source,scala]
+----
+    .exec { session =>
+      println(session)
+      session
+    }
+----
+* Using logger configuration:
++
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%-5level] %logger{15} - %msg%n%rEx</pattern>
+        </encoder>
+        <immediateFlush>false</immediateFlush>
+    </appender>
+
+    <!-- uncomment and set to DEBUG to log all failing HTTP requests -->
+    <!-- uncomment and set to TRACE to log all HTTP requests -->
+    <logger name="io.gatling.http.engine.response" level="DEBUG" />
+
+    <root level="WARN">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>
+----
+
 == Results
 
-== Conclusion
+When script completes, we can see the results:
 
+* In Gatling Maven plugin output:
++
+[source,shell script]
+----
+================================================================================
+---- Global Information --------------------------------------------------------
+> request count                                     435202 (OK=435202 KO=0     )
+> min response time                                      0 (OK=0      KO=-     )
+> max response time                                    537 (OK=537    KO=-     )
+> mean response time                                    49 (OK=49     KO=-     )
+> std deviation                                         34 (OK=34     KO=-     )
+> response time 50th percentile                         43 (OK=43     KO=-     )
+> response time 75th percentile                         63 (OK=63     KO=-     )
+> response time 95th percentile                        111 (OK=111    KO=-     )
+> response time 99th percentile                        162 (OK=162    KO=-     )
+> mean requests/sec                                7134.459 (OK=7134.459 KO=-     )
+---- Response Time Distribution ------------------------------------------------
+> t < 800 ms                                        435202 (100%)
+> 800 ms < t < 1200 ms                                   0 (  0%)
+> t > 1200 ms                                            0 (  0%)
+> failed                                                 0 (  0%)
+================================================================================
+
+Reports generated in 0s.
+Please open the following file: .../target/gatling/loadscript-20191030221405125/index.html
+----
+
+* In nicely prepared report:
++
+[source,shell script]
+----
+$ xdg-open target/gatling/loadscript*/index.html
+----
++
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/greetings_get.png]
+image::/images/greetings_get.png[]
+--
++
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/greetings_post.png]
+image::/images/greetings_post.png[]
+--
+
+== Conclusion
+In this post we learned, how to setup load testing of your service.
+
+If you followed along, probably, you noticed, that it may be daunting sometimes, but results are rewarding.
