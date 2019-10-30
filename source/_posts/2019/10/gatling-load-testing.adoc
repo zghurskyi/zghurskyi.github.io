@@ -303,7 +303,7 @@ Also, we need to add Gatling dependency itself:
 
 Finally, after performing all configuration we are ready to write load test:
 
-[source,scala]
+[source,java]
 ----
 import com.typesafe.config.ConfigFactory
 import io.gatling.core.Predef._
@@ -378,7 +378,7 @@ There are several practical ways to figure out, if something goes wrong in your 
 
 * Using good old `println` inside one of `exec` blocks:
 +
-[source,scala]
+[source,java]
 ----
     .exec { session =>
       println(session)
