@@ -159,7 +159,7 @@ This will send three messages, with given `key:value`:
 $ docker run --interactive --rm \
              --network=host \
              confluentinc/cp-kafkacat \
-             kafkacat -b localhost:9092 -t orders -K : -P <<EOF
+             kafkacat -b localhost:9092 -t orders -K: -P <<EOF
 4:{"order_id":4,"order_ts":1534772801276,"total_amount":11.50,"customer_name":"Alina Smith"}
 5:{"order_id":5,"order_ts":1534772905276,"total_amount":13.32,"customer_name":"Alex Black"}
 6:{"order_id":6,"order_ts":1534773042276,"total_amount":31.00,"customer_name":"Emma Watson"}
