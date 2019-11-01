@@ -454,13 +454,6 @@ $ xdg-open target/gatling/loadscript*/index.html
 [link=/images/greetings_get.png]
 image::/images/greetings_get.png[]
 --
-//+
-//[.text-center]
-//--
-//[.img-responsive.img-thumbnail]
-//[link=/images/greetings_post.png]
-//image::/images/greetings_post.png[]
-//--
 
 == Conclusion
 In this post we learned, how to setup load testing of your service.
