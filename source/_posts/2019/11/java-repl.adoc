@@ -1,0 +1,77 @@
+---
+layout: post
+title:  "JShell: Read-Evaluate-Print Loop for Java"
+date: 2019-11-02 22:28:54
+date: 2019-11-02 22:28:54
+tags:
+    - Java
+    - jshell
+    - Docker
+categories:
+    - Java
+    - jshell
+    - Docker
+og_image: /images/bg-index.jpg
+eyeCatchImage: /images/bg-index.jpg
+---
+
+In this post I provide a tutorial on using awesome `jshell` tool.
+
+++++
+<!-- more -->
+++++
+
+
+== Motivation
+
+There are many times, when you just want to try out some code snippet in Java.
+For example, you want to experiment with new constructs available in recent Java versions, something like `var`.
+
+For a long time, to do this you had to follow `Write-Compile-Execute Loop`:
+
+* write the Java program (of course with `public static void main(String... args)`)
+
+* compile written code with `javac` (and potentially fix the problems)
+
+* execute compiled byte-code with `java`
+
+* if something is wrong -- edit written program and repeat the process
+
+The frustrating thing here is unnecessary delay between the time you got an idea for your experiment
+and the time you actually got the feedback from Java compiler/runtime.
+
+But luckily for us -- now we have a tool, that finally removes unnecessary hustle. Please, meet `jshell`!
+
+`jshell` significantly shortens the feedback loop -- thus increasing your productivity.
+The boost is achieved by removing the need to switch back and forth between your editor/IDE and shell.
+Specifically, `jshell` implements `Read-Evaluate-Print Loop`:
+
+* reads your snippets from command line
+
+* evaluates the given code
+
+* quickly prints the result back to you
+
+If you think about it -- this is pretty awesome!
+
+Hopefully at this point you're eager to play with `jshell`, so, without further ado -- let's start.
+
+== Starting / exiting `jshell`
+
+== Writing code snippets
+
+== `jshell` commands
+
+== Editing
+
+== Feedback modes
+
+== Conclusion
+
+`jshell` doesn't replace IDEs. The tool is there for you to learn and experiment with Java code.
+
+`jshell` provides very convenient and safe playground.
+So, you can try different ideas and, after getting satisfactory results, just copy final code into your program editor or IDE.
+
+Overall, in my opinion, `jshell` significantly shortens the feedback loop -- thus increasing your productivity.
+The boost is achieved by removing the need to switching back and forth between your editor/IDE and shell.
