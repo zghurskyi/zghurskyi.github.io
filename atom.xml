@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.oxymorus.com/"/>
-  <updated>2019-11-02T22:28:54.000Z</updated>
+  <updated>2019-10-28T23:05:41.000Z</updated>
   <id>https://www.oxymorus.com/</id>
   
   <author>
@@ -15,36 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>JShell: Read-Evaluate-Print Loop for Java</title>
-    <link href="https://www.oxymorus.com/java-repl/"/>
-    <id>https://www.oxymorus.com/java-repl/</id>
-    <published>2019-11-02T22:28:54.000Z</published>
-    <updated>2019-11-02T22:28:54.000Z</updated>
-    
-    <content type="html"><![CDATA[<div class="paragraph"><p>In this post I provide a tutorial on using awesome <code>jshell</code> tool.</p></div><a id="more"></a><div class="sect1"><h2>1. Motivation</h2><div class="sectionbody"><div class="paragraph"><p>There are many times, when you just want to try out some code snippet in Java. For example, you want to experiment with new constructs available in recent Java versions, something like <code>var</code>.</p></div><div class="paragraph"><p>For a long time, to do this you had to follow <code>Write-Compile-Execute Loop</code>:</p></div><div class="ulist"><ul><li><p>write the Java program (of course with <code>public static void main(String&#8230;&#8203; args)</code>)</p></li><li><p>compile written code with <code>javac</code> (and potentially fix the problems)</p></li><li><p>execute compiled byte-code with <code>java</code></p></li><li><p>if something is wrong&#8201;&#8212;&#8201;edit written program and repeat the process</p></li></ul></div><div class="paragraph"><p>The frustrating thing here is unnecessary delay between the time you got an idea for your experiment and the time you actually got the feedback from Java compiler/runtime.</p></div><div class="paragraph"><p>But luckily for us&#8201;&#8212;&#8201;now we have a tool, that finally removes unnecessary hustle. Please, meet <code>jshell</code>!</p></div><div class="paragraph"><p><code>jshell</code> significantly shortens the feedback loop&#8201;&#8212;&#8201;thus increasing your productivity. The boost is achieved by removing the need to switch back and forth between your editor/IDE and shell. Specifically, <code>jshell</code> implements <code>Read-Evaluate-Print Loop</code>:</p></div><div class="ulist"><ul><li><p>reads your snippets from command line</p></li><li><p>evaluates the given code</p></li><li><p>quickly prints the result back to you</p></li></ul></div><div class="paragraph"><p>If you think about it&#8201;&#8212;&#8201;this is pretty awesome!</p></div><div class="paragraph"><p>Hopefully at this point you&#8217;re eager to play with <code>jshell</code>, so, without further ado&#8201;&#8212;&#8201;let&#8217;s start.</p></div></div></div><div class="sect1"><h2>2. Starting / exiting <code>jshell</code></h2><div class="sectionbody"></div></div><div class="sect1"><h2>3. Writing code snippets</h2><div class="sectionbody"></div></div><div class="sect1"><h2>4. <code>jshell</code> commands</h2><div class="sectionbody"></div></div><div class="sect1"><h2>5. Editing</h2><div class="sectionbody"></div></div><div class="sect1"><h2>6. Feedback modes</h2><div class="sectionbody"></div></div><div class="sect1"><h2>7. Conclusion</h2><div class="sectionbody"><div class="paragraph"><p><code>jshell</code> doesn&#8217;t replace IDEs. The tool is there for you to learn and experiment with Java code.</p></div><div class="paragraph"><p><code>jshell</code> provides very convenient and safe playground. So, you can try different ideas and, after getting satisfactory results, just copy final code into your program editor or IDE.</p></div><div class="paragraph"><p>Overall, in my opinion, <code>jshell</code> significantly shortens the feedback loop&#8201;&#8212;&#8201;thus increasing your productivity. The boost is achieved by removing the need to switching back and forth between your editor/IDE and shell.</p></div></div></div>]]></content>
-    
-    <summary type="html">
-    
-      &lt;div class=&quot;paragraph&quot;&gt;&lt;p&gt;In this post I provide a tutorial on using awesome &lt;code&gt;jshell&lt;/code&gt; tool.&lt;/p&gt;&lt;/div&gt;
-    
-    </summary>
-    
-      <category term="Java" scheme="https://www.oxymorus.com/categories/java/"/>
-    
-      <category term="jshell" scheme="https://www.oxymorus.com/categories/java/jshell/"/>
-    
-      <category term="Docker" scheme="https://www.oxymorus.com/categories/java/jshell/docker/"/>
-    
-    
-      <category term="Docker" scheme="https://www.oxymorus.com/tags/docker/"/>
-    
-      <category term="Java" scheme="https://www.oxymorus.com/tags/java/"/>
-    
-      <category term="jshell" scheme="https://www.oxymorus.com/tags/jshell/"/>
-    
-  </entry>
   
   <entry>
     <title>Load testing with Gatling</title>

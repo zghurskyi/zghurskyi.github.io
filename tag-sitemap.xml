@@ -3,27 +3,6 @@
 
 
     <url>
-        <loc>https://www.oxymorus.com/tags/jshell/</loc>
-        <lastmod>2019-11-02T22:28:54.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/tags/java/</loc>
-        <lastmod>2019-11-02T22:28:54.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/tags/docker/</loc>
-        <lastmod>2019-11-02T22:28:54.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://www.oxymorus.com/tags/load-testing/</loc>
         <lastmod>2019-10-28T23:05:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -81,6 +60,13 @@
 
     <url>
         <loc>https://www.oxymorus.com/tags/apache-kafka/</loc>
+        <lastmod>2019-10-18T15:53:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/tags/docker/</loc>
         <lastmod>2019-10-18T15:53:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
