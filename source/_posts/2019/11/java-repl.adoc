@@ -176,11 +176,15 @@ jshell> /list <5>
 
 ----
 
-<1> changing existing variable/method/class definition is easy -- just write new one, and it will overwrite existing definition
-<2> unlike case <1> -- definition is incompatible with previous one (`int` vs `String`)
-<3> it is allowed to use forward references -- variables/methods/classes, that are not yet defined
-<4> in the exception backtrace, there is snippet id and line number withing a snippet, that caused an exception -- `#id:line-number`
-<5> to trace back the source of exception, use `/list` command
+<1> overwrite existing variable/method/class definition
+
+<2> overwrite existing variable/method/class definition using incompatible type
+
+<3> forward reference variables/methods/classes, that are not yet defined
+
+<4> `#id:line-number` snippet id and line number withing a snippet, that caused an exception
+
+<5> `/list` command to trace back the source of exception
 
 [TIP]
 ====
@@ -226,9 +230,11 @@ jshell> "hello".startsWith("h") [Shift+Tab v] <3>
 
 ----
 
-<1> when you entered snippet, press kbd:[Tab] key to auto-complete
-<2> pressing kbd:[Tab] two times, shows text version of documentation for the first suggestion
-<3> pressing kbd:[Shift + Tab + v] allows to declare the variable with already entered value
+<1> press kbd:[Tab] key to auto-complete
+
+<2> press kbd:[Tab] two times to show text documentation
+
+<3> press kbd:[Shift + Tab + v] to declare the variable with already entered value
 
 [TIP]
 ====
