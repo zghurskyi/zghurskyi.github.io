@@ -200,7 +200,7 @@ When you gained enough experience, just change the feedback level:
 
 [source,shell script]
 ----
-jshell> "hello".*[Tab]* <1>
+jshell> "hello". [Tab] <1>
 charAt(                chars()                codePointAt(
 codePointBefore(       codePointCount(        codePoints()
 compareTo(             compareToIgnoreCase(   concat(
@@ -220,25 +220,25 @@ substring(             toCharArray()          toLowerCase(
 toString()             toUpperCase(           transform(
 translateEscapes()     trim()                 wait(
 
-jshell> "hello".startsWith(*[Tab+Tab]* <2>
+jshell> "hello".startsWith( [Tab+Tab] <2>
 
-jshell> "hello".startsWith("h") **[Shift+Tab v]** <3>
+jshell> "hello".startsWith("h") [Shift+Tab v] <3>
 
 ----
 
 <1> when you entered snippet, press kbd:[Tab] key to auto-complete
 <2> pressing kbd:[Tab] two times, shows text version of documentation for the first suggestion
-<3> pressing kbd:[Shift+Tab+v] allows to declare the variable with already entered value
+<3> pressing kbd:[Shift + Tab + v] allows to declare the variable with already entered value
 
 [TIP]
 ====
 `/help shortcuts` -- displays information about available shortcuts
 
-kbd:[Shift+Tab] then kbd:[v] -- the expression will be converted to a variable declaration
+kbd:[Shift + Tab] then kbd:[v] -- the expression will be converted to a variable declaration
 
-kbd:[Shift+Tab] then kbd:[m] -- the expression or statement will be converted to a method declaration
+kbd:[Shift + Tab] then kbd:[m] -- the expression or statement will be converted to a method declaration
 
-kbd:[Shift+Tab] then kbd:[i] -- propose possible imports
+kbd:[Shift + Tab] then kbd:[i] -- propose possible imports
 ====
 
 == Conclusion
