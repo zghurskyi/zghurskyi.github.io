@@ -1,0 +1,245 @@
+---
+layout: post
+title:  "JShell: Read-Evaluate-Print Loop for Java"
+date: 2019-11-02 22:28:54
+updated: 2019-11-02 22:28:54
+tags:
+    - Java
+    - jshell
+    - Docker
+categories:
+    - Java
+    - jshell
+    - Docker
+og_image: /images/bg-index.jpg
+eyeCatchImage: /images/bg-index.jpg
+---
+
+:sectnums:
+:sectnumlevels: 2
+
+In this post I provide a tutorial on using awesome `jshell` tool.
+
+++++
+<!-- more -->
+++++
+
+== Motivation
+
+There are many times, when you just want to try out some code snippet in Java.
+For example, you want to experiment with new constructs available in recent Java versions, something like `var`.
+
+For a long time, to do this you had to follow `Write-Compile-Execute Loop`:
+
+* write the Java program (of course with `public static void main(String... args)`)
+
+* compile written code with `javac` (and potentially fix compile-time errors)
+
+* execute compiled byte-code with `java` (and potentially fix run-time exceptions)
+
+* edit written program and repeat the process
+
+The frustrating thing here is delay between the time you start writing code
+and the time you actually got the feedback from Java compiler/runtime.
+However, now we have a tool, that finally removes unnecessary hustle. Please, meet `jshell`!
+
+`jshell` significantly shortens the feedback loop -- thus increasing your productivity.
+The boost is achieved by eliminating the need to switch back and forth between your editor/IDE and shell,
+since you write Java code in the dedicated shell (hence the name, `jshell`).
+More precisely, `jshell` implements `Read-Evaluate-Print Loop`:
+
+* reads the code from command line
+
+* evaluates the given snippet
+
+* prints the result back to you
+
+If you think about it -- this is pretty awesome!
+
+Hopefully at this point you're eager to play with `jshell`, so, without further ado -- let's start.
+
+== Starting / exiting `jshell`
+
+* Using JDK 9+
+
+`jshell` is available on JDK 9+ and above. So, if you have one of the recent Java versions available in the `$PATH`,
+then all you need to do is simply launch `jshell`:
+
+[source,shell script]
+----
+$ jshell -v
+|  Welcome to JShell -- Version 11.0.4
+|  For an introduction type: /help intro
+
+jshell> /exit
+|  Goodbye
+----
+
+NOTE: `-v` flag -- enables verbose feedback mode, that gives you a log of comments from `jshell`.
+
+* Using Docker
+
+If you want to experiment with most recent features of Java in clean and safe playground -- then just use Docker:
+
+[source,shell script]
+----
+$ docker run --rm -it adoptopenjdk/openjdk13 jshell -v
+Nov 03, 2019 12:08:49 AM java.util.prefs.FileSystemPreferences$1 run
+INFO: Created user preferences directory.
+|  Welcome to JShell -- Version 13
+|  For an introduction type: /help intro
+
+jshell> /exit
+|  Goodbye
+----
+
+NOTE: `/exit` -- quites `jshell`.
+
+== Snippets
+
+Let's try to do something:
+
+[source,shell script]
+----
+jshell> 1 + 1
+$1 ==> 2
+|  created scratch variable $1 : int
+
+jshell> int n = 1 + 1
+n ==> 2
+|  created variable n : int
+
+jshell> String hello(String g) {
+   ...>   return "hello " + g;
+   ...> }
+|  created method hello(String)
+
+jshell> String hello(String name) {
+   ...>   return "Hi " + name + "!";
+   ...> }
+|  modified method hello(String)
+|    update overwrote method hello(String) <1>
+
+jshell> hello("Alina")
+$5 ==> "Hi Alina!"
+|  created scratch variable $5 : String
+
+jshell> String n
+n ==> null
+|  replaced variable n : String
+|    update overwrote variable n : int <2>
+
+jshell> double volume(double radius) {
+   ...>   return 4.0 / 3.0 * PI * cube(radius); <3>
+   ...> }
+|  created method volume(double), however, it cannot be invoked until variable PI, and method cube(double) are declared
+
+jshell> double PI = 3.14159
+
+jshell> volume(1)
+|  attempted to call method volume(double) which cannot be invoked until method cube(double) is declared
+
+jshell> double cube(double a) { return a * a * a; }
+
+jshell> volume(1)
+$11 ==> 4.188786666666666
+
+jshell> int divide(int a, int b) {
+   ...>   return a / b;
+   ...> }
+
+jshell> divide(1, 0)
+|  Exception java.lang.ArithmeticException: / by zero
+|        at divide (#12:2) <4>
+|        at (#13:1)
+
+jshell> /list <5>
+
+   1 : 1 + 1
+   4 : String hello(String name) {
+         return "Hi " + name + "!";
+       }
+   5 : hello("Alina")
+   6 : String n;
+   7 : double volume(double radius) {
+         return 4.0 / 3.0 * PI * cube(radius);
+       }
+   8 : double PI = 3.14159;
+   9 : volume(1)
+  10 : double cube(double a) { return a * a * a; }
+  11 : volume(1)
+  12 : int divide(int a, int b) {
+         return a / b;
+       }
+  13 : divide(1, 0)
+
+----
+
+<1> changing existing variable/method/class definition is easy -- just write new one, and it will overwrite existing definition
+<2> unlike case <1> -- definition is incompatible with previous one (`int` vs `String`)
+<3> it is allowed to use forward references -- variables/methods/classes, that are not yet defined
+<4> in the exception backtrace, there is snippet id and line number withing a snippet, that caused an exception -- `#id:line-number`
+<5> to trace back the source of exception, use `/list` command
+
+[NOTE]
+====
+Verbose mode gives a lot of commentary, that might be useful, when you just start learning about `jshell`.
+When you gained enough experience, just change the feedback level:
+
+`/set feedback` -- displays the current mode and available modes
+
+`/set feedback concise` -- for terse commentary
+
+`/set feedback normal` -- for normal commentary
+
+`/set feedback silent` -- disables all feedback except errors
+====
+
+`jshell` supports auto-completion with `<Tab>` key:
+
+[source,shell script]
+----
+jshell> "hello". kbd:[Tab] <1>
+charAt(                chars()                codePointAt(
+codePointBefore(       codePointCount(        codePoints()
+compareTo(             compareToIgnoreCase(   concat(
+contains(              contentEquals(         describeConstable()
+endsWith(              equals(                equalsIgnoreCase(
+formatted(             getBytes(              getChars(
+getClass()             hashCode()             indent(
+indexOf(               intern()               isBlank()
+isEmpty()              lastIndexOf(           length()
+lines()                matches(               notify()
+notifyAll()            offsetByCodePoints(    regionMatches(
+repeat(                replace(               replaceAll(
+replaceFirst(          resolveConstantDesc(   split(
+startsWith(            strip()                stripIndent()
+stripLeading()         stripTrailing()        subSequence(
+substring(             toCharArray()          toLowerCase(
+toString()             toUpperCase(           transform(
+translateEscapes()     trim()                 wait(
+
+jshell> "hello".startsWith( kbd:[Tab+Tab] <2>
+
+jshell> "hello".startsWith("h") kbd:[Shift+Tab v] <3>
+
+----
+
+<1> when you entered snippet, press kbd:[Tab] key to auto-complete
+<2> pressing kbd:[Tab] two times, shows text version of documentation for the first suggestion
+<3> pressing kbd:[Shift+Tab v] allows to declare the variable with already entered value
+
+[TIP]
+====
+`/help shortcuts` -- displays information about available shortcuts
+====
+
+== Conclusion
+
+`jshell` doesn't replace IDEs. The tool is there for you to learn and experiment with Java code.
+
+`jshell` provides very convenient and safe playground.
+So, you can try different ideas and, after getting satisfactory results, just copy final code into your program editor or IDE.
+
+Overall, in my opinion, `jshell` significantly shortens the feedback loop -- thus increasing your productivity.
+The boost is achieved by removing the need to switching back and forth between your editor/IDE and shell.
