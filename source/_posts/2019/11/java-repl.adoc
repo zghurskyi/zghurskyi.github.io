@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "JShell: Read-Evaluate-Print Loop for Java"
+title:  "JShell: Awesome Java REPL"
 date: 2019-11-02 22:28:54
 updated: 2019-11-02 22:28:54
 tags:
@@ -98,7 +98,24 @@ NOTE: `/exit` -- quites `jshell`.
 
 == Snippets
 
-Let's try to do something:
+As already mentioned, the `jshell` tool allows you to execute Java code, getting immediate results.
+You can enter:
+
+* Java definition (variable, method, class, etc), like:
+
+ int x = 8
+
+* Java expression, like:
+
+  x + x
+
+* Java statement or import, like:
+
+  import java.time
+
+These little chunks of Java code are called `snippets`.
+
+Let's try write a few snippets to get familiar:
 
 [source,shell script]
 ----
@@ -228,6 +245,8 @@ jshell> "hello".startsWith( [Tab+Tab] <2>
 
 jshell> "hello".startsWith("h") [Shift+Tab v] <3>
 
+jshell> boolean _ = "hello".startsWith("h") <4>
+
 ----
 
 <1> press kbd:[Tab] key to auto-complete
@@ -236,6 +255,7 @@ jshell> "hello".startsWith("h") [Shift+Tab v] <3>
 
 <3> press kbd:[Shift + Tab + v] to declare the variable with already entered value
 
+<4> after pressing kbd:[Shift + Tab + v], the cursor is placed in the line, where you need to enter variable name
 [TIP]
 ====
 `/help shortcuts` -- displays information about available shortcuts
@@ -245,6 +265,170 @@ kbd:[Shift + Tab] then kbd:[v] -- the expression will be converted to a variable
 kbd:[Shift + Tab] then kbd:[m] -- the expression or statement will be converted to a method declaration
 
 kbd:[Shift + Tab] then kbd:[i] -- propose possible imports
+====
+
+== Commands
+
+`jshell` commands control the environment and display information.
+
+Command are distinguished from snippets by a leading forward slash `/`.
+
+Probably, the most useful is `/help` command -- it shows a list of available commands.
+Also, it allows to dig dipper into specific command. For example:
+
+[source,shell script]
+----
+jshell> /help /var
+|
+|                                   /vars
+|                                   =====
+|
+|  List the type, name, and value of variables that were entered.
+|
+|  /vars
+|  	List the type, name, and value of the current active variables
+|
+|  /vars <name>
+|  	List variables with the specified name (preference for active variables)
+|
+|  /vars <id>
+|  	List the variable with the specified snippet ID.
+|  	One or more IDs or ID ranges may used, see '/help id'
+|
+|  /vars -start
+|  	List the variables in the evaluated startup snippets
+|
+|  /vars -all
+|  	List all variables including failed, overwritten, dropped, and startup
+----
+
+`jshell` has a default startup script that is silently and automatically executed before start, so that you can get to work quickly.
+Entries from the startup script aren't listed unless you request them with the `/list -start` or `/list -all` command:
+
+[source,shell script]
+----
+jshell> /list -all
+
+  s1 : import java.io.*;
+  s2 : import java.math.*;
+  s3 : import java.net.*;
+  s4 : import java.nio.file.*;
+  s5 : import java.util.*;
+  s6 : import java.util.concurrent.*;
+  s7 : import java.util.function.*;
+  s8 : import java.util.prefs.*;
+  s9 : import java.util.regex.*;
+ s10 : import java.util.stream.*;
+----
+
+[TIP]
+====
+The default startup script consists of several common imports.
+
+`/set start` command, can be used to personalize your startup entries (for more details, use `/help /set start`).
+
+`/save -start` command saves personalized startup script.
+====
+
+Similar to snippet completion, when you enter commands and command options,
+use the kbd:[Tab] key to automatically complete the command or option.
+
+[source,shell script]
+----
+jshell> /
+/!          /?          /drop       /edit       /env        /exit
+/help       /history    /imports    /list       /methods    /open
+/reload     /reset      /save       /set        /types      /vars
+
+<press tab again to see synopsis>
+----
+
+[TIP]
+====
+Yet another useful way to get help, is to press kbd:[Tab] second time, to see synopsis for specific command:
+
+[source,shell script]
+----
+jshell> /env -
+view or change the evaluation context
+
+<press tab again to see full documentation>
+----
+
+====
+
+Using kbd:[Tab] in a file argument position of the command shows the available files:
+
+[source,shell script]
+----
+jshell> /open
+.dockerenv   /            bin/         boot/        dev/         etc/
+home/        lib/         lib64/       media/       mnt/         opt/
+proc/        root/        run/         sbin/        srv/         sys/
+tmp/         usr/         var/
+
+<press tab again to see synopsis>
+
+----
+
+Command (and command option) abbreviations are supported, **as long as the abbreviation is unique**.
+
+For example, the only command that begins with `/l` is `/list`, and the only `/list` option that begins with `-a` is `-all`.
+Therefore, you can use the following abbreviations to enter the `/list -all` command:
+
+[source,shell script]
+----
+jshell> /l -a
+----
+
+== Search
+
+By pressing kbd:[up arrow] / kbd:[down arrow] you can navigate through the history of entered items.
+
+However, sometimes it's pretty tedious to go through history one line at a time.
+So, to perform backward history search -- use kbd:[Ctrl+R]:
+
+[source,shell script]
+----
+jshell>
+bck-i-search: _
+----
+
+Now, you can enter keyword to search for (e.g. `class` -- if you want to search for all previously defined classes).
+You can continue go further back history by repeatedly pressing kbd:[Ctrl+R].
+And if at some point you want to move the search forward towards the present -- use kbd:[Ctrl+S].
+
+== External editor
+
+An alternative to editing at the command prompt is to use an external editor.
+This editor can be used to edit and create snippets, and is especially helpful for multiline snippets.
+
+To edit a specific snippet in an editor, use `/edit` command with snippet name or id.
+Use `/list` command to get snippet id.
+
+You can configure `jshell` to use the editor of your choice with the `/set editor` command:
+
+[source,shell script]
+----
+jshell> /set editor vim
+|  Editor set to: vim
+
+jshell> /edit
+----
+
+Now, you can define multi-line snippet in external editor, and after saving and closing editor,
+`jshell` prompt is restored:
+
+[source,shell script]
+----
+jshell>
+----
+
+[NOTE]
+====
+If you don’t specify an editor, then the following environment variables are checked in order:
+JSHELLEDITOR, VISUAL, and EDITOR.
+If none of those are set, then a simple default editor is used.
 ====
 
 == Conclusion
