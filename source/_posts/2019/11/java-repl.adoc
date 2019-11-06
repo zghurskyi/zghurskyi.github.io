@@ -182,7 +182,7 @@ jshell> /list <5>
 <4> in the exception backtrace, there is snippet id and line number withing a snippet, that caused an exception -- `#id:line-number`
 <5> to trace back the source of exception, use `/list` command
 
-[NOTE]
+[TIP]
 ====
 Verbose mode gives a lot of commentary, that might be useful, when you just start learning about `jshell`.
 When you gained enough experience, just change the feedback level:
