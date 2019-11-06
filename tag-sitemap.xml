@@ -24,6 +24,13 @@
     </url>
 
     <url>
+        <loc>https://www.oxymorus.com/tags/spring-boot/</loc>
+        <lastmod>2019-10-28T23:05:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/tags/load-testing/</loc>
         <lastmod>2019-10-28T23:05:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -39,13 +46,6 @@
 
     <url>
         <loc>https://www.oxymorus.com/tags/gatling/</loc>
-        <lastmod>2019-10-28T23:05:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/tags/spring-boot/</loc>
         <lastmod>2019-10-28T23:05:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
