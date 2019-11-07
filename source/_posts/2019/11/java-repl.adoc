@@ -101,17 +101,11 @@ NOTE: `/exit` -- quites `jshell`.
 As already mentioned, the `jshell` tool allows you to execute Java code, getting immediate results.
 You can enter:
 
-* Java definition (variable, method, class, etc), like:
+* Java definition (variable, method, class, etc), like:  `int x = 8`
 
- int x = 8
+* Java expression, like: `x + x`
 
-* Java expression, like:
-
-  x + x
-
-* Java statement or import, like:
-
-  import java.time
+* Java statement or import, like: `import java.time.*`
 
 These little chunks of Java code are called `snippets`.
 
@@ -205,6 +199,7 @@ jshell> /list <5>
 
 [TIP]
 ====
+
 Verbose mode gives a lot of commentary, that might be useful, when you just start learning about `jshell`.
 When you gained enough experience, just change the feedback level:
 
@@ -215,6 +210,7 @@ When you gained enough experience, just change the feedback level:
 `/set feedback normal` -- for normal commentary
 
 `/set feedback silent` -- disables all feedback except errors
+
 ====
 
 `jshell` supports auto-completion with `<Tab>` key:
@@ -256,8 +252,10 @@ jshell> boolean _ = "hello".startsWith("h") <4>
 <3> press kbd:[Shift + Tab + v] to declare the variable with already entered value
 
 <4> after pressing kbd:[Shift + Tab + v], the cursor is placed in the line, where you need to enter variable name
+
 [TIP]
 ====
+
 `/help shortcuts` -- displays information about available shortcuts
 
 kbd:[Shift + Tab] then kbd:[v] -- the expression will be converted to a variable declaration
@@ -265,6 +263,7 @@ kbd:[Shift + Tab] then kbd:[v] -- the expression will be converted to a variable
 kbd:[Shift + Tab] then kbd:[m] -- the expression or statement will be converted to a method declaration
 
 kbd:[Shift + Tab] then kbd:[i] -- propose possible imports
+
 ====
 
 == Commands
@@ -323,11 +322,13 @@ jshell> /list -all
 
 [TIP]
 ====
+
 The default startup script consists of several common imports.
 
 `/set start` command, can be used to personalize your startup entries (for more details, use `/help /set start`).
 
 `/save -start` command saves personalized startup script.
+
 ====
 
 Similar to snippet completion, when you enter commands and command options,
