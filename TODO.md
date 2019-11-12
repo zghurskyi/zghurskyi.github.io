@@ -33,3 +33,9 @@
 - [ ] Project Reactor stream lifecycle
 - [ ] Project Reactor runtime
 - [ ] Project Reactor implementation patterns
+
+# `Spring Data` series
+
+- [ ] Spring Data internals (JPA)
+- [ ] Testing with data-riders
+- [ ] Multiple data-sources
