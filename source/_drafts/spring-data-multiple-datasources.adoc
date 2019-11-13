@@ -1,0 +1,88 @@
+---
+layout: post
+title:  "Spring Data JPA: Multiple Data-sources / Liquibase Configurations"
+date: 2019-11-13 22:52:54
+updated: 2019-11-13 22:52:54
+tags:
+    - Spring Data JPA
+    - Multiple Liquibase Configurations
+    - Multiple Data-sources Configurations
+categories:
+    - Spring Data JPA
+    - Liquibase
+og_image: /images/bg-index.jpg
+eyeCatchImage: /images/bg-index.jpg
+---
+
+:experimental:
+:sectnums:
+:sectnumlevels: 2
+
+In this post I will show how to configure multiple data-sources when using Spring Data JPA.
+
+++++
+<!-- more -->
+++++
+
+== Setting up multiple MySQL databases
+
+Typically, you need to have multiple datasources when there are multple databases used by your service.
+So, first let's prepare infrastructure and setup several MySQL databases with Docker.
+
+[source,yaml]
+----
+version: '3.3'
+
+services:
+
+  mysql-db1:
+    image: mysql:8.0.17
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd1
+      MYSQL_DATABASE: db1
+    ports:
+      - "3306:3306"
+
+  mysql-db2:
+    image: mysql:8.0.17
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd2
+      MYSQL_DATABASE: db2
+    ports:
+      - "3307:3306"
+
+  admin:
+    image: adminer
+    ports:
+      - "8080:8080"
+----
+
+After starting up databases with `docker-compose up`, we should be able to connect to prepared empty databases:
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/db1-login.png]
+image::/images/db1-login[]
+
+[link=/images/db1-server.png]
+image::/images/db1-server[]
+--
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/db2-login.png]
+image::/images/db2-login[]
+
+[link=/images/db2-server.png]
+image::/images/db2-server[]
+--
+
+== Configuring multiple datasources
+
+== Configuring multiple Liquibases
+
+== Testing
+
+== Conclusions
