@@ -1,0 +1,228 @@
+---
+layout: post
+title:  "Maven: Compile to multiple Java versions"
+date: 2019-11-22 22:13:54
+updated: 2019-11-22 22:13:54
+tags:
+    - Maven
+    - JDK 8
+    - JDK 11
+categories:
+    - Maven
+    - JDK 8
+    - JDK 11
+og_image: /images/bg-index.jpg
+eyeCatchImage: /images/bg-index.jpg
+---
+
+:experimental:
+:sectnums:
+:sectnumlevels: 2
+
+:investigation-github-url: https://github.com/zghurskyi/investigations/tree/master/investigation-multiple-jdk-versions
+:compiler-plugin-reference-url: https://maven.apache.org/plugins/maven-compiler-plugin/index.html
+:jar-plugin-reference-url: https://maven.apache.org/plugins/maven-jar-plugin/index.html
+
+In this post I will show how to compile Java sources to multiple JDK versions with Maven.
+
+++++
+<!-- more -->
+++++
+
+== Sample source
+
+As the example we will use Feign client (complete project can be found {investigation-github-url}[here])
+
+[source,java]
+----
+package io.zghurskyi;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+@FeignClient(name = "greetings-client", path = "/")
+public interface GreetingsClient {
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    CreateGreetingResponse createGreeting(@RequestBody CreateGreetingRequest request);
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    GetGreetingResponse getGreeting(GetGreetingRequest request);
+
+    @Data
+    @AllArgsConstructor
+    class CreateGreetingRequest {
+        private String name;
+        private String greeting;
+    }
+
+    @Data
+    @AllArgsConstructor
+    class GetGreetingRequest {
+        private Long id;
+    }
+
+    @Data
+    @AllArgsConstructor
+    class CreateGreetingResponse {
+        private long id;
+    }
+
+    @Data
+    @AllArgsConstructor
+    class GetGreetingResponse {
+        private String name;
+        private String greeting;
+    }
+}
+----
+
+== Maven configuration
+
+=== Compiler plugin
+{compiler-plugin-reference-url}[The Compiler Plugin] is used to compile the sources of your project.
+
+Sometimes when you may need to compile a certain project to a different version than what you are currently using.
+The javac can accept such command using `-source` and `-target`.
+The Compiler Plugin can also be configured to provide these options during compilation.
+
+[source,xml]
+----
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.8.1</version>
+    <executions>                                                                            <1>
+        <execution>
+            <id>compile-jdk8</id>                                                           <2>
+            <goals>
+                <goal>compile</goal>                                                        <3>
+            </goals>
+            <configuration>
+                <source>8</source>                                                          <4>
+                <target>8</target>                                                          <5>
+                <fork>true</fork>                                                           <6>
+                <outputDirectory>${project.build.outputDirectory}_jdk8</outputDirectory>    <7>
+            </configuration>
+        </execution>
+        <execution>
+            <id>compile-jdk11</id>
+            <goals>
+                <goal>compile</goal>
+            </goals>
+            <configuration>
+                <source>8</source>
+                <target>11</target>
+                <fork>true</fork
+                <outputDirectory>${project.build.outputDirectory}_jdk11</outputDirectory>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+----
+
+<1> Multiple specifications of a set of goals to execute during the build lifecycle, each having (possibly) different configuration.
+
+<2> The identifier of this execution for labelling the goals during the build, and for matching exections to merge during inheritance.
+
+<3> The goals to execute with the given configuration.
+
+<4> The `-source` argument for the Java compiler.
+
+<5> The `-target` argument for the Java compiler.
+
+<6> Allows running the compiler in a separate process. If `false` it uses the built in compiler, while if `true` it will use an executable.
+
+<7> The directory for compiled classes.
+
+=== Jar plugin
+
+{jar-plugin-reference-url}[This plugin] provides the capability to build jars.
+
+[source,xml]
+----
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+    <version>3.1.2</version>
+    <executions>
+        <execution>
+            <id>jar-jdk8</id>
+            <goals>
+                <goal>jar</goal>
+            </goals>
+            <configuration>
+                <classifier>jdk8</classifier>                                               <1>
+                <classesDirectory>${project.build.outputDirectory}_jdk8</classesDirectory>  <2>
+            </configuration>
+        </execution>
+        <execution>
+            <id>jar-jdk11</id>
+            <goals>
+                <goal>jar</goal>
+            </goals>
+            <configuration>
+                <classifier>jdk11</classifier>
+                <classesDirectory>${project.build.outputDirectory}_jdk11</classesDirectory>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+----
+
+<1> Classifier to add to the artifact generated.
+If given, the artifact will be attached as a supplemental artifact.
+If not given this will create the main artifact which is the default behavior.
+If you try to do that a second time without using a classifier the build will fail.
+
+<2> Directory containing the classes and resource files that should be packaged into the JAR.
+
+[NOTE]
+====
+*Using classifier to reference different JDK dependencies*
+
+Classifiers are the additional text given to describe an artifact.
+
+[source,shell]
+----
+investigation-multiple-jdk-versions-0.0.1-SNAPSHOT-jdk11.jar
+investigation-multiple-jdk-versions-0.0.1-SNAPSHOT-jdk8.jar
+----
+
+From the above artifact names, classifiers can be located between the version and extension name of the artifact.
+
+* `jdk8` is used to describe that the artifact contains JDK 1.8 classes.
+* `jdk11` is used to describe that the artifact contains JDK 11 classes.
+
+Finally, use `classifier` in dependency declaration to specify which version you want to use:
+
+[source,xml]
+----
+<dependency>
+    <groupId>io.zghurskyi</groupId>
+    <artifactId>investigation-multiple-jdk-versions</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <classifier>jdk8</classifier>
+</dependency>
+----
+
+====
+
+== Checking .class files version
+
+After packaging with `mvn clean package` let's check .class bytecode version:
+
+[source,shell]
+----
+$ javap -verbose -cp target/investigation-multiple-jdk-versions-0.0.1-SNAPSHOT-jdk8.jar io.zghurskyi.GreetingsClient | grep "major version"
+  major version: 52
+
+$ javap -verbose -cp target/investigation-multiple-jdk-versions-0.0.1-SNAPSHOT-jdk11.jar io.zghurskyi.GreetingsClient | grep "major version"
+  major version: 55
+----
+
