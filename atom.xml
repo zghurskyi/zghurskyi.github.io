@@ -33,16 +33,16 @@
     
       <category term="Maven" scheme="https://www.oxymorus.com/categories/maven/"/>
     
-      <category term="JDK 8" scheme="https://www.oxymorus.com/categories/maven/jdk-8/"/>
+      <category term="Java 8" scheme="https://www.oxymorus.com/categories/maven/java-8/"/>
     
-      <category term="JDK 11" scheme="https://www.oxymorus.com/categories/maven/jdk-8/jdk-11/"/>
+      <category term="Java 11" scheme="https://www.oxymorus.com/categories/maven/java-8/java-11/"/>
     
     
       <category term="Maven" scheme="https://www.oxymorus.com/tags/maven/"/>
     
-      <category term="JDK 8" scheme="https://www.oxymorus.com/tags/jdk-8/"/>
+      <category term="Java 8" scheme="https://www.oxymorus.com/tags/java-8/"/>
     
-      <category term="JDK 11" scheme="https://www.oxymorus.com/tags/jdk-11/"/>
+      <category term="Java 11" scheme="https://www.oxymorus.com/tags/java-11/"/>
     
   </entry>
   
@@ -369,11 +369,11 @@
     
       <category term="Java 8" scheme="https://www.oxymorus.com/tags/java-8/"/>
     
+      <category term="Java 11" scheme="https://www.oxymorus.com/tags/java-11/"/>
+    
       <category term="Java 9" scheme="https://www.oxymorus.com/tags/java-9/"/>
     
       <category term="Java 10" scheme="https://www.oxymorus.com/tags/java-10/"/>
-    
-      <category term="Java 11" scheme="https://www.oxymorus.com/tags/java-11/"/>
     
   </entry>
   

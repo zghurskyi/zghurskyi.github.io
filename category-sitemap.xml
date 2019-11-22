@@ -8,14 +8,14 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/maven/jdk-8/jdk-11/</loc>
+        <loc>https://www.oxymorus.com/categories/maven/java-8/java-11/</loc>
         <lastmod>2019-11-22T22:13:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/maven/jdk-8/</loc>
+        <loc>https://www.oxymorus.com/categories/maven/java-8/</loc>
         <lastmod>2019-11-22T22:13:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
