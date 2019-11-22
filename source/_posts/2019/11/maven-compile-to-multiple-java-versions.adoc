@@ -5,12 +5,12 @@ date: 2019-11-22 22:13:54
 updated: 2019-11-22 22:13:54
 tags:
     - Maven
-    - JDK 8
-    - JDK 11
+    - Java 8
+    - Java 11
 categories:
     - Maven
-    - JDK 8
-    - JDK 11
+    - Java 8
+    - Java 11
 og_image: /images/bg-index.jpg
 eyeCatchImage: /images/bg-index.jpg
 ---
