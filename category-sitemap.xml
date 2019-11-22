@@ -8,6 +8,27 @@
     </url>
 
     <url>
+        <loc>https://www.oxymorus.com/categories/maven/jdk-8/jdk-11/</loc>
+        <lastmod>2019-11-22T22:13:54.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/maven/jdk-8/</loc>
+        <lastmod>2019-11-22T22:13:54.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/maven/</loc>
+        <lastmod>2019-11-22T22:13:54.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/categories/java/jshell/docker/</loc>
         <lastmod>2019-11-02T22:28:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
