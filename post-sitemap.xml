@@ -8,7 +8,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/maven-compile-to-multiple-java-versions/</loc>
+        <loc>https://www.oxymorus.com/maven-package-to-multiple-java-versions/</loc>
         <lastmod>2019-11-22T22:13:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
