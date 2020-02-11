@@ -54,20 +54,6 @@ $ sudo snap install microk8s --classic
 $ sudo microk8s.status --wait-ready
 ----
 
-[TIP]
-====
-After installation, `microk8s` will continue running until you decide to stop it:
-[source,shell script]
-----
-$ microk8s.stop
-----
-To start it again use:
-[source,shell script]
-----
-$ microk8s.start
-----
-====
-
 You probably expected it will be hard to get Kubernetes locally
 -- but believe it or not, you know have 1 node cluster up and running on your local machine. Congratulations!
 
@@ -235,6 +221,21 @@ image::/images/microk8s/dashboard-namespaces.png[]
 image::/images/microk8s/dashboard-overview.png[]
 --
 
+[TIP]
+====
+Last tip for today -- `microk8s` will continue running until you decide to stop it.
+
+Occasionally it might give you nasty port conflicts, so here is command to stop `microk8s`:
+[source,shell script]
+----
+$ microk8s.stop
+----
+To start it again:
+[source,shell script]
+----
+$ microk8s.start
+----
+====
 
 == Conclusion
 
