@@ -27,7 +27,7 @@ eyeCatchImage: /images/bg-index.jpg
 This post is not overwhelmed with any theoretical or practical reflections about Kubernetes.
 I will just share very easy way of installing and getting started with Kubernetes in the matter of minutes.
 
-So, let's not waste our time and get Kubernetes cluster running in locally.
+So, let's not waste our time and get Kubernetes cluster up and running locally.
 
 ++++
 <!-- more -->
