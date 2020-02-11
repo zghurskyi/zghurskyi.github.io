@@ -1,0 +1,243 @@
+---
+layout: post
+title:  "Installing Kubernetes with microk8s"
+date: 2020-02-11 20:41:41
+updated: 2020-02-11 20:41:41
+tags:
+    - Kubernetes
+    - microk8s
+categories:
+    - Kubernetes
+    - microk8s
+og_image: /images/bg-index.jpg
+eyeCatchImage: /images/bg-index.jpg
+---
+
+:sectnums:
+:sectnumlevels: 2
+:sectlinks:
+:sectanchors:
+
+:microk8s: https://microk8s.io/
+:microk8s-installation: https://microk8s.io/docs/install-alternatives
+:microk8s-docs: https://microk8s.io/docs/
+:microk8s-addons-list: https://microk8s.io/docs/addons#list
+:microk8s-addons-dashboard: https://microk8s.io/docs/addon-dashboard
+
+This post is not overwhelmed with any theoretical or practical reflections about Kubernetes.
+I will just share very easy way of installing and getting started with Kubernetes in the matter of minutes.
+
+So, let's not waste our time and get Kubernetes cluster running in locally.
+
+++++
+<!-- more -->
+++++
+
+There are many ways to get Kubernetes locally (with docker machine, minikube, etc.).
+However today I will share extremely easy to use tool -- {microk8s}[microk8s].
+
+== Install `microk8s`
+
+`microk8s` is native for Linux so the it's installed easily on Ubuntu:
+
+- Install
+
+[source,shell script]
+----
+$ sudo snap install microk8s --classic
+----
+
+- Check the status
+
+[source,shell script]
+----
+$ sudo microk8s.status --wait-ready
+----
+
+[TIP]
+====
+After installation, `microk8s` will continue running until you decide to stop it:
+[source,shell script]
+----
+$ microk8s.stop
+----
+To start it again use:
+[source,shell script]
+----
+$ microk8s.start
+----
+====
+
+You probably expected it will be hard to get Kubernetes locally
+-- but believe it or not, you know have 1 node cluster up and running on your local machine. Congratulations!
+
+NOTE: If you are `MacOS` or `Windows` user, don't get discouraged to try `microk8s`.
+{microk8s-installation}[Here] you can find instructions to get the tool in your hands.
+
+[TIP]
+====
+`microk8s` creates an admin group to enable seamless usage of commands.
+So you will have to add your current user to the group:
+[source,shell script]
+----
+$ sudo usermod -a -G microk8s $USER
+----
+Then, re-enter the session for the group update to take place:
+[source,shell script]
+----
+$ su - $USER
+----
+====
+
+== Getting familiar
+
+To have a minimum footprint `microk8s` is shipped with the most necessary Kubernetes components.
+However it provides easy way to enable/disable additional services ("addons").
+Addons are preconfigured and most of the time work seamlessly out-of-the-box.
+
+NOTE: {microk8s-addons-list}[Here] you can get a list of all supported addons.
+
+To get familiar and show what is available at your disposal,
+I will show a few commands to inspect installed Kubernetes cluster.
+To dive deeper just checkout excellent {microk8s-docs}[documentation] that `microk8s` provides.
+
+[TIP]
+====
+`microk8s` uses a namespaced `kubectl` command to prevent conflicts with any existing installs of kubectl.
+But, if you haven't tried installed `kubectl` before, it is easy to add an alias (append to ~/.bash_aliases):
+
+[source,shell script]
+----
+$ alias kubectl='microk8s.kubectl'
+----
+====
+
+=== Checking available nodes
+
+[source,shell script]
+----
+$ microk8s.kubectl get nodes
+
+NAME                        STATUS   ROLES    AGE    VERSION
+<YOUR_LOCAL_MACHINE_NAME>   Ready    <none>   198d   v1.17.2
+----
+No surprises, here it's your local machine.
+
+=== Checking available services
+
+[source,shell script]
+----
+$ microk8s.kubectl get services
+
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.152.183.1   <none>        443/TCP   198d
+----
+
+=== Checking available namespaces
+
+[source,shell script]
+----
+$ microk8s.kubectl get all --all-namespaces
+
+
+NAMESPACE            NAME                                                  READY   STATUS    RESTARTS   AGE
+container-registry   pod/registry-6c99589dc-pmgzr                          1/1     Running   82         198d
+kube-system          pod/heapster-v1.5.2-844b564688-bf75b                  4/4     Running   455        198d
+kube-system          pod/hostpath-provisioner-58564cb894-dpt6r             1/1     Running   84         198d
+kube-system          pod/kubernetes-dashboard-7d75c474bb-8fhjk             1/1     Running   93         198d
+kube-system          pod/monitoring-influxdb-grafana-v4-6b6954958c-lsbw7   2/2     Running   190        198d
+
+NAMESPACE            NAME                           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
+container-registry   service/registry               NodePort    10.152.183.213   <none>        5000:32000/TCP      198d
+default              service/kubernetes             ClusterIP   10.152.183.1     <none>        443/TCP             198d
+kube-system          service/heapster               ClusterIP   10.152.183.100   <none>        80/TCP              198d
+kube-system          service/kubernetes-dashboard   ClusterIP   10.152.183.224   <none>        443/TCP             198d
+kube-system          service/monitoring-grafana     ClusterIP   10.152.183.102   <none>        80/TCP              198d
+kube-system          service/monitoring-influxdb    ClusterIP   10.152.183.87    <none>        8083/TCP,8086/TCP   198d
+
+NAMESPACE            NAME                                             READY   UP-TO-DATE   AVAILABLE   AGE
+container-registry   deployment.apps/registry                         1/1     1            1           198d
+kube-system          deployment.apps/heapster-v1.5.2                  1/1     1            1           198d
+kube-system          deployment.apps/hostpath-provisioner             1/1     1            1           198d
+kube-system          deployment.apps/kubernetes-dashboard             1/1     1            1           198d
+kube-system          deployment.apps/monitoring-influxdb-grafana-v4   1/1     1            1           198d
+
+NAMESPACE            NAME                                                        DESIRED   CURRENT   READY   AGE
+container-registry   replicaset.apps/registry-6c99589dc                          1         1         1       198d
+kube-system          replicaset.apps/heapster-v1.5.2-6b794f77c8                  0         0         0       198d
+kube-system          replicaset.apps/heapster-v1.5.2-6f5d55456                   0         0         0       198d
+kube-system          replicaset.apps/heapster-v1.5.2-844b564688                  1         1         1       198d
+kube-system          replicaset.apps/hostpath-provisioner-58564cb894             1         1         1       198d
+kube-system          replicaset.apps/kubernetes-dashboard-7d75c474bb             1         1         1       198d
+kube-system          replicaset.apps/monitoring-influxdb-grafana-v4-6b6954958c   1         1         1       198d
+
+----
+
+The command line is place where we live, but some people enjoy UI better.
+
+== Dashboard addon
+
+Most of the details can be found {microk8s-addons-dashboard}[here].
+I will give the gist of the steps needed for the sake of completeness:
+
+- enable dashboard
+
+[source,shell script]
+----
+$ microk8s.enable dashboard
+----
+
+- get access token
+
+[source,shell script]
+----
+$ token=$(microk8s.kubectl -n kube-system get secret | grep default-token | cut -d " " -f1)
+
+$ microk8s.kubectl -n kube-system describe secret $token
+----
+
+- use port-forwarding, to access dashboard on your local machine
+
+[source,shell script]
+----
+$ microk8s.kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443
+
+Forwarding from 127.0.0.1:10443 -> 8443
+Forwarding from [::1]:10443 -> 8443
+----
+
+Voilà! Now you can enjoy Kubernetes dashboard!
+
+- enter https://localhost:10443/ in your browser
+
+- use `token` created previously to login
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/microk8s/dashboard-login.png]
+image::/images/microk8s/dashboard-login.png[]
+--
+
+- check out namespaces / overview
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/microk8s/dashboard-namespaces.png]
+image::/images/microk8s/dashboard-namespaces.png[]
+--
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/microk8s/dashboard-overview.png]
+image::/images/microk8s/dashboard-overview.png[]
+--
+
+
+== Conclusion
+
+Voilà! Now you can enjoy Kubernetes! Hope it helps in your journey.
+
+That it for now.
