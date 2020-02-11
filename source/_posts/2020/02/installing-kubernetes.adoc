@@ -166,14 +166,14 @@ The command line is place where we live, but some people enjoy UI too.
 Most of the details can be found {microk8s-addons-dashboard}[here].
 I will give the gist of the steps needed for the sake of completeness:
 
-- enable dashboard
+- Enable dashboard
 
 [source,shell script]
 ----
 $ microk8s.enable dashboard
 ----
 
-- get access token
+- Get access token
 
 [source,shell script]
 ----
@@ -182,7 +182,7 @@ $ token=$(microk8s.kubectl -n kube-system get secret | grep default-token | cut 
 $ microk8s.kubectl -n kube-system describe secret $token
 ----
 
-- use port-forwarding, to access dashboard on your local machine
+- Use port-forwarding, to access dashboard on your local machine
 
 [source,shell script]
 ----
@@ -194,9 +194,9 @@ Forwarding from [::1]:10443 -> 8443
 
 Voilà! Now you can enjoy Kubernetes dashboard!
 
-- enter https://localhost:10443/ in your browser
+- Enter https://localhost:10443/ in your browser
 
-- use `token` created previously to login
+- Login with `token` created previously
 
 [.text-center]
 --
@@ -205,7 +205,7 @@ Voilà! Now you can enjoy Kubernetes dashboard!
 image::/images/microk8s/dashboard-login.png[]
 --
 
-- check out namespaces / overview
+- Check-out namespaces / overview
 
 [.text-center]
 --
