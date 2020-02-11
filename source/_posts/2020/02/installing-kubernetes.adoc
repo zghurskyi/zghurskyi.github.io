@@ -90,7 +90,7 @@ To dive deeper just checkout excellent {microk8s-docs}[documentation] that `micr
 [TIP]
 ====
 `microk8s` uses a namespaced `kubectl` command to prevent conflicts with any existing installs of kubectl.
-But, if you haven't tried installed `kubectl` before, it is easy to add an alias (append to ~/.bash_aliases):
+But, if you haven't installed `kubectl` before, it is easy to add an alias (append to ~/.bash_aliases):
 
 [source,shell script]
 ----
@@ -107,7 +107,7 @@ $ microk8s.kubectl get nodes
 NAME                        STATUS   ROLES    AGE    VERSION
 <YOUR_LOCAL_MACHINE_NAME>   Ready    <none>   198d   v1.17.2
 ----
-No surprises, here it's your local machine.
+No surprises here, it's your local machine.
 
 === Checking available services
 
@@ -159,7 +159,7 @@ kube-system          replicaset.apps/monitoring-influxdb-grafana-v4-6b6954958c  
 
 ----
 
-The command line is place where we live, but some people enjoy UI better.
+The command line is place where we live, but some people enjoy UI too.
 
 == Dashboard addon
 
@@ -239,6 +239,4 @@ $ microk8s.start
 
 == Conclusion
 
-Voilà! Now you can enjoy Kubernetes! Hope it helps in your journey.
-
-That it for now.
+That it for now. Good luck in your Kubernetes journey!
