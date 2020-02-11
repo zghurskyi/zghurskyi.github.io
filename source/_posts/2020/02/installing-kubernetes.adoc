@@ -38,7 +38,7 @@ However today I will share extremely easy to use tool -- {microk8s}[microk8s].
 
 == Install `microk8s`
 
-`microk8s` is native for Linux so the it's installed easily on Ubuntu:
+`microk8s` is native for Linux that's why it particularly easy to get started on Linux machine (e.g. Ubuntu):
 
 - Install
 
