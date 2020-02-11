@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://www.oxymorus.com/installing-kubernetes/</loc>
+        <lastmod>2020-02-11T20:41:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/maven-package-to-multiple-java-versions/</loc>
         <lastmod>2019-11-22T22:13:54.000Z</lastmod>
         <changefreq>weekly</changefreq>

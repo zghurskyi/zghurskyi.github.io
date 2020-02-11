@@ -8,6 +8,20 @@
     </url>
 
     <url>
+        <loc>https://www.oxymorus.com/categories/kubernetes/microk8s/</loc>
+        <lastmod>2020-02-11T20:41:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/kubernetes/</loc>
+        <lastmod>2020-02-11T20:41:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/categories/maven/java-8/java-11/</loc>
         <lastmod>2019-11-22T22:13:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
