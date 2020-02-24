@@ -41,10 +41,10 @@ First, let's define what initial state is and what we want to build.
 Suppose we already have Spring Boot service, that uses Apache Camel for integration with other services and infrastructure.
 Specifically, the service produces messages to Apache Kafka.
 
-As a software engineers, we know that in our dynamic world there is only one constant --requirements to our software will change.
+As a software engineers, we know that in our dynamic world there is only one constant -- requirements to our software will change.
 So, we want to build the system that is easy to maintain and extend.
 In this concrete instance we are going to build integration with Kafka in such a way,
-that producing messages to new topics will not require changing sources (defining new routes), but simply means adding new configurations.
+that producing messages to new topics will not require changing sources (defining new routes), but simply translates to adding new configurations.
 
 == Plan
 
@@ -119,6 +119,43 @@ camel.kafka.producers.test2.brokers=localhost:9092
 camel.kafka.producers.test2.topic=test3
 ----
 
+=== Build configured routes
+
+[source,java]
+----
+package com.oxymorus.listener;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.camel.CamelContext;
+import org.apache.camel.LoggingLevel;
+import org.apache.camel.builder.RouteBuilder;
+
+import static com.oxymorus.configuration.properties.CamelKafkaProducerProperties.ProducerProperties;
+
+@Slf4j
+@RequiredArgsConstructor
+public class CamelKafkaProducerRoutesBuilder extends RouteBuilder {
+
+    private final String key;
+    private final ProducerProperties producerProperties;
+
+    public CamelKafkaProducerRoutesBuilder(CamelContext context, String key, ProducerProperties producerProperties) {
+        super(context);
+        this.key = key;
+        this.producerProperties = producerProperties;
+    }
+
+    @Override
+    public void configure() throws Exception {
+        from("direct:producer-" + key)
+                .log(LoggingLevel.INFO, "Sending to Kafka: ${body}")
+                .to(producerProperties.getUri())
+                .log("Successfully sent ${body}");
+    }
+}
+----
+
 === Initialize routes on service startup
 
 [source,java]
@@ -163,42 +200,9 @@ public class CamelKafkaRoutesInitializingListener {
 }
 ----
 
-[source,java]
-----
-package com.oxymorus.listener;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.camel.CamelContext;
-import org.apache.camel.LoggingLevel;
-import org.apache.camel.builder.RouteBuilder;
-
-import static com.oxymorus.configuration.properties.CamelKafkaProducerProperties.ProducerProperties;
-
-@Slf4j
-@RequiredArgsConstructor
-public class CamelKafkaProducerRoutesBuilder extends RouteBuilder {
-
-    private final String key;
-    private final ProducerProperties producerProperties;
-
-    public CamelKafkaProducerRoutesBuilder(CamelContext context, String key, ProducerProperties producerProperties) {
-        super(context);
-        this.key = key;
-        this.producerProperties = producerProperties;
-    }
-
-    @Override
-    public void configure() throws Exception {
-        from("direct:producer-" + key)
-                .log(LoggingLevel.INFO, "Sending to Kafka: ${body}")
-                .to(producerProperties.getUri())
-                .log("Successfully sent ${body}");
-    }
-}
-----
-
 == Smoke Testing
+
+As good people, we should test our software. But today I'm lazy and will do only manual testing.
 
 * Start local kafka broker
 
