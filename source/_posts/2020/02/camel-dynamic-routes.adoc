@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "'Dynamic' Kafka routes with Apache Camel"
+title:  "Dynamic Kafka routes with Apache Camel"
 date: 2020-02-23 12:54:41
 updated: 2020-02-23 12:54:41
 tags:
@@ -24,7 +24,7 @@ eyeCatchImage: /images/bg-index.jpg
 
 :dynamic-camel-routes-github: https://github.com/zghurskyi/investigations/tree/master/investigation-camel-dynamic-routes
 
-Suppose, you have a task to implement 'dynamic' routes configuration with Apache Camel.
+Suppose, you have a task to implement dynamic routes configuration with Apache Camel.
 Or more concretely, you want to create Camel routes without having to add new route definitions just by changing configuration.
 
 I recently encountered similar task, and as it turned out -- there is a simple way to get things done .
@@ -200,14 +200,15 @@ public class CamelKafkaProducerRoutesBuilder extends RouteBuilder {
 
 == Smoke Testing
 
-1. Start local kafka broker
+* Start local kafka broker
+
 [source,shell script]
 ----
 $ cd docker
 $ docker-compose up
 ----
 
-1. Start console consumer
+* Start console consumer
 
 [source,shell script]
 ----
@@ -217,7 +218,7 @@ $ docker run --tty --rm --interactive \
               kafkacat -C -b localhost:9092 -t test1
 ----
 
-1. Start the service
+* Start the service
 
 [source,java]
 ----
