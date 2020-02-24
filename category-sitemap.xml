@@ -8,6 +8,34 @@
     </url>
 
     <url>
+        <loc>https://www.oxymorus.com/categories/apache-camel/apache-kafka/dynamic-routes/spring-boot/</loc>
+        <lastmod>2020-02-23T12:54:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/apache-camel/apache-kafka/dynamic-routes/</loc>
+        <lastmod>2020-02-23T12:54:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/apache-camel/apache-kafka/</loc>
+        <lastmod>2020-02-23T12:54:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/apache-camel/</loc>
+        <lastmod>2020-02-23T12:54:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/categories/kubernetes/microk8s/</loc>
         <lastmod>2020-02-11T20:41:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -191,13 +219,6 @@
 
     <url>
         <loc>https://www.oxymorus.com/categories/apache-camel/camelcustomlogmask/</loc>
-        <lastmod>2019-10-16T16:53:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/apache-camel/</loc>
         <lastmod>2019-10-16T16:53:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
