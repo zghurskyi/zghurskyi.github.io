@@ -1,7 +1,8 @@
 ---
 layout: post
 title:  "Dynamic Kafka routes with Apache Camel"
-date: 2020-02-23 12:54:41
+date: 2019-10-01 16:53:41
+#date: 2020-02-23 12:54:41
 updated: 2020-02-23 12:54:41
 tags:
     - Apache Camel
