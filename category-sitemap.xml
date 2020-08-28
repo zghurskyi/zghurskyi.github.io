@@ -8,6 +8,41 @@
     </url>
 
     <url>
+        <loc>https://www.oxymorus.com/categories/observability/spring-boot/prometheus/grafana/docker/</loc>
+        <lastmod>2020-08-28T22:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/observability/spring-boot/prometheus/grafana/</loc>
+        <lastmod>2020-08-28T22:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/observability/spring-boot/prometheus/</loc>
+        <lastmod>2020-08-28T22:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/observability/spring-boot/</loc>
+        <lastmod>2020-08-28T22:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/observability/</loc>
+        <lastmod>2020-08-28T22:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.oxymorus.com/categories/apache-camel/apache-kafka/dynamic-routes/spring-boot/</loc>
         <lastmod>2020-02-23T12:54:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -269,41 +304,6 @@
     <url>
         <loc>https://www.oxymorus.com/categories/data-access-layer/lost-update/</loc>
         <lastmod>2019-10-15T23:19:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/observability/spring-boot/prometheus/grafana/docker/</loc>
-        <lastmod>2019-10-10T22:07:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/observability/spring-boot/prometheus/grafana/</loc>
-        <lastmod>2019-10-10T22:07:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/observability/spring-boot/prometheus/</loc>
-        <lastmod>2019-10-10T22:07:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/observability/spring-boot/</loc>
-        <lastmod>2019-10-10T22:07:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/observability/</loc>
-        <lastmod>2019-10-10T22:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
