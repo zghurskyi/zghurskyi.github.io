@@ -1,12 +1,8 @@
 ---
 layout: post
 title:  "Monitoring Spring Boot service with Prometheus and Grafana"
-#date: 2019-09-11 22:07:41
-#updated: 2019-10-10 22:07:41
-#date: 2020-08-28 22:07:41
-#updated: 2020-08-28 22:07:41
-date: 2019-06-21 23:19:41
-updated: 2019-10-15 23:19:41
+date: 2019-09-11 22:07:41
+updated: 2019-10-10 22:07:41
 tags:
     - Observability
     - Spring Boot
