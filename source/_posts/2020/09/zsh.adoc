@@ -21,6 +21,7 @@ eyeCatchImage: /images/bg-index.jpg
 :oh-my-zsh-plugins: https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 :gnome-terminal-colors-solarized: https://github.com/aruhier/gnome-terminal-colors-solarized
 
+:toc: macro
 :sectnums:
 :sectlinks:
 :sectanchors:
@@ -32,7 +33,7 @@ Simply a list of steps on how to install {zsh}[Zsh] on Ubuntu and make it pretty
 <!-- more -->
 ++++
 
-:toc:
+toc::[]
 
 == Installing `Zsh`
 
