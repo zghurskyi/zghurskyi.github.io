@@ -21,8 +21,10 @@ eyeCatchImage: /images/bg-index.jpg
 :oh-my-zsh-plugins: https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 :gnome-terminal-colors-solarized: https://github.com/aruhier/gnome-terminal-colors-solarized
 
+:sectnums:
 :sectlinks:
 :sectanchors:
+:experimental:
 
 Simply a list of steps on how to install {zsh}[Zsh] on Ubuntu and make it pretty.
 
@@ -32,7 +34,7 @@ Simply a list of steps on how to install {zsh}[Zsh] on Ubuntu and make it pretty
 
 == Installing `Zsh`
 
-`Zsh` is available in the official package repository of Ubuntu LTS. So it’s very easy to install.
+`Zsh` is available in the official package repository of Ubuntu. So it’s very easy to install.
 
 [source,bash]
 ----
@@ -50,13 +52,13 @@ sudo usermod -s /usr/bin/zsh $(whoami)
 sudo reboot
 ----
 
-After reboot press kbd:[Ctrl] + kbd:[Alt] + kbd:[T] to open terminal and choose option *2*.
+After reboot press kbd:[Ctrl + Alt + T] to open terminal and choose option *2*.
 `Zsh` should create a new `~/.zshrc` configuration file with the recommended settings.
 
 == Install `Oh My Zsh`
 {oh-my-zsh}[oh-my-zsh] is an open source, community-driven framework for managing your `zsh` configuration.
 
-WARNING: Be aware, that installing `oh-my-zsh` changes the `~/.zshrc` configuration file.
+CAUTION: Be aware, that installing `oh-my-zsh` changes the `~/.zshrc` configuration file.
 
 [source,bash]
 ----
