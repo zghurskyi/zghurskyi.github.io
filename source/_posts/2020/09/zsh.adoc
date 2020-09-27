@@ -51,7 +51,7 @@ sudo usermod -s /usr/bin/zsh $(whoami)
 sudo reboot
 ----
 
-After reboot press kbd:[Ctrl+Alt+T] to open terminal and choose option *2*.
+After reboot press kbd:[Ctrl] + kbd:[Alt] + kbd:[T] to open terminal and choose option *2*.
 ZSH should create a new `~/.zshrc` configuration file with the recommended settings.
 
 == Install `Oh My Zsh`
@@ -123,7 +123,7 @@ git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git ~/.solar
 cd ~/.solarized
 ./install.sh
 ----
-Choose option 1 for dark theme.
+Choose option *1* for dark theme.
 
 After installation, open `~/.zshrc` and add the line:
 
