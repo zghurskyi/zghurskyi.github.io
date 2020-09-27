@@ -21,7 +21,6 @@ eyeCatchImage: /images/bg-index.jpg
 :oh-my-zsh-plugins: https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 :gnome-terminal-colors-solarized: https://github.com/aruhier/gnome-terminal-colors-solarized
 
-:sectnums:
 :sectlinks:
 :sectanchors:
 
@@ -35,7 +34,7 @@ Simply a list of steps on how to install {zsh}[Zsh] on Ubuntu and make it pretty
 
 `Zsh` is available in the official package repository of Ubuntu LTS. So it’s very easy to install.
 
-[source,java]
+[source,bash]
 ----
 sudo apt-get update
 sudo apt-get install zsh
@@ -45,7 +44,7 @@ zsh --version
 NOTE: You can find more instructions for different platforms {oh-my-zsh-installing-zsh}[here].
 
 == Make `Zsh` default shell
-[source,java]
+[source,bash]
 ----
 sudo usermod -s /usr/bin/zsh $(whoami)
 sudo reboot
@@ -59,7 +58,7 @@ After reboot press kbd:[Ctrl] + kbd:[Alt] + kbd:[T] to open terminal and choose 
 
 WARNING: Be aware, that installing `oh-my-zsh` changes the `~/.zshrc` configuration file.
 
-[source,java]
+[source,bash]
 ----
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ----
@@ -72,7 +71,7 @@ You can take a look in the {oh-my-zsh-plugins}[wiki] to see what's currently ava
 To enable a plugin - just add its name to the `plugins` array in your `~/.zshrc` file.
 For example, to enable `git` plugin:
 
-[source,java]
+[source,bash]
 ----
 nano ~/.zshrc
 # Find plugins section and add plugin to the list
@@ -85,7 +84,7 @@ NOTE: If you still don't have Git installed on your Ubuntu, simply run: `sudo ap
 
 === Updating `Oh My Zsh`
 
-[source,java]
+[source,bash]
 ----
 omz update
 ----
@@ -94,7 +93,7 @@ omz update
 If you want to uninstall `oh-my-zsh`, just run command below:
 it will remove `oh-my-zsh` and revert your previous `bash` or `zsh` configuration.
 
-[source,java]
+[source,bash]
 ----
 uninstall_oh_my_zsh
 ----
@@ -102,13 +101,13 @@ uninstall_oh_my_zsh
 == Look and Feel
 
 === Setup powerline fonts
-[source,java]
+[source,bash]
 ----
 sudo apt-get install fonts-powerline
 ----
 
 === Agnoster Theme
-[source,java]
+[source,bash]
 ----
 nano ~/.zshrc
 # change theme to agnoster
@@ -116,7 +115,7 @@ ZSH_THEME="agnoster"
 ----
 
 === Solarized Colorscheme for Gnome Terminal
-[source,java]
+[source,bash]
 ----
 sudo apt-get install dconf-cli
 git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git ~/.solarized
@@ -127,7 +126,7 @@ Choose option *1* for dark theme.
 
 After installation, open `~/.zshrc` and add the line:
 
-[source,java]
+[source,bash]
 ----
 nano ~/.zshrc
 # add line below
