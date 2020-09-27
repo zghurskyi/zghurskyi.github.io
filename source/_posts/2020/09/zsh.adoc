@@ -4,14 +4,13 @@ title:  "How to install ZSH on Ubuntu"
 date: 2020-09-29 12:35:12
 updated: 2020-09-29 12:35:12
 tags:
-    - Productivity Tools
     - Ubuntu
-    - ZSH
-    - git
+    - zsh
+    - oh-my-zsh
 categories:
     - Ubuntu
-    - ZSH
-    - git
+    - zsh
+    - oh-my-zsh
 og_image: /images/bg-index.jpg
 eyeCatchImage: /images/bg-index.jpg
 ---
@@ -34,7 +33,7 @@ Simply a list of steps on how to install {zsh}[ZSH] on Ubuntu and make it pretty
 
 == Installing ZSH
 
-ZSH is available in the official package repository of Ubuntu 18.04 LTS. So it’s very easy to install.
+ZSH is available in the official package repository of Ubuntu LTS. So it’s very easy to install.
 
 [source,sh]
 ----
@@ -52,13 +51,13 @@ sudo usermod -s /usr/bin/zsh $(whoami)
 sudo reboot
 ----
 
-After reboot press kbd:[Ctrl+Alt+T] to open terminal and choose option 2.
+After reboot press kbd:[Ctrl+Alt+T] to open terminal and choose option *2*.
 ZSH should create a new `~/.zshrc` configuration file with the recommended settings.
 
-== Install Oh My Zsh
-{oh-my-zsh}[Oh My Zsh] is an open source, community-driven framework for managing your `zsh` configuration.
+== Install `Oh My Zsh`
+{oh-my-zsh}[oh-my-zsh] is an open source, community-driven framework for managing your `zsh` configuration.
 
-WARNING: Be aware, that installing `Oh My Zsh` changes the `~/.zshrc` configuration file.
+WARNING: Be aware, that installing `oh-my-zsh` changes the `~/.zshrc` configuration file.
 
 [source,bash]
 ----
@@ -67,11 +66,11 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 
 === Plugins
 
-`Oh My Zsh` comes with a shitload of plugins for you to take advantage of.
-You can take a look in the plugins directory and/or the {oh-my-zsh-plugins}[wiki] to see what's currently available.
+`oh-my-zsh` comes with a shitload of plugins for you to take advantage of.
+You can take a look in the {oh-my-zsh-plugins}[wiki] to see what's currently available.
 
-Enable a plugin by adding its name to the plugins array in your `~/.zshrc` file.
-For example, this enables the git plugin:
+To enable a plugin - just add its name to the `plugins` array in your `~/.zshrc` file.
+For example, to enable `git` plugin:
 
 [source,bash]
 ----
@@ -82,7 +81,7 @@ plugins=(
 )
 ----
 
-NOTE: If you don't have Git installed on Ubuntu, simply run: `sudo apt-get install git`
+NOTE: If you still don't have Git installed on your Ubuntu, simply run: `sudo apt-get install git`
 
 === Updating `Oh My Zsh`
 
