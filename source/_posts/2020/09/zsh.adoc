@@ -25,13 +25,14 @@ eyeCatchImage: /images/bg-index.jpg
 :sectlinks:
 :sectanchors:
 :experimental:
-:toc:
 
 Simply a list of steps on how to install {zsh}[Zsh] on Ubuntu and make it pretty.
 
 ++++
 <!-- more -->
 ++++
+
+:toc:
 
 == Installing `Zsh`
 
