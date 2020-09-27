@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How to install ZSH on Ubuntu"
+title:  "How to install Zsh on Ubuntu"
 date: 2020-09-29 12:35:12
 updated: 2020-09-29 12:35:12
 tags:
@@ -25,17 +25,17 @@ eyeCatchImage: /images/bg-index.jpg
 :sectlinks:
 :sectanchors:
 
-Simply a list of steps on how to install {zsh}[ZSH] on Ubuntu and make it pretty.
+Simply a list of steps on how to install {zsh}[Zsh] on Ubuntu and make it pretty.
 
 ++++
 <!-- more -->
 ++++
 
-== Installing ZSH
+== Installing `Zsh`
 
-ZSH is available in the official package repository of Ubuntu LTS. So it’s very easy to install.
+`Zsh` is available in the official package repository of Ubuntu LTS. So it’s very easy to install.
 
-[source,sh]
+[source,java]
 ----
 sudo apt-get update
 sudo apt-get install zsh
@@ -44,22 +44,22 @@ zsh --version
 
 NOTE: You can find more instructions for different platforms {oh-my-zsh-installing-zsh}[here].
 
-== Make ZSH default shell
-[source,bash]
+== Make `Zsh` default shell
+[source,java]
 ----
 sudo usermod -s /usr/bin/zsh $(whoami)
 sudo reboot
 ----
 
 After reboot press kbd:[Ctrl] + kbd:[Alt] + kbd:[T] to open terminal and choose option *2*.
-ZSH should create a new `~/.zshrc` configuration file with the recommended settings.
+`Zsh` should create a new `~/.zshrc` configuration file with the recommended settings.
 
 == Install `Oh My Zsh`
 {oh-my-zsh}[oh-my-zsh] is an open source, community-driven framework for managing your `zsh` configuration.
 
 WARNING: Be aware, that installing `oh-my-zsh` changes the `~/.zshrc` configuration file.
 
-[source,bash]
+[source,java]
 ----
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ----
@@ -72,7 +72,7 @@ You can take a look in the {oh-my-zsh-plugins}[wiki] to see what's currently ava
 To enable a plugin - just add its name to the `plugins` array in your `~/.zshrc` file.
 For example, to enable `git` plugin:
 
-[source,bash]
+[source,java]
 ----
 nano ~/.zshrc
 # Find plugins section and add plugin to the list
@@ -85,7 +85,7 @@ NOTE: If you still don't have Git installed on your Ubuntu, simply run: `sudo ap
 
 === Updating `Oh My Zsh`
 
-[source,bash]
+[source,java]
 ----
 omz update
 ----
@@ -94,7 +94,7 @@ omz update
 If you want to uninstall `oh-my-zsh`, just run command below:
 it will remove `oh-my-zsh` and revert your previous `bash` or `zsh` configuration.
 
-[source,bash]
+[source,java]
 ----
 uninstall_oh_my_zsh
 ----
@@ -102,13 +102,13 @@ uninstall_oh_my_zsh
 == Look and Feel
 
 === Setup powerline fonts
-[source,bash]
+[source,java]
 ----
 sudo apt-get install fonts-powerline
 ----
 
 === Agnoster Theme
-[source,bash]
+[source,java]
 ----
 nano ~/.zshrc
 # change theme to agnoster
@@ -116,7 +116,7 @@ ZSH_THEME="agnoster"
 ----
 
 === Solarized Colorscheme for Gnome Terminal
-[source,bash]
+[source,java]
 ----
 sudo apt-get install dconf-cli
 git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git ~/.solarized
@@ -127,7 +127,7 @@ Choose option *1* for dark theme.
 
 After installation, open `~/.zshrc` and add the line:
 
-[source,bash]
+[source,java]
 ----
 nano ~/.zshrc
 # add line below
@@ -136,6 +136,7 @@ eval `dircolors ~/.dir_colors/dircolors`
 
 == References:
 
-* {oh-my-zsh}[Oh My Zsh]
-* {oh-my-zsh-plugins}[Oh My Zsh plugins]
-* {gnome-terminal-colors-solarized}[Solarized Colorscheme for Gnome Terminal]
+- {zsh}[Zsh]
+- {oh-my-zsh}[Oh My Zsh]
+- {oh-my-zsh-plugins}[Oh My Zsh plugins]
+- {gnome-terminal-colors-solarized}[Solarized Colorscheme for Gnome Terminal]
