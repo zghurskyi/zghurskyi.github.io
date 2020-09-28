@@ -8,56 +8,56 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/ubuntu/zsh/oh-my-zsh/</loc>
-        <lastmod>2020-09-29T12:35:12.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/ubuntu/zsh/</loc>
-        <lastmod>2020-09-29T12:35:12.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.oxymorus.com/categories/ubuntu/</loc>
-        <lastmod>2020-09-29T12:35:12.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://www.oxymorus.com/categories/data-access-layer/lost-update/isolation/pessimistic-locking/optimistic-locking/</loc>
-        <lastmod>2020-08-28T22:07:41.000Z</lastmod>
+        <lastmod>2020-09-29T12:35:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://www.oxymorus.com/categories/data-access-layer/lost-update/isolation/pessimistic-locking/</loc>
-        <lastmod>2020-08-28T22:07:41.000Z</lastmod>
+        <lastmod>2020-09-29T12:35:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://www.oxymorus.com/categories/data-access-layer/lost-update/isolation/</loc>
-        <lastmod>2020-08-28T22:07:41.000Z</lastmod>
+        <lastmod>2020-09-29T12:35:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://www.oxymorus.com/categories/data-access-layer/lost-update/</loc>
-        <lastmod>2020-08-28T22:07:41.000Z</lastmod>
+        <lastmod>2020-09-29T12:35:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://www.oxymorus.com/categories/data-access-layer/</loc>
+        <lastmod>2020-09-29T12:35:12.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/ubuntu/zsh/oh-my-zsh/</loc>
+        <lastmod>2020-08-28T22:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/ubuntu/zsh/</loc>
+        <lastmod>2020-08-28T22:07:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.oxymorus.com/categories/ubuntu/</loc>
         <lastmod>2020-08-28T22:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
