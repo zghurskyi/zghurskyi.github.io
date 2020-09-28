@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "How to install Zsh on Ubuntu"
-date: 2020-09-29 12:35:12
-updated: 2020-09-29 12:35:12
+date: 2020-08-28 22:07:41
+updated: 2020-08-28 22:07:41
 tags:
     - Ubuntu
     - zsh
