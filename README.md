@@ -2,6 +2,6 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/zghurskyi/zghurskyi.github.io.svg)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/zghurskyi/zghurskyi.github.io)
 
-# oxymorus blog
+# Blog
 
-This repository contains a source code of my blog [https://www.oxymorus.com/](https://www.oxymorus.com/)
+This repository contains a source code of my blog [https://www.zghurskyi.com/](https://www.zghurskyi.com/)

@@ -4,9 +4,9 @@ date: 2019-10-07 21:18:58
 layout: clean
 ---
 
-Last update: *October 7th, 2019*
+Last update: *October 31th, 2020*
 
-*oxymorus.com* (also hereinafter referred to as the "Blog") does not share any personal information with
+*zghurskyi.com* (also hereinafter referred to as the "Blog") does not share any personal information with
 third-parties nor does it store information collected about your visit to this blog for use other than to analyze
 content performance through the use of cookies, which you can turn off at any time by modifying your
 web browser's settings.
@@ -20,7 +20,7 @@ web browser's settings.
 == Cookies
 
 A web cookie is a small piece of data sent from a website and stored on the user's computer by the user's web
-browser while the user is browsing.footnote:[https://en.wikipedia.org/wiki/HTTP_cookie] *oxymorus.com*
+browser while the user is browsing.footnote:[https://en.wikipedia.org/wiki/HTTP_cookie] *zghurskyi.com*
 uses a minimum amount of cookies from third-party services. The full list of those services can be found below.
 
 === 1. Google Analytics
@@ -44,11 +44,11 @@ No. This "Blog" is hosted on *Github Pagesfootnote:[https://pages.github.com/]* 
 == Encryption (HTTPS)
 
 This "Blog" uses an encrypted transfer protocol (HTTPS over TLS) with the *ECC CA-2* certificate provides by GitHub, Inc.
-The encryption protects the communication to *oxymorus.com* from access by unauthorized third parties.
+The encryption protects the communication to *zghurskyi.com* from access by unauthorized third parties.
 
 == Do you collect any ads-related data?
 
-No, *oxymorus.com* does not collect any ads-related data. There are no ads on this "Blog". And&nbsp;I&nbsp;don't plan to add any.
+No, *zghurskyi.com* does not collect any ads-related data. There are no ads on this "Blog". And&nbsp;I&nbsp;don't plan to add any.
 
 == Who can I contact if I have any questions?
 
