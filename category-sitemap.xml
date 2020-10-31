@@ -2,482 +2,482 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>https://www.oxymorus.com</loc>
+        <loc>https://www.zghurskyi.com</loc>
         <changefreq>daily</changefreq>
         <priority>1</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/data-access-layer/lost-update/isolation/pessimistic-locking/optimistic-locking/</loc>
+        <loc>https://www.zghurskyi.com/categories/data-access-layer/lost-update/isolation/pessimistic-locking/optimistic-locking/</loc>
         <lastmod>2020-09-29T12:35:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/data-access-layer/lost-update/isolation/pessimistic-locking/</loc>
+        <loc>https://www.zghurskyi.com/categories/data-access-layer/lost-update/isolation/pessimistic-locking/</loc>
         <lastmod>2020-09-29T12:35:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/data-access-layer/lost-update/isolation/</loc>
+        <loc>https://www.zghurskyi.com/categories/data-access-layer/lost-update/isolation/</loc>
         <lastmod>2020-09-29T12:35:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/data-access-layer/lost-update/</loc>
+        <loc>https://www.zghurskyi.com/categories/data-access-layer/lost-update/</loc>
         <lastmod>2020-09-29T12:35:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/data-access-layer/</loc>
+        <loc>https://www.zghurskyi.com/categories/data-access-layer/</loc>
         <lastmod>2020-09-29T12:35:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/ubuntu/zsh/oh-my-zsh/</loc>
+        <loc>https://www.zghurskyi.com/categories/ubuntu/zsh/oh-my-zsh/</loc>
         <lastmod>2020-08-28T22:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/ubuntu/zsh/</loc>
+        <loc>https://www.zghurskyi.com/categories/ubuntu/zsh/</loc>
         <lastmod>2020-08-28T22:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/ubuntu/</loc>
+        <loc>https://www.zghurskyi.com/categories/ubuntu/</loc>
         <lastmod>2020-08-28T22:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/apache-camel/apache-kafka/dynamic-routes/spring-boot/</loc>
+        <loc>https://www.zghurskyi.com/categories/apache-camel/apache-kafka/dynamic-routes/spring-boot/</loc>
         <lastmod>2020-02-23T12:54:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/apache-camel/apache-kafka/dynamic-routes/</loc>
+        <loc>https://www.zghurskyi.com/categories/apache-camel/apache-kafka/dynamic-routes/</loc>
         <lastmod>2020-02-23T12:54:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/apache-camel/apache-kafka/</loc>
+        <loc>https://www.zghurskyi.com/categories/apache-camel/apache-kafka/</loc>
         <lastmod>2020-02-23T12:54:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/apache-camel/</loc>
+        <loc>https://www.zghurskyi.com/categories/apache-camel/</loc>
         <lastmod>2020-02-23T12:54:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/kubernetes/microk8s/</loc>
+        <loc>https://www.zghurskyi.com/categories/kubernetes/microk8s/</loc>
         <lastmod>2020-02-11T20:41:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/kubernetes/</loc>
+        <loc>https://www.zghurskyi.com/categories/kubernetes/</loc>
         <lastmod>2020-02-11T20:41:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/maven/java-8/java-11/</loc>
+        <loc>https://www.zghurskyi.com/categories/maven/java-8/java-11/</loc>
         <lastmod>2019-11-22T22:13:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/maven/java-8/</loc>
+        <loc>https://www.zghurskyi.com/categories/maven/java-8/</loc>
         <lastmod>2019-11-22T22:13:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/maven/</loc>
+        <loc>https://www.zghurskyi.com/categories/maven/</loc>
         <lastmod>2019-11-22T22:13:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/java/jshell/docker/</loc>
+        <loc>https://www.zghurskyi.com/categories/java/jshell/docker/</loc>
         <lastmod>2019-11-02T22:28:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/java/jshell/</loc>
+        <loc>https://www.zghurskyi.com/categories/java/jshell/</loc>
         <lastmod>2019-11-02T22:28:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/java/</loc>
+        <loc>https://www.zghurskyi.com/categories/java/</loc>
         <lastmod>2019-11-02T22:28:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/gatling/maven/load-testing/spring-boot/</loc>
+        <loc>https://www.zghurskyi.com/categories/gatling/maven/load-testing/spring-boot/</loc>
         <lastmod>2019-10-28T23:05:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/gatling/maven/load-testing/</loc>
+        <loc>https://www.zghurskyi.com/categories/gatling/maven/load-testing/</loc>
         <lastmod>2019-10-28T23:05:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/gatling/maven/</loc>
+        <loc>https://www.zghurskyi.com/categories/gatling/maven/</loc>
         <lastmod>2019-10-28T23:05:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/gatling/</loc>
+        <loc>https://www.zghurskyi.com/categories/gatling/</loc>
         <lastmod>2019-10-28T23:05:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/decorator-pattern/object-oriented-design/functional-style/</loc>
+        <loc>https://www.zghurskyi.com/categories/decorator-pattern/object-oriented-design/functional-style/</loc>
         <lastmod>2019-10-23T23:34:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/decorator-pattern/object-oriented-design/</loc>
+        <loc>https://www.zghurskyi.com/categories/decorator-pattern/object-oriented-design/</loc>
         <lastmod>2019-10-23T23:34:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/decorator-pattern/</loc>
+        <loc>https://www.zghurskyi.com/categories/decorator-pattern/</loc>
         <lastmod>2019-10-23T23:34:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/apache-kafka/kafkacat/docker/</loc>
+        <loc>https://www.zghurskyi.com/categories/apache-kafka/kafkacat/docker/</loc>
         <lastmod>2019-10-18T15:53:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/apache-kafka/kafkacat/</loc>
+        <loc>https://www.zghurskyi.com/categories/apache-kafka/kafkacat/</loc>
         <lastmod>2019-10-18T15:53:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/apache-kafka/</loc>
+        <loc>https://www.zghurskyi.com/categories/apache-kafka/</loc>
         <lastmod>2019-10-18T15:53:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/java-8/java-9/java-10/java-11/</loc>
+        <loc>https://www.zghurskyi.com/categories/java-8/java-9/java-10/java-11/</loc>
         <lastmod>2019-10-17T23:19:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/java-8/java-9/java-10/</loc>
+        <loc>https://www.zghurskyi.com/categories/java-8/java-9/java-10/</loc>
         <lastmod>2019-10-17T23:19:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/java-8/java-9/</loc>
+        <loc>https://www.zghurskyi.com/categories/java-8/java-9/</loc>
         <lastmod>2019-10-17T23:19:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/java-8/</loc>
+        <loc>https://www.zghurskyi.com/categories/java-8/</loc>
         <lastmod>2019-10-17T23:19:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/reactive/blocking-processing/non-blocking-processing/</loc>
+        <loc>https://www.zghurskyi.com/categories/reactive/blocking-processing/non-blocking-processing/</loc>
         <lastmod>2019-10-17T22:50:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/reactive/blocking-processing/</loc>
+        <loc>https://www.zghurskyi.com/categories/reactive/blocking-processing/</loc>
         <lastmod>2019-10-17T22:50:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/reactive/</loc>
+        <loc>https://www.zghurskyi.com/categories/reactive/</loc>
         <lastmod>2019-10-17T22:50:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/apache-camel/camelcustomlogmask/password-masking/</loc>
+        <loc>https://www.zghurskyi.com/categories/apache-camel/camelcustomlogmask/password-masking/</loc>
         <lastmod>2019-10-16T16:53:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/apache-camel/camelcustomlogmask/</loc>
+        <loc>https://www.zghurskyi.com/categories/apache-camel/camelcustomlogmask/</loc>
         <lastmod>2019-10-16T16:53:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/data-access-layer/transaction/acid/</loc>
+        <loc>https://www.zghurskyi.com/categories/data-access-layer/transaction/acid/</loc>
         <lastmod>2019-10-16T00:53:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/data-access-layer/transaction/</loc>
+        <loc>https://www.zghurskyi.com/categories/data-access-layer/transaction/</loc>
         <lastmod>2019-10-16T00:53:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/observability/spring-boot/prometheus/grafana/docker/</loc>
+        <loc>https://www.zghurskyi.com/categories/observability/spring-boot/prometheus/grafana/docker/</loc>
         <lastmod>2019-10-10T22:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/observability/spring-boot/prometheus/grafana/</loc>
+        <loc>https://www.zghurskyi.com/categories/observability/spring-boot/prometheus/grafana/</loc>
         <lastmod>2019-10-10T22:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/observability/spring-boot/prometheus/</loc>
+        <loc>https://www.zghurskyi.com/categories/observability/spring-boot/prometheus/</loc>
         <lastmod>2019-10-10T22:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/observability/spring-boot/</loc>
+        <loc>https://www.zghurskyi.com/categories/observability/spring-boot/</loc>
         <lastmod>2019-10-10T22:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/observability/</loc>
+        <loc>https://www.zghurskyi.com/categories/observability/</loc>
         <lastmod>2019-10-10T22:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/github/clone/jq/</loc>
+        <loc>https://www.zghurskyi.com/categories/github/clone/jq/</loc>
         <lastmod>2019-10-07T22:52:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/github/clone/</loc>
+        <loc>https://www.zghurskyi.com/categories/github/clone/</loc>
         <lastmod>2019-10-07T22:52:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/github/</loc>
+        <loc>https://www.zghurskyi.com/categories/github/</loc>
         <lastmod>2019-10-07T22:52:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/apache-kafka/spring-boot-starter/topic-provisioning/</loc>
+        <loc>https://www.zghurskyi.com/categories/apache-kafka/spring-boot-starter/topic-provisioning/</loc>
         <lastmod>2019-10-07T22:39:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/apache-kafka/spring-boot-starter/</loc>
+        <loc>https://www.zghurskyi.com/categories/apache-kafka/spring-boot-starter/</loc>
         <lastmod>2019-10-07T22:39:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/thread/runnable/forkjoinpool/</loc>
+        <loc>https://www.zghurskyi.com/categories/java-util-concurrent/completablefuture/future/thread/runnable/forkjoinpool/</loc>
         <lastmod>2019-10-07T12:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/thread/runnable/</loc>
+        <loc>https://www.zghurskyi.com/categories/java-util-concurrent/completablefuture/future/thread/runnable/</loc>
         <lastmod>2019-10-07T12:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/thread/</loc>
+        <loc>https://www.zghurskyi.com/categories/java-util-concurrent/completablefuture/future/thread/</loc>
         <lastmod>2019-10-07T12:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/</loc>
+        <loc>https://www.zghurskyi.com/categories/java-util-concurrent/completablefuture/future/</loc>
         <lastmod>2019-10-07T12:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/</loc>
+        <loc>https://www.zghurskyi.com/categories/java-util-concurrent/completablefuture/</loc>
         <lastmod>2019-10-07T12:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/java-util-concurrent/</loc>
+        <loc>https://www.zghurskyi.com/categories/java-util-concurrent/</loc>
         <lastmod>2019-10-07T12:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/reactive/back-pressure/</loc>
+        <loc>https://www.zghurskyi.com/categories/reactive/back-pressure/</loc>
         <lastmod>2019-10-07T10:58:44.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/aerospike/project-reactor/optimistic-locking/</loc>
+        <loc>https://www.zghurskyi.com/categories/aerospike/project-reactor/optimistic-locking/</loc>
         <lastmod>2019-10-06T19:47:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/aerospike/project-reactor/</loc>
+        <loc>https://www.zghurskyi.com/categories/aerospike/project-reactor/</loc>
         <lastmod>2019-10-06T19:47:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/aerospike/</loc>
+        <loc>https://www.zghurskyi.com/categories/aerospike/</loc>
         <lastmod>2019-10-06T19:47:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/aerospike/project-reactor/pessimistic-locking/</loc>
+        <loc>https://www.zghurskyi.com/categories/aerospike/project-reactor/pessimistic-locking/</loc>
         <lastmod>2019-10-05T20:47:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/authentication/multi-factor/passwordless/</loc>
+        <loc>https://www.zghurskyi.com/categories/authentication/multi-factor/passwordless/</loc>
         <lastmod>2019-06-09T22:45:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/authentication/multi-factor/</loc>
+        <loc>https://www.zghurskyi.com/categories/authentication/multi-factor/</loc>
         <lastmod>2019-06-09T22:45:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/authentication/</loc>
+        <loc>https://www.zghurskyi.com/categories/authentication/</loc>
         <lastmod>2019-06-09T22:45:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/docker/mysql/dump/</loc>
+        <loc>https://www.zghurskyi.com/categories/docker/mysql/dump/</loc>
         <lastmod>2019-04-23T22:52:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/docker/mysql/</loc>
+        <loc>https://www.zghurskyi.com/categories/docker/mysql/</loc>
         <lastmod>2019-04-23T22:52:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/categories/docker/</loc>
+        <loc>https://www.zghurskyi.com/categories/docker/</loc>
         <lastmod>2019-04-23T22:52:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

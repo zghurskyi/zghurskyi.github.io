@@ -2,13 +2,13 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>https://www.oxymorus.com</loc>
+        <loc>https://www.zghurskyi.com</loc>
         <changefreq>daily</changefreq>
         <priority>1</priority>
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/lost-update/</loc>
+        <loc>https://www.zghurskyi.com/lost-update/</loc>
         <lastmod>2020-09-29T12:35:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -16,7 +16,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/zsh/</loc>
+        <loc>https://www.zghurskyi.com/zsh/</loc>
         <lastmod>2020-08-28T22:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -24,7 +24,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/camel-dynamic-routes/</loc>
+        <loc>https://www.zghurskyi.com/camel-dynamic-routes/</loc>
         <lastmod>2020-02-23T12:54:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -32,7 +32,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/installing-kubernetes/</loc>
+        <loc>https://www.zghurskyi.com/installing-kubernetes/</loc>
         <lastmod>2020-02-11T20:41:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -40,7 +40,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/maven-package-to-multiple-java-versions/</loc>
+        <loc>https://www.zghurskyi.com/maven-package-to-multiple-java-versions/</loc>
         <lastmod>2019-11-22T22:13:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -48,7 +48,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/java-repl/</loc>
+        <loc>https://www.zghurskyi.com/java-repl/</loc>
         <lastmod>2019-11-02T22:28:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -56,7 +56,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/gatling-load-testing/</loc>
+        <loc>https://www.zghurskyi.com/gatling-load-testing/</loc>
         <lastmod>2019-10-28T23:05:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -64,7 +64,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/decorator/</loc>
+        <loc>https://www.zghurskyi.com/decorator/</loc>
         <lastmod>2019-10-23T23:34:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -72,7 +72,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/kafkacat-overview/</loc>
+        <loc>https://www.zghurskyi.com/kafkacat-overview/</loc>
         <lastmod>2019-10-18T15:53:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -80,7 +80,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/language-features-java8-to-java11/</loc>
+        <loc>https://www.zghurskyi.com/language-features-java8-to-java11/</loc>
         <lastmod>2019-10-17T23:19:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -88,7 +88,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/blocking-vs-nonblocking/</loc>
+        <loc>https://www.zghurskyi.com/blocking-vs-nonblocking/</loc>
         <lastmod>2019-10-17T22:50:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -96,7 +96,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/camel-masking-sensitive-information/</loc>
+        <loc>https://www.zghurskyi.com/camel-masking-sensitive-information/</loc>
         <lastmod>2019-10-16T16:53:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -104,7 +104,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/database-transaction/</loc>
+        <loc>https://www.zghurskyi.com/database-transaction/</loc>
         <lastmod>2019-10-16T00:53:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -112,7 +112,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/observability/</loc>
+        <loc>https://www.zghurskyi.com/observability/</loc>
         <lastmod>2019-10-10T22:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -120,7 +120,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/clone-all-github-repos/</loc>
+        <loc>https://www.zghurskyi.com/clone-all-github-repos/</loc>
         <lastmod>2019-10-07T22:52:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -128,7 +128,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/kafka-provision-spring-boot-starter/</loc>
+        <loc>https://www.zghurskyi.com/kafka-provision-spring-boot-starter/</loc>
         <lastmod>2019-10-07T22:39:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -136,7 +136,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/concurrent-sum-of-numbers/</loc>
+        <loc>https://www.zghurskyi.com/concurrent-sum-of-numbers/</loc>
         <lastmod>2019-10-07T12:07:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -144,7 +144,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/backpressure/</loc>
+        <loc>https://www.zghurskyi.com/backpressure/</loc>
         <lastmod>2019-10-07T10:58:44.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -152,7 +152,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/optimistic-locking-with-reactor-and-aerospike/</loc>
+        <loc>https://www.zghurskyi.com/optimistic-locking-with-reactor-and-aerospike/</loc>
         <lastmod>2019-10-06T19:47:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -160,7 +160,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/pessimistic-locking-with-reactor-and-aerospike/</loc>
+        <loc>https://www.zghurskyi.com/pessimistic-locking-with-reactor-and-aerospike/</loc>
         <lastmod>2019-10-05T20:47:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -168,7 +168,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/authentication-types/</loc>
+        <loc>https://www.zghurskyi.com/authentication-types/</loc>
         <lastmod>2019-06-09T22:45:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -176,7 +176,7 @@
     </url>
 
     <url>
-        <loc>https://www.oxymorus.com/docker-mysql-dump/</loc>
+        <loc>https://www.zghurskyi.com/docker-mysql-dump/</loc>
         <lastmod>2019-04-23T22:52:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

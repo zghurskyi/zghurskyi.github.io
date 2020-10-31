@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://www.oxymorus.com/"/>
+  <link href="https://www.zghurskyi.com/"/>
   <updated>2020-09-29T12:35:12.000Z</updated>
-  <id>https://www.oxymorus.com/</id>
+  <id>https://www.zghurskyi.com/</id>
   
   <author>
     <name>Oleksii Zghurskyi</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Lost Update Phenomena</title>
-    <link href="https://www.oxymorus.com/lost-update/"/>
-    <id>https://www.oxymorus.com/lost-update/</id>
+    <link href="https://www.zghurskyi.com/lost-update/"/>
+    <id>https://www.zghurskyi.com/lost-update/</id>
     <published>2020-09-29T12:35:12.000Z</published>
     <updated>2020-09-29T12:35:12.000Z</updated>
     
@@ -31,33 +31,33 @@
     
     </summary>
     
-      <category term="Data Access Layer" scheme="https://www.oxymorus.com/categories/data-access-layer/"/>
+      <category term="Data Access Layer" scheme="https://www.zghurskyi.com/categories/data-access-layer/"/>
     
-      <category term="Lost Update" scheme="https://www.oxymorus.com/categories/data-access-layer/lost-update/"/>
+      <category term="Lost Update" scheme="https://www.zghurskyi.com/categories/data-access-layer/lost-update/"/>
     
-      <category term="Isolation" scheme="https://www.oxymorus.com/categories/data-access-layer/lost-update/isolation/"/>
+      <category term="Isolation" scheme="https://www.zghurskyi.com/categories/data-access-layer/lost-update/isolation/"/>
     
-      <category term="Pessimistic Locking" scheme="https://www.oxymorus.com/categories/data-access-layer/lost-update/isolation/pessimistic-locking/"/>
+      <category term="Pessimistic Locking" scheme="https://www.zghurskyi.com/categories/data-access-layer/lost-update/isolation/pessimistic-locking/"/>
     
-      <category term="Optimistic Locking" scheme="https://www.oxymorus.com/categories/data-access-layer/lost-update/isolation/pessimistic-locking/optimistic-locking/"/>
+      <category term="Optimistic Locking" scheme="https://www.zghurskyi.com/categories/data-access-layer/lost-update/isolation/pessimistic-locking/optimistic-locking/"/>
     
     
-      <category term="Data Access Layer" scheme="https://www.oxymorus.com/tags/data-access-layer/"/>
+      <category term="Data Access Layer" scheme="https://www.zghurskyi.com/tags/data-access-layer/"/>
     
-      <category term="Optimistic Locking" scheme="https://www.oxymorus.com/tags/optimistic-locking/"/>
+      <category term="Optimistic Locking" scheme="https://www.zghurskyi.com/tags/optimistic-locking/"/>
     
-      <category term="Lost Update" scheme="https://www.oxymorus.com/tags/lost-update/"/>
+      <category term="Lost Update" scheme="https://www.zghurskyi.com/tags/lost-update/"/>
     
-      <category term="Isolation" scheme="https://www.oxymorus.com/tags/isolation/"/>
+      <category term="Isolation" scheme="https://www.zghurskyi.com/tags/isolation/"/>
     
-      <category term="Pessimistic Locking" scheme="https://www.oxymorus.com/tags/pessimistic-locking/"/>
+      <category term="Pessimistic Locking" scheme="https://www.zghurskyi.com/tags/pessimistic-locking/"/>
     
   </entry>
   
   <entry>
     <title>How to install Zsh on Ubuntu</title>
-    <link href="https://www.oxymorus.com/zsh/"/>
-    <id>https://www.oxymorus.com/zsh/</id>
+    <link href="https://www.zghurskyi.com/zsh/"/>
+    <id>https://www.zghurskyi.com/zsh/</id>
     <published>2020-08-28T22:07:41.000Z</published>
     <updated>2020-08-28T22:07:41.000Z</updated>
     
@@ -69,25 +69,25 @@
     
     </summary>
     
-      <category term="Ubuntu" scheme="https://www.oxymorus.com/categories/ubuntu/"/>
+      <category term="Ubuntu" scheme="https://www.zghurskyi.com/categories/ubuntu/"/>
     
-      <category term="zsh" scheme="https://www.oxymorus.com/categories/ubuntu/zsh/"/>
+      <category term="zsh" scheme="https://www.zghurskyi.com/categories/ubuntu/zsh/"/>
     
-      <category term="oh-my-zsh" scheme="https://www.oxymorus.com/categories/ubuntu/zsh/oh-my-zsh/"/>
+      <category term="oh-my-zsh" scheme="https://www.zghurskyi.com/categories/ubuntu/zsh/oh-my-zsh/"/>
     
     
-      <category term="Ubuntu" scheme="https://www.oxymorus.com/tags/ubuntu/"/>
+      <category term="Ubuntu" scheme="https://www.zghurskyi.com/tags/ubuntu/"/>
     
-      <category term="zsh" scheme="https://www.oxymorus.com/tags/zsh/"/>
+      <category term="zsh" scheme="https://www.zghurskyi.com/tags/zsh/"/>
     
-      <category term="oh-my-zsh" scheme="https://www.oxymorus.com/tags/oh-my-zsh/"/>
+      <category term="oh-my-zsh" scheme="https://www.zghurskyi.com/tags/oh-my-zsh/"/>
     
   </entry>
   
   <entry>
     <title>Installing Kubernetes with microk8s</title>
-    <link href="https://www.oxymorus.com/installing-kubernetes/"/>
-    <id>https://www.oxymorus.com/installing-kubernetes/</id>
+    <link href="https://www.zghurskyi.com/installing-kubernetes/"/>
+    <id>https://www.zghurskyi.com/installing-kubernetes/</id>
     <published>2020-02-11T20:41:41.000Z</published>
     <updated>2020-02-11T20:41:41.000Z</updated>
     
@@ -99,21 +99,21 @@
     
     </summary>
     
-      <category term="Kubernetes" scheme="https://www.oxymorus.com/categories/kubernetes/"/>
+      <category term="Kubernetes" scheme="https://www.zghurskyi.com/categories/kubernetes/"/>
     
-      <category term="microk8s" scheme="https://www.oxymorus.com/categories/kubernetes/microk8s/"/>
+      <category term="microk8s" scheme="https://www.zghurskyi.com/categories/kubernetes/microk8s/"/>
     
     
-      <category term="Kubernetes" scheme="https://www.oxymorus.com/tags/kubernetes/"/>
+      <category term="Kubernetes" scheme="https://www.zghurskyi.com/tags/kubernetes/"/>
     
-      <category term="microk8s" scheme="https://www.oxymorus.com/tags/microk8s/"/>
+      <category term="microk8s" scheme="https://www.zghurskyi.com/tags/microk8s/"/>
     
   </entry>
   
   <entry>
     <title>Maven: Packaging to multiple Java versions</title>
-    <link href="https://www.oxymorus.com/maven-package-to-multiple-java-versions/"/>
-    <id>https://www.oxymorus.com/maven-package-to-multiple-java-versions/</id>
+    <link href="https://www.zghurskyi.com/maven-package-to-multiple-java-versions/"/>
+    <id>https://www.zghurskyi.com/maven-package-to-multiple-java-versions/</id>
     <published>2019-11-22T22:13:54.000Z</published>
     <updated>2019-11-22T22:13:54.000Z</updated>
     
@@ -125,25 +125,25 @@
     
     </summary>
     
-      <category term="Maven" scheme="https://www.oxymorus.com/categories/maven/"/>
+      <category term="Maven" scheme="https://www.zghurskyi.com/categories/maven/"/>
     
-      <category term="Java 8" scheme="https://www.oxymorus.com/categories/maven/java-8/"/>
+      <category term="Java 8" scheme="https://www.zghurskyi.com/categories/maven/java-8/"/>
     
-      <category term="Java 11" scheme="https://www.oxymorus.com/categories/maven/java-8/java-11/"/>
+      <category term="Java 11" scheme="https://www.zghurskyi.com/categories/maven/java-8/java-11/"/>
     
     
-      <category term="Maven" scheme="https://www.oxymorus.com/tags/maven/"/>
+      <category term="Maven" scheme="https://www.zghurskyi.com/tags/maven/"/>
     
-      <category term="Java 8" scheme="https://www.oxymorus.com/tags/java-8/"/>
+      <category term="Java 8" scheme="https://www.zghurskyi.com/tags/java-8/"/>
     
-      <category term="Java 11" scheme="https://www.oxymorus.com/tags/java-11/"/>
+      <category term="Java 11" scheme="https://www.zghurskyi.com/tags/java-11/"/>
     
   </entry>
   
   <entry>
     <title>JShell: Awesome Java REPL</title>
-    <link href="https://www.oxymorus.com/java-repl/"/>
-    <id>https://www.oxymorus.com/java-repl/</id>
+    <link href="https://www.zghurskyi.com/java-repl/"/>
+    <id>https://www.zghurskyi.com/java-repl/</id>
     <published>2019-11-02T22:28:54.000Z</published>
     <updated>2019-11-02T22:28:54.000Z</updated>
     
@@ -155,25 +155,25 @@
     
     </summary>
     
-      <category term="Java" scheme="https://www.oxymorus.com/categories/java/"/>
+      <category term="Java" scheme="https://www.zghurskyi.com/categories/java/"/>
     
-      <category term="jshell" scheme="https://www.oxymorus.com/categories/java/jshell/"/>
+      <category term="jshell" scheme="https://www.zghurskyi.com/categories/java/jshell/"/>
     
-      <category term="Docker" scheme="https://www.oxymorus.com/categories/java/jshell/docker/"/>
+      <category term="Docker" scheme="https://www.zghurskyi.com/categories/java/jshell/docker/"/>
     
     
-      <category term="Docker" scheme="https://www.oxymorus.com/tags/docker/"/>
+      <category term="Docker" scheme="https://www.zghurskyi.com/tags/docker/"/>
     
-      <category term="Java" scheme="https://www.oxymorus.com/tags/java/"/>
+      <category term="Java" scheme="https://www.zghurskyi.com/tags/java/"/>
     
-      <category term="jshell" scheme="https://www.oxymorus.com/tags/jshell/"/>
+      <category term="jshell" scheme="https://www.zghurskyi.com/tags/jshell/"/>
     
   </entry>
   
   <entry>
     <title>Load testing with Gatling</title>
-    <link href="https://www.oxymorus.com/gatling-load-testing/"/>
-    <id>https://www.oxymorus.com/gatling-load-testing/</id>
+    <link href="https://www.zghurskyi.com/gatling-load-testing/"/>
+    <id>https://www.zghurskyi.com/gatling-load-testing/</id>
     <published>2019-10-28T23:05:41.000Z</published>
     <updated>2019-10-28T23:05:41.000Z</updated>
     
@@ -185,29 +185,29 @@
     
     </summary>
     
-      <category term="Gatling" scheme="https://www.oxymorus.com/categories/gatling/"/>
+      <category term="Gatling" scheme="https://www.zghurskyi.com/categories/gatling/"/>
     
-      <category term="Maven" scheme="https://www.oxymorus.com/categories/gatling/maven/"/>
+      <category term="Maven" scheme="https://www.zghurskyi.com/categories/gatling/maven/"/>
     
-      <category term="Load testing" scheme="https://www.oxymorus.com/categories/gatling/maven/load-testing/"/>
+      <category term="Load testing" scheme="https://www.zghurskyi.com/categories/gatling/maven/load-testing/"/>
     
-      <category term="Spring Boot" scheme="https://www.oxymorus.com/categories/gatling/maven/load-testing/spring-boot/"/>
+      <category term="Spring Boot" scheme="https://www.zghurskyi.com/categories/gatling/maven/load-testing/spring-boot/"/>
     
     
-      <category term="Spring Boot" scheme="https://www.oxymorus.com/tags/spring-boot/"/>
+      <category term="Spring Boot" scheme="https://www.zghurskyi.com/tags/spring-boot/"/>
     
-      <category term="Maven" scheme="https://www.oxymorus.com/tags/maven/"/>
+      <category term="Maven" scheme="https://www.zghurskyi.com/tags/maven/"/>
     
-      <category term="Gatling" scheme="https://www.oxymorus.com/tags/gatling/"/>
+      <category term="Gatling" scheme="https://www.zghurskyi.com/tags/gatling/"/>
     
-      <category term="Load testing" scheme="https://www.oxymorus.com/tags/load-testing/"/>
+      <category term="Load testing" scheme="https://www.zghurskyi.com/tags/load-testing/"/>
     
   </entry>
   
   <entry>
     <title>Different ways to implement Decorator Pattern</title>
-    <link href="https://www.oxymorus.com/decorator/"/>
-    <id>https://www.oxymorus.com/decorator/</id>
+    <link href="https://www.zghurskyi.com/decorator/"/>
+    <id>https://www.zghurskyi.com/decorator/</id>
     <published>2019-10-23T23:34:41.000Z</published>
     <updated>2019-10-23T23:34:41.000Z</updated>
     
@@ -219,25 +219,25 @@
     
     </summary>
     
-      <category term="Decorator pattern" scheme="https://www.oxymorus.com/categories/decorator-pattern/"/>
+      <category term="Decorator pattern" scheme="https://www.zghurskyi.com/categories/decorator-pattern/"/>
     
-      <category term="Object-Oriented Design" scheme="https://www.oxymorus.com/categories/decorator-pattern/object-oriented-design/"/>
+      <category term="Object-Oriented Design" scheme="https://www.zghurskyi.com/categories/decorator-pattern/object-oriented-design/"/>
     
-      <category term="Functional style" scheme="https://www.oxymorus.com/categories/decorator-pattern/object-oriented-design/functional-style/"/>
+      <category term="Functional style" scheme="https://www.zghurskyi.com/categories/decorator-pattern/object-oriented-design/functional-style/"/>
     
     
-      <category term="Decorator pattern" scheme="https://www.oxymorus.com/tags/decorator-pattern/"/>
+      <category term="Decorator pattern" scheme="https://www.zghurskyi.com/tags/decorator-pattern/"/>
     
-      <category term="Object-Oriented Design" scheme="https://www.oxymorus.com/tags/object-oriented-design/"/>
+      <category term="Object-Oriented Design" scheme="https://www.zghurskyi.com/tags/object-oriented-design/"/>
     
-      <category term="Functional style" scheme="https://www.oxymorus.com/tags/functional-style/"/>
+      <category term="Functional style" scheme="https://www.zghurskyi.com/tags/functional-style/"/>
     
   </entry>
   
   <entry>
     <title>Tool Of The Day: kafkacat</title>
-    <link href="https://www.oxymorus.com/kafkacat-overview/"/>
-    <id>https://www.oxymorus.com/kafkacat-overview/</id>
+    <link href="https://www.zghurskyi.com/kafkacat-overview/"/>
+    <id>https://www.zghurskyi.com/kafkacat-overview/</id>
     <published>2019-10-18T15:53:41.000Z</published>
     <updated>2019-10-18T15:53:41.000Z</updated>
     
@@ -249,25 +249,25 @@
     
     </summary>
     
-      <category term="Apache Kafka" scheme="https://www.oxymorus.com/categories/apache-kafka/"/>
+      <category term="Apache Kafka" scheme="https://www.zghurskyi.com/categories/apache-kafka/"/>
     
-      <category term="kafkacat" scheme="https://www.oxymorus.com/categories/apache-kafka/kafkacat/"/>
+      <category term="kafkacat" scheme="https://www.zghurskyi.com/categories/apache-kafka/kafkacat/"/>
     
-      <category term="Docker" scheme="https://www.oxymorus.com/categories/apache-kafka/kafkacat/docker/"/>
+      <category term="Docker" scheme="https://www.zghurskyi.com/categories/apache-kafka/kafkacat/docker/"/>
     
     
-      <category term="Docker" scheme="https://www.oxymorus.com/tags/docker/"/>
+      <category term="Docker" scheme="https://www.zghurskyi.com/tags/docker/"/>
     
-      <category term="Apache Kafka" scheme="https://www.oxymorus.com/tags/apache-kafka/"/>
+      <category term="Apache Kafka" scheme="https://www.zghurskyi.com/tags/apache-kafka/"/>
     
-      <category term="kafkacat" scheme="https://www.oxymorus.com/tags/kafkacat/"/>
+      <category term="kafkacat" scheme="https://www.zghurskyi.com/tags/kafkacat/"/>
     
   </entry>
   
   <entry>
     <title>Apache Camel: Masking sensitive information</title>
-    <link href="https://www.oxymorus.com/camel-masking-sensitive-information/"/>
-    <id>https://www.oxymorus.com/camel-masking-sensitive-information/</id>
+    <link href="https://www.zghurskyi.com/camel-masking-sensitive-information/"/>
+    <id>https://www.zghurskyi.com/camel-masking-sensitive-information/</id>
     <published>2019-10-16T16:53:41.000Z</published>
     <updated>2019-10-16T16:53:41.000Z</updated>
     
@@ -279,25 +279,25 @@
     
     </summary>
     
-      <category term="Apache Camel" scheme="https://www.oxymorus.com/categories/apache-camel/"/>
+      <category term="Apache Camel" scheme="https://www.zghurskyi.com/categories/apache-camel/"/>
     
-      <category term="CamelCustomLogMask" scheme="https://www.oxymorus.com/categories/apache-camel/camelcustomlogmask/"/>
+      <category term="CamelCustomLogMask" scheme="https://www.zghurskyi.com/categories/apache-camel/camelcustomlogmask/"/>
     
-      <category term="Password masking" scheme="https://www.oxymorus.com/categories/apache-camel/camelcustomlogmask/password-masking/"/>
+      <category term="Password masking" scheme="https://www.zghurskyi.com/categories/apache-camel/camelcustomlogmask/password-masking/"/>
     
     
-      <category term="Apache Camel" scheme="https://www.oxymorus.com/tags/apache-camel/"/>
+      <category term="Apache Camel" scheme="https://www.zghurskyi.com/tags/apache-camel/"/>
     
-      <category term="CamelCustomLogMask" scheme="https://www.oxymorus.com/tags/camelcustomlogmask/"/>
+      <category term="CamelCustomLogMask" scheme="https://www.zghurskyi.com/tags/camelcustomlogmask/"/>
     
-      <category term="Password masking" scheme="https://www.oxymorus.com/tags/password-masking/"/>
+      <category term="Password masking" scheme="https://www.zghurskyi.com/tags/password-masking/"/>
     
   </entry>
   
   <entry>
     <title>Optimistic locking with Aerospike and Project Reactor</title>
-    <link href="https://www.oxymorus.com/optimistic-locking-with-reactor-and-aerospike/"/>
-    <id>https://www.oxymorus.com/optimistic-locking-with-reactor-and-aerospike/</id>
+    <link href="https://www.zghurskyi.com/optimistic-locking-with-reactor-and-aerospike/"/>
+    <id>https://www.zghurskyi.com/optimistic-locking-with-reactor-and-aerospike/</id>
     <published>2019-10-06T19:47:51.000Z</published>
     <updated>2019-10-06T19:47:51.000Z</updated>
     
@@ -309,25 +309,25 @@
     
     </summary>
     
-      <category term="Aerospike" scheme="https://www.oxymorus.com/categories/aerospike/"/>
+      <category term="Aerospike" scheme="https://www.zghurskyi.com/categories/aerospike/"/>
     
-      <category term="Project Reactor" scheme="https://www.oxymorus.com/categories/aerospike/project-reactor/"/>
+      <category term="Project Reactor" scheme="https://www.zghurskyi.com/categories/aerospike/project-reactor/"/>
     
-      <category term="Optimistic Locking" scheme="https://www.oxymorus.com/categories/aerospike/project-reactor/optimistic-locking/"/>
+      <category term="Optimistic Locking" scheme="https://www.zghurskyi.com/categories/aerospike/project-reactor/optimistic-locking/"/>
     
     
-      <category term="Aerospike" scheme="https://www.oxymorus.com/tags/aerospike/"/>
+      <category term="Aerospike" scheme="https://www.zghurskyi.com/tags/aerospike/"/>
     
-      <category term="Project Reactor" scheme="https://www.oxymorus.com/tags/project-reactor/"/>
+      <category term="Project Reactor" scheme="https://www.zghurskyi.com/tags/project-reactor/"/>
     
-      <category term="Optimistic Locking" scheme="https://www.oxymorus.com/tags/optimistic-locking/"/>
+      <category term="Optimistic Locking" scheme="https://www.zghurskyi.com/tags/optimistic-locking/"/>
     
   </entry>
   
   <entry>
     <title>Pessimistic locking with Aerospike and Project Reactor</title>
-    <link href="https://www.oxymorus.com/pessimistic-locking-with-reactor-and-aerospike/"/>
-    <id>https://www.oxymorus.com/pessimistic-locking-with-reactor-and-aerospike/</id>
+    <link href="https://www.zghurskyi.com/pessimistic-locking-with-reactor-and-aerospike/"/>
+    <id>https://www.zghurskyi.com/pessimistic-locking-with-reactor-and-aerospike/</id>
     <published>2019-10-05T20:47:51.000Z</published>
     <updated>2019-10-05T20:47:51.000Z</updated>
     
@@ -339,25 +339,25 @@
     
     </summary>
     
-      <category term="Aerospike" scheme="https://www.oxymorus.com/categories/aerospike/"/>
+      <category term="Aerospike" scheme="https://www.zghurskyi.com/categories/aerospike/"/>
     
-      <category term="Project Reactor" scheme="https://www.oxymorus.com/categories/aerospike/project-reactor/"/>
+      <category term="Project Reactor" scheme="https://www.zghurskyi.com/categories/aerospike/project-reactor/"/>
     
-      <category term="Pessimistic Locking" scheme="https://www.oxymorus.com/categories/aerospike/project-reactor/pessimistic-locking/"/>
+      <category term="Pessimistic Locking" scheme="https://www.zghurskyi.com/categories/aerospike/project-reactor/pessimistic-locking/"/>
     
     
-      <category term="Aerospike" scheme="https://www.oxymorus.com/tags/aerospike/"/>
+      <category term="Aerospike" scheme="https://www.zghurskyi.com/tags/aerospike/"/>
     
-      <category term="Project Reactor" scheme="https://www.oxymorus.com/tags/project-reactor/"/>
+      <category term="Project Reactor" scheme="https://www.zghurskyi.com/tags/project-reactor/"/>
     
-      <category term="Pessimistic Locking" scheme="https://www.oxymorus.com/tags/pessimistic-locking/"/>
+      <category term="Pessimistic Locking" scheme="https://www.zghurskyi.com/tags/pessimistic-locking/"/>
     
   </entry>
   
   <entry>
     <title>Dynamic Kafka routes with Apache Camel</title>
-    <link href="https://www.oxymorus.com/camel-dynamic-routes/"/>
-    <id>https://www.oxymorus.com/camel-dynamic-routes/</id>
+    <link href="https://www.zghurskyi.com/camel-dynamic-routes/"/>
+    <id>https://www.zghurskyi.com/camel-dynamic-routes/</id>
     <published>2019-10-01T16:53:41.000Z</published>
     <updated>2020-02-23T12:54:41.000Z</updated>
     
@@ -369,29 +369,29 @@
     
     </summary>
     
-      <category term="Apache Camel" scheme="https://www.oxymorus.com/categories/apache-camel/"/>
+      <category term="Apache Camel" scheme="https://www.zghurskyi.com/categories/apache-camel/"/>
     
-      <category term="Apache Kafka" scheme="https://www.oxymorus.com/categories/apache-camel/apache-kafka/"/>
+      <category term="Apache Kafka" scheme="https://www.zghurskyi.com/categories/apache-camel/apache-kafka/"/>
     
-      <category term="Dynamic Routes" scheme="https://www.oxymorus.com/categories/apache-camel/apache-kafka/dynamic-routes/"/>
+      <category term="Dynamic Routes" scheme="https://www.zghurskyi.com/categories/apache-camel/apache-kafka/dynamic-routes/"/>
     
-      <category term="Spring Boot" scheme="https://www.oxymorus.com/categories/apache-camel/apache-kafka/dynamic-routes/spring-boot/"/>
+      <category term="Spring Boot" scheme="https://www.zghurskyi.com/categories/apache-camel/apache-kafka/dynamic-routes/spring-boot/"/>
     
     
-      <category term="Apache Camel" scheme="https://www.oxymorus.com/tags/apache-camel/"/>
+      <category term="Apache Camel" scheme="https://www.zghurskyi.com/tags/apache-camel/"/>
     
-      <category term="Apache Kafka" scheme="https://www.oxymorus.com/tags/apache-kafka/"/>
+      <category term="Apache Kafka" scheme="https://www.zghurskyi.com/tags/apache-kafka/"/>
     
-      <category term="Dynamic Routes" scheme="https://www.oxymorus.com/tags/dynamic-routes/"/>
+      <category term="Dynamic Routes" scheme="https://www.zghurskyi.com/tags/dynamic-routes/"/>
     
-      <category term="Spring Boot" scheme="https://www.oxymorus.com/tags/spring-boot/"/>
+      <category term="Spring Boot" scheme="https://www.zghurskyi.com/tags/spring-boot/"/>
     
   </entry>
   
   <entry>
     <title>Java concurrency tools</title>
-    <link href="https://www.oxymorus.com/concurrent-sum-of-numbers/"/>
-    <id>https://www.oxymorus.com/concurrent-sum-of-numbers/</id>
+    <link href="https://www.zghurskyi.com/concurrent-sum-of-numbers/"/>
+    <id>https://www.zghurskyi.com/concurrent-sum-of-numbers/</id>
     <published>2019-09-27T12:07:41.000Z</published>
     <updated>2019-10-07T12:07:41.000Z</updated>
     
@@ -403,37 +403,37 @@
     
     </summary>
     
-      <category term="java.util.concurrent" scheme="https://www.oxymorus.com/categories/java-util-concurrent/"/>
+      <category term="java.util.concurrent" scheme="https://www.zghurskyi.com/categories/java-util-concurrent/"/>
     
-      <category term="CompletableFuture" scheme="https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/"/>
+      <category term="CompletableFuture" scheme="https://www.zghurskyi.com/categories/java-util-concurrent/completablefuture/"/>
     
-      <category term="Future" scheme="https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/"/>
+      <category term="Future" scheme="https://www.zghurskyi.com/categories/java-util-concurrent/completablefuture/future/"/>
     
-      <category term="Thread" scheme="https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/thread/"/>
+      <category term="Thread" scheme="https://www.zghurskyi.com/categories/java-util-concurrent/completablefuture/future/thread/"/>
     
-      <category term="Runnable" scheme="https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/thread/runnable/"/>
+      <category term="Runnable" scheme="https://www.zghurskyi.com/categories/java-util-concurrent/completablefuture/future/thread/runnable/"/>
     
-      <category term="ForkJoinPool" scheme="https://www.oxymorus.com/categories/java-util-concurrent/completablefuture/future/thread/runnable/forkjoinpool/"/>
+      <category term="ForkJoinPool" scheme="https://www.zghurskyi.com/categories/java-util-concurrent/completablefuture/future/thread/runnable/forkjoinpool/"/>
     
     
-      <category term="java.util.concurrent" scheme="https://www.oxymorus.com/tags/java-util-concurrent/"/>
+      <category term="java.util.concurrent" scheme="https://www.zghurskyi.com/tags/java-util-concurrent/"/>
     
-      <category term="CompletableFuture" scheme="https://www.oxymorus.com/tags/completablefuture/"/>
+      <category term="CompletableFuture" scheme="https://www.zghurskyi.com/tags/completablefuture/"/>
     
-      <category term="Future" scheme="https://www.oxymorus.com/tags/future/"/>
+      <category term="Future" scheme="https://www.zghurskyi.com/tags/future/"/>
     
-      <category term="Thread" scheme="https://www.oxymorus.com/tags/thread/"/>
+      <category term="Thread" scheme="https://www.zghurskyi.com/tags/thread/"/>
     
-      <category term="Runnable" scheme="https://www.oxymorus.com/tags/runnable/"/>
+      <category term="Runnable" scheme="https://www.zghurskyi.com/tags/runnable/"/>
     
-      <category term="ForkJoinPool" scheme="https://www.oxymorus.com/tags/forkjoinpool/"/>
+      <category term="ForkJoinPool" scheme="https://www.zghurskyi.com/tags/forkjoinpool/"/>
     
   </entry>
   
   <entry>
     <title>Monitoring Spring Boot service with Prometheus and Grafana</title>
-    <link href="https://www.oxymorus.com/observability/"/>
-    <id>https://www.oxymorus.com/observability/</id>
+    <link href="https://www.zghurskyi.com/observability/"/>
+    <id>https://www.zghurskyi.com/observability/</id>
     <published>2019-09-11T22:07:41.000Z</published>
     <updated>2019-10-10T22:07:41.000Z</updated>
     
@@ -445,33 +445,33 @@
     
     </summary>
     
-      <category term="Observability" scheme="https://www.oxymorus.com/categories/observability/"/>
+      <category term="Observability" scheme="https://www.zghurskyi.com/categories/observability/"/>
     
-      <category term="Spring Boot" scheme="https://www.oxymorus.com/categories/observability/spring-boot/"/>
+      <category term="Spring Boot" scheme="https://www.zghurskyi.com/categories/observability/spring-boot/"/>
     
-      <category term="Prometheus" scheme="https://www.oxymorus.com/categories/observability/spring-boot/prometheus/"/>
+      <category term="Prometheus" scheme="https://www.zghurskyi.com/categories/observability/spring-boot/prometheus/"/>
     
-      <category term="Grafana" scheme="https://www.oxymorus.com/categories/observability/spring-boot/prometheus/grafana/"/>
+      <category term="Grafana" scheme="https://www.zghurskyi.com/categories/observability/spring-boot/prometheus/grafana/"/>
     
-      <category term="Docker" scheme="https://www.oxymorus.com/categories/observability/spring-boot/prometheus/grafana/docker/"/>
+      <category term="Docker" scheme="https://www.zghurskyi.com/categories/observability/spring-boot/prometheus/grafana/docker/"/>
     
     
-      <category term="Docker" scheme="https://www.oxymorus.com/tags/docker/"/>
+      <category term="Docker" scheme="https://www.zghurskyi.com/tags/docker/"/>
     
-      <category term="Spring Boot" scheme="https://www.oxymorus.com/tags/spring-boot/"/>
+      <category term="Spring Boot" scheme="https://www.zghurskyi.com/tags/spring-boot/"/>
     
-      <category term="Observability" scheme="https://www.oxymorus.com/tags/observability/"/>
+      <category term="Observability" scheme="https://www.zghurskyi.com/tags/observability/"/>
     
-      <category term="Prometheus" scheme="https://www.oxymorus.com/tags/prometheus/"/>
+      <category term="Prometheus" scheme="https://www.zghurskyi.com/tags/prometheus/"/>
     
-      <category term="Grafana" scheme="https://www.oxymorus.com/tags/grafana/"/>
+      <category term="Grafana" scheme="https://www.zghurskyi.com/tags/grafana/"/>
     
   </entry>
   
   <entry>
     <title>From Java 8 to 11: quick tour</title>
-    <link href="https://www.oxymorus.com/language-features-java8-to-java11/"/>
-    <id>https://www.oxymorus.com/language-features-java8-to-java11/</id>
+    <link href="https://www.zghurskyi.com/language-features-java8-to-java11/"/>
+    <id>https://www.zghurskyi.com/language-features-java8-to-java11/</id>
     <published>2019-06-27T18:07:41.000Z</published>
     <updated>2019-10-17T23:19:41.000Z</updated>
     
@@ -486,29 +486,29 @@
     
     </summary>
     
-      <category term="Java 8" scheme="https://www.oxymorus.com/categories/java-8/"/>
+      <category term="Java 8" scheme="https://www.zghurskyi.com/categories/java-8/"/>
     
-      <category term="Java 9" scheme="https://www.oxymorus.com/categories/java-8/java-9/"/>
+      <category term="Java 9" scheme="https://www.zghurskyi.com/categories/java-8/java-9/"/>
     
-      <category term="Java 10" scheme="https://www.oxymorus.com/categories/java-8/java-9/java-10/"/>
+      <category term="Java 10" scheme="https://www.zghurskyi.com/categories/java-8/java-9/java-10/"/>
     
-      <category term="Java 11" scheme="https://www.oxymorus.com/categories/java-8/java-9/java-10/java-11/"/>
+      <category term="Java 11" scheme="https://www.zghurskyi.com/categories/java-8/java-9/java-10/java-11/"/>
     
     
-      <category term="Java 8" scheme="https://www.oxymorus.com/tags/java-8/"/>
+      <category term="Java 8" scheme="https://www.zghurskyi.com/tags/java-8/"/>
     
-      <category term="Java 11" scheme="https://www.oxymorus.com/tags/java-11/"/>
+      <category term="Java 11" scheme="https://www.zghurskyi.com/tags/java-11/"/>
     
-      <category term="Java 9" scheme="https://www.oxymorus.com/tags/java-9/"/>
+      <category term="Java 9" scheme="https://www.zghurskyi.com/tags/java-9/"/>
     
-      <category term="Java 10" scheme="https://www.oxymorus.com/tags/java-10/"/>
+      <category term="Java 10" scheme="https://www.zghurskyi.com/tags/java-10/"/>
     
   </entry>
   
   <entry>
     <title>Kafka Provision Spring Boot Starter</title>
-    <link href="https://www.oxymorus.com/kafka-provision-spring-boot-starter/"/>
-    <id>https://www.oxymorus.com/kafka-provision-spring-boot-starter/</id>
+    <link href="https://www.zghurskyi.com/kafka-provision-spring-boot-starter/"/>
+    <id>https://www.zghurskyi.com/kafka-provision-spring-boot-starter/</id>
     <published>2019-06-21T22:39:55.000Z</published>
     <updated>2019-10-07T22:39:55.000Z</updated>
     
@@ -520,25 +520,25 @@
     
     </summary>
     
-      <category term="Apache Kafka" scheme="https://www.oxymorus.com/categories/apache-kafka/"/>
+      <category term="Apache Kafka" scheme="https://www.zghurskyi.com/categories/apache-kafka/"/>
     
-      <category term="Spring Boot Starter" scheme="https://www.oxymorus.com/categories/apache-kafka/spring-boot-starter/"/>
+      <category term="Spring Boot Starter" scheme="https://www.zghurskyi.com/categories/apache-kafka/spring-boot-starter/"/>
     
-      <category term="Topic Provisioning" scheme="https://www.oxymorus.com/categories/apache-kafka/spring-boot-starter/topic-provisioning/"/>
+      <category term="Topic Provisioning" scheme="https://www.zghurskyi.com/categories/apache-kafka/spring-boot-starter/topic-provisioning/"/>
     
     
-      <category term="Apache Kafka" scheme="https://www.oxymorus.com/tags/apache-kafka/"/>
+      <category term="Apache Kafka" scheme="https://www.zghurskyi.com/tags/apache-kafka/"/>
     
-      <category term="Spring Boot Starter" scheme="https://www.oxymorus.com/tags/spring-boot-starter/"/>
+      <category term="Spring Boot Starter" scheme="https://www.zghurskyi.com/tags/spring-boot-starter/"/>
     
-      <category term="Topic Provisioning" scheme="https://www.oxymorus.com/tags/topic-provisioning/"/>
+      <category term="Topic Provisioning" scheme="https://www.zghurskyi.com/tags/topic-provisioning/"/>
     
   </entry>
   
   <entry>
     <title>Relational Database Transaction</title>
-    <link href="https://www.oxymorus.com/database-transaction/"/>
-    <id>https://www.oxymorus.com/database-transaction/</id>
+    <link href="https://www.zghurskyi.com/database-transaction/"/>
+    <id>https://www.zghurskyi.com/database-transaction/</id>
     <published>2019-06-20T00:53:41.000Z</published>
     <updated>2019-10-16T00:53:41.000Z</updated>
     
@@ -550,25 +550,25 @@
     
     </summary>
     
-      <category term="Data Access Layer" scheme="https://www.oxymorus.com/categories/data-access-layer/"/>
+      <category term="Data Access Layer" scheme="https://www.zghurskyi.com/categories/data-access-layer/"/>
     
-      <category term="Transaction" scheme="https://www.oxymorus.com/categories/data-access-layer/transaction/"/>
+      <category term="Transaction" scheme="https://www.zghurskyi.com/categories/data-access-layer/transaction/"/>
     
-      <category term="ACID" scheme="https://www.oxymorus.com/categories/data-access-layer/transaction/acid/"/>
+      <category term="ACID" scheme="https://www.zghurskyi.com/categories/data-access-layer/transaction/acid/"/>
     
     
-      <category term="Data Access Layer" scheme="https://www.oxymorus.com/tags/data-access-layer/"/>
+      <category term="Data Access Layer" scheme="https://www.zghurskyi.com/tags/data-access-layer/"/>
     
-      <category term="Transaction" scheme="https://www.oxymorus.com/tags/transaction/"/>
+      <category term="Transaction" scheme="https://www.zghurskyi.com/tags/transaction/"/>
     
-      <category term="ACID" scheme="https://www.oxymorus.com/tags/acid/"/>
+      <category term="ACID" scheme="https://www.zghurskyi.com/tags/acid/"/>
     
   </entry>
   
   <entry>
     <title>Back-pressure patterns in practice</title>
-    <link href="https://www.oxymorus.com/backpressure/"/>
-    <id>https://www.oxymorus.com/backpressure/</id>
+    <link href="https://www.zghurskyi.com/backpressure/"/>
+    <id>https://www.zghurskyi.com/backpressure/</id>
     <published>2019-06-19T10:58:44.000Z</published>
     <updated>2019-10-07T10:58:44.000Z</updated>
     
@@ -580,19 +580,19 @@
     
     </summary>
     
-      <category term="Reactive" scheme="https://www.oxymorus.com/categories/reactive/"/>
+      <category term="Reactive" scheme="https://www.zghurskyi.com/categories/reactive/"/>
     
-      <category term="Back-Pressure" scheme="https://www.oxymorus.com/categories/reactive/back-pressure/"/>
+      <category term="Back-Pressure" scheme="https://www.zghurskyi.com/categories/reactive/back-pressure/"/>
     
     
-      <category term="back-pressure" scheme="https://www.oxymorus.com/tags/back-pressure/"/>
+      <category term="back-pressure" scheme="https://www.zghurskyi.com/tags/back-pressure/"/>
     
   </entry>
   
   <entry>
     <title>Blocking vs Not-Blocking</title>
-    <link href="https://www.oxymorus.com/blocking-vs-nonblocking/"/>
-    <id>https://www.oxymorus.com/blocking-vs-nonblocking/</id>
+    <link href="https://www.zghurskyi.com/blocking-vs-nonblocking/"/>
+    <id>https://www.zghurskyi.com/blocking-vs-nonblocking/</id>
     <published>2019-06-18T14:45:13.000Z</published>
     <updated>2019-10-17T22:50:07.000Z</updated>
     
@@ -604,25 +604,25 @@
     
     </summary>
     
-      <category term="Reactive" scheme="https://www.oxymorus.com/categories/reactive/"/>
+      <category term="Reactive" scheme="https://www.zghurskyi.com/categories/reactive/"/>
     
-      <category term="Blocking processing" scheme="https://www.oxymorus.com/categories/reactive/blocking-processing/"/>
+      <category term="Blocking processing" scheme="https://www.zghurskyi.com/categories/reactive/blocking-processing/"/>
     
-      <category term="Non-blocking processing" scheme="https://www.oxymorus.com/categories/reactive/blocking-processing/non-blocking-processing/"/>
+      <category term="Non-blocking processing" scheme="https://www.zghurskyi.com/categories/reactive/blocking-processing/non-blocking-processing/"/>
     
     
-      <category term="Reactive" scheme="https://www.oxymorus.com/tags/reactive/"/>
+      <category term="Reactive" scheme="https://www.zghurskyi.com/tags/reactive/"/>
     
-      <category term="Blocking processing" scheme="https://www.oxymorus.com/tags/blocking-processing/"/>
+      <category term="Blocking processing" scheme="https://www.zghurskyi.com/tags/blocking-processing/"/>
     
-      <category term="Non-blocking processing" scheme="https://www.oxymorus.com/tags/non-blocking-processing/"/>
+      <category term="Non-blocking processing" scheme="https://www.zghurskyi.com/tags/non-blocking-processing/"/>
     
   </entry>
   
   <entry>
     <title>Trick Of The Day: Cloning all Github repositories</title>
-    <link href="https://www.oxymorus.com/clone-all-github-repos/"/>
-    <id>https://www.oxymorus.com/clone-all-github-repos/</id>
+    <link href="https://www.zghurskyi.com/clone-all-github-repos/"/>
+    <id>https://www.zghurskyi.com/clone-all-github-repos/</id>
     <published>2019-06-17T22:52:55.000Z</published>
     <updated>2019-10-07T22:52:55.000Z</updated>
     
@@ -634,18 +634,18 @@
     
     </summary>
     
-      <category term="Github" scheme="https://www.oxymorus.com/categories/github/"/>
+      <category term="Github" scheme="https://www.zghurskyi.com/categories/github/"/>
     
-      <category term="clone" scheme="https://www.oxymorus.com/categories/github/clone/"/>
+      <category term="clone" scheme="https://www.zghurskyi.com/categories/github/clone/"/>
     
-      <category term="jq" scheme="https://www.oxymorus.com/categories/github/clone/jq/"/>
+      <category term="jq" scheme="https://www.zghurskyi.com/categories/github/clone/jq/"/>
     
     
-      <category term="Github" scheme="https://www.oxymorus.com/tags/github/"/>
+      <category term="Github" scheme="https://www.zghurskyi.com/tags/github/"/>
     
-      <category term="clone" scheme="https://www.oxymorus.com/tags/clone/"/>
+      <category term="clone" scheme="https://www.zghurskyi.com/tags/clone/"/>
     
-      <category term="jq" scheme="https://www.oxymorus.com/tags/jq/"/>
+      <category term="jq" scheme="https://www.zghurskyi.com/tags/jq/"/>
     
   </entry>
   
