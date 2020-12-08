@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Tool Of The Day: kafkacat"
-date: 2019-10-18 15:53:41
-updated: 2019-10-18 15:53:41
+date: 2020-12-05 15:53:41
+updated: 2020-12-05 15:53:41
 tags:
     - Apache Kafka
     - kafkacat

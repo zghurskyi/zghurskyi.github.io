@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Optimistic locking with Aerospike and Project Reactor"
-date: 2019-10-06 19:47:51
-updated: 2019-10-06 19:47:51
+date: 2020-12-06 19:47:51
+updated: 2020-12-06 19:47:51
 tags:
     - Aerospike
     - Project Reactor
