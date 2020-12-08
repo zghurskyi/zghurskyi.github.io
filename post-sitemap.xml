@@ -8,6 +8,30 @@
     </url>
 
     <url>
+        <loc>https://www.zghurskyi.com/pessimistic-locking-with-reactor-and-aerospike/</loc>
+        <lastmod>2020-12-06T20:47:51.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://www.zghurskyi.com/optimistic-locking-with-reactor-and-aerospike/</loc>
+        <lastmod>2020-12-06T19:47:51.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://www.zghurskyi.com/kafkacat-overview/</loc>
+        <lastmod>2020-12-05T15:53:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://www.zghurskyi.com/lost-update/</loc>
         <lastmod>2020-09-29T12:35:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -66,14 +90,6 @@
     <url>
         <loc>https://www.zghurskyi.com/decorator/</loc>
         <lastmod>2019-10-23T23:34:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://www.zghurskyi.com/kafkacat-overview/</loc>
-        <lastmod>2019-10-18T15:53:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -146,22 +162,6 @@
     <url>
         <loc>https://www.zghurskyi.com/backpressure/</loc>
         <lastmod>2019-10-07T10:58:44.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://www.zghurskyi.com/optimistic-locking-with-reactor-and-aerospike/</loc>
-        <lastmod>2019-10-06T19:47:51.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://www.zghurskyi.com/pessimistic-locking-with-reactor-and-aerospike/</loc>
-        <lastmod>2019-10-05T20:47:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

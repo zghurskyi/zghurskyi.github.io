@@ -3,8 +3,50 @@
 
 
     <url>
+        <loc>https://www.zghurskyi.com/tags/project-reactor/</loc>
+        <lastmod>2020-12-06T20:47:51.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.zghurskyi.com/tags/aerospike/</loc>
+        <lastmod>2020-12-06T20:47:51.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.zghurskyi.com/tags/pessimistic-locking/</loc>
-        <lastmod>2020-09-29T12:35:12.000Z</lastmod>
+        <lastmod>2020-12-06T20:47:51.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.zghurskyi.com/tags/optimistic-locking/</loc>
+        <lastmod>2020-12-06T19:47:51.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.zghurskyi.com/tags/kafkacat/</loc>
+        <lastmod>2020-12-05T15:53:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.zghurskyi.com/tags/apache-kafka/</loc>
+        <lastmod>2020-12-05T15:53:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://www.zghurskyi.com/tags/docker/</loc>
+        <lastmod>2020-12-05T15:53:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -18,13 +60,6 @@
 
     <url>
         <loc>https://www.zghurskyi.com/tags/lost-update/</loc>
-        <lastmod>2020-09-29T12:35:12.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.zghurskyi.com/tags/optimistic-locking/</loc>
         <lastmod>2020-09-29T12:35:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -67,13 +102,6 @@
 
     <url>
         <loc>https://www.zghurskyi.com/tags/dynamic-routes/</loc>
-        <lastmod>2020-02-23T12:54:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.zghurskyi.com/tags/apache-kafka/</loc>
         <lastmod>2020-02-23T12:54:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -136,13 +164,6 @@
     </url>
 
     <url>
-        <loc>https://www.zghurskyi.com/tags/docker/</loc>
-        <lastmod>2019-11-02T22:28:54.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://www.zghurskyi.com/tags/load-testing/</loc>
         <lastmod>2019-10-28T23:05:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -173,13 +194,6 @@
     <url>
         <loc>https://www.zghurskyi.com/tags/decorator-pattern/</loc>
         <lastmod>2019-10-23T23:34:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.zghurskyi.com/tags/kafkacat/</loc>
-        <lastmod>2019-10-18T15:53:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -348,20 +362,6 @@
     <url>
         <loc>https://www.zghurskyi.com/tags/back-pressure/</loc>
         <lastmod>2019-10-07T10:58:44.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.zghurskyi.com/tags/project-reactor/</loc>
-        <lastmod>2019-10-06T19:47:51.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://www.zghurskyi.com/tags/aerospike/</loc>
-        <lastmod>2019-10-06T19:47:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
