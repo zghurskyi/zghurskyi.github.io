@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>https://www.zghurskyi.com/tags/ukraine/</loc>
+        <lastmod>2022-03-08T20:36:51.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.zghurskyi.com/tags/project-reactor/</loc>
         <lastmod>2020-12-06T20:47:51.000Z</lastmod>
         <changefreq>weekly</changefreq>

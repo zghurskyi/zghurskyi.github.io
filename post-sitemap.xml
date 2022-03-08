@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://www.zghurskyi.com/russia-invaded-ukraine/</loc>
+        <lastmod>2022-03-08T20:36:51.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://www.zghurskyi.com/pessimistic-locking-with-reactor-and-aerospike/</loc>
         <lastmod>2020-12-06T20:47:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
