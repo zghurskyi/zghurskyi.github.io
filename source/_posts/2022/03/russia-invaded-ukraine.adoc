@@ -1,0 +1,50 @@
+---
+layout: post
+title:  "RUSSIAN GENOCIDE IN UKRAINE"
+date: 2022-03-08 20:36:51
+updated: 2022-03-08 20:36:51
+tags:
+    - Ukraine
+categories:
+    - Ukraine
+og_image: /images/ukraine.png
+eyeCatchImage: /images/ukraine.png
+---
+
+:sectnums:
+:sectlinks:
+:sectanchors:
+
+:war-ukraine-url: https://war.ukraine.ua/
+:ukraine-humanitarian-assistance-account-url: https://bank.gov.ua/en/news/all/natsionalniy-bank-vidkriv-spetsrahunok-dlya-zboru-koshtiv-na-potrebi-armiyi
+:the-come-back-alive-fund-url: https://www.comebackalive.in.ua/
+:nova-ukraine-url: https://novaukraine.org/
+:razom-for-ukraine-url: https://razomforukraine.org/
+
+RUSSIAN GENOCIDE IN UKRAINE
+
+++++
+<!-- more -->
+++++
+
+I am Ukrainian.
+
+Russia is bombing my hometown Kyiv. As of now - hundreds of civilian people are dead and thousands injured.
+
+My country needs your help! Any help you can give - **matters a lot for us today!**
+
+Sharing the {war-ukraine-url}[truth] about the war in Ukraine or donating - everything is important and can save the lives of innocent people in Ukraine!
+
+Below are links to trustworthy organizations in need of funds to continue saving and caring for the people of Ukraine. If you can - please donate to them or share these links amongst your friends in social media.
+
+THANK YOU!
+
+{ukraine-humanitarian-assistance-account-url}[Ukraine Humanitarian Assistance Account]
+
+{ukraine-humanitarian-assistance-account-url}[Ukraine Armed Forces]
+
+{the-come-back-alive-fund-url}[The Come Back Alive Fund]
+
+{nova-ukraine-url}[Nova Ukraine]
+
+{razom-for-ukraine-url}[Razom]
