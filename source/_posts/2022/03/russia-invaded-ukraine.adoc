@@ -21,13 +21,11 @@ eyeCatchImage: /images/ukraine.png
 :nova-ukraine-url: https://novaukraine.org/
 :razom-for-ukraine-url: https://razomforukraine.org/
 
-RUSSIAN GENOCIDE IN UKRAINE
+I am Ukrainian.
 
 ++++
 <!-- more -->
 ++++
-
-I am Ukrainian.
 
 Russia is bombing my hometown Kyiv. As of now - hundreds of civilian people are dead and thousands injured.
 
