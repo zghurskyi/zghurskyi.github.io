@@ -15,7 +15,7 @@ eyeCatchImage: /images/ukraine.png
 :sectlinks:
 :sectanchors:
 
-:war-ukraine-url: https://war.ukraine.ua/
+:war-in-ukraine-url: https://war.ukraine.ua/
 :ukraine-humanitarian-assistance-account-url: https://bank.gov.ua/en/news/all/natsionalniy-bank-vidkriv-spetsrahunok-dlya-zboru-koshtiv-na-potrebi-armiyi
 :the-come-back-alive-fund-url: https://www.comebackalive.in.ua/
 :nova-ukraine-url: https://novaukraine.org/
@@ -29,13 +29,14 @@ I am Ukrainian.
 
 Russia is bombing Kyiv, Kharkiv, Sumy, Mariupol, Mykolayiv and many other Ukrainian cities.
 Russian occupants are shelling hospitals, kindergartens, residential buildings.
-In Mariupol, a 6-year-old girl has died from dehydration... in 2022... in the center of Europe...
+In Mariupol, the city surrounded by Russian troops, a 6-year-old girl has died from dehydration... in 2022... in the center of Europe...
 
-My country needs your help! Any help you can give **matters a lot for us today!**
+My country needs your help! **Any help matters a lot for us today!**
 
-Sharing the {war-ukraine-url}[truth] about the war in Ukraine or donating - everything is important and can save the lives of innocent people in Ukraine!
+Sharing the {war-in-ukraine-url}[truth] about the war in Ukraine or donating - everything is important and can save the lives of innocent people in Ukraine!
 
-Below are links to trustworthy organizations in need of funds to continue saving and caring for the people of Ukraine. If you can - please donate to them or share these links amongst your friends in social media.
+Below are links to trustworthy organizations in need of funds to continue saving and caring for the people of Ukraine.
+If you can - please donate to them or share these links amongst your friends in social media.
 
 THANK YOU!
 
