@@ -1,0 +1,52 @@
+---
+layout: clean
+title:  "RUSSIAN GENOCIDE IN UKRAINE"
+date: 2022-03-08 20:36:51
+updated: 2022-03-08 20:36:51
+tags:
+- Ukraine
+categories:
+- Ukraine
+og_image: /images/ukraine.png
+eyeCatchImage: /images/ukraine.png
+---
+
+:sectnums:
+:sectlinks:
+:sectanchors:
+
+:war-in-ukraine-url: https://war.ukraine.ua/
+:war-in-ukraine-photo-url: https://ukraine2022photo.net/
+:ukraine-humanitarian-assistance-account-url: https://bank.gov.ua/en/news/all/natsionalniy-bank-vidkriv-spetsrahunok-dlya-zboru-koshtiv-na-potrebi-armiyi
+:the-come-back-alive-fund-url: https://www.comebackalive.in.ua/
+:nova-ukraine-url: https://novaukraine.org/
+:razom-for-ukraine-url: https://razomforukraine.org/
+
+I am Ukrainian.
+
+++++
+<!-- more -->
+++++
+
+Russia is bombing Kyiv, Kharkiv, Sumy, Mariupol, Mykolayiv and many other Ukrainian cities.
+Russian occupants are shelling hospitals, kindergartens, residential buildings.
+In Mariupol, the city surrounded by Russian troops, a 6-year-old girl has died from dehydration... in 2022... in the Europe...
+
+My country needs your help! **Any help matters a lot for us today!**
+
+Sharing the {war-in-ukraine-photo-url}[truth] about the war in Ukraine or donating - everything is important and can save the lives of innocent people in Ukraine!
+
+Below are links to trustworthy organizations in need of funds to continue saving and caring for the people of Ukraine.
+If you can - please donate to them or share these links amongst your friends in social media.
+
+THANK YOU!
+
+{ukraine-humanitarian-assistance-account-url}[Ukraine Humanitarian Assistance Account]
+
+{ukraine-humanitarian-assistance-account-url}[Ukraine Armed Forces]
+
+{the-come-back-alive-fund-url}[The Come Back Alive Fund]
+
+{nova-ukraine-url}[Nova Ukraine]
+
+{razom-for-ukraine-url}[Razom]
