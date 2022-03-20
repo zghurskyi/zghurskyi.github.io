@@ -9,7 +9,14 @@
     
     <url>
         <loc>https://www.zghurskyi.com/privacy-policy/</loc>
-        <lastmod>2022-03-08T20:13:29.580Z</lastmod>
+        <lastmod>2022-03-20T09:09:02.640Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.zghurskyi.com/war-in-ukraine/</loc>
+        <lastmod>2022-03-08T20:36:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
