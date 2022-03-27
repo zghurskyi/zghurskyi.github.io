@@ -35,35 +35,28 @@ Mariupol, once a port city of 450,000 people, is now completely destroyed, and i
 [.text-center]
 --
 [.img-responsive.img-thumbnail]
-[link=/images/mariupol_1.jpeg]
-image::/images/mariupol_1.jpeg[]
+[link=/images/mariupol_1.jpg]
+image::/images/mariupol_1.jpg[]
 --
 
 [.text-center]
 --
 [.img-responsive.img-thumbnail]
-[link=/images/mariupol_2.jpeg]
-image::/images/mariupol_2.jpeg[]
+[link=/images/mariupol_2.jpg]
+image::/images/mariupol_2.jpg[]
 --
 [.text-center]
 --
 [.img-responsive.img-thumbnail]
-[link=/images/mariupol_1.jpeg]
-image::/images/mariupol_1.jpeg[]
+[link=/images/mariupol_3.jpg]
+image::/images/mariupol_3.jpg[]
 --
 
 [.text-center]
 --
 [.img-responsive.img-thumbnail]
-[link=/images/mariupol_3.jpeg]
-image::/images/mariupol_3.jpeg[]
---
-
-[.text-center]
---
-[.img-responsive.img-thumbnail]
-[link=/images/mariupol_4.jpeg]
-image::/images/mariupol_4.jpeg[]
+[link=/images/mariupol_4.jpg]
+image::/images/mariupol_4.jpg[]
 --
 
 My country needs your help! **Any help matters a lot for us today!**
