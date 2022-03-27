@@ -30,7 +30,41 @@ I am Ukrainian.
 
 Russia is bombing Kyiv, Kharkiv, Sumy, Mariupol, Mykolayiv and many other Ukrainian cities.
 Russian occupants are shelling hospitals, kindergartens, residential buildings.
-In Mariupol, the city surrounded by Russian troops, a 6-year-old girl has died from dehydration... in 2022... in the Europe...
+Mariupol, once a port city of 450,000 people, is now completely destroyed, and its streets turned into cemeteries.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/mariupol_1.jpeg]
+image::/images/mariupol_1.jpeg[]
+--
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/mariupol_2.jpeg]
+image::/images/mariupol_2.jpeg[]
+--
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/mariupol_1.jpeg]
+image::/images/mariupol_1.jpeg[]
+--
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/mariupol_3.jpeg]
+image::/images/mariupol_3.jpeg[]
+--
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/mariupol_4.jpeg]
+image::/images/mariupol_4.jpeg[]
+--
 
 My country needs your help! **Any help matters a lot for us today!**
 
